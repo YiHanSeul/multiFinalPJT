@@ -11,7 +11,7 @@ $(function(){
 	var data = {
 		    "b_no": ["3900901943"] // 사업자번호 "xxxxxxx" 로 조회 시,
 		   }; 
-		   
+		   console.olog(data);
 		$.ajax({
 		  url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=3%2FGcCxFykotCNeqdbYmQTwLG%2BRckHFaJ6ImSyvz7ZbaXT54SCG2UKQUHIoV4XsmIl%2F1XY00EhTUYsN3m1Cf98A%3D%3D",  // serviceKey 값을 xxxxxx에 입력
 		  type: "POST",
