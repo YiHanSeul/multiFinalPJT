@@ -1,5 +1,9 @@
 package com.petcare.home.model.service;
 
-public interface MapService {
+import java.util.List;
 
+import com.petcare.home.model.dto.MapDto;
+
+public interface MapService {
+	public List<MapDto> selectMap();
 }

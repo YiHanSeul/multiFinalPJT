@@ -10,13 +10,19 @@ import com.petcare.home.model.mapper.UserMapper;
 public class UserServiceImpl implements UserService{
 	
 	@Autowired
-	UserMapper usermapper;
+	UserMapper userMapper;
 	
 	@Override
 	public void joinUser(UserDto user) throws Exception{
 		
-		usermapper.joinUser(user);
+		userMapper.joinUser(user);
 		
+	}
+
+	@Override
+	public UserDto UserChk(String userId) {
+		System.out.println("service임플임");
+		return userMapper.userChk(userId);
 	}
 
 }
