@@ -12,9 +12,8 @@ public class HospitalServiceImpl implements HospitalService {
 	private HospitalMapper hospitalMapper;
 
 	@Override
-	public int joinHospital(HospitalDto hospitalDto) {
-		
-		return hospitalMapper.joinHospital(hospitalDto);
+	public int insertHos(HospitalDto hospitalDto) {
+		return hospitalMapper.insertHos(hospitalDto);
 	}
 
 }

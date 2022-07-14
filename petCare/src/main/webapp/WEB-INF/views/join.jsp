@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div><a href="/hos/hosJoinForm">병원회원가입</a></div>
+<div><a href="/hos/insertHosForm">병원회원가입</a></div>
 </body>
 </html>
