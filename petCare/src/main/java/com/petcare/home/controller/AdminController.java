@@ -1,13 +1,12 @@
 package com.petcare.home.controller;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.petcare.home.model.dto.HospitalDto;
 import com.petcare.home.model.service.AdminService;
 
 
@@ -23,13 +22,24 @@ public class AdminController {
 		return "api";
 	}
 	
-	@RequestMapping(value="/admincheck")
+	@RequestMapping(value="/adminCheck")
 	public String adminCheck(Model model) {
 		model.addAttribute("list", adminService.HospitalVChk());
 	
 		return "adminCheck";
 	}
 	
+	@RequestMapping(value="/adminCheckres")
+	public String adminCheckres(Model model, String hospitalKey){
+		int res = adminService.updateHospitalVChk(hospitalKey);
+		if(res>0) {
+			return "adminCheck";
+		}else {
+			return "adminCheck";
+		}
+		
+		
+	}
 	
 	
 

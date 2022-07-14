@@ -9,12 +9,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-/* $('#check').click(function(){
-	alert("클릭이벤트 발생");
-}); */
-function hello() {
-	alert("하이");
-}
+
 </script>
 </head>
 <body>
@@ -31,7 +26,9 @@ function hello() {
 		<td>HospitalAddr = ${dto.hospitalAddr }</td>
 		<td>HospitalChk = ${dto.hospitalChk }</td>
 		<td>Grade = ${dto.grade }</td>
-		<td><a id="check">승인</a></td>
+		<td><button onclick = "location.href = '/admin/adminCheckres?hospitalKey=${dto.hospitalKey }'">승인</button></td>
+																									<!-- 이 값도 같이 넘겨줄게 컨트롤러에 -->
+																									
 	</tr>
 </c:forEach>	
 </table>
