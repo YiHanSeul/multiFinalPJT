@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.petcare.home.model.service.AdminService;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 	@Autowired
 	AdminService adminService;
