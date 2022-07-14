@@ -9,12 +9,13 @@ public class HospitalDto {
 	private String HospitalPhone;
 	private String HospitalAddr;
 	private String Grade;
+	private int HospitalChk ;
 	public HospitalDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public HospitalDto(String hospitalKey, String hospitalName, String hosPitalId, String hospitalPw,
-			String hospitalEmail, String hospitalPhone, String hospitalAddr, String grade) {
+			String hospitalEmail, String hospitalPhone, String hospitalAddr, String grade, int hospitalChk) {
 		super();
 		HospitalKey = hospitalKey;
 		HospitalName = hospitalName;
@@ -24,6 +25,7 @@ public class HospitalDto {
 		HospitalPhone = hospitalPhone;
 		HospitalAddr = hospitalAddr;
 		Grade = grade;
+		HospitalChk = hospitalChk;
 	}
 	public String getHospitalKey() {
 		return HospitalKey;
@@ -73,11 +75,18 @@ public class HospitalDto {
 	public void setGrade(String grade) {
 		Grade = grade;
 	}
+	public int getHospitalChk() {
+		return HospitalChk;
+	}
+	public void setHospitalChk(int hospitalChk) {
+		HospitalChk = hospitalChk;
+	}
 	@Override
 	public String toString() {
 		return "HospitalDto [HospitalKey=" + HospitalKey + ", HospitalName=" + HospitalName + ", HosPitalId="
 				+ HosPitalId + ", HospitalPw=" + HospitalPw + ", HospitalEmail=" + HospitalEmail + ", HospitalPhone="
-				+ HospitalPhone + ", HospitalAddr=" + HospitalAddr + ", Grade=" + Grade + "]";
+				+ HospitalPhone + ", HospitalAddr=" + HospitalAddr + ", Grade=" + Grade + ", HospitalChk=" + HospitalChk
+				+ "]";
 	}
-	
+
 }

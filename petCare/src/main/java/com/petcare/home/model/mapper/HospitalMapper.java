@@ -8,7 +8,7 @@ import com.petcare.home.model.dto.HospitalDto;
 @Mapper
 public interface HospitalMapper {
 
-	@Insert(" INSERT INTO hospital_user VALUES(#{HospitalKey},#{HospitalName},#{HosPitalId},#{HospitalPw},#{HospitalEmail},#{HospitalPhone},#{HospitalAddr},2)  ")
-	int joinHospital(HospitalDto hospitalDto);
+	@Insert(" INSERT INTO hospital_user VALUES(#{HospitalKey},#{HospitalName},#{HosPitalId},#{HospitalPw},#{HospitalEmail},#{HospitalPhone},#{HospitalAddr},0,2)  ")
+	int insertHos(HospitalDto hospitalDto);
 
 }

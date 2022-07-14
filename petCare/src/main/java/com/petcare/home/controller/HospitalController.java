@@ -16,20 +16,20 @@ public class HospitalController {
 	
 	@Autowired
 	private HospitalService hosService;
-	@GetMapping("/hosJoinForm")
-	public String hosJoinForm() {
-		return "hosjoin";
+	@GetMapping("/insertHosForm")
+	public String insertHosForm() {
+		return "insertHos";
 	}
 	
-	@GetMapping("/hosJoin")
-	public String hosJoin(HospitalDto hospitalDto) {
+	@GetMapping("/insertHos")
+	public String insertHos(HospitalDto hospitalDto) {
 		System.out.println(hospitalDto);
 		
-		int res=hosService.joinHospital(hospitalDto);
+		int res=hosService.insertHos(hospitalDto);
 		if(res>0) {
 			return "index";
 		}else {
-			return "hosjoin";
+			return "insertHos";
 		}
 	}
 	@PostMapping("/hosMap")
