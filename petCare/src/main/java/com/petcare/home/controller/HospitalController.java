@@ -32,7 +32,7 @@ public class HospitalController {
 			return "hosjoin";
 		}
 	}
-	@PostMapping("/hosMap")
+	@GetMapping("/hosMap")
 	public String hosMap() {
 		return "hosMap";
 	}
