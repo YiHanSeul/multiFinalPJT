@@ -21,13 +21,24 @@ public class AdminController {
 		return "api";
 	}	
 	
-	@RequestMapping(value="/admincheck")
+	@RequestMapping(value="/adminCheck")
 	public String adminCheck(Model model) {
 		model.addAttribute("list", adminService.HospitalVChk());
 	
 		return "adminCheck";
 	}
 	
+	@RequestMapping(value="/adminCheckres")
+	public String adminCheckres(Model model, String hospitalKey){
+		int res = adminService.updateHospitalVChk(hospitalKey);
+		if(res>0) {
+			return "adminCheck";
+		}else {
+			return "adminCheck";
+		}
+		
+		
+	}
 	
 	
 

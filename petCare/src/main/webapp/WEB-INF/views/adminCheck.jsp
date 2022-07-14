@@ -43,6 +43,7 @@ $(document).ready(function(){
 	 });
 	
 });
+
 </script>
 </head>
 <body>
@@ -66,10 +67,11 @@ $(document).ready(function(){
 		<td> ${dto.hospitalEmail }</td>
 		<td> ${dto.hospitalPhone }</td>
 		<td> ${dto.hospitalAddr }</td>
-		<td><button class="btn" value="${dto.hospitalKey}">검증하기</button></td>
+		<td><button onclick = "location.href = '/admin/adminCheckres?hospitalKey=${dto.hospitalKey }'">승인</button></td>
 		<td><a id="check">승인</a></td>
 		</tr>
 	
+
 </c:forEach>	
 </table>
 

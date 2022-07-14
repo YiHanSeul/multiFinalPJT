@@ -8,4 +8,5 @@ import com.petcare.home.model.dto.HospitalDto;
 public interface AdminService {
 	public AdminDto AdminChk(String AdminId);
 	public List<HospitalDto> HospitalVChk(); 
+	public int updateHospitalVChk(String HospitalKey);
 }

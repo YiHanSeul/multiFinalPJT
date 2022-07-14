@@ -30,6 +30,15 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 
+	@Override
+	public int updateHospitalVChk(String HospitalKey) {
+		return adminMapper.updateHospitalVChk(HospitalKey);
+	}
+
+
+
+
+
 
 
 
