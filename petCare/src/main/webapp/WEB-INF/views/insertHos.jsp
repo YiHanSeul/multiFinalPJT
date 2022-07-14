@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/hos/hosJoin" method="get">
+<form action="/hos/insertHos" method="get">
 	<div>
 		병원명
 		<input type="text" name=HospitalName>
