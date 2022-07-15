@@ -9,4 +9,7 @@ public interface AdminService {
 	public AdminDto AdminChk(String AdminId);
 	public List<HospitalDto> HospitalVChk(); 
 	public int updateHospitalVChk(String HospitalKey);
+	
+	
+
 }
