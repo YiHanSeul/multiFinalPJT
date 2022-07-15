@@ -27,12 +27,15 @@ $(document).ready(function(){
 			  contentType: "application/json",
 			  accept: "application/json",
 			  success: function(result) {
-			      console.log(result);
+			      //console.log(result);
 			      console.log(result.data[0].tax_type);
 			      if(result.data[0].tax_type=="국세청에 등록되지 않은 사업자등록번호입니다."){
-			    	  //console.log($(this))
-			    	  console.log($(this).text())
-			    	  $(btn).html('거짓');
+			    	  $(btn).html('검증실패');
+			      }else{
+			    	  $(btn).html('검증완료');
+			    	  console.log($(btn).parent().next().children("button").show());
+			    	  $(btn).find("button").show()
+			    	  
 			      }
 			  },
 			  error: function(result) {
@@ -67,13 +70,14 @@ $(document).ready(function(){
 		<td> ${dto.hospitalEmail }</td>
 		<td> ${dto.hospitalPhone }</td>
 		<td> ${dto.hospitalAddr }</td>
-		<td><button onclick = "location.href = '/admin/adminCheckres?hospitalKey=${dto.hospitalKey }'">승인</button></td>
-		<td><a id="check">승인</a></td>
+		<td><button class="btn" value="${dto.hospitalKey}">검증하기</button></td>
+		<td class="td_agree"><button  style="display:none" id="${dto.hospitalKey}" onclick = "location.href = '/admin/adminCheckres?hospitalKey=${dto.hospitalKey }'">승인</button></td>
 		</tr>
 	
 
 </c:forEach>	
 </table>
+
 
 
 </body>
