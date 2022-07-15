@@ -1,5 +1,6 @@
 package com.petcare.home.model.service;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class AdminServiceImpl implements AdminService{
 	public int updateHospitalVChk(String HospitalKey) {
 		return adminMapper.updateHospitalVChk(HospitalKey);
 	}
+
+
+
 
 
 
