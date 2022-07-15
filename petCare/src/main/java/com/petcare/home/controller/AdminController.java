@@ -21,7 +21,7 @@ public class AdminController {
 		return "api";
 	}	
 	
-	@RequestMapping(value="/adminCheck")
+	@RequestMapping(value="/admincheck")
 	public String adminCheck(Model model) {
 		model.addAttribute("list", adminService.HospitalVChk());
 	
