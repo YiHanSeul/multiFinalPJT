@@ -11,20 +11,9 @@ response.setContentType("text/html; charset=UTF-8");
 <head>
 <meta charset="UTF-8">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	function doDisplay(){
-		var con = document.getElementById("time");
-		if(con.style.display=='none'){
-			con.style.display = 'block';
-		}else{
-			con.style.display = 'block';
-		}
-	}
-
-</script>
-<link href="${pageContext.request.contextPath}static/css/bootstrap.min.css" rel="stylesheet" />
-<link href='${pageContext.request.contextPath }static/css/fullcalendar.css' rel='stylesheet' />
-<script src='${pageContest.request.contextPath }static/js/fullcalendar.js'></script>
+<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel='stylesheet' />
+<link href='${pageContext.request.contextPath }/resources/css/fullcalendar.css' rel='stylesheet' />
+<script src='${pageContest.request.contextPath }/resources/js/fullcalendar.js'></script>
 <style>
 h2 {
 	color: var(- -bs-blue);
@@ -46,8 +35,12 @@ input {
 display:none;
 witdh: 20%;
 }
-
-
+.it_btn{
+	background-color: skyblue;
+}
+.btn{
+	background-color: skyblue;
+}
 </style>
 </head>
 <body>
@@ -64,27 +57,75 @@ witdh: 20%;
 	<div id='calendar'></div>
 	<a href="javascript:doDisplay();"></a><br/>
 	<div id='time'>
-			<a> 오전 </a><br/>
-			<button id="btn">Button</button>
-			<input type="button" value="10:00" onclick=''>
-			<input type="button" value="10:30" onclick=''>
-			<input type="button" value="11:00" onclick=''>
-			<input type="button" value="11:30" onclick=''><br/>
-			<a> 오후 </a><br/>
-			<input type="button" value="13:00" onclick=''>
-			<input type="button" value="13:30" onclick=''>
-			<input type="button" value="14:00" onclick=''>
-			<input type="button" value="14:30" onclick=''><br/>
-			<input type="button" value="15:00" onclick=''>
-			<input type="button" value="15:30" onclick=''>
-			<input type="button" value="16:00" onclick=''>
-			<input type="button" value="16:30" onclick=''><br/>
-			<input type="button" value="17:00" onclick=''>
-			<input type="button" value="17:30" onclick=''>
+		<section id="sel_option">
+		  <ul>
+		    <li class="opt_list">
+		      <a> 오후</a><br/>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" class="btn1" type="button" data-num="10:00">10:00</button>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" class="btn1" type="button" data-num="10:30">10:30</button>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="11:00">11:00</button>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="11:30">11:30</button><br/>
+		      <a> 오후</a><br/>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="12:00">12:00</button>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="12:30">12:30</button>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="13:00">13:00</button>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="13:30">13:30</button><br/>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="14:00">14:00</button>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="14:30">14:30</button>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="15:00">15:00</button>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="15:30">15:30</button><br/>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="16:00">16:00</button>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="16:30">16:30</button>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="17:00">17:00</button>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="17:30">17:30</button><br/>
+		      <input class="it_num" type="hidden" value="0">
+		      <button class="it_btn" name="btn1" type="button" data-num="15:00">18:00</button>
+		    </li>
+		  </ul>
+		</section>
 	</div>
+	<div>
+	<button id="print">num print<br/>
+	</div>
+	<input type="textarea">
 	<br>
+
 </body>
 <script type="text/javascript">
+	function doDisplay(){
+		var con = document.getElementById("time");
+		if(con.style.display=='none'){
+			con.style.display = 'block';
+		}else{
+			con.style.display = 'block';
+		}
+	}
+	
+	$(function() {
+	$('.it_btn').on('click', function() {
+	    num = $(this).data('num');    
+	    $(this).closest('li').find('.it_num').val(num);
+	    console.log(num);
+	
+	});
+	});
+
 	document.addEventListener('DOMContentLoaded', function() {
 		var calendarEl = document.getElementById('calendar');
 		var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -113,18 +154,24 @@ witdh: 20%;
 			select : function(arg) {
 				var title = confirm('예약을 잡으실껀가용?');
 				if (title) {
+					selectedDate = 
 					doDisplay();
 				}
 			}
 		});
 		calendar.render();
 	});
+
+let btn = document.getElementsByClassName('btn1');
+let index = 0;
+const colors = ['yellow', 'skyblue'];
+let i = 0;
+btn[i].addEventListener('click', function onClick(i) {
+  console.log(i);
+  btn[i].style.backgroundColor = colors[index];
+  btn[i].style.Color = black;
+  index = index >= colors.length - 1 ? 0 : index + 1;
+});
 </script>
-<script type="text/javascript">
-const btn = document.getElementById('btn');
-btn.addEventListener('click', function onClick() {
-		btn.style.backgroundColor = 'yellow';
-		btn.style.color = 'white';
-		});
-</script>
+
 </html>
