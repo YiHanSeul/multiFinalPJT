@@ -22,16 +22,26 @@ public class UserController {
 	private UserService userService;
 	//회원가입 폼으로 넘어감
 	@GetMapping("/join")
-	public String regist() {
-		return "join";
+	public String join() {
+		return "join";//jsp 파일리턴 
 	}
-	
 	
 	   @GetMapping("/login")
 	   public String loginPage() {
 	      return "login";
 	   }
-	   
+	   	@GetMapping("/insertUserForm")
+	public String insertUserForm() {
+		return "user";
+	}
+	   //user.jsp파일에서 form 전송 클릭했을경우 실행되는 메소드
+	@GetMapping("/insertUser")
+	public String insertUser() {
+		
+		
+		return "user";
+	}
+	
 	   @PostMapping("/loginForm")
 	   public String loginForm(Model model,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 	      String UserId = request.getParameter("UserId");
@@ -52,8 +62,7 @@ public class UserController {
 	      }
 	      return "login";
 	   }
-	      
-	    
+	        
 	
-	
+
 }

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/userJoin" method="get">
+<form action="/user/insertUser" method="get">
 
 	<div>
 		개인회원번호
