@@ -38,6 +38,9 @@ witdh: 20%;
 .it_btn{
 	background-color: skyblue;
 }
+.btn{
+	background-color: skyblue;
+}
 </style>
 </head>
 <body>
@@ -59,9 +62,9 @@ witdh: 20%;
 		    <li class="opt_list">
 		      <a> 오후</a><br/>
 		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="10:00">10:00</button>
+		      <button class="it_btn" class="btn1" type="button" data-num="10:00">10:00</button>
 		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="10:30">10:30</button>
+		      <button class="it_btn" class="btn1" type="button" data-num="10:30">10:30</button>
 		      <input class="it_num" type="hidden" value="0">
 		      <button class="it_btn" name="btn1" type="button" data-num="11:00">11:00</button>
 		      <input class="it_num" type="hidden" value="0">
@@ -159,17 +162,16 @@ witdh: 20%;
 		calendar.render();
 	});
 
-const btn = document.getElementsByName('btn1');
+let btn = document.getElementsByClassName('btn1');
 let index = 0;
 const colors = ['yellow', 'skyblue'];
-for(var i = 0; i < btn.size; i++){
+let i = 0;
 btn[i].addEventListener('click', function onClick(i) {
-	console.log(i);
+  console.log(i);
   btn[i].style.backgroundColor = colors[index];
-  btn[i].style.color = 'black';
+  btn[i].style.Color = black;
   index = index >= colors.length - 1 ? 0 : index + 1;
 });
-};
 </script>
 
 </html>
