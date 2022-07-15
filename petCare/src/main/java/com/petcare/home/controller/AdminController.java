@@ -61,5 +61,5 @@ public class AdminController {
 //		return "login";
 //		
 //	}
-
+//매핑한 것과 달라도 상관없음(jsp파일이) return값이 뭘보내주는지 매핑은 찾기만 할뿐
 }
