@@ -16,4 +16,11 @@ public class HospitalServiceImpl implements HospitalService {
 		return hospitalMapper.insertHos(hospitalDto);
 	}
 
+	@Override
+	public HospitalDto HospitalLogChk(String HosPitalId) {
+		return hospitalMapper.HospitalLogChk(HosPitalId);
+	}
+
+
+
 }

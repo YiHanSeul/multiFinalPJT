@@ -31,25 +31,33 @@ public class UserController {
 	}
 	
 	
-	@GetMapping("/login")
-	public String loginPage() {
-		return "login";
-	}
+	   @GetMapping("/login")
+	   public String loginPage() {
+	      return "login";
+	   }
+	   
+	   @PostMapping("/loginForm")
+	   public String loginForm(Model model,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	      String UserId = request.getParameter("UserId");
+	      String UserPw = request.getParameter("UserPw");
+	     
+	      
+	      
+	      session.setAttribute("UserId", UserId);
+	      session.setAttribute("UserPw", UserPw);
+	      
+	      if(0== userService.UserChk(UserId).getGrade()&&UserId.equals(userService.UserChk(UserId).getUserid())&& UserPw.equals(userService.UserChk(UserId).getUserpw())) {
+	         model.addAttribute("UserId",UserId);
+	         
+	         return "adminCheck";
+	      }else if (1== userService.UserChk(UserId).getGrade()&&UserId.equals(userService.UserChk(UserId).getUserid())&& UserPw.equals(userService.UserChk(UserId).getUserpw())) {
+	    	  model.addAttribute("UserId",UserId);
+	    	  return "index";
+	      }
+	      return "login";
+	   }
+	      
+	    
 	
-	@PostMapping("/loginForm")
-	public String loginForm(Model model,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		String UserId = request.getParameter("UserId");
-		String UserPw = request.getParameter("UserPw");
-		
-		session.setAttribute("UserId", UserId);
-		session.setAttribute("UserPw", UserPw);
-		
-		if(UserId.equals(userService.UserChk(UserId).getUserid())&& UserPw.equals(userService.UserChk(UserId).getUserpw())) {
-			model.addAttribute("UserId",UserId);
-			
-			return "index";
-		}
-		return "login";
-		
-	}
+	
 }
