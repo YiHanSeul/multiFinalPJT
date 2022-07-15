@@ -12,6 +12,7 @@
 <body>
 	<div>
 		<a href="/user/join">회원가입</a>
+		<a href="/hos/imgTest">테스트</a>
 	</div>
 	<div id="loginChk" style="display:none"><a href="/user/login">로그인</a></div>
 

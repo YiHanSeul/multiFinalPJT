@@ -1,7 +1,7 @@
  	let userId='${UserId}';
 	console.log(userId);
 	$(function(){
-		if(userId==""){
+		if(userId=="${UserId}"){
 			$("#loginChk").show();
 			$("#loginChk2").hide();
 		}else{

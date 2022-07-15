@@ -15,13 +15,23 @@
 	for(let i=0; i<res.images[0].fields.length; i++){
 		$("div").append("<p>"+res.images[0].fields[i].inferText+"</p>")
 	}
-
+	
+	const fileInput = $("#fileUpload").get(0);
+	console.log(fileInput);
+	fileInput.onchange = () => {
+		  const selectedFile = fileInput.files[0];
+		  console.log(selectedFile);
+		};
 }); 
-
+  
 </script>
 </head>
 <body>
 <!-- 	<img alt="img01" src="/resources/img.png"> -->
 	<div></div>
+		<form action="/hos/imgTest">
+		<input type="file" name="imgFile"  id="fileUpload" >
+		<input type="submit" value="전송">
+		</form> 	
 </body>
 </html>
