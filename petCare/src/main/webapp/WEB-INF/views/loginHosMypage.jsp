@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	어드민 로그인 페이지입니다.
+병원 마이페이지입니다!
 </body>
 </html>
