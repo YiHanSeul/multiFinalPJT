@@ -25,6 +25,10 @@ public class UserController {
 	public String regist() {
 		return "join";
 	}
+	@GetMapping("/calendar")
+	public String calendarPage() {
+		return "calendar";
+	}
 	
 	
 	@GetMapping("/login")
