@@ -39,10 +39,10 @@
  <div id="header">
         <div class="up"><a class="up1">로그인</a><a class="up1">회원가입</a><a class="up1">고객센터</a></div>
         <div>
-            <span><a  >메뉴1</a></span>
-            <span><a >메뉴2</a></span>
-            <span><a >메뉴3</a></span>
-            <span><a >메뉴4</a></span>
+            <span><a>메뉴1</a></span>
+            <span><a>메뉴2</a></span>
+            <span><a>메뉴3</a></span>
+            <span><a>메뉴4</a></span>
         </div>
     </div>
     
