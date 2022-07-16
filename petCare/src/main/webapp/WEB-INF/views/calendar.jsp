@@ -116,14 +116,19 @@ witdh: 20%;
 			con.style.display = 'block';
 		}
 	}
-	
+	let index = 0;
+    colors = ['yellow', 'skyblue'];
 	$(function() {
 	$('.it_btn').on('click', function() {
 	    num = $(this).data('num');    
 	    $(this).closest('li').find('.it_num').val(num);
 	    console.log(num);
-	
+	    $(this).css("backgroundColor", colors[index]);
+	    $(this).css("Color", "transparent");
+	    $('.it_btn').not($(this)).css("backgroundColor", "skyblue");
+	    index = index >= colors.length - 1 ? 0 : index + 1;
 	});
+	
 	});
 
 	document.addEventListener('DOMContentLoaded', function() {
@@ -162,16 +167,6 @@ witdh: 20%;
 		calendar.render();
 	});
 
-let btn = document.getElementsByClassName('btn1');
-let index = 0;
-const colors = ['yellow', 'skyblue'];
-let i = 0;
-btn[i].addEventListener('click', function onClick(i) {
-  console.log(i);
-  btn[i].style.backgroundColor = colors[index];
-  btn[i].style.Color = black;
-  index = index >= colors.length - 1 ? 0 : index + 1;
-});
 </script>
 
 </html>
