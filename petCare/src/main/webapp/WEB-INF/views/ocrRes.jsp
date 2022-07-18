@@ -33,5 +33,6 @@
 		<input type="file" name="imgFile"  id="fileUpload" >
 		<input type="submit" value="전송">
 		</form> 	
+
 </body>
 </html>

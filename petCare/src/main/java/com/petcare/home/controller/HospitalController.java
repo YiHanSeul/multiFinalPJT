@@ -3,7 +3,6 @@ package com.petcare.home.controller;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartResolver;
 
 import com.petcare.home.api.ocr;
@@ -27,7 +27,7 @@ public class HospitalController {
 
 	@Autowired
 	private HospitalService hosService;
-	private MultipartResolver mutipartResoverll;
+
 	@GetMapping("/insertHosForm")
 	public String insertHosForm() {
 		return "insertHos";
@@ -66,8 +66,14 @@ public class HospitalController {
 		System.out.println(imgFile);
 		return null;
 	}
+	@PostMapping("/imgTest")
+	public String imgTest(MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+		System.out.println("여기는 테스트 진행중 메서드 파일임");
+		return null;
+	}
 	@GetMapping("/hosMap")
 	public String hosMap() {
 		return "hosMap";
 	}
+
 }
