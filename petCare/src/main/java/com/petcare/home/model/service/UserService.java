@@ -7,4 +7,5 @@ public interface UserService {
 	public void joinUser(UserDto user) throws Exception;
 
 	public UserDto UserChk(String userId);
+	public UserDto UserSelect(String userId);
 }

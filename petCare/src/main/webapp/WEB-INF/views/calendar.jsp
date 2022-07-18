@@ -35,12 +35,16 @@ input {
 display:none;
 witdh: 20%;
 }
+#textarea{
+display:none;
+}
 .it_btn{
 	background-color: skyblue;
 }
 .btn{
 	background-color: skyblue;
 }
+
 </style>
 </head>
 <body>
@@ -54,66 +58,77 @@ witdh: 20%;
 		<input class="btn btn-primary" type="button" id="button1" value="커뮤니티" onclick="location.href=''">
 		</span>
 	</div>
-	<div id='calendar'></div>
-	<a href="javascript:doDisplay();"></a><br/>
-	<div id='time'>
-		<section id="sel_option">
-		  <ul>
-		    <li class="opt_list">
-		      <a> 오후</a><br/>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" class="btn1" type="button" data-num="10:00">10:00</button>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" class="btn1" type="button" data-num="10:30">10:30</button>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="11:00">11:00</button>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="11:30">11:30</button><br/>
-		      <a> 오후</a><br/>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="12:00">12:00</button>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="12:30">12:30</button>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="13:00">13:00</button>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="13:30">13:30</button><br/>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="14:00">14:00</button>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="14:30">14:30</button>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="15:00">15:00</button>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="15:30">15:30</button><br/>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="16:00">16:00</button>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="16:30">16:30</button>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="17:00">17:00</button>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="17:30">17:30</button><br/>
-		      <input class="it_num" type="hidden" value="0">
-		      <button class="it_btn" name="btn1" type="button" data-num="15:00">18:00</button>
-		    </li>
-		  </ul>
-		</section>
-	</div>
-	<div>
-	<button id="print">num print<br/>
-	</div>
-	<input type="textarea">
+	<form action="/res/insertRes" method="get">
+		<div id='calendar'></div>
+		<a href="javascript:doDisplay();"></a><br/>
+		<div id='time'>
+			<section id="sel_option">
+			  <ul>
+			    <li class="opt_list">
+			      <a> 오후</a><br/>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" class="btn1" type="button" data-num="10:00">10:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" class="btn1" type="button" data-num="10:30">10:30</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="11:00">11:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="11:30">11:30</button><br/>
+			      <a> 오후</a><br/>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="12:00">12:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="12:30">12:30</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="13:00">13:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="13:30">13:30</button><br/>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="14:00">14:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="14:30">14:30</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="15:00">15:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="15:30">15:30</button><br/>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="16:00">16:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="16:30">16:30</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="17:00">17:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="17:30">17:30</button><br/>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="15:00">18:00</button>
+			    </li>
+			  </ul>
+			</section>
+		</div>
+		<div>
+		<a>방문목적</a><br/>
+		
+		<textarea class="hide" rows="5" cols="100" id="textarea" name="VR" placeholder="방문하시는 이유나 강아지의 증상을 적어주세요."> </textarea>
+		<input type="submit" value="가입하기">
+		
+		</div>
+	</form>
 	<br>
 
 </body>
 <script type="text/javascript">
 	function doDisplay(){
-		var con = document.getElementById("time");
-		if(con.style.display=='none'){
-			con.style.display = 'block';
+		var time = document.getElementById('time');
+		var text = document.getElementById('textarea');
+		if(time.style.display=='none'){
+			time.style.display = 'block';
 		}else{
-			con.style.display = 'block';
+			time.style.display = 'block';
+		}
+		if(text.style.display=='none'){
+			text.style.display = 'block';
+		}else{
+			text.style.display = 'block';
 		}
 	}
 	let index = 0;
@@ -159,8 +174,9 @@ witdh: 20%;
 			select : function(arg) {
 				var title = confirm('예약을 잡으실껀가용?');
 				if (title) {
-					selectedDate = 
+					selectedDate = arg.startStr;
 					doDisplay();
+					console.log(selectedDate);
 				}
 			}
 		});

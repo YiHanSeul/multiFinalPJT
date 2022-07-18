@@ -25,4 +25,10 @@ public class UserServiceImpl implements UserService{
 		return userMapper.userChk(userId);
 	}
 
+	@Override
+	public UserDto UserSelect(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
