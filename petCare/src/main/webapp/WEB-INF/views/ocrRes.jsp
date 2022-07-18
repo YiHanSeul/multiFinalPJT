@@ -15,13 +15,20 @@
 	for(let i=0; i<res.images[0].fields.length; i++){
 		$("div").append("<p>"+res.images[0].fields[i].inferText+"</p>")
 	}
-
+	
+ 	console.log(res.images[0].fields[0].inferText);
+	console.log(res.images[0].fields[1].inferText);
+	
+	for(let i=0; i<res.images[0].fields.length; i++){
+		$("div").append("<p>"+res.images[0].fields[i].inferText+"</p>")
+	}  
+	
 }); 
 
 </script>
 </head>
 <body>
-<!-- 	<img alt="img01" src="/resources/img.png"> -->
+<!-- 	<img alt="img01" src="/resources/img.png">  -->
 	<div></div>
 </body>
 </html>

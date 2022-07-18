@@ -9,33 +9,30 @@
 <body>
 <form action="/user/insertUser" method="get">
 
-	<div>
-		개인회원번호
-		<input type="text" name=UserKey>
-	</div>
+	
 	<div>
 		아이디
-		<input type="text" name=UserId>
+		<input type="text" name=userid>
 	</div>
 	<div>
 		비밀번호
-		<input type="text" name=UserPw>
+		<input type="text" name=userpw>
 	</div>
 	<div>
 		이름
-		<input type="text" name=UserName>
+		<input type="text" name=username>
 	</div>
 	<div>
 		닉네임
-		<input type="text" name=UserNick>
+		<input type="text" name=usernick>
 	</div>
 	<div>
 		이메일
-		<input type="text" name=UserEmail>
+		<input type="text" name=useremail>
 	</div>
 	<div>
 		전화번호
-		<input type="text" name=UserPhone>
+		<input type="text" name=userphone>
 	</div>
 	
 	<input type="submit" value="가입">
