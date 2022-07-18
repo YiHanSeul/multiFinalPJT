@@ -25,12 +25,6 @@ public class UserController {
 	public String join() {
 		return "join";//jsp 파일리턴 
 	}
-	
-	@GetMapping("/calendar")
-	public String calendarPage() {
-		return "calendar";
-	}
-	
 	   @GetMapping("/login")
 	   public String loginPage() {
 	      return "login";
