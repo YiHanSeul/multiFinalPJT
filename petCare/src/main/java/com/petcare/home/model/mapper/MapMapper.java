@@ -12,4 +12,7 @@ public interface MapMapper {
 	
 	@Select(" SELECT * FROM MAP ")
 	List<MapDto> selectList();
+	
+	@Select(" SELECT * FROM MAP WHERE ADDR LIKE CONCAT(#{addr}, '%') ")
+	List<MapDto> selectreigon(String addr);
 }

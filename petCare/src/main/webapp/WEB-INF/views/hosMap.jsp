@@ -341,6 +341,10 @@
 			$(".jeju").remove();
 		}
 	}
+	$(function(){
+		$(".map").children
+	
+	});
 </script>
 <style>
 #area {
@@ -363,13 +367,15 @@
 	<!-- 지도를 표시할 div 입니다 -->
 	<div style="width: 100%; height: 500px">
 		<div id="map"
-			style="width: 60%; height: 500px; margin: 100px; border: 3px solid blue;"></div>
+			style="width: 60%; height: 500px; margin: 100px; border: 3px solid blue;">
+			
+			</div>
 	</div>
 	<div>
 
 		<div id="area">
 			<div>주소 찾기</div>
-			<form>
+			<form action="/map/region" method="get">
 				<select name="region" id="region" onchange="chageSelect()">
 					<option value="" selected>시,도</option>
 					<option value="서울특별시">서울특별시</option>
@@ -392,7 +398,7 @@
 				</select> <select name="zone">
 					<option value="" id="zone" selected>시.군.구</option>
 				</select>
-				<button>확인</button>
+				<input type="submit" value="확인">
 			</form>
 		</div>
 		<table border="1">

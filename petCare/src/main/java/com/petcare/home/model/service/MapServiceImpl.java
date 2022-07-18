@@ -17,5 +17,9 @@ public class MapServiceImpl implements MapService{
 	public List<MapDto> selectMap() { 
 		return mapMapper.selectList();
 	}
+	@Override
+	public List<MapDto> selectreigon(String addr) {
+		return mapMapper.selectreigon(addr);
+	}
 
 }

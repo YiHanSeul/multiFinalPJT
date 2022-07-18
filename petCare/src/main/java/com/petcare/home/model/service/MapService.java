@@ -6,4 +6,5 @@ import com.petcare.home.model.dto.MapDto;
 
 public interface MapService {
 	public List<MapDto> selectMap();
+	public List<MapDto> selectreigon(String addr);
 }
