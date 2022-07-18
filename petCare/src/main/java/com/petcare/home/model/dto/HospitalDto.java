@@ -3,7 +3,7 @@ package com.petcare.home.model.dto;
 public class HospitalDto {
 	private String HospitalKey;
 	private String HospitalName;
-	private String HosPitalId;
+	private String HospitalId;
 	private String HospitalPw;
 	private String HospitalEmail;
 	private String HospitalPhone;
@@ -14,12 +14,12 @@ public class HospitalDto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public HospitalDto(String hospitalKey, String hospitalName, String hosPitalId, String hospitalPw,
+	public HospitalDto(String hospitalKey, String hospitalName, String hospitalId, String hospitalPw,
 			String hospitalEmail, String hospitalPhone, String hospitalAddr, String grade, int hospitalChk) {
 		super();
 		HospitalKey = hospitalKey;
 		HospitalName = hospitalName;
-		HosPitalId = hosPitalId;
+		HospitalId = hospitalId;
 		HospitalPw = hospitalPw;
 		HospitalEmail = hospitalEmail;
 		HospitalPhone = hospitalPhone;
@@ -40,10 +40,10 @@ public class HospitalDto {
 		HospitalName = hospitalName;
 	}
 	public String getHosPitalId() {
-		return HosPitalId;
+		return HospitalId;
 	}
 	public void setHosPitalId(String hosPitalId) {
-		HosPitalId = hosPitalId;
+		HospitalId = hosPitalId;
 	}
 	public String getHospitalPw() {
 		return HospitalPw;
@@ -84,7 +84,7 @@ public class HospitalDto {
 	@Override
 	public String toString() {
 		return "HospitalDto [HospitalKey=" + HospitalKey + ", HospitalName=" + HospitalName + ", HosPitalId="
-				+ HosPitalId + ", HospitalPw=" + HospitalPw + ", HospitalEmail=" + HospitalEmail + ", HospitalPhone="
+				+ HospitalId + ", HospitalPw=" + HospitalPw + ", HospitalEmail=" + HospitalEmail + ", HospitalPhone="
 				+ HospitalPhone + ", HospitalAddr=" + HospitalAddr + ", Grade=" + Grade + ", HospitalChk=" + HospitalChk
 				+ "]";
 	}
