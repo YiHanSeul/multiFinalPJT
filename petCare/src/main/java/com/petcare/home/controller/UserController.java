@@ -204,6 +204,7 @@ public class UserController {
 		UserDto dto = userService.UserChk(userid);
 		String useremail = dto.getUseremail();
 		model.addAttribute("useremail", useremail);
+		System.out.println(useremail);
 		return "testNext2";
 	}
 }
