@@ -101,13 +101,13 @@ display:none;
 			      <button class="it_btn" name="btn1" type="button" data-num="17:30">17:30</button><br/>
 			      <input class="it_num" type="hidden" value="0">
 			      <button class="it_btn" name="btn1" type="button" data-num="15:00">18:00</button>
+			      <input type="button" value="날짜 시간확인" onclick="console.log(selectedDate, num)"><br/>
 			    </li>
 			  </ul>
 			</section>
 		</div>
 		<div>
 		<a>방문목적</a><br/>
-		
 		<textarea class="hide" rows="5" cols="100" id="textarea" name="VR" placeholder="방문하시는 이유나 강아지의 증상을 적어주세요."> </textarea>
 		<input type="submit" value="가입하기">
 		
@@ -137,7 +137,6 @@ display:none;
 	$('.it_btn').on('click', function() {
 	    num = $(this).data('num');    
 	    $(this).closest('li').find('.it_num').val(num);
-	    console.log(num);
 	    $(this).css("backgroundColor", colors[index]);
 	    $(this).css("Color", "transparent");
 	    $('.it_btn').not($(this)).css("backgroundColor", "skyblue");
@@ -176,7 +175,6 @@ display:none;
 				if (title) {
 					selectedDate = arg.startStr;
 					doDisplay();
-					console.log(selectedDate);
 				}
 			}
 		});

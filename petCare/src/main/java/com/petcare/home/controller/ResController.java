@@ -30,9 +30,9 @@ public class ResController {
 	
 	@GetMapping("/calendar")
 	public String root(HttpSession session, Model model) {
-		String userid = (String)session.getAttribute("Userid");
-		model.addAttribute("userinfo", userservice.UserSelect(userid));
-		model.addAttribute("hospitalinfo", hospitalservice.HospitalSelect(userid));
+		//String userid = (String)session.getAttribute("Userid");
+		//model.addAttribute("userinfo", userservice.UserSelect(userid));
+		//model.addAttribute("hospitalinfo", hospitalservice.HospitalSelect(userid));
 		
 		return "calendar";
 	}	
