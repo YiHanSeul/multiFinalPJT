@@ -179,6 +179,9 @@ public class UserController {
 			model.addAttribute("usernick", usernick);
 			model.addAttribute("userphone", userphone);
 			
+			System.out.println(usernick);
+			
+			System.out.println(useremail);
 			return "userMypage";
 		}else {
 			return "index2";
