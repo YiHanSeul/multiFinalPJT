@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div><a href="/user/insertUserForm">개인회원가입</a></div>
-
-<div><a href="/hos/insertHosForm">병원회원가입</a></div>
+병원 마이페이지입니다!
 </body>
 </html>

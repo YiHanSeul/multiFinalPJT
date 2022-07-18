@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	어드민 로그인 페이지입니다.
+<form action="/user/userMypageRes2" method="get">
+	<input type="text" placeholder="${useremail }" name="useremail">
+	<input type="submit" value="수정">
+</form>
 </body>
 </html>

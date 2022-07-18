@@ -11,20 +11,9 @@ response.setContentType("text/html; charset=UTF-8");
 <head>
 <meta charset="UTF-8">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	function doDisplay(){
-		var con = document.getElementById("time");
-		if(con.style.display=='none'){
-			con.style.display = 'block';
-		}else{
-			con.style.display = 'block';
-		}
-	}
-
-</script>
-<link href="${pageContext.request.contextPath}static/css/bootstrap.min.css" rel="stylesheet" />
-<link href='${pageContext.request.contextPath }static/css/fullcalendar.css' rel='stylesheet' />
-<script src='${pageContest.request.contextPath }static/js/fullcalendar.js'></script>
+<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel='stylesheet' />
+<link href='${pageContext.request.contextPath }/resources/css/fullcalendar.css' rel='stylesheet' />
+<script src='${pageContest.request.contextPath }/resources/js/fullcalendar.js'></script>
 <style>
 h2 {
 	color: var(- -bs-blue);
@@ -46,7 +35,15 @@ input {
 display:none;
 witdh: 20%;
 }
-
+#textarea{
+display:none;
+}
+.it_btn{
+	background-color: skyblue;
+}
+.btn{
+	background-color: skyblue;
+}
 
 </style>
 </head>
@@ -61,30 +58,93 @@ witdh: 20%;
 		<input class="btn btn-primary" type="button" id="button1" value="커뮤니티" onclick="location.href=''">
 		</span>
 	</div>
-	<div id='calendar'></div>
-	<a href="javascript:doDisplay();"></a><br/>
-	<div id='time'>
-			<a> 오전 </a><br/>
-			<button id="btn">Button</button>
-			<input type="button" value="10:00" onclick=''>
-			<input type="button" value="10:30" onclick=''>
-			<input type="button" value="11:00" onclick=''>
-			<input type="button" value="11:30" onclick=''><br/>
-			<a> 오후 </a><br/>
-			<input type="button" value="13:00" onclick=''>
-			<input type="button" value="13:30" onclick=''>
-			<input type="button" value="14:00" onclick=''>
-			<input type="button" value="14:30" onclick=''><br/>
-			<input type="button" value="15:00" onclick=''>
-			<input type="button" value="15:30" onclick=''>
-			<input type="button" value="16:00" onclick=''>
-			<input type="button" value="16:30" onclick=''><br/>
-			<input type="button" value="17:00" onclick=''>
-			<input type="button" value="17:30" onclick=''>
-	</div>
+	<form action="/res/insertRes" method="get">
+		<div id='calendar'></div>
+		<a href="javascript:doDisplay();"></a><br/>
+		<div id='time'>
+			<section id="sel_option">
+			  <ul>
+			    <li class="opt_list">
+			      <a> 오후</a><br/>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" class="btn1" type="button" data-num="10:00">10:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" class="btn1" type="button" data-num="10:30">10:30</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="11:00">11:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="11:30">11:30</button><br/>
+			      <a> 오후</a><br/>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="12:00">12:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="12:30">12:30</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="13:00">13:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="13:30">13:30</button><br/>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="14:00">14:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="14:30">14:30</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="15:00">15:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="15:30">15:30</button><br/>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="16:00">16:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="16:30">16:30</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="17:00">17:00</button>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="17:30">17:30</button><br/>
+			      <input class="it_num" type="hidden" value="0">
+			      <button class="it_btn" name="btn1" type="button" data-num="15:00">18:00</button>
+			      <input type="button" value="날짜 시간확인" onclick="console.log(selectedDate, num)"><br/>
+			    </li>
+			  </ul>
+			</section>
+		</div>
+		<div>
+		<a>방문목적</a><br/>
+		<textarea class="hide" rows="5" cols="100" id="textarea" name="VR" placeholder="방문하시는 이유나 강아지의 증상을 적어주세요."> </textarea>
+		<input type="submit" value="가입하기">
+		
+		</div>
+	</form>
 	<br>
+
 </body>
 <script type="text/javascript">
+	function doDisplay(){
+		var time = document.getElementById('time');
+		var text = document.getElementById('textarea');
+		if(time.style.display=='none'){
+			time.style.display = 'block';
+		}else{
+			time.style.display = 'block';
+		}
+		if(text.style.display=='none'){
+			text.style.display = 'block';
+		}else{
+			text.style.display = 'block';
+		}
+	}
+	let index = 0;
+    colors = ['yellow', 'skyblue'];
+	$(function() {
+	$('.it_btn').on('click', function() {
+	    num = $(this).data('num');    
+	    $(this).closest('li').find('.it_num').val(num);
+	    $(this).css("backgroundColor", colors[index]);
+	    $(this).css("Color", "transparent");
+	    $('.it_btn').not($(this)).css("backgroundColor", "skyblue");
+	    index = index >= colors.length - 1 ? 0 : index + 1;
+	});
+	
+	});
+
 	document.addEventListener('DOMContentLoaded', function() {
 		var calendarEl = document.getElementById('calendar');
 		var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -113,18 +173,14 @@ witdh: 20%;
 			select : function(arg) {
 				var title = confirm('예약을 잡으실껀가용?');
 				if (title) {
+					selectedDate = arg.startStr;
 					doDisplay();
 				}
 			}
 		});
 		calendar.render();
 	});
+
 </script>
-<script type="text/javascript">
-const btn = document.getElementById('btn');
-btn.addEventListener('click', function onClick() {
-		btn.style.backgroundColor = 'yellow';
-		btn.style.color = 'white';
-		});
-</script>
+
 </html>

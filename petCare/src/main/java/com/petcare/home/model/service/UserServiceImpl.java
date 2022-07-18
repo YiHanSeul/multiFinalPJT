@@ -13,16 +13,30 @@ public class UserServiceImpl implements UserService{
 	UserMapper userMapper;
 	
 	@Override
-	public void joinUser(UserDto user) throws Exception{
+	public int joinUser(UserDto user){
 		
-		userMapper.joinUser(user);
+		return userMapper.joinUser(user);
 		
 	}
 
 	@Override
 	public UserDto UserChk(String userId) {
-		System.out.println("service임플임");
+//		System.out.println("service임플임");
 		return userMapper.userChk(userId);
+	}
+
+	@Override
+	public int updateUserNick(String userid, String usernick) {
+		return userMapper.updateUserNick(userid, usernick);
+	}
+
+	@Override
+	public int updateUserEmail(String userid, String useremail) {
+		// TODO Auto-generated method stub
+		return userMapper.updateUserEmail(userid, useremail);
+	public UserDto UserSelect(String userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
