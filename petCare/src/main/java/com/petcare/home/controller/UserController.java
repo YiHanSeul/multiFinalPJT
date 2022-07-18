@@ -41,10 +41,49 @@ public class UserController {
 		return "join";// jsp 파일리턴
 	}
 
+
 	@GetMapping("/calendar")
 	public String calendarPage() {
 		return "calendar";
 	}
+
+	   @GetMapping("/login")
+	   public String loginPage() {
+	      return "login";
+	   }
+	   	@GetMapping("/insertUserForm")
+	public String insertUserForm() {
+		return "user";
+	}
+	   //user.jsp파일에서 form 전송 클릭했을경우 실행되는 메소드
+	@GetMapping("/insertUser")
+	public String insertUser() {
+		
+		
+		return "user";
+	}
+	
+	   @PostMapping("/loginForm")
+	   public String loginForm(Model model,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	      String UserId = request.getParameter("UserId");
+	      String UserPw = request.getParameter("UserPw");
+	     
+	      
+	      
+	      session.setAttribute("UserId", UserId);
+	      session.setAttribute("UserPw", UserPw);
+	      
+	      if(0== userService.UserChk(UserId).getGrade()&&UserId.equals(userService.UserChk(UserId).getUserid())&& UserPw.equals(userService.UserChk(UserId).getUserpw())) {
+	         model.addAttribute("UserId",UserId);
+	         
+	         return "adminCheck";
+	      }else if (1== userService.UserChk(UserId).getGrade()&&UserId.equals(userService.UserChk(UserId).getUserid())&& UserPw.equals(userService.UserChk(UserId).getUserpw())) {
+	    	  model.addAttribute("UserId",UserId);
+	    	  return "index";
+	      }
+	      return "login";
+	   }
+	        
 
 	@GetMapping("/login")
 	public String loginPage() {

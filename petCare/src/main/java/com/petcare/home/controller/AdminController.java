@@ -55,9 +55,6 @@ public class AdminController {
 		
 	}
 	
-
-	
-	
 	@Autowired
 	ResourceLoader resourceLoader;
 	@GetMapping("/ocr")
