@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div><a href="/user/insertUserForm">개인회원가입</a></div>
-
-<div><a href="/hos/insertHosForm">병원회원가입</a></div>
+<form action="/user/userMypageRes" method="get">
+	<input type="text" placeholder="${usernick }" name="usernick">
+	<input type="submit" value="수정">
+</form>
 </body>
 </html>
