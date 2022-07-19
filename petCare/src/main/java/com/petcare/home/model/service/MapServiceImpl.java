@@ -9,17 +9,20 @@ import com.petcare.home.model.dto.MapDto;
 import com.petcare.home.model.mapper.MapMapper;
 
 @Service
-public class MapServiceImpl implements MapService{
+public class MapServiceImpl implements MapService {
 
-   @Autowired
-   MapMapper mapMapper;
-   @Override
-   public List<MapDto> selectMap() { 
-      return mapMapper.selectList();
-   }
-   @Override
-   public List<MapDto> selectreigon(String addr) {
-      return mapMapper.selectreigon(addr);
-   }
+	@Autowired
+	MapMapper mapMapper;
+
+	@Override
+	public List<MapDto> selectMap() {
+		return mapMapper.selectList();
+	}
+
+	@Override
+	public List<MapDto> selectreigon(String addr) {
+		return mapMapper.selectreigon(addr);
+	}
+
 
 }
