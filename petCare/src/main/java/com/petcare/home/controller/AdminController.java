@@ -1,26 +1,12 @@
 package com.petcare.home.controller;
 
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Path;
-
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.petcare.home.api.Ocr;
 import com.petcare.home.model.service.AdminService;
 
 
@@ -56,18 +42,6 @@ public class AdminController {
 		
 	}
 	
-	@Autowired
-	ResourceLoader resourceLoader;
-	@GetMapping("/ocr")
-	public String ocrTest(Model model) throws IOException {
-		System.out.println(resourceLoader.getResource("classpath:static").getURI());
-		System.out.println(Path.of(resourceLoader.getResource("classpath:static").getURI()));
-		String path = Path.of(resourceLoader.getResource("classpath:static").getURI()).toString();
-		
-		String res = new Ocr().ocrTest(path);
-		
-		model.addAttribute("res", res);
-		return "ocrRes";
-	}
+	
 	
 }

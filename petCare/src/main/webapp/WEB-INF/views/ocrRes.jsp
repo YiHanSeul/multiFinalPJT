@@ -35,9 +35,9 @@
 </head>
 <body>
 <!-- 	<img alt="img01" src="/resources/img.png">  -->
-	<div></div>
-		<form action="/hos/imgTest">
-		<input type="file" name="imgFile"  id="fileUpload" >
+	<!-- <div></div> -->
+		<form action="/hos/imgTest" enctype="multipart/form-data" method="post">
+		<input type="file" name="file"  id="fileUpload" >
 		<input type="submit" value="전송">
 		</form> 	
 

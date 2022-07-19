@@ -1,10 +1,13 @@
 package com.petcare.home.model.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.petcare.home.model.dto.HospitalDto;
 import com.petcare.home.model.mapper.HospitalMapper;
+import com.petcare.home.model.mapper.ResMapper;
 
 @Service
 public class HospitalServiceImpl implements HospitalService {
@@ -22,10 +25,14 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public HospitalDto HospitalSelect(String HospitalKey) {
-	return hospitalMapper.HosSelect(HospitalKey);
+	public HospitalDto HosSelect(String HospitalKey) {
+		return hospitalMapper.HosSelect(HospitalKey);
 	}
 
-
+	/*
+	 * @Override public void imgTest(MultipartFile file) throws Exception {
+	 * 
+	 * }
+	 */
 
 }
