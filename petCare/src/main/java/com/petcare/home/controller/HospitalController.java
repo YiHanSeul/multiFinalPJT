@@ -62,7 +62,6 @@ public class HospitalController {
 	      }
 	      
 	      
-	      
 	      if(0 == hosService.HospitalLogChk(HospitalId).getHospitalChk() 
 	    		  && HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHosPitalId() ) 
 	    		  && HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw()) ){

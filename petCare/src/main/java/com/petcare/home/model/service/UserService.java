@@ -12,4 +12,5 @@ public interface UserService {
 	
 	public int updateUserEmail(String userid, String useremail);
 	
+	public UserDto UserSelect(String userId);
 }

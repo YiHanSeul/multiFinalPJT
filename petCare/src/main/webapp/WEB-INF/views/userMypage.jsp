@@ -24,10 +24,10 @@
 펫 성별: ${petGender }<br>
 펫 예방접종: 
  <%
-	String[] petVac = request.getParameterValues("petVac");
-	for(int i=0; i<petVac.length; i++){
-		out.println(petVac[i]);
-	}
+   String[] petVac = request.getParameterValues("petVac");
+   for(int i=0; i<petVac.length; i++){
+      out.println(petVac[i]);
+   }
 %><br> 
 펫 중성화: ${petN } --%>
  

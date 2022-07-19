@@ -34,7 +34,6 @@
 	</div>
 	<div>
 		사업자등록번호
-		<input type="file">
 		<input type="text" name=HospitalKey>
 	</div>
 	<input type="submit" value="가입">
