@@ -16,6 +16,12 @@
 		$("div").append("<p>"+res.images[0].fields[i].inferText+"</p>")
 	}
 	
+	const fileInput = $("#fileUpload").get(0);
+	console.log(fileInput);
+	fileInput.onchange = () => {
+		  const selectedFile = fileInput.files[0];
+		  console.log(selectedFile);
+		};
  	console.log(res.images[0].fields[0].inferText);
 	console.log(res.images[0].fields[1].inferText);
 	
@@ -24,11 +30,16 @@
 	}  
 	
 }); 
-
+  
 </script>
 </head>
 <body>
 <!-- 	<img alt="img01" src="/resources/img.png">  -->
 	<div></div>
+		<form action="/hos/imgTest">
+		<input type="file" name="imgFile"  id="fileUpload" >
+		<input type="submit" value="전송">
+		</form> 	
+
 </body>
 </html>

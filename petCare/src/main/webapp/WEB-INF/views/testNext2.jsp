@@ -8,8 +8,8 @@
 </head>
 <body>
 <form action="/user/userMypageRes2" method="get">
-	<input type="text" placeholder="${useremail }" name="useremail">
-	<input type="submit" value="수정">
+   <input type="text" placeholder="${useremail }" name="useremail">
+   <input type="submit" value="수정">
 </form>
 </body>
 </html>

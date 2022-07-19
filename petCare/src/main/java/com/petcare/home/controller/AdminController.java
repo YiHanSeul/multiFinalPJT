@@ -43,6 +43,7 @@ public class AdminController {
 		return "adminCheck";
 	}
 	
+
 	@RequestMapping(value="/adminCheckres")
 	public String adminCheckres(Model model, String hospitalKey){
 		int res = adminService.updateHospitalVChk(hospitalKey);
@@ -70,8 +71,7 @@ public class AdminController {
 		
 		String res = new ocr().ocrTest(path , "");
 		
-		model.addAttribute("res", res);
-		return "ocrRes";
+		return null;
 	}
 	
 }
