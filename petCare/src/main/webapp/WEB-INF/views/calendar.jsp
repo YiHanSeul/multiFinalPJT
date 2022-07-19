@@ -58,7 +58,6 @@ display:none;
 		<input class="btn btn-primary" type="button" id="button1" value="커뮤니티" onclick="location.href=''">
 		</span>
 	</div>
-	<form action="/res/insertRes" method="get">
 		<div id='calendar'></div>
 		<a href="javascript:doDisplay();"></a><br/>
 		<div id='time'>
@@ -101,18 +100,35 @@ display:none;
 			      <button class="it_btn" name="btn1" type="button" data-num="17:30">17:30</button><br/>
 			      <input class="it_num" type="hidden" value="0">
 			      <button class="it_btn" name="btn1" type="button" data-num="15:00">18:00</button>
-			      <input type="button" value="날짜 시간확인" onclick="console.log(selectedDate, num)"><br/>
+			      <input type="button" value="날짜 시간확인" onclick="console.log(selectedDate, BH)"><br/>
 			    </li>
 			  </ul>
 			</section>
 		</div>
 		<div>
-		<a>방문목적</a><br/>
-		<textarea class="hide" rows="5" cols="100" id="textarea" name="VR" placeholder="방문하시는 이유나 강아지의 증상을 적어주세요."> </textarea>
-		<input type="submit" value="가입하기">
+		
 		
 		</div>
-	</form>
+		
+		<form action="/res/insertRes" method="get">
+			<table>
+		      	<tr>
+		      		<td><input type="hidden" type="text" name="bookid" >${dto. }</td>
+		      	</tr>	
+	      		<tr>
+		      		<td><input type="hidden" type="text" name="bookhour" ">${dto. }</td>
+		      	</tr>
+		      	<tr>
+		      		<td><input type="hidden" type="text" name="bookdate" ">${dto. }</td>
+		      	</tr>
+		      	<tr>
+		      		<td><input type="hidden" type="text" name="bookpettype" ">${dto. }</td>
+		      	</tr>
+		      	<a>방문목적</a><br/>
+				<textarea class="hide" rows="5" cols="100" id="textarea" name="VR" placeholder="방문하시는 이유나 강아지의 증상을 적어주세요."> </textarea>
+				<input type="submit" value="예약하기">
+			</table>
+		</form>
 	<br>
 
 </body>
@@ -135,12 +151,13 @@ display:none;
     colors = ['yellow', 'skyblue'];
 	$(function() {
 	$('.it_btn').on('click', function() {
-	    num = $(this).data('num');    
-	    $(this).closest('li').find('.it_num').val(num);
+	    BH = $(this).data('num');
+	    $(this).closest('li').find('.it_num').val(BH);
 	    $(this).css("backgroundColor", colors[index]);
 	    $(this).css("Color", "transparent");
 	    $('.it_btn').not($(this)).css("backgroundColor", "skyblue");
 	    index = index >= colors.length - 1 ? 0 : index + 1;
+	    
 	});
 	
 	});

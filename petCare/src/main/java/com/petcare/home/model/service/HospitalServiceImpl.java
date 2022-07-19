@@ -1,10 +1,13 @@
 package com.petcare.home.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.petcare.home.model.dto.HospitalDto;
 import com.petcare.home.model.mapper.HospitalMapper;
+import com.petcare.home.model.mapper.ResMapper;
 
 @Service
 public class HospitalServiceImpl implements HospitalService {
@@ -22,8 +25,8 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public HospitalDto HospitalSelect(String HospitalKey) {
-	return hospitalMapper.HosSelect(HospitalKey);
+	public HospitalDto HosSelect(String HospitalKey) {
+		return hospitalMapper.HosSelect(HospitalKey);
 	}
 
 
