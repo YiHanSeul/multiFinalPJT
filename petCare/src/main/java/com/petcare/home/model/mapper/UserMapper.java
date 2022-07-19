@@ -2,6 +2,7 @@ package com.petcare.home.model.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -26,6 +27,12 @@ public interface UserMapper {
 	
 	@Update(" UPDATE USER SET USEREMAIL= #{useremail} where USERID=#{userid}")
 	int updateUserEmail(String userid, String useremail);
+	
+	@Update(" UPDATE USER SET USERPHONE = #{userphone} where USERPHONE=#{userphone} ")
+	int updateUserPhone(String userid, String userphone);
+	
+	@Delete(" DELETE FROM USER WHERE USERID=#{userid} ")
+	int deleteUser(String userid);
 	
 	
 	
