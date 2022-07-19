@@ -84,6 +84,10 @@ public class HospitalController {
 		return "loginHos";
 
 	}
+	@GetMapping("/ocr")
+	public String ocrForm() {
+		return "ocrRes";
+	}
 
 	@Autowired
 	ResourceLoader resourceLoader;
@@ -116,7 +120,6 @@ public class HospitalController {
 		System.out.println(fields.get(1));
 		JSONObject inferText=(JSONObject)fields.get(1);
 		System.out.println(inferText.get("inferText"));
-		
 		return "ocrRes";
 	}
 }
