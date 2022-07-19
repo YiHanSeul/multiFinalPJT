@@ -14,7 +14,7 @@ import java.util.UUID;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class Ocr {
+public class ocr {
 
    public String ocrTest(String path) {
       //String apiURL = "https://v47hoaxznz.apigw.ntruss.com/custom/v1/16765/faca5212c33083ab54a1d1912a2df59b51922f6d7a0736411d3dc44e05da2348/infer";

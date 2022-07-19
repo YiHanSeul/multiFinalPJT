@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.petcare.home.api.Ocr;
+import com.petcare.home.api.ocr;
 import com.petcare.home.model.dto.HospitalDto;
 import com.petcare.home.model.service.HospitalService;
 
@@ -103,7 +103,7 @@ public class HospitalController {
 		File saveFile = new File(projectPath, fileName);
 
 		file.transferTo(saveFile);
-		String res = new Ocr().ocrTest(projectPath + "\\" + fileName);
+		String res = new ocr().ocrTest(projectPath + "\\" + fileName);
 		
 		model.addAttribute("res", res);
 	
