@@ -37,12 +37,13 @@ public class UserServiceImpl implements UserService{
 		return null;
 	}
 	@Override
-	public int updateUserPhone(String userid, String userphone) {
-		return userMapper.updateUserPhone(userid, userphone);
-	}
-	@Override
 	public int deleteUser(String userid) {
 		return userMapper.deleteUser(userid);
+	}
+
+	@Override
+	public int updateUserPhone(String userid, String userphone) {
+		return userMapper.updateUserPhone(userid, userphone);
 	}
 
 }
