@@ -1,9 +1,9 @@
 package com.petcare.home.model.service;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.petcare.home.model.dto.HospitalDto;
 import com.petcare.home.model.mapper.HospitalMapper;
@@ -29,6 +29,10 @@ public class HospitalServiceImpl implements HospitalService {
 		return hospitalMapper.HosSelect(HospitalKey);
 	}
 
-
+	/*
+	 * @Override public void imgTest(MultipartFile file) throws Exception {
+	 * 
+	 * }
+	 */
 
 }
