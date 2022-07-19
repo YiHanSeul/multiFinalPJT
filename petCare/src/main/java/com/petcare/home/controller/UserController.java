@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.petcare.home.model.dto.UserDto;
 import com.petcare.home.model.service.UserService;
 
-import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 
 @Controller
 @RequestMapping("/user")
@@ -30,10 +29,6 @@ public class UserController {
 		return "user";
 	}
 
-//	@GetMapping("/user")
-//	public String user() {
-//		return "login";
-//	}
 
 	@GetMapping("/join")
 	public String join() {
@@ -51,44 +46,6 @@ public class UserController {
 	   public String loginPage() {
 	      return "login";
 	   }
-	   	@GetMapping("/insertUserForm")
-	public String insertUserForm() {
-		return "user";
-	}
-	   //user.jsp파일에서 form 전송 클릭했을경우 실행되는 메소드
-	@GetMapping("/insertUser")
-	public String insertUser() {
-		
-		
-		return "user";
-	}
-	
-	   @PostMapping("/loginForm")
-	   public String loginForm(Model model,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-	      String UserId = request.getParameter("UserId");
-	      String UserPw = request.getParameter("UserPw");
-	     
-	      
-	      
-	      session.setAttribute("UserId", UserId);
-	      session.setAttribute("UserPw", UserPw);
-	      
-	      if(0== userService.UserChk(UserId).getGrade()&&UserId.equals(userService.UserChk(UserId).getUserid())&& UserPw.equals(userService.UserChk(UserId).getUserpw())) {
-	         model.addAttribute("UserId",UserId);
-	         
-	         return "adminCheck";
-	      }else if (1== userService.UserChk(UserId).getGrade()&&UserId.equals(userService.UserChk(UserId).getUserid())&& UserPw.equals(userService.UserChk(UserId).getUserpw())) {
-	    	  model.addAttribute("UserId",UserId);
-	    	  return "index";
-	      }
-	      return "login";
-	   }
-	        
-
-	@GetMapping("/login")
-	public String loginPage() {
-		return "login";
-	}
 
 	@GetMapping("/insertUserForm")
 	public String insertUserForm(UserDto user) {
@@ -118,8 +75,7 @@ public class UserController {
 	}
 
 	@PostMapping("/loginForm")
-	public String loginForm(Model model, HttpServletRequest request, HttpServletResponse response,
-			HttpSession session) {
+	public String loginForm(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		String userid = request.getParameter("userid");
 		String userpw = request.getParameter("userpw");
 
@@ -176,7 +132,9 @@ public class UserController {
 	@GetMapping("/userMypageRes")
 	//값을 여기서 받고 처리해줌
 	public String userMypageRes(HttpServletRequest request, HttpServletResponse response, HttpSession session, String userid, String usernick, Model model) {
-
+//		System.out.println(userid);
+//		System.out.println(usernick);
+		
 		userid = (String) session.getAttribute("userid");
 		int res = userService.updateUserNick(userid, usernick);
 		if(res>0) {
@@ -203,8 +161,9 @@ public class UserController {
 	//값을 여기서 받고 처리해줌
 	public String userMypageRes2(HttpServletRequest request, HttpServletResponse response, HttpSession session, String userid, String useremail, Model model) {
 		
+
 		userid = (String) session.getAttribute("userid");
-		int res = userService.updateUserNick(userid, useremail);
+		int res = userService.updateUserEmail(userid, useremail);
 		if(res>0) {
 			UserDto dto = userService.UserChk(userid);
 			String username = dto.getUsername();
@@ -218,9 +177,7 @@ public class UserController {
 			model.addAttribute("usernick", usernick);
 			model.addAttribute("userphone", userphone);
 			
-			System.out.println(usernick);
-			
-			System.out.println(useremail);
+
 			return "userMypage";
 		}else {
 			return "index2";
