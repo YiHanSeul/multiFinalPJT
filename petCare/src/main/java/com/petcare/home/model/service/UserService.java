@@ -12,5 +12,9 @@ public interface UserService {
 	
 	public int updateUserEmail(String userid, String useremail);
 	
+	public int updateUserPhone(String userid, String userphone);
+	
+	public int deleteUser(String userid);
+	
 	public UserDto UserSelect(String userId);
 }

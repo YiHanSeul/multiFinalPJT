@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.petcare.home.api.ocr;
+import com.petcare.home.api.Ocr;
 import com.petcare.home.model.service.AdminService;
 
 
@@ -59,19 +59,15 @@ public class AdminController {
 	@Autowired
 	ResourceLoader resourceLoader;
 	@GetMapping("/ocr")
-	public String ocrTest(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		/*
-		 * System.out.println(resourceLoader.getResource("classpath:static").getURI());
-		 * System.out.println(Path.of(resourceLoader.getResource("classpath:static").
-		 * getURI()));
-		 */
-		//String path = Path.of(resourceLoader.getResource("classpath:static").getURI()).toString();
-		String path = request.getParameter("path");
-		System.out.println(path);
+	public String ocrTest(Model model) throws IOException {
+		System.out.println(resourceLoader.getResource("classpath:static").getURI());
+		System.out.println(Path.of(resourceLoader.getResource("classpath:static").getURI()));
+		String path = Path.of(resourceLoader.getResource("classpath:static").getURI()).toString();
 		
-		String res = new ocr().ocrTest(path , "");
+		String res = new Ocr().ocrTest(path);
 		
-		return null;
+		model.addAttribute("res", res);
+		return "ocrRes";
 	}
 	
 }

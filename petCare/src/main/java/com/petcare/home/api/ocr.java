@@ -14,13 +14,14 @@ import java.util.UUID;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class ocr {
-	public String ocrTest(String path,String fileName) {
+public class Ocr {
+
+	public String ocrTest(String path) {
 		//String apiURL = "https://v47hoaxznz.apigw.ntruss.com/custom/v1/16765/faca5212c33083ab54a1d1912a2df59b51922f6d7a0736411d3dc44e05da2348/infer";
-				String apiURL = "https://pumvypqctc.apigw.ntruss.com/custom/v1/16777/ea7b81b6ab952c74adef3008c66f1e6040e2bc0961c2bbea0cbd431cc5930084/infer";
-				//String secretKey = "dkxSR1VzaktkcU9PZVNSTURPaVFqUnBXSkRhandXbUk=";
-				String secretKey = "VFVlc1F4VmhiSlNPcXhhVmVpWHN0eGJMS3Z5SXFKdlk=";
-		String imageFile = path+"\\"+fileName;
+		String apiURL = "https://pumvypqctc.apigw.ntruss.com/custom/v1/16777/ea7b81b6ab952c74adef3008c66f1e6040e2bc0961c2bbea0cbd431cc5930084/infer";
+		//String secretKey = "dkxSR1VzaktkcU9PZVNSTURPaVFqUnBXSkRhandXbUk=";
+		String secretKey = "VFVlc1F4VmhiSlNPcXhhVmVpWHN0eGJMS3Z5SXFKdlk=";
+		String imageFile = path+"\\imb.png";
 		StringBuffer response = new StringBuffer();
 		try {
 			URL url = new URL(apiURL);
@@ -109,4 +110,3 @@ public class ocr {
 		out.flush();
 	}
 }
-

@@ -31,12 +31,18 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public int updateUserEmail(String userid, String useremail) {
-		// TODO Auto-generated method stub
 		return userMapper.updateUserEmail(userid, useremail);
 	}
 	public UserDto UserSelect(String userId) {
-		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public int updateUserPhone(String userid, String userphone) {
+		return userMapper.updateUserPhone(userid, userphone);
+	}
+	@Override
+	public int deleteUser(String userid) {
+		return userMapper.deleteUser(userid);
 	}
 
 }

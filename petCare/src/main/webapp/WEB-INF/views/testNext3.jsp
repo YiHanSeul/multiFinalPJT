@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-index1
+<form action="/user/userMypageRes3" method="get">
+	<input type="text" placeholder="${userphone }" name="userphone">
+	<input type="submit" value="수정">
+</form>
 </body>
 </html>

@@ -103,7 +103,11 @@ public class UserController {
       model.addAttribute("petGender", petGender);
       model.addAttribute("petN", petN);
       // 가입한거를 가지고 와야하나?
-
+      
+      if(petName == null ||  petAge == null || petGender == null|| petN == null) {
+     	return "index"; 
+      }
+      
       userid = (String) session.getAttribute("userid");
       System.out.println(userid);
       UserDto dto = userService.UserChk(userid);
@@ -117,6 +121,11 @@ public class UserController {
       model.addAttribute("usernick", usernick);
       model.addAttribute("useremail", useremail);
       model.addAttribute("userphone", userphone);
+      
+     
+      
+      
+      
       return "userMypage";
    }
 
@@ -160,6 +169,8 @@ public class UserController {
       
 
       userid = (String) session.getAttribute("userid");
+      
+//      System.out.println(userid);
       int res = userService.updateUserEmail(userid, useremail);
       if(res>0) {
          UserDto dto = userService.UserChk(userid);
@@ -180,10 +191,39 @@ public class UserController {
       }
 //      return "userMypage";
    }
+   @GetMapping("/userMypageRes3")
+   //값을 여기서 받고 처리해줌
+   public String userMypageRes3(HttpServletRequest request, HttpServletResponse response, HttpSession session, String userid, String userphone, Model model) {
+      
+
+      userid = (String) session.getAttribute("userid");
+      int res = userService.updateUserPhone(userid, userphone);
+      if(res>0) {
+         UserDto dto = userService.UserChk(userid);
+         String username = dto.getUsername();
+         
+         String usernick = dto.getUsernick();
+         String useremail = dto.getUseremail();
+         
+         model.addAttribute("userid", userid);
+         model.addAttribute("username", username);
+         model.addAttribute("useremail", useremail);
+         model.addAttribute("usernick", usernick);
+         model.addAttribute("userphone", userphone);
+
+         return "userMypage";
+      }else {
+         return "index2";
+      }
+//      return "userMypage";
+   }
+   
+   
    
    @GetMapping("/testNext")
    public String testNext(HttpSession session, String userid, Model model) {
       userid = (String) session.getAttribute("userid");
+      System.out.println(userid);
       UserDto dto = userService.UserChk(userid);
       String usernick = dto.getUsernick();
       model.addAttribute("usernick", usernick);
@@ -199,4 +239,52 @@ public class UserController {
       System.out.println(useremail);
       return "testNext2";
    }
+   
+   @GetMapping("/testNext3")
+   public String testNext3(HttpSession session, String userid, Model model) {
+	   userid = (String) session.getAttribute(userid);
+	  
+	   UserDto dto = userService.UserChk(userid);
+	   String userphone = dto.getUserphone();
+	   model.addAttribute("userphone", userphone);
+	   
+	   return "testNext3";
+   }
+   
+   @GetMapping("/userDelete")
+   public String userDelete(HttpSession session) {
+	   String userid = (String)session.getAttribute("userid");
+//	   System.out.println(userid);
+	   return "userDelete";
+   }
+   
+   @GetMapping("/delete")
+   public String delete(HttpSession session, String userpw) {
+	   String userid = (String)session.getAttribute("userid");
+	   System.out.println(userid);
+	   System.out.println(userpw);
+	   System.out.println(userService.UserChk(userid).getUserpw());
+	   
+	   if(userpw.equals(userService.UserChk(userid).getUserpw())) {
+		   
+		   
+		   userService.deleteUser(userid);
+		   session.removeAttribute(userid);
+		   session.invalidate();
+		   return "index";
+	   }
+
+	   return "index2";
+   }
+   
+   @GetMapping("/logout")
+   public String logout(HttpSession session) {
+	   String userid =(String)session.getAttribute("userid");
+	   session.removeAttribute(userid);
+	   session.invalidate();
+	   return "index";
+   }
+   
+   
+
 }
