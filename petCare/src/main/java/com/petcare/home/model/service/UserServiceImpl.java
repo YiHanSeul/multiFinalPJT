@@ -33,13 +33,20 @@ public class UserServiceImpl implements UserService{
 	@Override
 <<<<<<< Updated upstream
 	public int updateUserEmail(String userid, String useremail) {
-		// TODO Auto-generated method stub
 		return userMapper.updateUserEmail(userid, useremail);
 	}
 =======
 >>>>>>> Stashed changes
 	public UserDto UserSelect(String userId) {
 		return null;
+	}
+	@Override
+	public int updateUserPhone(String userid, String userphone) {
+		return userMapper.updateUserPhone(userid, userphone);
+	}
+	@Override
+	public int deleteUser(String userid) {
+		return userMapper.deleteUser(userid);
 	}
 
 	@Override
