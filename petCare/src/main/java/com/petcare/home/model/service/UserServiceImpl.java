@@ -18,7 +18,6 @@ public class UserServiceImpl implements UserService{
 		return userMapper.joinUser(user);
 		
 	}
-
 	@Override
 	public UserDto UserChk(String userId) {
 //		System.out.println("service임플임");
@@ -34,6 +33,7 @@ public class UserServiceImpl implements UserService{
 	public int updateUserEmail(String userid, String useremail) {
 		// TODO Auto-generated method stub
 		return userMapper.updateUserEmail(userid, useremail);
+	}
 	public UserDto UserSelect(String userId) {
 		// TODO Auto-generated method stub
 		return null;
