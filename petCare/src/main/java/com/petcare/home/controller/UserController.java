@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 import com.petcare.home.model.dto.UserDto;
 import com.petcare.home.model.service.UserService;
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -29,23 +31,61 @@ public class UserController {
       return "user";
    }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
    @GetMapping("/join")
    public String join() {
 
       return "join";// jsp 파일리턴
    }
 
+<<<<<<< Updated upstream
+=======
+   @GetMapping("/calendar")
+   public String calendarPage() {
+      return "calendar";
+   }
+
+>>>>>>> Stashed changes
       @GetMapping("/login")
       public String loginPage() {
          return "login";
       }
+<<<<<<< Updated upstream
 
    @GetMapping("/insertUserForm")
    public String insertUserForm(UserDto user) {
 
       return "user";
    }
+=======
+         @GetMapping("/insertUserForm")
+   public String insertUserForm() {
+      return "user";
+   }
+      @PostMapping("/loginForm")
+      public String loginForm(Model model,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+         String UserId = request.getParameter("UserId");
+         String UserPw = request.getParameter("UserPw");
+        
+         
+         session.setAttribute("UserId", UserId);
+         session.setAttribute("UserPw", UserPw);
+         
+         if(0== userService.UserChk(UserId).getGrade()&&UserId.equals(userService.UserChk(UserId).getUserid())&& UserPw.equals(userService.UserChk(UserId).getUserpw())) {
+            model.addAttribute("UserId",UserId);
+            
+            return "adminCheck";
+         }else if (1== userService.UserChk(UserId).getGrade()&&UserId.equals(userService.UserChk(UserId).getUserid())&& UserPw.equals(userService.UserChk(UserId).getUserpw())) {
+            model.addAttribute("UserId",UserId);
+            return "index";
+         }
+         return "login";
+      }
+           
+>>>>>>> Stashed changes
 
    // user.jsp파일에서 form 전송 클릭했을경우 실행되는 메소드
    @GetMapping("/insertUser")
@@ -62,6 +102,7 @@ public class UserController {
          return "index2";
       }
 
+<<<<<<< Updated upstream
 
    }
 
@@ -84,6 +125,8 @@ public class UserController {
          return "index";
       }
       return "login";
+=======
+>>>>>>> Stashed changes
    }
 
    @GetMapping("/userMypage")
@@ -123,9 +166,13 @@ public class UserController {
    @GetMapping("/userMypageRes")
    //값을 여기서 받고 처리해줌
    public String userMypageRes(HttpServletRequest request, HttpServletResponse response, HttpSession session, String userid, String usernick, Model model) {
+<<<<<<< Updated upstream
 //      System.out.println(userid);
 //      System.out.println(usernick);
       
+=======
+
+>>>>>>> Stashed changes
       userid = (String) session.getAttribute("userid");
       int res = userService.updateUserNick(userid, usernick);
       if(res>0) {
@@ -145,16 +192,24 @@ public class UserController {
       }else {
          return "index2";
       }
+<<<<<<< Updated upstream
 //      return "userMypage";
+=======
+>>>>>>> Stashed changes
    }
    
    @GetMapping("/userMypageRes2")
    //값을 여기서 받고 처리해줌
    public String userMypageRes2(HttpServletRequest request, HttpServletResponse response, HttpSession session, String userid, String useremail, Model model) {
       
+<<<<<<< Updated upstream
 
       userid = (String) session.getAttribute("userid");
       int res = userService.updateUserEmail(userid, useremail);
+=======
+      userid = (String) session.getAttribute("userid");
+      int res = userService.updateUserNick(userid, useremail);
+>>>>>>> Stashed changes
       if(res>0) {
          UserDto dto = userService.UserChk(userid);
          String username = dto.getUsername();
@@ -167,14 +222,24 @@ public class UserController {
          model.addAttribute("useremail", useremail);
          model.addAttribute("usernick", usernick);
          model.addAttribute("userphone", userphone);
+<<<<<<< Updated upstream
 
+=======
+         
+>>>>>>> Stashed changes
          return "userMypage";
       }else {
          return "index2";
       }
+<<<<<<< Updated upstream
 //      return "userMypage";
    }
    
+=======
+   }
+   
+   
+>>>>>>> Stashed changes
    @GetMapping("/testNext")
    public String testNext(HttpSession session, String userid, Model model) {
       userid = (String) session.getAttribute("userid");
@@ -190,7 +255,10 @@ public class UserController {
       UserDto dto = userService.UserChk(userid);
       String useremail = dto.getUseremail();
       model.addAttribute("useremail", useremail);
+<<<<<<< Updated upstream
       System.out.println(useremail);
+=======
+>>>>>>> Stashed changes
       return "testNext2";
    }
 }

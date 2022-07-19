@@ -29,14 +29,24 @@ public class UserServiceImpl implements UserService{
 		return userMapper.updateUserNick(userid, usernick);
 	}
 
+
 	@Override
+<<<<<<< Updated upstream
 	public int updateUserEmail(String userid, String useremail) {
 		// TODO Auto-generated method stub
 		return userMapper.updateUserEmail(userid, useremail);
 	}
+=======
+>>>>>>> Stashed changes
 	public UserDto UserSelect(String userId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int updateUserEmail(String userid, String useremail) {
+		// TODO Auto-generated method stub
+		return userMapper.updateUserEmail(userid, useremail);
+	}	 
+	 
 
 }
