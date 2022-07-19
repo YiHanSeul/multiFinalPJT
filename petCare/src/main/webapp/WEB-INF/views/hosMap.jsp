@@ -12,7 +12,11 @@
 <script type="text/javascript"
    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1744d3b2aeed48eacbfc639e7fad61d3"></script>
 <script type="text/javascript">
+	$(function(){
+		getInfo(); 
+  	 }); 
    var areanum = true;
+   
    function openarea() {
       if (areanum) {
          areanum = false;
@@ -27,7 +31,6 @@
    }
 
    function chageSelect() {
-
       var selectList = document.getElementById("region")
  
       if (selectList.options[selectList.selectedIndex].value == "서울특별시") {
@@ -341,10 +344,21 @@
          $(".jeju").remove();
       }
    }
-   $(function(){
-      $(".map").children
+  
    
-   }); 
+   //현재 위치로 변경
+   function now() {
+			if( navigator.geolocation){
+				navigator.geolocation.getCurrentPosition(function(position){
+					
+					var lat = position.coords.latitude,
+						lon = position.coords.longitude;
+					
+					locPosition = new kakao.maps.LatLng(lat,lon);
+					map.setCenter(locPosition);
+				}); 
+			}
+	   }
 </script>
 <style>
 #area {
@@ -360,7 +374,7 @@
 <body>
  
    <div>
-      <button>현위치</button>
+      <button onclick="now();">현위치</button>
       <button onclick="openarea();">주소선택</button>
       <button>필터옵션</button>
    </div>
@@ -401,15 +415,8 @@
             <input type="submit" value="확인">
          </form>
       </div>
-      <table border="1">
-         <c:forEach var="dto" items="${list}">
-            <tr>
-               <td>${dto.hospitalname}</td>
-               <td>${dto.addr}</td>
-               <td>${dto.lat }</td>
-               <td>${dto.lng }</td>
-            </tr>
-         </c:forEach>
+      <table id="list" border="1">
+         
       </table>
    </div>
    <script>
@@ -417,24 +424,43 @@
       var listlat = new Array();
       var listname = new Array();
       var listnum = new Array(); 
-
+      var avglat = 0;
+      var avglng = 0; 
+      
       <c:forEach var="list" items="${list}">
       listlng.push("${list.getLng()}");
       listlat.push("${list.getLat()}");
       listname.push("${list.getHospitalname()}");
       listnum.push(0);
       </c:forEach>
-
+      
+      for (var i = 0; i < listlng.length; i++) {
+      avglat += parseFloat(listlat[i])/listlat.length;
+      avglng += parseFloat(listlng[i])/listlat.length;
+      }
+      
+     
+      
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
       mapOption = {
-         center : new kakao.maps.LatLng(37.450701, 127.070667), // 지도의 중심좌표
+         center : new kakao.maps.LatLng(37.48862507655698, 126.9293523246618), // 지도의 중심좌표
          level : 4
       // 지도의 확대 레벨
       };
-
       var map = new kakao.maps.Map(mapContainer, mapOption);
-
+      
+      function panTo(lat, lng) {
+          // 이동할 위도 경도 위치를 생성합니다 
+          var moveLatLon = new kakao.maps.LatLng(lat, lng);
+          
+          // 지도 중심을 부드럽게 이동시킵니다
+          // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+          map.panTo(moveLatLon);            
+      }
+      
+      panTo(avglat,avglng);
       // 지도에 표시된 마커 객체를 가지고 있을 배열입니다
+      
       var markers = [];
 
       // 마커 하나를 지도위에 표시합니다 
@@ -489,21 +515,63 @@
          // 생성된 마커를 배열에 추가합니다
          markers.push(marker);
       }
-      //중심 좌표
-      /* kakao.maps.event.addListener(map, 'center_changed', function() {
+      
+  		// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+	   var mapTypeControl = new kakao.maps.MapTypeControl();
 
-          // 지도의  레벨을 얻어옵니다
-          var level = map.getLevel();
-
-          // 지도의 중심좌표를 얻어옵니다 
-          var latlng = map.getCenter(); 
-
-          var message = '<p>지도 레벨은 ' + level + ' 이고</p>';
-          message += '<p>중심 좌표는 위도 ' + latlng.getLat() + ', 경도 ' + latlng.getLng() + '입니다</p>';
-
-           console.log(message);
-
-      });*/
+	   // 지도 타입 컨트롤을 지도에 표시합니다
+	   map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+	 
+	   
+	   function getInfo() {
+	       // 지도의 현재 중심좌표를 얻어옵니다 
+	       var center = map.getCenter(); 
+	       
+	       // 지도의 현재 레벨을 얻어옵니다
+	       var level = map.getLevel();
+	       
+	       // 지도타입을 얻어옵니다
+	       var mapTypeId = map.getMapTypeId(); 
+	       
+	       // 지도의 현재 영역을 얻어옵니다 
+	       var bounds = map.getBounds();
+	       
+	       // 영역의 남서쪽 좌표를 얻어옵니다 
+	       var swLatLng = bounds.getSouthWest(); 
+	       
+	       // 영역의 북동쪽 좌표를 얻어옵니다 
+	       var neLatLng = bounds.getNorthEast(); 
+	       
+	       // 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+	       var boundsStr = bounds.toString();
+	       
+	       
+	       var message = '지도 중심좌표는 위도 ' + center.getLat() + ', <br>';
+	       message += '경도 ' + center.getLng() + ' 이고 <br>';
+	       message += '지도 레벨은 ' + level + ' 입니다 <br> <br>';
+	       message += '지도 타입은 ' + mapTypeId + ' 이고 <br> ';
+	       message += '지도의 남서쪽 좌표는 ' + swLatLng.getLat() + ', ' + swLatLng.getLng() + ' 이고 <br>';
+	       message += '북동쪽 좌표는 ' + neLatLng.getLat() + ', ' + neLatLng.getLng() + ' 입니다';
+	       
+	       // 개발자도구를 통해 직접 message 내용을 확인해 보세요.
+	        console.log(message);
+	        $(".ge").remove();  
+	        var n = 0;
+	        for (var i = 0; i < listlng.length; i++) {
+	        	
+	        	if((swLatLng.getLat() <= listlat[i] && listlat[i] <= neLatLng.getLat()) && (swLatLng.getLng() <= listlng[i] && listlng[i] <= neLatLng.getLng())&&n<5){	        		
+	        		n+=1
+	        		$("#list").append("<tr class='ge'><td>"+listname[i]+"</td></tr>");
+	        		console.log(listlng[i]);
+	        	}
+	        }
+	       }
+	   //마우스 움직일때 마다 갱신
+	   kakao.maps.event.addListener(map, 'mousemove', function(mouseEvent) {
+			getInfo();
+		});
+	   
+	   
    </script>
 </body>
 </html>
