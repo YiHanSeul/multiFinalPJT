@@ -63,7 +63,6 @@ $(document).ready(function(){
 			<th>주소</th>
 			<th>진위검증</th>
 		</tr>
-<<<<<<< HEAD
 		
 
  <c:forEach items="${dto }" var="dto">
@@ -71,13 +70,6 @@ $(document).ready(function(){
  		<td> ${dto.hospitalKey }</td>
  		<td> ${dto.hospitalName }</td>
  		<td>${dto.hospitalId } </td>
-=======
-<c:forEach items="${dto }" var="dto">
-		<tr>
- 		<td> ${dto.hospitalKey }</td>
-		<td> ${dto.hospitalName }</td>
-		<td>${dto.hospitalId }</td>
->>>>>>> master
 		<td>${dto.hospitalPw }</td>
 		<td> ${dto.hospitalEmail }</td>
 		<td> ${dto.hospitalPhone }</td>

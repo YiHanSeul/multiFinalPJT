@@ -21,8 +21,6 @@ public class AdminController {
 	@GetMapping("/api")
 	public String api() {
 		return "api";
-<<<<<<< HEAD
-=======
 	}	
 	
 	@GetMapping("/adminCheck")
@@ -31,22 +29,8 @@ public class AdminController {
 		model.addAttribute("list", adminService.HospitalVChk());
 		System.out.println( adminService.HospitalVChk());
 		return "adminCheck";
->>>>>>> master
 	}
 
-<<<<<<< HEAD
-	
-	/*
-	 * @GetMapping(value="/adminCheck") public String adminCheck(Model model) {
-	 * 
-	 * 
-	 * return "adminCheck"; }
-	 */
-	@RequestMapping(value = "/adminCheckres")
-	public String adminCheckres(Model model, String hospitalKey) {
-		int res = adminService.updateHospitalVChk(hospitalKey);
-		if (res > 0) {
-=======
 	@GetMapping("/adminCheckres")
 	public String adminCheckres(Model model, String hospitalKey){
 		int res = adminService.updateHospitalVChk(hospitalKey);
@@ -54,7 +38,6 @@ public class AdminController {
 			model.addAttribute("dto", adminService.HospitalVChk());
 			return "adminCheck";
 		}else {
->>>>>>> master
 			return "adminCheck";
 		} else {
 			return "index2";
