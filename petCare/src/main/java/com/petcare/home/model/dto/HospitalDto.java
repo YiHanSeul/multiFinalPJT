@@ -10,10 +10,6 @@ public class HospitalDto {
 	private String HospitalAddr;
 	private String Grade;
 	private int HospitalChk ;
-	public HospitalDto() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	public HospitalDto(String hospitalKey, String hospitalName, String hospitalId, String hospitalPw,
 			String hospitalEmail, String hospitalPhone, String hospitalAddr, String grade, int hospitalChk) {
 		super();
@@ -26,6 +22,10 @@ public class HospitalDto {
 		HospitalAddr = hospitalAddr;
 		Grade = grade;
 		HospitalChk = hospitalChk;
+	}
+	public HospitalDto() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	public String getHospitalKey() {
 		return HospitalKey;

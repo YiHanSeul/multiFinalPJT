@@ -13,6 +13,8 @@ var data = {
 	    "b_no": [] // 사업자번호 "xxxxxxx" 로 조회 시,
 	   }; 
 $(document).ready(function(){
+	let test = "${dto }";
+	console.log(test);
 	 $(".btn").click(function(){
 		data.b_no.push($(this).attr('value'));
 		//console.log(data)
@@ -52,7 +54,7 @@ $(document).ready(function(){
 <body>
 <table border="1">
 		<tr>	
-			<th>사업자번호 </th>
+			<th>사업자번호</th>
 			<th>병원명 </th>
 			<th>아이디</th>
 			<th>비밀번호</th>
@@ -61,21 +63,25 @@ $(document).ready(function(){
 			<th>주소</th>
 			<th>진위검증</th>
 		</tr>
-<c:forEach items="${dto }" var="dto">
+		
+
+ <c:forEach items="${dto }" var="dto">
 		<tr>
  		<td> ${dto.hospitalKey }</td>
-		<td> ${dto.hospitalName }</td>
-		<td>${dto.hospitalId }</td>
+ 		<td> ${dto.hospitalName }</td>
+ 		<td>${dto.hospitalId } </td>
 		<td>${dto.hospitalPw }</td>
 		<td> ${dto.hospitalEmail }</td>
 		<td> ${dto.hospitalPhone }</td>
 		<td> ${dto.hospitalAddr }</td>
 		<td><button class="btn" value="${dto.hospitalKey}">검증하기</button></td>
-		<td class="td_agree"><button  style="display:none" id="${dto.hospitalKey}" onclick = "location.href = '/admin/adminCheckres?hospitalKey=${dto.hospitalKey }'">승인</button></td>
+ 		<td class="td_agree"><button  style="display:none" id="${dto.hospitalKey}" onclick = "location.href = '/admin/adminCheckres?hospitalKey=${dto.hospitalKey }'">승인</button></td>
 		</tr>
 	
 
-</c:forEach>	
+</c:forEach>
+
+
 </table>
 
 

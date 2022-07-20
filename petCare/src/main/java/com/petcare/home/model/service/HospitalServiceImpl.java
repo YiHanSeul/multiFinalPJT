@@ -7,7 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.petcare.home.model.dto.HospitalDto;
 import com.petcare.home.model.mapper.HospitalMapper;
-import com.petcare.home.model.mapper.ResMapper;
 
 @Service
 public class HospitalServiceImpl implements HospitalService {
