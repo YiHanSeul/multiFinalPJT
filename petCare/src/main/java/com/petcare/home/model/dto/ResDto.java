@@ -6,18 +6,23 @@ public class ResDto {
 	private String BookDate;
 	private String BookPetType;
 	private String BookWhy;
+	private int UserKey;
+	private int HospitalKey;
 	
 	public ResDto() {
 		super(); 
 	}
 
-	public ResDto(int bookId, String bookHour, String bookDate, String bookPetType, String bookWhy) {
+	public ResDto(int bookId, String bookHour, String bookDate, String bookPetType, String bookWhy, int userKey,
+			int hospitalKey) {
 		super();
 		BookId = bookId;
 		BookHour = bookHour;
 		BookDate = bookDate;
 		BookPetType = bookPetType;
 		BookWhy = bookWhy;
+		UserKey = userKey;
+		HospitalKey = hospitalKey;
 	}
 
 	public int getBookId() {
@@ -60,10 +65,28 @@ public class ResDto {
 		BookWhy = bookWhy;
 	}
 
+	public int getUserKey() {
+		return UserKey;
+	}
+
+	public void setUserKey(int userKey) {
+		UserKey = userKey;
+	}
+
+	public int getHospitalKey() {
+		return HospitalKey;
+	}
+
+	public void setHospitalKey(int hospitalKey) {
+		HospitalKey = hospitalKey;
+	}
+
 	@Override
 	public String toString() {
 		return "ResDto [BookId=" + BookId + ", BookHour=" + BookHour + ", BookDate=" + BookDate + ", BookPetType="
-				+ BookPetType + ", BookWhy=" + BookWhy + "]";
+				+ BookPetType + ", BookWhy=" + BookWhy + ", UserKey=" + UserKey + ", HospitalKey=" + HospitalKey + "]";
 	}
 
+
+	
 }

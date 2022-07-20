@@ -61,78 +61,72 @@ display:none;
 		<div id='calendar'></div>
 		<a href="javascript:doDisplay();"></a><br/>
 		<div id='time'>
-			<section id="sel_option">
-			  <ul>
-			    <li class="opt_list">
-			      <a> 오후</a><br/>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" class="btn1" type="button" data-num="10:00">10:00</button>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" class="btn1" type="button" data-num="10:30">10:30</button>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="11:00">11:00</button>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="11:30">11:30</button><br/>
-			      <a> 오후</a><br/>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="12:00">12:00</button>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="12:30">12:30</button>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="13:00">13:00</button>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="13:30">13:30</button><br/>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="14:00">14:00</button>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="14:30">14:30</button>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="15:00">15:00</button>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="15:30">15:30</button><br/>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="16:00">16:00</button>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="16:30">16:30</button>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="17:00">17:00</button>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="17:30">17:30</button><br/>
-			      <input class="it_num" type="hidden" value="0">
-			      <button class="it_btn" name="btn1" type="button" data-num="15:00">18:00</button>
-			      <input type="button" value="날짜 시간확인" onclick="console.log(selectedDate, BH)"><br/>
-			    </li>
-			  </ul>
-			</section>
+			<form action="/res/insertRes" method="get">
+				<input type="hidden" name="userkey" value="${userinfo.userkey }">
+				<input type="hidden" name="hospitalkey" value="${hospitalinfo.hospitalkey }">
+				<table>
+				<tr>
+					<section id="sel_option">
+					  <ul>
+					    <li class="opt_list">
+					      <a> 오후</a><br/>
+					      <input type="hidden" name="BookHour" id="abc" value="">
+					      <button class="it_btn" name="btn1" type="button" data-num="10:00" onclick="select('10:00');">10:00</button>
+					      <button class="it_btn" name="btn1" type="button" data-num="10:30" onclick="select('10:30');">10:30</button>
+					      <button class="it_btn" name="btn1" type="button" data-num="11:00" onclick="select('11:00');">11:00</button>
+					      <button class="it_btn" name="btn1" type="button" data-num="11:30" onclick="select('11:30');">11:30</button><br/>
+					      <a> 오후</a><br/>
+					      <button class="it_btn" name="btn1" type="button" data-num="12:00" onclick="select('12:00');">12:00</button>
+					      <button class="it_btn" name="btn1" type="button" data-num="12:30" onclick="select('12:30');">12:30</button>
+					      <button class="it_btn" name="btn1" type="button" data-num="13:00" onclick="select('13:00');">13:00</button>
+					      <button class="it_btn" name="btn1" type="button" data-num="13:30" onclick="select('13:30');">13:30</button><br/>
+					      <button class="it_btn" name="btn1" type="button" data-num="14:00" onclick="select('14:00');">14:00</button>
+					      <button class="it_btn" name="btn1" type="button" data-num="14:30" onclick="select('14:30');">14:30</button>
+					      <button class="it_btn" name="btn1" type="button" data-num="15:00" onclick="select('15:00');">15:00</button>
+					      <button class="it_btn" name="btn1" type="button" data-num="15:30" onclick="select('15:30');">15:30</button><br/>
+					      <button class="it_btn" name="btn1" type="button" data-num="16:00" onclick="select('16:00');">16:00</button>
+					      <button class="it_btn" name="btn1" type="button" data-num="16:30" onclick="select('16:30');">16:30</button>
+					      <button class="it_btn" name="btn1" type="button" data-num="17:00" onclick="select('17:00');">17:00</button>
+					      <button class="it_btn" name="btn1" type="button" data-num="17:30" onclick="select('17:30');">17:30</button><br/>
+					      <button class="it_btn" name="btn1" type="button" data-num="15:00" onclick="select('18:00');">18:00</button>
+					      <input type="button" value="가능확인" onclick="ResDblChk();" ><br/>
+					    </li>
+					  </ul>
+					</section>
+				</tr>
+					<td>
+		      		<input type="hidden" id="bc" name="BookDate" value="">
+		      		</td>
+		      	<tr>
+		      		<th>반려견 견종</th>
+		      		<td>
+		      		<input type="text" type="text" name="BookPetType">${dto.BookPetType }
+		      		</td>
+		      	</tr>
+		      	<tr>
+			      	<th>방문목적</th>
+			      	<td>
+					<textarea class="hide" rows="5" cols="100" id="textarea" name="BookWhy" placeholder="방문하시는 이유나 강아지의 증상을 적어주세요.">${dto.BookWhy } </textarea>
+					<input type="submit" id="SB" disabled="disabled" value="예약하기">
+					</td>
+				<tr/>
+			</table>
+			</form>
 		</div>
 		<div>
-		
-		
 		</div>
-		
-		<form action="/res/insertRes" method="get">
-			<table>
-		      	<tr>
-		      		<td><input type="hidden" type="text" name="bookid" >${dto. }</td>
-		      	</tr>	
-	      		<tr>
-		      		<td><input type="hidden" type="text" name="bookhour" ">${dto. }</td>
-		      	</tr>
-		      	<tr>
-		      		<td><input type="hidden" type="text" name="bookdate" ">${dto. }</td>
-		      	</tr>
-		      	<tr>
-		      		<td><input type="hidden" type="text" name="bookpettype" ">${dto. }</td>
-		      	</tr>
-		      	<a>방문목적</a><br/>
-				<textarea class="hide" rows="5" cols="100" id="textarea" name="VR" placeholder="방문하시는 이유나 강아지의 증상을 적어주세요."> </textarea>
-				<input type="submit" value="예약하기">
-			</table>
-		</form>
 	<br>
 
 </body>
 <script type="text/javascript">
+	
+	
+	
+	function select(a){
+		let str = document.getElementById("abc");
+		str.setAttribute("value",a);
+	}
+	
 	function doDisplay(){
 		var time = document.getElementById('time');
 		var text = document.getElementById('textarea');
@@ -151,12 +145,14 @@ display:none;
     colors = ['yellow', 'skyblue'];
 	$(function() {
 	$('.it_btn').on('click', function() {
-	    BH = $(this).data('num');
-	    $(this).closest('li').find('.it_num').val(BH);
+	    bookh = $(this).data('num');
+	    $(this).closest('li').find('.it_num').val(bookh);
 	    $(this).css("backgroundColor", colors[index]);
 	    $(this).css("Color", "transparent");
 	    $('.it_btn').not($(this)).css("backgroundColor", "skyblue");
 	    index = index >= colors.length - 1 ? 0 : index + 1;
+	    const target = document.getElementById('SB');
+        target.disabled = true;
 	    
 	});
 	
@@ -190,14 +186,38 @@ display:none;
 			select : function(arg) {
 				var title = confirm('예약을 잡으실껀가용?');
 				if (title) {
-					selectedDate = arg.startStr;
+					BookDate = arg.startStr;
+					let str = document.getElementById("bc");
+					str.setAttribute("value",BookDate);
 					doDisplay();
 				}
 			}
 		});
 		calendar.render();
 	});
-
+	
+	function ResDblChk(){
+		var BookHour = $("#abc").val();
+		var BookDate = $("#bc").val();
+        $.ajax({
+            url:"/res/resCheck", //Controller에서 인식할 주소
+            type:"post", //POST 방식으로 전달
+            data:{"BH":BookHour, "BD":BookDate},
+            success:function(cnt){
+            	if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 예약 가능 
+            		alert("예약이 가능합니다")
+            		const target = document.getElementById('SB');
+            		target.disabled = false;
+                } else { // cnt가 1일 경우 -> 예약 불가능
+                    alert("이미 예약된 시간입니다.")
+                    const target = document.getElementById('SB');
+                    target.disabled = true;
+                }
+            },
+        });
+		
+	}
+	
 </script>
 
 </html>
