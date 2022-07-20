@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/hos/insertHos" method="get">
+<form action="/hos/insertHos" method="post" enctype="multipart/form-data">
 	<div>
 		병원명
 		<input type="text" name=HospitalName>
@@ -34,7 +34,8 @@
 	</div>
 	<div>
 		사업자등록번호
-		<input type="text" name=HospitalKey>
+		<!-- <input type="text" name=HospitalKey> -->
+		<input type="file" name=file> 
 	</div>
 	<input type="submit" value="가입">
 </form>

@@ -61,11 +61,11 @@ $(document).ready(function(){
 			<th>주소</th>
 			<th>진위검증</th>
 		</tr>
-<c:forEach items="${list }" var="dto">
+<c:forEach items="${dto }" var="dto">
 		<tr>
  		<td> ${dto.hospitalKey }</td>
 		<td> ${dto.hospitalName }</td>
-		<td>${dto.hosPitalId }</td>
+		<td>${dto.hospitalId }</td>
 		<td>${dto.hospitalPw }</td>
 		<td> ${dto.hospitalEmail }</td>
 		<td> ${dto.hospitalPhone }</td>

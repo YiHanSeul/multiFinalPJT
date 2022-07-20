@@ -39,11 +39,11 @@ public class HospitalDto {
 	public void setHospitalName(String hospitalName) {
 		HospitalName = hospitalName;
 	}
-	public String getHosPitalId() {
+	public String getHospitalId() {
 		return HospitalId;
 	}
-	public void setHosPitalId(String hosPitalId) {
-		HospitalId = hosPitalId;
+	public void setHospitalId(String hospitalId) {
+		HospitalId = hospitalId;
 	}
 	public String getHospitalPw() {
 		return HospitalPw;
@@ -83,10 +83,11 @@ public class HospitalDto {
 	}
 	@Override
 	public String toString() {
-		return "HospitalDto [HospitalKey=" + HospitalKey + ", HospitalName=" + HospitalName + ", HosPitalId="
+		return "HospitalDto [HospitalKey=" + HospitalKey + ", HospitalName=" + HospitalName + ", HospitalId="
 				+ HospitalId + ", HospitalPw=" + HospitalPw + ", HospitalEmail=" + HospitalEmail + ", HospitalPhone="
 				+ HospitalPhone + ", HospitalAddr=" + HospitalAddr + ", Grade=" + Grade + ", HospitalChk=" + HospitalChk
 				+ "]";
 	}
+	
 
 }

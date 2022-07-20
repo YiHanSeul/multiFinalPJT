@@ -1,6 +1,7 @@
 package com.petcare.home.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,14 +35,36 @@ public class HospitalController {
 	public String insertHosForm() {
 		return "insertHos";
 	}
+	@Autowired
+	ResourceLoader resourceLoader;
 
-	@GetMapping("/insertHos")
-	public String insertHos(HospitalDto hospitalDto) {
+	@PostMapping("/insertHos")
+	public String insertHos(HospitalDto hospitalDto, MultipartFile file) throws Exception {
 		System.out.println(hospitalDto);
+		System.out.println(file.getOriginalFilename());
+		// 경로지정
+		String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
+		// 임의로 식별자 생성
+		UUID uuid = UUID.randomUUID();
 
-		// hospitalDto.setHospitalKey(값을 뽑은다음에);
-		int res = hosService.insertHos(hospitalDto);
-		if (res > 0) {
+		String fileName = uuid + "_" + file.getOriginalFilename();
+		File saveFile = new File(projectPath, fileName);
+
+		file.transferTo(saveFile);
+		String res = new ocr().ocrTest(projectPath + "\\" + fileName);
+
+		JSONParser jsonParse = new JSONParser();
+		JSONObject jObj = (JSONObject) jsonParse.parse(res);
+		JSONArray images = (JSONArray) jObj.get("images");
+		JSONObject uid = (JSONObject) images.get(0);
+		JSONArray fields = (JSONArray) uid.get("fields");
+		JSONObject inferText = (JSONObject) fields.get(1);
+		String HospitalKey = (String) inferText.get("inferText");
+		HospitalKey = HospitalKey.substring(0, 3) + HospitalKey.substring(4, 6) + HospitalKey.substring(7, 12);
+		hospitalDto.setHospitalKey(HospitalKey);
+
+		int res1 = hosService.insertHos(hospitalDto);
+		if (res1 > 0) {
 			return "index";
 		} else {
 			return "insertHos";
@@ -67,59 +90,25 @@ public class HospitalController {
 		session.setAttribute("HospitalPw", HospitalPw);
 
 		if (1 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-				&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHosPitalId())
+				&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
 				&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
 
 			return "loginHosMypage";
 		}
 
 		if (0 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-				&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHosPitalId())
+				&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
 				&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
 
 			model.addAttribute("text", "비활성");
 			return "loginHos";
 		}
-
 		return "loginHos";
-
 	}
+
 	@GetMapping("/ocr")
 	public String ocrForm() {
 		return "ocrRes";
 	}
 
-	@Autowired
-	ResourceLoader resourceLoader;
-
-	@PostMapping("/imgTest")
-	public String imgTest(MultipartFile file, Model model) throws Exception {
-		// 경로지정
-		String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
-		// 임의로 식별자 생성
-		UUID uuid = UUID.randomUUID();
-
-		String fileName = uuid + "_" + file.getOriginalFilename();
-		File saveFile = new File(projectPath, fileName);
-
-		file.transferTo(saveFile);
-		String res = new ocr().ocrTest(projectPath + "\\" + fileName);
-		
-		model.addAttribute("res", res);
-	
-		System.out.println(res);
-		System.out.println("res타입임"+res.getClass().getName());
-		JSONParser jsonParse=new JSONParser();
-		JSONObject jObj = (JSONObject)jsonParse.parse(res);
-		System.out.println(jObj.get("images"));
-		JSONArray images=(JSONArray)jObj.get("images");
-		System.out.println("images 변수"+images);
-		JSONObject  uid=(JSONObject)images.get(0);
-		System.out.println(uid);
-		JSONArray fields=(JSONArray)uid.get("fields");
-		System.out.println(fields.get(1));
-		JSONObject inferText=(JSONObject)fields.get(1);
-		System.out.println(inferText.get("inferText"));
-		return "ocrRes";
-	}
 }

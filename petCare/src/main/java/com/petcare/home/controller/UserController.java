@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import com.petcare.home.model.dto.UserDto;
+import com.petcare.home.model.service.AdminService;
 import com.petcare.home.model.service.UserService;
 
 
@@ -22,6 +23,9 @@ public class UserController {
 
    @Autowired
    private UserService userService;
+   
+   @Autowired
+   private AdminService adminService;
    // 회원가입 폼으로 넘어감
 
    @GetMapping("/user")
@@ -76,7 +80,12 @@ public class UserController {
       if (0 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
             && userpw.equals(userService.UserChk(userid).getUserpw())) {
          model.addAttribute("userid", userid);
+         System.out.println(adminService.HospitalVChk());
+         
+      model.addAttribute("dto", adminService.HospitalVChk());
 
+      
+      
          return "adminCheck";
       } else if (1 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
             && userpw.equals(userService.UserChk(userid).getUserpw())) {
@@ -98,9 +107,10 @@ public class UserController {
       model.addAttribute("petN", petN);
       // 가입한거를 가지고 와야하나?
       
-      if(petName == null ||  petAge == null || petGender == null|| petN == null) {
-     	return "index"; 
-      }
+      /*
+       * if(petName == null || petAge == null || petGender == null|| petN == null) {
+       * return "index"; }
+       */
       
       userid = (String) session.getAttribute("userid");
       System.out.println(userid);
@@ -204,7 +214,9 @@ public class UserController {
          model.addAttribute("useremail", useremail);
          model.addAttribute("usernick", usernick);
          model.addAttribute("userphone", userphone);
-
+         
+         System.out.println(username);
+         
          return "userMypage";
       }else {
          return "index2";
@@ -236,49 +248,50 @@ public class UserController {
    
    @GetMapping("/testNext3")
    public String testNext3(HttpSession session, String userid, Model model) {
-	   userid = (String) session.getAttribute(userid);
-	  
-	   UserDto dto = userService.UserChk(userid);
-	   String userphone = dto.getUserphone();
-	   model.addAttribute("userphone", userphone);
-	   
-	   return "testNext3";
+      userid = (String) session.getAttribute("userid");
+         UserDto dto = userService.UserChk(userid);
+         String userphone = dto.getUserphone();
+         model.addAttribute("userphone", userphone);
+         System.out.println(userphone);
+   
+      return "testNext3";
    }
    
    @GetMapping("/userDelete")
-   public String userDelete(HttpSession session) {
-	   String userid = (String)session.getAttribute("userid");
-//	   System.out.println(userid);
-	   return "userDelete";
+   public String userDelete(HttpSession session, Model model) {
+      String userid = (String)session.getAttribute("userid");
+      model.addAttribute("msg","로그인 실패");
+      
+      return "userDelete";
    }
    
    @GetMapping("/delete")
    public String delete(HttpSession session, String userpw) {
-	   String userid = (String)session.getAttribute("userid");
-	   System.out.println(userid);
-	   System.out.println(userpw);
-	   System.out.println(userService.UserChk(userid).getUserpw());
-	   
-	   if(userpw.equals(userService.UserChk(userid).getUserpw())) {
-		   
-		   
-		   userService.deleteUser(userid);
-		   session.removeAttribute(userid);
-		   session.invalidate();
-		   return "index";
-	   }
+      String userid = (String)session.getAttribute("userid");
+      System.out.println(userid);
+      System.out.println(userpw);
+      System.out.println(userService.UserChk(userid).getUserpw());
+      
+      if(userpw.equals(userService.UserChk(userid).getUserpw())) {
+         
+         
+         userService.deleteUser(userid);
+         session.removeAttribute(userid);
+         session.invalidate();
+         return "index";
+      }
 
-	   return "index2";
+      return "userDelete";
    }
    
    @GetMapping("/logout")
    public String logout(HttpSession session) {
-	   String userid =(String)session.getAttribute("userid");
-	   session.removeAttribute(userid);
-	   session.invalidate();
-	   return "index";
+      String userid =(String)session.getAttribute("userid");
+      session.removeAttribute(userid);
+      session.invalidate();
+      return "index";
    }
    
-   
+
 
 }
