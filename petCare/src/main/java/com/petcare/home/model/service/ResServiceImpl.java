@@ -22,6 +22,12 @@ public class ResServiceImpl implements ResService{
 		return resMapper.insert(dto);
 	}
 
+	@Override
+	public int resCheck(String BH, String BD) {
+		return resMapper.resCheck(BH,BD);
+	}
+
+
 
 
 	

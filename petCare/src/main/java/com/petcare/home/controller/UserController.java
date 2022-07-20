@@ -81,12 +81,21 @@ public class UserController {
       if (0 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
             && userpw.equals(userService.UserChk(userid).getUserpw())) {
          model.addAttribute("userid", userid);
+<<<<<<< HEAD
     	  System.out.println(adminService.HospitalVChk());
     	  
 		model.addAttribute("dto", adminService.HospitalVChk());
 
 		
 		
+=======
+         System.out.println(adminService.HospitalVChk());
+         
+      model.addAttribute("dto", adminService.HospitalVChk());
+
+      
+      
+>>>>>>> master
          return "adminCheck";
       } else if (1 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
             && userpw.equals(userService.UserChk(userid).getUserpw())) {
@@ -108,6 +117,14 @@ public class UserController {
       model.addAttribute("petN", petN);
       // 가입한거를 가지고 와야하나?
       
+<<<<<<< HEAD
+=======
+      /*
+       * if(petName == null || petAge == null || petGender == null|| petN == null) {
+       * return "index"; }
+       */
+      
+>>>>>>> master
       userid = (String) session.getAttribute("userid");
       System.out.println(userid);
       UserDto dto = userService.UserChk(userid);
@@ -230,6 +247,7 @@ public class UserController {
    
    @GetMapping("/testNext3")
    public String testNext3(HttpSession session, String userid, Model model) {
+<<<<<<< HEAD
 	   userid = (String) session.getAttribute("userid");
 	      UserDto dto = userService.UserChk(userid);
 	      String userphone = dto.getUserphone();
@@ -237,43 +255,64 @@ public class UserController {
 	      System.out.println(userphone);
 	
 	   return "testNext3";
+=======
+      userid = (String) session.getAttribute("userid");
+         UserDto dto = userService.UserChk(userid);
+         String userphone = dto.getUserphone();
+         model.addAttribute("userphone", userphone);
+         System.out.println(userphone);
+   
+      return "testNext3";
+>>>>>>> master
    }
    
    @GetMapping("/userDelete")
    public String userDelete(HttpSession session, Model model) {
+<<<<<<< HEAD
 	   String userid = (String)session.getAttribute("userid");
 	   model.addAttribute("msg","로그인 실패");
 	   
 	   return "userDelete";
+=======
+      String userid = (String)session.getAttribute("userid");
+      model.addAttribute("msg","로그인 실패");
+      
+      return "userDelete";
+>>>>>>> master
    }
    
    @GetMapping("/delete")
    public String delete(HttpSession session, String userpw) {
-	   String userid = (String)session.getAttribute("userid");
-	   System.out.println(userid);
-	   System.out.println(userpw);
-	   System.out.println(userService.UserChk(userid).getUserpw());
-	   
-	   if(userpw.equals(userService.UserChk(userid).getUserpw())) {
-		   
-		   
-		   userService.deleteUser(userid);
-		   session.removeAttribute(userid);
-		   session.invalidate();
-		   return "index";
-	   }
+      String userid = (String)session.getAttribute("userid");
+      System.out.println(userid);
+      System.out.println(userpw);
+      System.out.println(userService.UserChk(userid).getUserpw());
+      
+      if(userpw.equals(userService.UserChk(userid).getUserpw())) {
+         
+         
+         userService.deleteUser(userid);
+         session.removeAttribute(userid);
+         session.invalidate();
+         return "index";
+      }
 
+<<<<<<< HEAD
 	   return "userDelete";
+=======
+      return "userDelete";
+>>>>>>> master
    }
    
    @GetMapping("/logout")
    public String logout(HttpSession session) {
-	   String userid =(String)session.getAttribute("userid");
-	   session.removeAttribute(userid);
-	   session.invalidate();
-	   return "index";
+      String userid =(String)session.getAttribute("userid");
+      session.removeAttribute(userid);
+      session.invalidate();
+      return "index";
    }
    
+<<<<<<< HEAD
    @GetMapping("/idCheck")
    @ResponseBody
 	   public int idCheck(@RequestParam("userid") String userid) {
@@ -282,6 +321,9 @@ public class UserController {
 	   }
    
    
+=======
+
+>>>>>>> master
 
 
 }
