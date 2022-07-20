@@ -16,7 +16,13 @@ public interface ResMapper {
 	@Select(" SELECT USERKEY FROM USER WHERE USERID = #{userId}")
 	List<UserDto> userSelect(String userId);
 	
-	@Insert("INSERT INTO BOOK VALUES(#{BookId}, #{BookHour}, #{BookDate}, #{BookPetType}, #{BookWhy},) ")
+	@Select("SELECT COUNT(BOOKHOUR) FROM BOOK WHERE BOOKHOUR = #{BH} AND BOOKDATE = #{BD}")
+	int resCheck(String BH, String BD);
+	
+	@Insert("INSERT INTO BOOK VALUES(0, #{BookHour}, #{BookDate}, #{BookPetType}, #{BookWhy}, #{UserKey}, #{HospitalKey}) ")
 	int insert(ResDto dto);
+	
+	
+	
 	
 }
