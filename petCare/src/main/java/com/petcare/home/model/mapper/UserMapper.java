@@ -19,6 +19,9 @@ public interface UserMapper {
 	@Select(" SELECT * FROM USER WHERE USERID = #{userId} ")
 	UserDto userChk(String userId);
 	
+	@Select(" SELECT COUNT(USERID) FROM USER WHERE USERID = #{userId} ")
+	int userChkId(String userId);
+	
 	@Select(" SELECT USERKEY FROM USER WHERE USERID = #{userId}")
 	UserDto userSelect(String userId);
 	

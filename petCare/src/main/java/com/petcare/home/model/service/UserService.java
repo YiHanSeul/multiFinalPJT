@@ -8,6 +8,8 @@ public interface UserService {
 
 	public UserDto UserChk(String userId);
 	
+	public int UserChkId(String userId);
+	
 public int  updateUserNick(String userid, String usernick);
 	
 	public int updateUserEmail(String userid, String useremail);

@@ -67,14 +67,14 @@ public class HospitalController {
 		session.setAttribute("HospitalPw", HospitalPw);
 
 		if (1 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-				&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHosPitalId())
+				&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
 				&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
 
 			return "loginHosMypage";
 		}
 
 		if (0 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-				&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHosPitalId())
+				&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
 				&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
 
 			model.addAttribute("text", "비활성");
