@@ -34,7 +34,10 @@ public class UserController {
       return "user";
    }
 
-
+   @GetMapping("/index")
+   public String index() {
+	   return "index";
+   }
    @GetMapping("/join") //개인회원&병원회원 로그인 가능하게힘
    public String join() {
 

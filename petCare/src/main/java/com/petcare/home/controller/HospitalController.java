@@ -43,7 +43,7 @@ public class HospitalController {
 		System.out.println(hospitalDto);
 		System.out.println(file.getOriginalFilename());
 		// 경로지정
-		String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img";
+		String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\file";
 		// 임의로 식별자 생성
 		UUID uuid = UUID.randomUUID();
 
