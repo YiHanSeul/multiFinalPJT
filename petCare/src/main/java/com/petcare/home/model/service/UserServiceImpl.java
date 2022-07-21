@@ -129,8 +129,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
    public UserDto UserSelect(String userid) {
-	  return userMapper.userSelect(userid);
-
+		return userMapper.userSelect(userid);
+	}
 	@Override
 	public UserDto userIdChk(String userId) {
 		// TODO Auto-generated method stub

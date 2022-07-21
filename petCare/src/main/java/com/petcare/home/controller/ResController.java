@@ -66,7 +66,7 @@ public class ResController {
 	public int resCheck(HttpServletRequest request, @RequestParam("BH") String BH, @RequestParam("BD") String BD, ResDto dto) {
 		String BookDate= request.getParameter("BookDate");
 		dto.setBookDate(BookDate);
-		System.out.println(BH + BD);
+		System.out.println(BH + " " + BD);
 		int cnt = resservice.resCheck(BH, BD);
 		System.out.println(cnt);
 		return cnt;

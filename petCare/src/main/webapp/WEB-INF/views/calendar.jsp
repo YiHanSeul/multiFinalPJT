@@ -14,6 +14,7 @@ response.setContentType("text/html; charset=UTF-8");
 <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel='stylesheet' />
 <link href='${pageContext.request.contextPath }/resources/css/fullcalendar.css' rel='stylesheet' />
 <script src='${pageContest.request.contextPath }/resources/js/fullcalendar.js'></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 h2 {
 	color: var(- -bs-blue);
@@ -22,7 +23,15 @@ h2 {
 input {
 	backgroundcolor: blue;
 }
+#sel_option{
+margin-right: 100pt;
+margin-top:100pt;
+float: right;
+}
 #calendar{
+	margin-left: 30pt;
+	margin-top: 30pt;
+	float: left;
 	width: 70%;
 }
 #but {
@@ -38,30 +47,20 @@ witdh: 20%;
 #textarea{
 display:none;
 }
-.it_btn{
-	background-color: skyblue;
-}
-.btn{
-	background-color: skyblue;
-}
+
 
 </style>
 </head>
 <body>
-
-	<div id="but">
-		<span> 
-		<input class="btn btn-primary" type="button"id="button1" value="병원찾기" onclick="location.href=''"> 
-		<input class="btn btn-primary" type="button" id="button1" value="예방접종" onclick="location.href='/calendar/calendarhome'"> 
-		<input class="btn btn-primary" type="button" id="button1" value="홈" onclick="location.href=''"> 
-		<input class="btn btn-primary"type="button" id="button1" value="보험" onclick="location.href=''">
-		<input class="btn btn-primary" type="button" id="button1" value="커뮤니티" onclick="location.href=''">
-		</span>
-	</div>
+		<div>
+			<%@ include file="/WEB-INF/views/template/menu.jsp" %>
+			<div class="menu" id="loginChk2"  style="display:none"><a>${userid }님 안녕하세요</a></span>
+		</div>
+		
 		<div id='calendar'></div>
 		<a href="javascript:doDisplay();"></a><br/>
 		<div id='time'>
-			<form action="/res/insertRes" method="get">
+			<form action="/res/insertRes" method="get" onsubmit="swal('예약  완료!', '굿이에요', 'success');">
 				<input type="hidden" name="UserKey" value="${userinfo.userkey }">
 				<input type="hidden" name="HospitalKey" value="${hospitalinfo.hospitalKey }">
 				<table>
@@ -71,23 +70,23 @@ display:none;
 					    <li class="opt_list">
 					      <a> 오후</a><br/>
 					      <input type="hidden" name="BookHour" id="abc" value="">
-					      <button class="it_btn" name="btn1" type="button" data-num="10:00" onclick="select('10:00');">10:00</button>
-					      <button class="it_btn" name="btn1" type="button" data-num="10:30" onclick="select('10:30');">10:30</button>
-					      <button class="it_btn" name="btn1" type="button" data-num="11:00" onclick="select('11:00');">11:00</button>
-					      <button class="it_btn" name="btn1" type="button" data-num="11:30" onclick="select('11:30');">11:30</button><br/>
+					      <button class="it_btn" class="btn btn-warning" name="btn1" type="button" data-num="10:00" onclick="select('10:00');">10:00</button>
+					      <button class="it_btn" class="btn btn-warning" name="btn1" type="button" data-num="10:30" onclick="select('10:30');">10:30</button>
+					      <button class="it_btn" class="btn btn-warning" name="btn1" type="button" data-num="11:00" onclick="select('11:00');">11:00</button>
+					      <button class="it_btn" class="btn btn-warning" name="btn1" type="button" data-num="11:30" onclick="select('11:30');">11:30</button><br/><br/>
 					      <a> 오후</a><br/>
 					      <button class="it_btn" name="btn1" type="button" data-num="12:00" onclick="select('12:00');">12:00</button>
 					      <button class="it_btn" name="btn1" type="button" data-num="12:30" onclick="select('12:30');">12:30</button>
 					      <button class="it_btn" name="btn1" type="button" data-num="13:00" onclick="select('13:00');">13:00</button>
-					      <button class="it_btn" name="btn1" type="button" data-num="13:30" onclick="select('13:30');">13:30</button><br/>
+					      <button class="it_btn" name="btn1" type="button" data-num="13:30" onclick="select('13:30');">13:30</button><br/><br/>
 					      <button class="it_btn" name="btn1" type="button" data-num="14:00" onclick="select('14:00');">14:00</button>
 					      <button class="it_btn" name="btn1" type="button" data-num="14:30" onclick="select('14:30');">14:30</button>
 					      <button class="it_btn" name="btn1" type="button" data-num="15:00" onclick="select('15:00');">15:00</button>
-					      <button class="it_btn" name="btn1" type="button" data-num="15:30" onclick="select('15:30');">15:30</button><br/>
+					      <button class="it_btn" name="btn1" type="button" data-num="15:30" onclick="select('15:30');">15:30</button><br/><br/>
 					      <button class="it_btn" name="btn1" type="button" data-num="16:00" onclick="select('16:00');">16:00</button>
 					      <button class="it_btn" name="btn1" type="button" data-num="16:30" onclick="select('16:30');">16:30</button>
 					      <button class="it_btn" name="btn1" type="button" data-num="17:00" onclick="select('17:00');">17:00</button>
-					      <button class="it_btn" name="btn1" type="button" data-num="17:30" onclick="select('17:30');">17:30</button><br/>
+					      <button class="it_btn" name="btn1" type="button" data-num="17:30" onclick="select('17:30');">17:30</button><br/><br/>
 					      <button class="it_btn" name="btn1" type="button" data-num="15:00" onclick="select('18:00');">18:00</button>
 					      <input type="button" value="가능확인" onclick="ResDblChk();" ><br/>
 					    </li>
@@ -116,12 +115,9 @@ display:none;
 		<div>
 		</div>
 	<br>
-
 </body>
+
 <script type="text/javascript">
-	
-	
-	
 	function select(a){
 		let str = document.getElementById("abc");
 		str.setAttribute("value",a);
@@ -154,7 +150,7 @@ display:none;
 	    const target = document.getElementById('SB');
         target.disabled = true;
 	    
-	});
+		});
 	
 	});
 
@@ -205,18 +201,25 @@ display:none;
             data:{"BH":BookHour, "BD":BookDate},
             success:function(cnt){
             	if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 예약 가능 
-            		alert("예약이 가능합니다")
+            		swal('예약 가능!', "예약 가능한 시간입니다", 'success');
             		const target = document.getElementById('SB');
             		target.disabled = false;
                 } else { // cnt가 1일 경우 -> 예약 불가능
-                    alert("이미 예약된 시간입니다.")
+                	swal('예약 불가능!',"이미 예약 되어있는 시간입니다", 'error',{
+                		buttons : {
+                			confirm : {
+                				text: '확인',
+                				value : true
+                			}
+                		}
+                	});
                     const target = document.getElementById('SB');
                     target.disabled = true;
                 }
             },
         });
 		
-	}
+		};
 	
 </script>
 
