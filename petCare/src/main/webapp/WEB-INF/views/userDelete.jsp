@@ -5,8 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 탈퇴 구현</title>
-<script type="text/javascript">
-
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    $(document).ready(function() {
+        let message = "[[${msg}]]";
+        if (message != "") {
+            alert(message);
+        }else {
+        }
+    })
 </script>
 </head>
 <body>

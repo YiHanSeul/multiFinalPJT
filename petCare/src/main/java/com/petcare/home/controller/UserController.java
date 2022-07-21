@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -34,7 +36,10 @@ public class UserController {
       return "user";
    }
 
-
+   @GetMapping("/index")
+   public String index() {
+	   return "index";
+   }
    @GetMapping("/join") //개인회원&병원회원 로그인 가능하게힘
    public String join() {
 
@@ -230,21 +235,21 @@ public class UserController {
    
    @GetMapping("/testNext3")
    public String testNext3(HttpSession session, String userid, Model model) {
-      userid = (String) session.getAttribute("userid");
-         UserDto dto = userService.UserChk(userid);
-         String userphone = dto.getUserphone();
-         model.addAttribute("userphone", userphone);
-         System.out.println(userphone);
-   
-      return "testNext3";
+	   userid = (String) session.getAttribute("userid");
+	      UserDto dto = userService.UserChk(userid);
+	      String userphone = dto.getUserphone();
+	      model.addAttribute("userphone", userphone);
+	      System.out.println(userphone);
+	
+	   return "testNext3";
    }
    
    @GetMapping("/userDelete")
    public String userDelete(HttpSession session, Model model) {
-      String userid = (String)session.getAttribute("userid");
-      model.addAttribute("msg","로그인 실패");
-      
-      return "userDelete";
+	   String userid = (String)session.getAttribute("userid");
+	   model.addAttribute("msg","로그인 실패");
+	   
+	   return "userDelete";
    }
    
    @GetMapping("/delete")
@@ -263,7 +268,7 @@ public class UserController {
          return "index";
       }
 
-      return "userDelete";
+	   return "userDelete";
    }
    
    @GetMapping("/logout")
@@ -276,11 +281,23 @@ public class UserController {
    
    @GetMapping("/idCheck")
    @ResponseBody
-      public int idCheck(@RequestParam("userid") String userid) {
-         int cnt = userService.UserChkId(userid);
-         return cnt;
-      }
+	   public int idCheck(@RequestParam("userid") String userid) {
+	   	int cnt = userService.UserChkId(userid);
+		   return cnt;
+	   }
    
+//   @RequestMapping(value="/findpw", method=RequestMethod.GET)
+//   public void findPwGET() throws Exception{
+//	   
+//   }
+   @GetMapping("/findpwing")
+   public String findpwing() {
+	   return "findpw";
+   }
+   @GetMapping("/findpw")
+   public void findPwPOST(@ModelAttribute UserDto userDto, HttpServletResponse response) throws Exception {
+	   userService.findPw(response, userDto);
+   }
    
 
 

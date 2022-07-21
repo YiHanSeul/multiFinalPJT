@@ -8,17 +8,19 @@
 </head>
 
 <body>
-<form action="userMypage" method="get">
+<form action="petInfoRes" method="get">
 반려견이름 <input type="text" name="petName"><br>
 반려견나이 <input type="text" name="petAge"><br>
-반려견성별 남<input type="radio" id="gender" name="petGender" value="남">
-				 여<input type="radio" id="gender" name="petGender" value="여">
+반려견성별 남<input type="radio" id="petGender" name="petGender" value="남">
+				 여<input type="radio" id="petGender" name="petGender" value="여">
 
 <br>
+반려견품종 <input type="text" id="petType" name="petType"><br>
+중성화여부 O<input type="radio" name="petNe" value="O" id="petNe">
+			X<input type="radio" name="petNe" value="X" id="petNe"><br>
 예방접종현황 A<input type="checkbox"  value="A" name="petVac">
  				B<input type="checkbox" value="B" name="petVac"><br>
-중성화여부 O<input type="radio" name="petN" value="O" id="N">
-			X<input type="radio" name="petN" value="X" id="N"><br>
+ 				C<input type="checkbox" value="C" name="petVac"><br>
 			
 			<input type="submit" value="전송">
 			
