@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -284,6 +286,18 @@ public class UserController {
 		   return cnt;
 	   }
    
+//   @RequestMapping(value="/findpw", method=RequestMethod.GET)
+//   public void findPwGET() throws Exception{
+//	   
+//   }
+   @GetMapping("/findpwing")
+   public String findpwing() {
+	   return "findpw";
+   }
+   @GetMapping("/findpw")
+   public void findPwPOST(@ModelAttribute UserDto userDto, HttpServletResponse response) throws Exception {
+	   userService.findPw(response, userDto);
+   }
    
 
 
