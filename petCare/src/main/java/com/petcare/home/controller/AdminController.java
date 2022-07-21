@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.petcare.home.model.dto.HospitalDto;
 import com.petcare.home.model.service.AdminService;
 
 @Controller
@@ -39,9 +38,7 @@ public class AdminController {
 			return "adminCheck";
 		}else {
 			return "adminCheck";
-		} else {
-			return "index2";
-		}
+		}  
 
 	}
 

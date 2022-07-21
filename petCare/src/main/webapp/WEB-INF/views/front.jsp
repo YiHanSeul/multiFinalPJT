@@ -11,52 +11,60 @@
 
 
 #container{
-    height: 400px;
+    height: 800px;
 }
 #left{
-    width: 60%;
-    height: 85%;
+    width: 50%;
+    height: 100%;
     float: left;
 }
 #right{
-    width: 30%;
-    height: 85%;
+    width: 45%;
+    height: 100%;
     float: right;
 }
-#header{
-	background-color: rgb(180,200,150);
+div{
+    border: 1px red solid;
 }
-.up{
-	margin: 2px;
-	text-align: right;
+#findid{
+    width: 300px;
+    position: absolute;
+    top: 25%;
+    left: 70%;
 }
-.up1{
-	margin-left: 15px;
-	font-size: 20px;
+#select{
+    position: absolute;
+    left: 30%;
+    top: 120%;
 }
+ 
 </style>
 <body>
- <div id="header">
-        <div class="up"><a class="up1">로그인</a><a class="up1">회원가입</a><a class="up1">고객센터</a></div>
-        <div>
-            <span><a>메뉴1</a></span>
-            <span><a>메뉴2</a></span>
-            <span><a>메뉴3</a></span>
-            <span><a>메뉴4</a></span>
-        </div>
-    </div>
-    
-    <div id="container">
-        <div id="left">
-            <p>왼쪽 본문 내용</p>
-        </div>
-        <div id="right">
-            <p>오른쪽 본문 내용</p>        
-        </div>
-    </div>
-
-    <div id="footer">
-        <p>copyright &copy; all rights reserved...</p>
-    </div>
+  
+     
+       <div id="container">
+           <div id="left">
+               <img src="/resources/img/dog.jpg" style="width: 100%; height: 100%;">
+           </div>
+           <div id="right">
+               <p>오른쪽 본문 내용</p>       
+               <form action="" method="">
+                    <div id="findid">
+                        <P><b>이름</b></P>
+                        <input type="text" name="name" id="login" placeholder="내용을 입력해주세요." style="width: 200px; height: 30px;"><br><br><br>
+                        <P><b>전화번호</b></P>
+                        <input type="password" name="phone" placeholder="내용을 입력해주세요." style="width: 200px; height: 30px;"><br>
+                        <div id="select">
+                            <input type="submit" value="확인" style="width: 100px; height: 30px;"> 
+                        </div>
+                    </div>
+                    
+               </form> 
+           </div>
+       </div>
+       
+       <div id="footer">
+           <p>copyright &copy; all rights reserved...</p>
+       </div>
 </body>
 </html>
