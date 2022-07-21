@@ -33,9 +33,7 @@ public class UserServiceImpl implements UserService{
    public int updateUserEmail(String userid, String useremail) {
       return userMapper.updateUserEmail(userid, useremail);
    }
-   public UserDto UserSelect(String userId) {
-      return null;
-   }
+   
    @Override
    public int deleteUser(String userid) {
       return userMapper.deleteUser(userid);
@@ -45,5 +43,13 @@ public class UserServiceImpl implements UserService{
    public int updateUserPhone(String userid, String userphone) {
       return userMapper.updateUserPhone(userid, userphone);
    }
+   @Override
+   public int UserChkId(String userId) {
+      return userMapper.userChkId(userId);
+   }
+   @Override
+   public UserDto UserSelect(String userid) {
+	  return userMapper.userSelect(userid);
+	}
 
 }

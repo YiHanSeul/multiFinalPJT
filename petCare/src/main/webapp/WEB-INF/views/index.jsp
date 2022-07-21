@@ -20,5 +20,6 @@
 <span id="loginChk2"  style="display:none">${userid }님 안녕하세요</span>
 
 	<div><a href="/hos/ocr">ocr 테스트</a></div>
+	<div><a href="/res/calendar">캘린더</a></div>
 </body>
 </html>

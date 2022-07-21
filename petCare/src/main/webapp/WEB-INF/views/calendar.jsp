@@ -62,8 +62,8 @@ display:none;
 		<a href="javascript:doDisplay();"></a><br/>
 		<div id='time'>
 			<form action="/res/insertRes" method="get">
-				<input type="hidden" name="userkey" value="${userinfo.userkey }">
-				<input type="hidden" name="hospitalkey" value="${hospitalinfo.hospitalkey }">
+				<input type="hidden" name="UserKey" value="${userinfo.userkey }">
+				<input type="hidden" name="HospitalKey" value="${hospitalinfo.hospitalKey }">
 				<table>
 				<tr>
 					<section id="sel_option">

@@ -7,14 +7,14 @@ public class ResDto {
 	private String BookPetType;
 	private String BookWhy;
 	private int UserKey;
-	private int HospitalKey;
+	private String HospitalKey;
 	
 	public ResDto() {
 		super(); 
 	}
 
 	public ResDto(int bookId, String bookHour, String bookDate, String bookPetType, String bookWhy, int userKey,
-			int hospitalKey) {
+			String hospitalKey) {
 		super();
 		BookId = bookId;
 		BookHour = bookHour;
@@ -73,11 +73,11 @@ public class ResDto {
 		UserKey = userKey;
 	}
 
-	public int getHospitalKey() {
+	public String getHospitalKey() {
 		return HospitalKey;
 	}
 
-	public void setHospitalKey(int hospitalKey) {
+	public void setHospitalKey(String hospitalKey) {
 		HospitalKey = hospitalKey;
 	}
 
@@ -87,6 +87,4 @@ public class ResDto {
 				+ BookPetType + ", BookWhy=" + BookWhy + ", UserKey=" + UserKey + ", HospitalKey=" + HospitalKey + "]";
 	}
 
-
-	
 }

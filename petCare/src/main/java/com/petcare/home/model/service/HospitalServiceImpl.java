@@ -25,8 +25,8 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public HospitalDto HosSelect(String HospitalKey) {
-		return hospitalMapper.HosSelect(HospitalKey);
+	public HospitalDto HosSelect(String hospitalkey) {
+		return hospitalMapper.HosSelect(hospitalkey);
 	}
 
 	/*

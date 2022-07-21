@@ -10,7 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petcare.home.model.dto.UserDto;
 import com.petcare.home.model.service.AdminService;
@@ -34,13 +35,13 @@ public class UserController {
    }
 
 
-   @GetMapping("/join")
+   @GetMapping("/join") //개인회원&병원회원 로그인 가능하게힘
    public String join() {
 
       return "join";// jsp 파일리턴
    }
 
-      @GetMapping("/login")
+      @GetMapping("/login") //유저&어드민 로그인 페이지
       public String loginPage() {
          return "login";
       }
@@ -63,7 +64,7 @@ public class UserController {
          
          return "index";
       } else {
-         return "index2";
+         return "index1";
       }
 
 
@@ -107,11 +108,6 @@ public class UserController {
       model.addAttribute("petN", petN);
       // 가입한거를 가지고 와야하나?
       
-      /*
-       * if(petName == null || petAge == null || petGender == null|| petN == null) {
-       * return "index"; }
-       */
-      
       userid = (String) session.getAttribute("userid");
       System.out.println(userid);
       UserDto dto = userService.UserChk(userid);
@@ -126,24 +122,14 @@ public class UserController {
       model.addAttribute("useremail", useremail);
       model.addAttribute("userphone", userphone);
       
-     
-      
-      
-      
       return "userMypage";
    }
 
-   @GetMapping("/petInfo")
-   public String petIntfo() {
 
-      return "petInfo";
-   }
 
    @GetMapping("/userMypageRes")
    //값을 여기서 받고 처리해줌
    public String userMypageRes(HttpServletRequest request, HttpServletResponse response, HttpSession session, String userid, String usernick, Model model) {
-//      System.out.println(userid);
-//      System.out.println(usernick);
       
       userid = (String) session.getAttribute("userid");
       int res = userService.updateUserNick(userid, usernick);
@@ -164,7 +150,6 @@ public class UserController {
       }else {
          return "index2";
       }
-//      return "userMypage";
    }
    
    @GetMapping("/userMypageRes2")
@@ -174,7 +159,6 @@ public class UserController {
 
       userid = (String) session.getAttribute("userid");
       
-//      System.out.println(userid);
       int res = userService.updateUserEmail(userid, useremail);
       if(res>0) {
          UserDto dto = userService.UserChk(userid);
@@ -193,7 +177,6 @@ public class UserController {
       }else {
          return "index2";
       }
-//      return "userMypage";
    }
    @GetMapping("/userMypageRes3")
    //값을 여기서 받고 처리해줌
@@ -221,7 +204,6 @@ public class UserController {
       }else {
          return "index2";
       }
-//      return "userMypage";
    }
    
    
@@ -291,6 +273,14 @@ public class UserController {
       session.invalidate();
       return "index";
    }
+   
+   @GetMapping("/idCheck")
+   @ResponseBody
+      public int idCheck(@RequestParam("userid") String userid) {
+         int cnt = userService.UserChkId(userid);
+         return cnt;
+      }
+   
    
 
 
