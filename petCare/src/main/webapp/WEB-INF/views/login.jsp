@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/template/menu.jsp" %>
 	<form name="admin" action="/user/loginForm" method="post">
 		<input type="text" name="userid" placeholder="user Id">
 		<input type="password" name="userpw" placeholder="user Pw">
