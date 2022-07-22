@@ -24,8 +24,8 @@ public interface UserMapper {
 	@Select(" SELECT COUNT(USERID) FROM USER WHERE USERID = #{userId} ")
 	int userChkId(String userId);
 	
-	@Select(" SELECT USERKEY FROM USER WHERE USERID = #{userId}")
-	UserDto userSelect(String userId);
+	@Select(" SELECT USERKEY FROM USER WHERE USERID = #{userid}")
+    UserDto userSelect(String userid);
 	
 	@Update(" UPDATE USER SET USERNICK= #{usernick} where USERID=#{userid}")
 	int updateUserNick(String userid, String usernick);

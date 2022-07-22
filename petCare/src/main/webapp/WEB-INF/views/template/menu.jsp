@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="/resources/css/menu.css" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
 	<div id="menus1">
