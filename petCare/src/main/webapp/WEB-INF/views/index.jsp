@@ -21,5 +21,6 @@
 <span id="loginChk2"  style="display:none">${userid }님 안녕하세요</span>
 
 	<div><a href="/hos/ocr">ocr 테스트</a></div>
+	<div><a href="/board/list">커뮤니티</a></div>
 </body>
 </html>

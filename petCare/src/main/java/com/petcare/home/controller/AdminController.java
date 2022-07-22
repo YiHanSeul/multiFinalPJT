@@ -37,9 +37,8 @@ public class AdminController {
 		if(res>0) {
 			model.addAttribute("dto", adminService.HospitalVChk());
 			return "adminCheck";
-		}else {
-			return "adminCheck";
-		} else {
+		} 
+		else {
 			return "index2";
 		}
 
