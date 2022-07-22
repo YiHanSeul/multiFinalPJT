@@ -17,7 +17,7 @@ public interface HospitalMapper {
 	@Select(" SELECT * FROM HOSPITAL_USER WHERE HOSPITALID = #{HospitalId} ")
 	HospitalDto HospitalLogChk(String hospitalId);
 
-	@Select("SELECT HOSPITALKEY, HOSPITALNAME FROM HOSPITAL_USER WHERE HOSPITALID = #{HospitalId}")
-	HospitalDto HosSelect(String hospitalKey);
+	@Select("SELECT HOSPITALKEY FROM HOSPITAL_USER WHERE HOSPITALID = #{hospitalkey}")
+	HospitalDto HosSelect(String hospitalkey);
 	
 }

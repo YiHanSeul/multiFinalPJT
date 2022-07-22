@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/user/userMypageRes2" method="get">
+<form action="/user/userMypageRes" method="get">
 	<input type="text" placeholder="${useremail }" name="useremail">
 	<input type="submit" value="수정">
 </form>

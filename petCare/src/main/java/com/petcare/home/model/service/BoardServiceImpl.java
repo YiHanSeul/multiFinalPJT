@@ -1,8 +1,41 @@
 package com.petcare.home.model.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class BoardServiceImpl {
+import com.petcare.home.model.dto.BoardDto;
+import com.petcare.home.model.mapper.BoardMapper;
 
+@Service
+public class BoardServiceImpl implements BoardService{
+
+	@Autowired
+	private BoardMapper boardMapper;
+	
+	/*
+	 * @Override public List<BoardDto> selectList() { List<BoardDto> list =
+	 * boardMapper.selectAll();
+	 * 
+	 * return list; }
+	 */
+
+	@Override
+	public List<BoardDto> selectList() {
+		//List<BoardDto> list = boardMapper.selectAll();
+		return boardMapper.selectAll();
+	}
+
+	@Override
+	public BoardDto selectOne(int boardCnt) {
+		// TODO Auto-generated method stub
+		return boardMapper.selectOne(boardCnt);
+	}
+
+	@Override
+	public int write(BoardDto writeDto) {
+		// TODO Auto-generated method stub
+		return boardMapper.write(writeDto);
+	}
 }

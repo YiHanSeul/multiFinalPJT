@@ -13,8 +13,11 @@ import com.petcare.home.model.dto.UserDto;
 @Mapper
 public interface ResMapper {
 	
-	@Select(" SELECT USERKEY FROM USER WHERE USERID = #{userId}")
-	List<UserDto> userSelect(String userId);
+	//@Select(" SELECT USERKEY FROM USER WHERE USERKEY = #{userkey}")
+	//List<UserDto> userSelect(String userkey);
+	
+	//@Select(" SELECT USERKEY FROM USER WHERE USERKEY = #{hospitalKey}")
+	//List<UserDto> hosSelect(String hospitalkey);
 	
 	@Select("SELECT COUNT(BOOKHOUR) FROM BOOK WHERE BOOKHOUR = #{BH} AND BOOKDATE = #{BD}")
 	int resCheck(String BH, String BD);
@@ -22,7 +25,8 @@ public interface ResMapper {
 	@Insert("INSERT INTO BOOK VALUES(0, #{BookHour}, #{BookDate}, #{BookPetType}, #{BookWhy}, #{UserKey}, #{HospitalKey}) ")
 	int insert(ResDto dto);
 	
-	
+	@Select(" SELECT * FROM BOOK WHERE USERKEY=#{userkey} ")
+	ResDto resBook(int userkey); 
 	
 	
 }

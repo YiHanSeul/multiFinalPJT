@@ -22,7 +22,6 @@ public class AdminController {
 	
 	@GetMapping("/adminCheck")
 	public String adminCheck(Model model) {
-		System.out.println("여기 오긴하나?");
 		model.addAttribute("list", adminService.HospitalVChk());
 		System.out.println( adminService.HospitalVChk());
 		return "adminCheck";
@@ -34,9 +33,11 @@ public class AdminController {
 		if(res>0) {
 			model.addAttribute("dto", adminService.HospitalVChk());
 			return "adminCheck";
-		}else {
-			return "adminCheck";
+		} 
+		else {
+			return "index2";
 		}
+
 	}
 
 }
