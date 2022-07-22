@@ -15,7 +15,7 @@
 <script type="text/javascript"
    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1744d3b2aeed48eacbfc639e7fad61d3"></script>
 <script src="/resources/js/map.js"></script>
-
+ 
 <style>
 #area {
    border: 1px solid black;
@@ -171,7 +171,20 @@
          // 생성된 마커를 배열에 추가합니다
          markers.push(marker);
       }
-       
+      
+   	  //지도 +,-확대 축소
+      var control = new kakao.maps.ZoomControl();
+      map.addControl(control, kakao.maps.ControlPosition.TOPRIGHT); 
+      // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+      var mapTypeControl = new kakao.maps.MapTypeControl();
+
+      // 지도 타입 컨트롤을 지도에 표시합니다
+      map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+      //마우스 움직일때 마다 갱신
+      kakao.maps.event.addListener(map, 'mousemove', function(mouseEvent) {
+   		getInfo();
+   	});	
+      
    </script>
 </body>
 </html>
