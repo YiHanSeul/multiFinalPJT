@@ -66,6 +66,7 @@ public class UserController {
 			System.out.println(user);
 			session.setAttribute("userid", user.getUserid());
 
+		
 			return "index";
 		} else {
 			return "index1";
@@ -81,6 +82,10 @@ public class UserController {
 
 		session.setAttribute("userid", userid);
 		session.setAttribute("userpw", userpw);
+		
+		/*추가. com 새글 작성 시 com 테이블에 userkey 컬럼에 저장할 데이터*/
+		session.setAttribute("userkey",userService.UserChk(userid).getUserkey());
+	
 
 		if (0 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
 				&& userpw.equals(userService.UserChk(userid).getUserpw())) {
@@ -93,6 +98,8 @@ public class UserController {
 		} else if (1 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
 				&& userpw.equals(userService.UserChk(userid).getUserpw())) {
 			model.addAttribute("userid", userid);
+			
+			
 			return "index";
 		}
 		return "login";

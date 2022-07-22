@@ -21,15 +21,14 @@
 			<c:forEach items="${BoardList }" var="Dto">
 				<tr>
 					<td>${Dto.boardCnt}</td>
-					<td>${Dto.comTitle}</td>
+					<td><a href = "/board/detail?boardCnt=${Dto.boardCnt }">  ${Dto.comTitle}</a></td>
 					<td>${Dto.field}</td>
 					<td>${Dto.userKey}</td>
 					<td>${Dto.comDate}</td>
 				</tr>
 			</c:forEach>	
 		</table>
-		
-		<button>글작성</button>
+		<button onclick = "location.href='/board/writeForm'">글작성</button>
 		
 		
 </body>

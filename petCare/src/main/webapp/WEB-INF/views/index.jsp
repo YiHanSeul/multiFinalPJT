@@ -14,6 +14,6 @@
 	
 	<div class="menu" id="loginChk2"  style="display:none"><a>${userid }님 안녕하세요</a></span>
 
-	<div><a href="/board/list">커뮤니티</a></div>
+	
 </body>
 </html>

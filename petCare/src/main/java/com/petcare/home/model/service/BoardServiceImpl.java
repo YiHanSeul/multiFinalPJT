@@ -26,4 +26,16 @@ public class BoardServiceImpl implements BoardService{
 		//List<BoardDto> list = boardMapper.selectAll();
 		return boardMapper.selectAll();
 	}
+
+	@Override
+	public BoardDto selectOne(int boardCnt) {
+		// TODO Auto-generated method stub
+		return boardMapper.selectOne(boardCnt);
+	}
+
+	@Override
+	public int write(BoardDto writeDto) {
+		// TODO Auto-generated method stub
+		return boardMapper.write(writeDto);
+	}
 }
