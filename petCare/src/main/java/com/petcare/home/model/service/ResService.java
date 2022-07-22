@@ -9,4 +9,6 @@ public interface ResService {
 	public int insertRes(ResDto dto);
 
 	public int resCheck(String BH, String BD);
+	
+	public ResDto resBook(int userkey); 
 }

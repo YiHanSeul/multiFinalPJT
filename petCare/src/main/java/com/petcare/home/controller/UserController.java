@@ -1,5 +1,7 @@
 package com.petcare.home.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.petcare.home.model.dto.PetDto;
+import com.petcare.home.model.dto.ResDto;
 import com.petcare.home.model.dto.UserDto;
 import com.petcare.home.model.service.AdminService;
+import com.petcare.home.model.service.PetService;
+import com.petcare.home.model.service.ResService;
 import com.petcare.home.model.service.UserService;
 
 @Controller
@@ -28,6 +34,12 @@ public class UserController {
 	@Autowired
 	private AdminService adminService;
 	// 회원가입 폼으로 넘어감
+	
+	@Autowired
+	private PetService petService;
+	
+	@Autowired
+	private ResService resService;
 
 	@GetMapping("/user")
 	public String test() {
@@ -41,7 +53,6 @@ public class UserController {
 
 	@GetMapping("/join") // 개인회원&병원회원 로그인 가능하게힘
 	public String join() {
-
 		return "join";// jsp 파일리턴
 	}
 
@@ -58,8 +69,7 @@ public class UserController {
 
 	// user.jsp파일에서 form 전송 클릭했을경우 실행되는 메소드
 	@GetMapping("/insertUser")
-	public String insertUser(UserDto user, HttpSession session, Model model, HttpServletRequest request,
-			HttpServletResponse response) {
+	public String insertUser(UserDto user, HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
 		System.out.println(user);
 		int res = userService.joinUser(user);
 		if (res > 0) {
@@ -74,8 +84,7 @@ public class UserController {
 	}
 
 	@PostMapping("/loginForm")
-	public String loginForm(Model model, HttpServletRequest request, HttpServletResponse response,
-			HttpSession session) {
+	public String loginForm(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		String userid = request.getParameter("userid");
 		String userpw = request.getParameter("userpw");
 
@@ -85,11 +94,10 @@ public class UserController {
 		if (0 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
 				&& userpw.equals(userService.UserChk(userid).getUserpw())) {
 			model.addAttribute("userid", userid);
-			System.out.println(adminService.HospitalVChk());
-
 			model.addAttribute("dto", adminService.HospitalVChk());
 
 			return "adminCheck";
+			
 		} else if (1 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
 				&& userpw.equals(userService.UserChk(userid).getUserpw())) {
 			model.addAttribute("userid", userid);
@@ -99,72 +107,89 @@ public class UserController {
 	}
 
 	@GetMapping("/userMypage")
-	public String userMypage(Model model, HttpServletRequest request, HttpServletResponse response, String userid,
-			HttpSession session) {
-		String petName = request.getParameter("petName");
-		String petAge = request.getParameter("petAge");
-		String petGender = request.getParameter("petGender");
-		String petN = request.getParameter("petN");
-		model.addAttribute("petName", petName);
-		model.addAttribute("petAge", petAge);
-		model.addAttribute("petGender", petGender);
-		model.addAttribute("petN", petN);
-		// 가입한거를 가지고 와야하나?
-
-		userid = (String) session.getAttribute("userid");
+	public String userMypage(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {		
+		String userid = (String) session.getAttribute("userid");
+		int userkey = userService.UserChk(userid).getUserkey();
+		List<PetDto> petDto = petService.selectPetAll(userkey);
+		model.addAttribute("petDto",petDto);
+//		System.out.println(petDto);
 		UserDto dto = userService.UserChk(userid);
 		model.addAttribute("dto", dto);
-
+		
+		ResDto resDto = resService.resBook(userkey);
+		model.addAttribute("resDto" ,resDto);
+		
 		return "userMypage";
 	}
 
 	@GetMapping("/userMypageRes")
-	// 값을 여기서 받고 처리해줌
-	public String userMypageRes(HttpSession session, String usernick, Model model) {
+	public String userMypageRes(HttpServletRequest request, HttpSession session, Model model) {
 		String userid = (String) session.getAttribute("userid");
+		String usernick = request.getParameter("usernick");
+		String useremail = request.getParameter("useremail");
+		String userphone = request.getParameter("userphone");
+		//닉네임 확인하는 곳
+		if(usernick != null) {
+			
+			
+			int res = userService.updateUserNick(userid, usernick);
+			if (res > 0) {
+				UserDto dto = userService.UserChk(userid);
+				model.addAttribute("dto", dto);
+				
+				int userkey = userService.UserChk(userid).getUserkey();
+				List<PetDto> petDto = petService.selectPetAll(userkey);
+				model.addAttribute("petDto",petDto);
+				ResDto resDto = resService.resBook(userkey);
+				model.addAttribute("resDto" ,resDto);
+				
+				return "userMypage";
+			} else {return "index2";}
+		}
+		//이메일 확인하는 곳
+		if(useremail != null) {
+			
+			
+			int res = userService.updateUserEmail(userid, useremail);
+			if (res > 0) {
+				UserDto dto = userService.UserChk(userid);
+				
+				model.addAttribute("dto", dto);
+				
+				int userkey = userService.UserChk(userid).getUserkey();
+				List<PetDto> petDto = petService.selectPetAll(userkey);
+				model.addAttribute("petDto",petDto);
+				ResDto resDto = resService.resBook(userkey);
+				model.addAttribute("resDto" ,resDto);
+				
+				
+				return "userMypage";
+			}else {return "index2";}
+		}
+		
+		//전화번호 확인하는 곳
+		if(request.getParameter("userphone") != null) {
 
-		int res = userService.updateUserNick(userid, usernick);
-		if (res > 0) {
-			UserDto dto = userService.UserChk(userid);
-			dto.setUsernick(usernick);
-			model.addAttribute("dto", dto);
-			return "userMypage";
-		} else {
+
+			int res = userService.updateUserPhone(userid, userphone);
+			if (res > 0) {
+				UserDto dto = userService.UserChk(userid);
+				model.addAttribute("dto", dto);
+				
+				int userkey = userService.UserChk(userid).getUserkey();
+				List<PetDto> petDto = petService.selectPetAll(userkey);
+				model.addAttribute("petDto",petDto);
+				ResDto resDto = resService.resBook(userkey);
+				model.addAttribute("resDto" ,resDto);
+				return "userMypage";
+			}else {return "index2";}
+		}
+			//최종 실패시 나오는 인덱스
 			return "index2";
 		}
-	}
 
-	@GetMapping("/userMypageRes2")
-	// 값을 여기서 받고 처리해줌
-	public String userMypageRes2(HttpSession session, String useremail, Model model) {
-		String userid = (String) session.getAttribute("userid");
-
-		int res = userService.updateUserEmail(userid, useremail);
-		if (res > 0) {
-			UserDto dto = userService.UserChk(userid);
-			dto.setUsernick(useremail);
-			model.addAttribute("dto", dto);
-
-			return "userMypage";
-		} else {
-			return "index2";
-		}
-	}
-
-	@GetMapping("/userMypageRes3")
-	public String userMypageRes3(HttpSession session, String userphone, Model model) {
-		String userid = (String) session.getAttribute("userid");
-		int res = userService.updateUserPhone(userid, userphone);
-		if (res > 0) {
-			UserDto dto = userService.UserChk(userid);
-			dto.setUsernick(userphone);
-			model.addAttribute("dto", dto);
-
-			return "userMypage";
-		} else {
-			return "index2";
-		}
-	}
+		
+		
 
 	@GetMapping("/userChnick")
 	public String testNext(HttpSession session, String userid, Model model) {
@@ -196,8 +221,6 @@ public class UserController {
 
 	@GetMapping("/userDelete")
 	public String userDelete(HttpSession session, Model model) {
-		String userid = (String) session.getAttribute("userid");
-		model.addAttribute("msg", "로그인 실패");
 
 		return "userDelete";
 	}
@@ -206,13 +229,11 @@ public class UserController {
 	@ResponseBody
 	public int delete(HttpSession session, @RequestParam("userpw") String userpw) {
 		String userid = (String) session.getAttribute("userid");
-//      System.out.println(userid);
-//		System.out.println(userpw);
-//		System.out.println(userService.UserChk(userid).getUserpw());
 		int res = 0;
 		if (userpw.equals(userService.UserChk(userid).getUserpw())) {
 
 			res = userService.deleteUser(userid);
+			System.out.println(res);
 			if (res > 0) {
 				session.removeAttribute(userid);
 				session.invalidate();

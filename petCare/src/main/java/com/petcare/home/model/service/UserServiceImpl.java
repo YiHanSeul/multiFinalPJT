@@ -133,13 +133,15 @@ public class UserServiceImpl implements UserService{
 	}
 	@Override
 	public UserDto userIdChk(String userId) {
-		// TODO Auto-generated method stub
 		return userMapper.userIdChk(userId);
 	}
 	@Override
 	public int updateUserPw(String userid, String userpw) {
-		// TODO Auto-generated method stub
 		return userMapper.updateUserPw(userid, userpw);
+	}
+	@Override
+	public int userKeyChk(String userId) {
+		return userMapper.userKeyChk(userId);
 	}
 
 }

@@ -27,6 +27,11 @@ public class ResServiceImpl implements ResService{
 		return resMapper.resCheck(BH,BD);
 	}
 
+	@Override
+	public ResDto resBook(int userkey) {
+		return resMapper.resBook(userkey);
+	}
+
 
 
 
