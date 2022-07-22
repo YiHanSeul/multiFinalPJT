@@ -23,10 +23,15 @@
 				<input class="form-control" type="password" name="userpw"
 					placeholder="user Pw">
 			</div>
+			<div id="radio-div">
+				<input type="radio" name="chk_info" value="1"><label class="radio-btn">일반 로그인</label>
+				<input id="hos" type="radio" name="chk_info" value="2"><label class="radio-btn">병원 로그인</label>
+			</div>
 			<div>
 				<input id="submit-btn" class="btn btn-warning" type="submit"
 					value="로그인">
 			</div>
+			
 		</form>
 		<button id="kakao-login"class="btn btn-warning" onclick="location.href='#'">카카오로그인</button>
 		<div id="join">

@@ -76,36 +76,6 @@ public class HospitalController {
 		return "hosMap";
 	}
 
-	@GetMapping("/loginHos")
-	public String loginHos() {
-		return "loginHos";
-	}
-
-	@PostMapping("/loginHosForm")
-	public String loginForm(Model model, HttpServletRequest request, HttpServletResponse response,
-			HttpSession session) {
-		String HospitalId = request.getParameter("HospitalId");
-		String HospitalPw = request.getParameter("HospitalPw");
-		session.setAttribute("HospitalId", HospitalId);
-		session.setAttribute("HospitalPw", HospitalPw);
-
-		if (1 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-				&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
-				&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
-
-			return "loginHosMypage";
-		}
-
-		if (0 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-				&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
-				&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
-
-			model.addAttribute("text", "비활성");
-			return "loginHos";
-		}
-		return "loginHos";
-	}
-
 	@GetMapping("/ocr")
 	public String ocrForm() {
 		return "ocrRes";

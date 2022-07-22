@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petcare.home.model.dto.UserDto;
 import com.petcare.home.model.service.AdminService;
+import com.petcare.home.model.service.HospitalService;
 import com.petcare.home.model.service.UserService;
 
 @Controller
@@ -24,7 +25,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-
+	
+	@Autowired
+	private HospitalService hosService;
 	@Autowired
 	private AdminService adminService;
 	// 회원가입 폼으로 넘어감
@@ -74,28 +77,50 @@ public class UserController {
 	}
 
 	@PostMapping("/loginForm")
-	public String loginForm(Model model, HttpServletRequest request, HttpServletResponse response,
-			HttpSession session) {
-		String userid = request.getParameter("userid");
-		String userpw = request.getParameter("userpw");
+	public String loginForm(Model model, HttpServletRequest request, HttpServletResponse response,HttpSession session , int chk_info) {
+		System.out.println(chk_info);
+		if(chk_info==1) {
+			String userid = request.getParameter("userid");
+			String userpw = request.getParameter("userpw");
 
-		session.setAttribute("userid", userid);
-		session.setAttribute("userpw", userpw);
+			session.setAttribute("userid", userid);
+			session.setAttribute("userpw", userpw);
+			if (0 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
+					&& userpw.equals(userService.UserChk(userid).getUserpw())) {
+				model.addAttribute("userid", userid);
+				System.out.println(adminService.HospitalVChk());
 
-		if (0 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
-				&& userpw.equals(userService.UserChk(userid).getUserpw())) {
-			model.addAttribute("userid", userid);
-			System.out.println(adminService.HospitalVChk());
+				model.addAttribute("dto", adminService.HospitalVChk());
 
-			model.addAttribute("dto", adminService.HospitalVChk());
+				return "adminCheck";
+			} else if (1 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
+					&& userpw.equals(userService.UserChk(userid).getUserpw())) {
+				model.addAttribute("userid", userid);
+				return "index";
+			}
 
-			return "adminCheck";
-		} else if (1 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
-				&& userpw.equals(userService.UserChk(userid).getUserpw())) {
-			model.addAttribute("userid", userid);
-			return "index";
+		}else {
+			String HospitalId = request.getParameter("userid");
+			String HospitalPw = request.getParameter("userpw");
+			session.setAttribute("HospitalId", HospitalId);
+			session.setAttribute("HospitalPw", HospitalPw);
+					
+			if (1 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
+					&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
+					&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
+
+				return "loginHosMypage";
+			}
+
+			if (0 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
+					&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
+					&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
+
+				model.addAttribute("text", "비활성");
+				return "loginHos";
+			}
 		}
-		return "login";
+				return "login";
 	}
 
 	@GetMapping("/userMypage")
