@@ -8,13 +8,6 @@
 <title>회원 탈퇴 구현</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
-/*     $(document).ready(function() {
-        let message = "[[${msg}]]";
-        if (message != "") {
-            alert(message);
-        }else {
-        }
-    }) */
     function check(){
     	var userpw = $("#userpw").val();
     	console.log(userpw);
@@ -23,14 +16,13 @@
     		type: 'GET',
     		data: {userpw: userpw},
     		success: function(data){
+    			console.log(data);
 			if(data==1){
 				swal("탈퇴완료", "탈퇴가 정상적으로 완료되었습니다","success");
 				location.href="index";
 			}else{
-				("비밀번호를 다시 입력해주세요.");
-			}       		
-    			
-    			
+				alert("비밀번호를 다시 입력해주세요.");
+				}       		
     		},
     		error: function(error){
     			console.log(error)

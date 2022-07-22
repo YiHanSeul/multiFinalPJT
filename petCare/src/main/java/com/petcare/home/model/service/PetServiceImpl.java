@@ -1,5 +1,7 @@
 package com.petcare.home.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +18,12 @@ public class PetServiceImpl implements PetService{
 	public int insertPet(PetDto petdto) {
 		return petMapper.insertPet(petdto);
 	}
+
+	@Override
+	public List<PetDto> selectPetAll(int userkey) {
+		return petMapper.selectPetAll(userkey);
+	}
+
+
 
 }

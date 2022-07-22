@@ -2,6 +2,7 @@ package com.petcare.home.model.dto;
 
 public class PetDto {
 	private int petKey;
+	private int UserKey;
 	private String petName;
 	private int petAge;
 	private String petGender;
@@ -12,12 +13,12 @@ public class PetDto {
 	private String petVac3;
 	public PetDto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public PetDto(int petKey, String petName, int petAge, String petGender, String petType, String petNe,
+	public PetDto(int petKey, int userKey, String petName, int petAge, String petGender, String petType, String petNe,
 			String petVac1, String petVac2, String petVac3) {
 		super();
 		this.petKey = petKey;
+		UserKey = userKey;
 		this.petName = petName;
 		this.petAge = petAge;
 		this.petGender = petGender;
@@ -32,6 +33,12 @@ public class PetDto {
 	}
 	public void setPetKey(int petKey) {
 		this.petKey = petKey;
+	}
+	public int getUserKey() {
+		return UserKey;
+	}
+	public void setUserKey(int userKey) {
+		UserKey = userKey;
 	}
 	public String getPetName() {
 		return petName;
@@ -83,10 +90,11 @@ public class PetDto {
 	}
 	@Override
 	public String toString() {
-		return "PetDto [petKey=" + petKey + ", petName=" + petName + ", petAge=" + petAge + ", petGender=" + petGender
-				+ ", petType=" + petType + ", petNe=" + petNe + ", petVac1=" + petVac1 + ", petVac2=" + petVac2
-				+ ", petVac3=" + petVac3 + "]";
+		return "PetDto [petKey=" + petKey + ", UserKey=" + UserKey + ", petName=" + petName + ", petAge=" + petAge
+				+ ", petGender=" + petGender + ", petType=" + petType + ", petNe=" + petNe + ", petVac1=" + petVac1
+				+ ", petVac2=" + petVac2 + ", petVac3=" + petVac3 + "]";
 	}
+	
 	
 	
 	

@@ -9,10 +9,7 @@
 <script type="text/javascript">
 function check(){
 	var userid = $("#userid").val();
-	var useremail = $("#useremail").val()
-	console.log(userid);
-	console.log(useremail);
-	
+	var useremail = $("#useremail").val()	
    	$.ajax({
 		url: '/user/findpw',
 		type: 'GET',

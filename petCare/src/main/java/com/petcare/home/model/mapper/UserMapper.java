@@ -1,6 +1,5 @@
 package com.petcare.home.model.mapper;
 
-import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -18,8 +17,12 @@ public interface UserMapper {
 	
 	@Select(" SELECT * FROM USER WHERE USERID = #{userId} ")
 	UserDto userChk(String userId);
+	
 	@Select(" SELECT USERID FROM USER WHERE USERID = #{userId} ")
 	UserDto userIdChk(String userId);
+	
+	@Select(" SELECT USERKEY FROM USER WHERE USERID = #{userId} ")
+	int userKeyChk(String userId);
 	
 	@Select(" SELECT COUNT(USERID) FROM USER WHERE USERID = #{userId} ")
 	int userChkId(String userId);

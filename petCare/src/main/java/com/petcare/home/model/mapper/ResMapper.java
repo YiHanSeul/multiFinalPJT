@@ -25,7 +25,8 @@ public interface ResMapper {
 	@Insert("INSERT INTO BOOK VALUES(0, #{BookHour}, #{BookDate}, #{BookPetType}, #{BookWhy}, #{UserKey}, #{HospitalKey}) ")
 	int insert(ResDto dto);
 	
-	
+	@Select(" SELECT * FROM BOOK WHERE USERKEY=#{userkey} ")
+	ResDto resBook(int userkey); 
 	
 	
 }

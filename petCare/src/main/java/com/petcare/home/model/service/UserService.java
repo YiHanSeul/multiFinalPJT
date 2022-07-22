@@ -12,6 +12,8 @@ public interface UserService {
 	
 	public UserDto userIdChk(String userId);
 	
+	public int userKeyChk(String userId);
+	
 	public int UserChkId(String userId);
 	
 	public int  updateUserNick(String userid, String usernick);
