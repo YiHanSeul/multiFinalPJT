@@ -60,7 +60,7 @@ display:none;
 		<div id='calendar'></div>
 		<a href="javascript:doDisplay();"></a><br/>
 		<div id='time'>
-			<form action="/res/insertRes" method="get" onsubmit="swal('예약  완료!', '굿이에요', 'success');">
+			<form action="/res/insertRes" method="get">
 				<input type="hidden" name="UserKey" value="${userinfo.userkey }">
 				<input type="hidden" name="HospitalKey" value="${hospitalinfo.hospitalKey }">
 				<table>
@@ -88,7 +88,7 @@ display:none;
 					      <button class="it_btn" name="btn1" type="button" data-num="17:00" onclick="select('17:00');">17:00</button>
 					      <button class="it_btn" name="btn1" type="button" data-num="17:30" onclick="select('17:30');">17:30</button><br/><br/>
 					      <button class="it_btn" name="btn1" type="button" data-num="15:00" onclick="select('18:00');">18:00</button>
-					      <input type="button" value="가능확인" onclick="ResDblChk();" ><br/>
+					      <input type="button" id="CB" disabled="disabled" value="가능확인" onclick="ResDblChk();" ><br/>
 					    </li>
 					  </ul>
 					</section>
@@ -137,20 +137,35 @@ display:none;
 			text.style.display = 'block';
 		}
 	}
+	function undoDisplay(){
+		var time = document.getElementById('time');
+		var text = document.getElementById('textarea');
+		if(time.style.display=='block'){
+			time.style.display = 'none';
+		}else{
+			time.style.display = 'none';
+		}
+		if(text.style.display=='block'){
+			text.style.display = 'none';
+		}else{
+			text.style.display = 'none';
+		}
+	}
 	let index = 0;
-    colors = ['yellow', 'skyblue'];
+    //colors = ['yellow', 'skyblue'];
 	$(function() {
-	$('.it_btn').on('click', function() {
-	    bookh = $(this).data('num');
-	    $(this).closest('li').find('.it_num').val(bookh);
-	    $(this).css("backgroundColor", colors[index]);
-	    $(this).css("Color", "transparent");
-	    $('.it_btn').not($(this)).css("backgroundColor", "skyblue");
-	    index = index >= colors.length - 1 ? 0 : index + 1;
-	    const target = document.getElementById('SB');
-        target.disabled = true;
-	    
-		});
+		$('.it_btn').on('click', function() {
+		    bookh = $(this).data('num');
+		    $(this).closest('li').find('.it_num').val(bookh);
+		    $(this).css("backgroundColor", "yellow");
+		    $(this).css("Color", "transparent");
+		    $('.it_btn').not($(this)).css("backgroundColor", "skyblue");
+		    const target1 = document.getElementById('CB');
+		    target1.disabled = false;
+		    const target = document.getElementById('SB');
+	        target.disabled = true;
+		    
+			});
 	
 	});
 
@@ -180,12 +195,25 @@ display:none;
 				console.log(obj);
 			},
 			select : function(arg) {
-				var title = confirm('예약을 잡으실껀가용?');
+				let today = new Date();
+				var title = confirm("이 날짜로 예약 하시겠습니까?");
 				if (title) {
 					BookDate = arg.startStr;
+					let c = new Date(BookDate);
+					let a = c.toLocaleDateString();
+					let b = today.toLocaleDateString();
+					if(a >= b){
 					let str = document.getElementById("bc");
 					str.setAttribute("value",BookDate);
+					
 					doDisplay();
+					}
+					else{
+						undoDisplay();
+						swal('예약 불가능',"예약 가능한 날짜를 선택해주세요!", 'error');
+						
+						
+					}
 				}
 			}
 		});

@@ -38,8 +38,6 @@ public class ResController {
 	public String root(HttpSession session, Model model) {
 		String userid = (String)session.getAttribute("userid");
 		String hospitalkey = (String)session.getAttribute("HospitalId");
-		System.out.println(userid + hospitalkey);
-		System.out.println(userservice.UserSelect(userid));
 		model.addAttribute("userinfo", userservice.UserSelect(userid));
 		model.addAttribute("hospitalinfo", hospitalservice.HosSelect(hospitalkey));
 		return "calendar";
@@ -49,7 +47,6 @@ public class ResController {
 	public String insertRes(HttpServletRequest request ,ResDto dto, HttpSession session) {
 		String BookHour = request.getParameter("BookHour");
 		String BookDate= request.getParameter("BookDate");
-		System.out.println(BookDate);
 		dto.setBookHour(BookHour);
 		dto.setBookDate(BookDate);
 		if(resservice.insertRes(dto) > 0) {
@@ -66,9 +63,7 @@ public class ResController {
 	public int resCheck(HttpServletRequest request, @RequestParam("BH") String BH, @RequestParam("BD") String BD, ResDto dto) {
 		String BookDate= request.getParameter("BookDate");
 		dto.setBookDate(BookDate);
-		System.out.println(BH + " " + BD);
 		int cnt = resservice.resCheck(BH, BD);
-		System.out.println(cnt);
 		return cnt;
 	}
 }
