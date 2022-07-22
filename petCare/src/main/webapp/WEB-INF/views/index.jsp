@@ -14,5 +14,6 @@
 	
 	<div class="menu" id="loginChk2"  style="display:none"><a>${userid }님 안녕하세요</a></span>
 
+	
 </body>
 </html>

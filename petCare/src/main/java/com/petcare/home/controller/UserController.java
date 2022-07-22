@@ -78,6 +78,7 @@ public class UserController {
 			System.out.println(user);
 			session.setAttribute("userid", user.getUserid());
 
+		
 			return "index";
 		} else {
 			return "index1";
@@ -94,6 +95,7 @@ public class UserController {
 
 			session.setAttribute("userid", userid);
 			session.setAttribute("userpw", userpw);
+			session.setAttribute("userkey",userService.UserChk(userid).getUserkey());
 			if (0 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
 					&& userpw.equals(userService.UserChk(userid).getUserpw())) {
 				model.addAttribute("userid", userid);
