@@ -37,26 +37,18 @@ public class ResController {
 	@GetMapping("/calendar")
 	public String root(HttpSession session, Model model) {
 		String userid = (String)session.getAttribute("userid");
-		String hospitalid = (String)session.getAttribute("HospitalId");
+		String hospitalkey = (String)session.getAttribute("HospitalId");
 		model.addAttribute("userinfo", userservice.UserSelect(userid));
-		model.addAttribute("hospitalinfo", hospitalservice.HosSelect(hospitalid)); //병원의 아이디와 이름을 받아오기
+		model.addAttribute("hospitalinfo", hospitalservice.HosSelect(hospitalkey));
 		return "calendar";
 	}	
 	
 	@GetMapping("/insertRes")
 	public String insertRes(HttpServletRequest request ,ResDto dto, HttpSession session) {
-		//String userid = (String)session.getAttribute("userid");
-		//String num =(String)session.getAttribute("i");
-		//int i = Integer.parseInt(num);
 		String BookHour = request.getParameter("BookHour");
 		String BookDate= request.getParameter("BookDate");
-		System.out.println(BookDate);
-		//System.out.println(i);
-		//System.out.println(BookHour[i]);
-		//System.out.println(BookHour[i]);
 		dto.setBookHour(BookHour);
 		dto.setBookDate(BookDate);
-		//dto.setBookDate((String)session.getAttribute("selectedDate"));
 		if(resservice.insertRes(dto) > 0) {
 			
 			return "redirect:/res/calendar";
@@ -71,9 +63,7 @@ public class ResController {
 	public int resCheck(HttpServletRequest request, @RequestParam("BH") String BH, @RequestParam("BD") String BD, ResDto dto) {
 		String BookDate= request.getParameter("BookDate");
 		dto.setBookDate(BookDate);
-		System.out.println(BH + BD);
 		int cnt = resservice.resCheck(BH, BD);
-		System.out.println(cnt);
 		return cnt;
 	}
 }

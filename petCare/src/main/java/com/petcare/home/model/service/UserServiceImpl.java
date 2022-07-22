@@ -38,9 +38,7 @@ public class UserServiceImpl implements UserService{
    public int updateUserEmail(String userid, String useremail) {
       return userMapper.updateUserEmail(userid, useremail);
    }
-   public UserDto UserSelect(String userId) {
-      return null;
-   }
+   
    @Override
    public int deleteUser(String userid) {
       return userMapper.deleteUser(userid);
@@ -127,6 +125,11 @@ public class UserServiceImpl implements UserService{
 			out.print("이메일을 임시 비밀번호를 발송하였습니다.");
 			out.close();
 		}
+	}
+
+	@Override
+   public UserDto UserSelect(String userid) {
+		return userMapper.userSelect(userid);
 	}
 	@Override
 	public UserDto userIdChk(String userId) {
