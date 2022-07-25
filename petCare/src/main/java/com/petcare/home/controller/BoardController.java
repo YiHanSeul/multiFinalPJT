@@ -30,9 +30,10 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String write(BoardDto writeDto) {
-		
+	public String write(Model model,BoardDto writeDto) {
+		System.out.println(writeDto);
 		int res = boardService.write(writeDto);
+		
 		
 		if (res>0) {
 			return "redirect:/board/list";

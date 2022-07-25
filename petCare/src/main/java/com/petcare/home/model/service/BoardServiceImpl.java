@@ -29,13 +29,11 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public BoardDto selectOne(int boardCnt) {
-		// TODO Auto-generated method stub
 		return boardMapper.selectOne(boardCnt);
 	}
 
 	@Override
 	public int write(BoardDto writeDto) {
-		// TODO Auto-generated method stub
 		return boardMapper.write(writeDto);
 	}
 }
