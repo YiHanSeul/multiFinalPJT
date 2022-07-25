@@ -34,6 +34,7 @@ public class UserController {
 	
 	@Autowired
 	private HospitalService hosService;
+	
 	@Autowired
 	private AdminService adminService;
 	// 회원가입 폼으로 넘어감

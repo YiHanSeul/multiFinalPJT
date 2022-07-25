@@ -11,24 +11,20 @@ response.setContentType("text/html; charset=UTF-8");
 <head>
 <meta charset="UTF-8">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel='stylesheet' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link href='${pageContext.request.contextPath }/resources/css/fullcalendar.css' rel='stylesheet' />
 <script src='${pageContest.request.contextPath }/resources/js/fullcalendar.js'></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
-h2 {
-	color: var(- -bs-blue);
-}
-
-input {
-	backgroundcolor: blue;
+a{
+color:black !important;
 }
 #sel_option{
-right: 7%;
 left: 75%;
-top: 20%;
+top: 16%;
 float: right;
-position: absolute;
+margin-right: 0;
+position: fixed;
 }
 
 #calendar{
@@ -36,6 +32,7 @@ position: absolute;
 	margin-top: 80pt;
 	float: left;
 	width: 55%;
+	position: fixed;
 }
 
 #but {
@@ -51,25 +48,35 @@ witdh: 20%;
 #ta{
 display:none;
 width: auto;
+border: 0;
+border-radius: 15px;
+outline: none;
+background-color: rgb(233, 233, 233);
+resize:none;
 }
 #context{
 width: 100pt;
 }
 #CB{
-margin-left: 55pt;
+text-align: center;
+}
+#SB{
+width: 100pt;
+height: 50pt;
+float: right;
+margin-top: 3%;
 }
 body{
-height:750pt;
+height:700pt;
 }
 #tb{
-right: 3%;
 left: 75%;
-top: 47%;
+top: 50%;
 float: right;
 position: fixed;
 }
 
-@media(max-width:1435px){
+@media(max-width:1030px){
 	#sel_option{
 		display:none;
 	}
@@ -83,7 +90,19 @@ position: fixed;
 	}
 }
 
+#dt{
+	border: 0;
+  border-radius: 15px;
+  outline: none;
+  background-color: rgb(233, 233, 233);
+}
 
+#aaa{
+width: 100%;
+color : black;
+font-size: medium;
+text-align: center;
+}
 </style>
 </head>
 <body>
@@ -95,50 +114,50 @@ position: fixed;
 		<div id='calendar'></div>
 		<a href="javascript:doDisplay();"></a><br/>
 		<div id="time">
-				<form action="/res/insertRes" method="get">
+				<form action="/res/insertRes" method="get" onsubmit="doalert();">
 					<input type="hidden" name="UserKey" value="${userinfo.userkey }">
 					<input type="hidden" name="HospitalKey" value="${hospitalinfo.hospitalKey }">
 					<table id="table">
 						<section id="sel_option">
-						  <ul>
-						    <li class="opt_list">
-						      <a> 오후</a><br/>
+						  <div id="sel1">
+						    <div>
+						      <div id="aaa"> 오전</div>
 						      <input type="hidden" name="BookHour" id="abc" value="">
-						      <button class="it_btn" class="btn btn-warning" name="btn1" type="button" data-num="10:00" onclick="select('10:00');">10:00</button>
-						      <button class="it_btn" class="btn btn-warning" name="btn1" type="button" data-num="10:30" onclick="select('10:30');">10:30</button>
-						      <button class="it_btn" class="btn btn-warning" name="btn1" type="button" data-num="11:00" onclick="select('11:00');">11:00</button>
-						      <button class="it_btn" class="btn btn-warning" name="btn1" type="button" data-num="11:30" onclick="select('11:30');">11:30</button><br/></br>
-						      <a> 오후</a><br/>
-						      <button class="it_btn" name="btn1" type="button" data-num="12:00" onclick="select('12:00');">12:00</button>
-						      <button class="it_btn" name="btn1" type="button" data-num="12:30" onclick="select('12:30');">12:30</button>
-						      <button class="it_btn" name="btn1" type="button" data-num="13:00" onclick="select('13:00');">13:00</button>
-						      <button class="it_btn" name="btn1" type="button" data-num="13:30" onclick="select('13:30');">13:30</button><br/><br/>
-						      <button class="it_btn" name="btn1" type="button" data-num="14:00" onclick="select('14:00');">14:00</button>
-						      <button class="it_btn" name="btn1" type="button" data-num="14:30" onclick="select('14:30');">14:30</button>
-						      <button class="it_btn" name="btn1" type="button" data-num="15:00" onclick="select('15:00');">15:00</button>
-						      <button class="it_btn" name="btn1" type="button" data-num="15:30" onclick="select('15:30');">15:30</button><br/><br/>
-						      <button class="it_btn" name="btn1" type="button" data-num="16:00" onclick="select('16:00');">16:00</button>
-						      <button class="it_btn" name="btn1" type="button" data-num="16:30" onclick="select('16:30');">16:30</button>
-						      <button class="it_btn" name="btn1" type="button" data-num="17:00" onclick="select('17:00');">17:00</button>
-						      <button class="it_btn" name="btn1" type="button" data-num="17:30" onclick="select('17:30');">17:30</button><br/></br>
-						      <input type="button" id="CB" disabled="disabled" value="가능확인" onclick="ResDblChk();" ><br/>
-						    </li>
-						  </ul>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="10:00" onclick="select('10:00');">10:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="10:30" onclick="select('10:30');">10:30</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="11:00" onclick="select('11:00');">11:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="11:30" onclick="select('11:30');">11:30</button><br/><br/>
+						      <div id="aaa"> 오후</div>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="12:00" onclick="select('12:00');">12:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="12:30" onclick="select('12:30');">12:30</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="13:00" onclick="select('13:00');">13:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="13:30" onclick="select('13:30');">13:30</button><br/><br/>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="14:00" onclick="select('14:00');">14:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="14:30" onclick="select('14:30');">14:30</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="15:00" onclick="select('15:00');">15:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="15:30" onclick="select('15:30');">15:30</button><br/><br/>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="16:00" onclick="select('16:00');">16:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="16:30" onclick="select('16:30');">16:30</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="17:00" onclick="select('17:00');">17:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="17:30" onclick="select('17:30');">17:30</button><br/></br>
+						      <div id="aaa"><input class="btn btn-warning" type="button" id="CB" disabled="disabled" value="가능확인" onclick="ResDblChk();" required></br></div>
+						    </div>
+						  </div>
 						</table>
 						<tr>
 							<td>
-				      		<input type="hidden" id="bc" name="BookDate" value="">
+				      			<input type="hidden" id="bc" name="BookDate" value="">
 				      		</td>
 			      		</tr>
 						</section>
 			     <tr>
-			     	<section id="tb">
+			     	<div id="tb">
 					      	<tr>
 					      		<th>반려견 견종</th></br>
 					      	</tr>
 					      	<tr>
 					      		<td>
-					      		<input type="text" name="BookPetType" required>${dto.BookPetType }
+					      		<input type="text" id="dt" name="BookPetType" required>${dto.BookPetType }
 					      		</br>
 					      		</td>
 					      	</tr>
@@ -147,11 +166,11 @@ position: fixed;
 						    </tr>
 						    <tr>
 						      	<td>
-								<textarea rows="7" cols="45" id="ta" name="BookWhy" placeholder="방문하시는 이유나 강아지의 증상을 적어주세요." required>${dto.BookWhy }</textarea>
-								<input type="submit" id="SB" disabled="disabled" value="예약하기">
+								<textarea rows="7" cols="34" id="ta" name="BookWhy" placeholder="방문하시는 이유나 강아지의 증상을 적어주세요." required>${dto.BookWhy }</textarea>
+								<input class="btn btn-warning" type="submit" id="SB" disabled="disabled" value="예약하기">
 								</td>
 							</tr>
-					</section>
+					</div>
 				</tr>
 				
 				</form>
@@ -169,6 +188,7 @@ position: fixed;
 	function doDisplay(){
 		var time = document.getElementById('time');
 		var ta = document.getElementById('ta');
+		
 		if(time.style.display=='none'){
 			time.style.display = 'block';
 		}else{
@@ -190,14 +210,10 @@ position: fixed;
 		}
 	}
 	let index = 0;
-    //colors = ['yellow', 'skyblue'];
 	$(function() {
-		$('.it_btn').on('click', function() {
-		    bookh = $(this).data('num');
-		    $(this).closest('li').find('.it_num').val(bookh);
-		    $(this).css("backgroundColor", "yellow");
-		    $(this).css("Color", "transparent");
-		    $('.it_btn').not($(this)).css("backgroundColor", "skyblue");
+		$("[name=btn1]").on('click', function() {
+			$(this).css("backgroundColor", "navy");
+		    $("[name=btn1]").not($(this)).css("backgroundColor", "orange");
 		    const target1 = document.getElementById('CB');
 		    target1.disabled = false;
 		    const target = document.getElementById('SB');
@@ -207,15 +223,19 @@ position: fixed;
 	
 	});
 
+	function doalert(){
+		swal('예약 완료!',"예약 ㄳㄳ", 'success')
+	}
+	
 	document.addEventListener('DOMContentLoaded', function() {
 		var calendarEl = document.getElementById('calendar');
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 			height : '600px',
 			expandRows : true,
 			headerToolbar : {
-				left : 'dayGridMonth,prev',
+				left : 'prev',
 				center : 'title',
-				right : 'today,next'
+				right : 'next'
 			},
 			navLinks : true,
 			editable : true,
@@ -224,18 +244,14 @@ position: fixed;
 			dayMaxEvents : true,
 			locale : 'ko',
 			eventAdd : function(obj) {
-				console.log(obj);
 			},
 			eventChange : function(obj) {
-				console.log(obj);
 			},
 			eventRemove : function(obj) {
-				console.log(obj);
 			},
 			select : function(arg) {
 				let today = new Date();
-				var title = confirm("이 날짜로 예약 하시겠습니까?");
-				if (title) {
+				if (arg) {
 					BookDate = arg.startStr;
 					let c = new Date(BookDate);
 					let a = c.toLocaleDateString();
