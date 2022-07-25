@@ -20,6 +20,7 @@ import com.petcare.home.model.dto.PetDto;
 import com.petcare.home.model.dto.ResDto;
 import com.petcare.home.model.dto.UserDto;
 import com.petcare.home.model.service.AdminService;
+import com.petcare.home.model.service.HospitalService;
 import com.petcare.home.model.service.PetService;
 import com.petcare.home.model.service.ResService;
 import com.petcare.home.model.service.UserService;
@@ -33,6 +34,7 @@ public class UserController {
 	
 	@Autowired
 	private HospitalService hosService;
+	
 	@Autowired
 	private AdminService adminService;
 	// 회원가입 폼으로 넘어감
