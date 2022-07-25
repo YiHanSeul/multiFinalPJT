@@ -47,7 +47,7 @@ public class UserController {
 
 	@GetMapping("/user")
 	public String test() {
-		return "user";
+		return "userInsert";
 	}
 
 	@GetMapping("/index")
@@ -80,8 +80,7 @@ public class UserController {
 			System.out.println(user);
 			session.setAttribute("userid", user.getUserid());
 
-		
-			return "index";
+			return "login";
 		} else {
 			return "index1";
 		}
@@ -100,7 +99,7 @@ public class UserController {
 			session.setAttribute("userkey",userService.UserChk(userid).getUserkey());
 			if (0 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
 					&& userpw.equals(userService.UserChk(userid).getUserpw())) {
-				model.addAttribute("userid", userid);
+				//model.addAttribute("userid", userid);
 				System.out.println(adminService.HospitalVChk());
 
 				model.addAttribute("dto", adminService.HospitalVChk());
@@ -108,21 +107,21 @@ public class UserController {
 				return "adminCheck";
 			} else if (1 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
 					&& userpw.equals(userService.UserChk(userid).getUserpw())) {
-				model.addAttribute("userid", userid);
+				//model.addAttribute("userid", userid);
 				return "index";
 			}
 
 		}else {
 			String HospitalId = request.getParameter("userid");
 			String HospitalPw = request.getParameter("userpw");
-			session.setAttribute("HospitalId", HospitalId);
-			session.setAttribute("HospitalPw", HospitalPw);
+			session.setAttribute("userid", HospitalId);
+			session.setAttribute("userpw", HospitalPw);
 					
 			if (1 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
 					&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
 					&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
 
-				return "loginHosMypage";
+				return "index";
 			}
 
 			if (0 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
