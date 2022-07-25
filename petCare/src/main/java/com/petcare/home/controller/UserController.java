@@ -20,6 +20,7 @@ import com.petcare.home.model.dto.PetDto;
 import com.petcare.home.model.dto.ResDto;
 import com.petcare.home.model.dto.UserDto;
 import com.petcare.home.model.service.AdminService;
+import com.petcare.home.model.service.HospitalService;
 import com.petcare.home.model.service.PetService;
 import com.petcare.home.model.service.ResService;
 import com.petcare.home.model.service.UserService;
@@ -31,8 +32,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-//	@Autowired
-//	private HospitalService hosService;
+	@Autowired
+	private HospitalService hosService;
 	@Autowired
 	private AdminService adminService;
 	// 회원가입 폼으로 넘어감
@@ -115,21 +116,21 @@ public class UserController {
 			String HospitalPw = request.getParameter("userpw");
 			session.setAttribute("HospitalId", HospitalId);
 			session.setAttribute("HospitalPw", HospitalPw);
-//					
-//			if (1 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-//					&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
-//					&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
-//
-//				return "loginHosMypage";
-//			}
-//
-//			if (0 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-//					&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
-//					&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
-//
-//				model.addAttribute("text", "비활성");
-//				return "loginHos";
-//			}
+					
+			if (1 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
+					&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
+					&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
+
+				return "loginHosMypage";
+			}
+
+			if (0 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
+					&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
+					&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
+
+				model.addAttribute("text", "비활성");
+				return "loginHos";
+			}
 		}
 				return "login";
 	}
