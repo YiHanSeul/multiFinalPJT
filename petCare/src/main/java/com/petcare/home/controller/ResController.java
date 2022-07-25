@@ -1,6 +1,8 @@
 package com.petcare.home.controller;
 
 
+import java.util.concurrent.TimeUnit;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -44,13 +46,13 @@ public class ResController {
 	}	
 	
 	@GetMapping("/insertRes")
-	public String insertRes(HttpServletRequest request ,ResDto dto, HttpSession session) {
+	public String insertRes(HttpServletRequest request ,ResDto dto, HttpSession session) throws InterruptedException {
 		String BookHour = request.getParameter("BookHour");
 		String BookDate= request.getParameter("BookDate");
 		dto.setBookHour(BookHour);
 		dto.setBookDate(BookDate);
 		if(resservice.insertRes(dto) > 0) {
-			
+			TimeUnit.SECONDS.sleep(2);
 			return "redirect:/res/calendar";
 		} else {
 			return "redirect:/res/calendar";

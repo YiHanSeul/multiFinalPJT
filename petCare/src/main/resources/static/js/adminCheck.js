@@ -19,12 +19,15 @@ $(document).ready(function(){
 			  accept: "application/json",
 			  success: function(result) {
 			      //console.log(result);
-			      console.log(result.data[0].tax_type);
+			     // console.log(result.data[0].tax_type);
 			      if(result.data[0].tax_type=="국세청에 등록되지 않은 사업자등록번호입니다."){
 			    	  $(btn).html('검증실패');
+			    	  $(btn).addClass('btn-danger');
 			      }else{
 			    	  $(btn).html('검증완료');
-			    	  console.log($(btn).parent().next().children("button").show());
+			    	  $(btn).addClass('btn-primary');
+			    	  //console.log($(btn).parent().next().children("button").show());
+			    	  console.log($(btn).next().show());
 			    	  $(btn).find("button").show()
 			    	  
 			      }
