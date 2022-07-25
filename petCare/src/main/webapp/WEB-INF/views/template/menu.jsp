@@ -16,7 +16,7 @@
 		<div class="menu"><a href="/user/join">회원가입</a></div>
 	</div>
 	<div id="menus2">
-		<div class="menu"><a href="/hos/hosMap">병원찾기</a></div>
+		<div class="menu"><a href="/map/hosMap">병원찾기</a></div>
 		<div class="menu"><a>예방접종</a></div>
 		<div class="menu" id="logImg"><a href="/user/index"><img id="logo" src="/resources/img/logo.png"></a></div>
 		<div class="menu"><a>보험</a></div>
