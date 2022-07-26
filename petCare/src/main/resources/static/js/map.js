@@ -346,8 +346,13 @@ function now() {
 			}); 
 		}
    } 
-   
 
+	function res(i){ 
+	
+	    var HospitalName = listname[i];
+	    console.log(HospitalName);
+	    location.href="/res/calendar?HospitalName="+HospitalName;
+	       }
    
    function getInfo() {
        // 지도의 현재 중심좌표를 얻어옵니다 
@@ -372,6 +377,7 @@ function now() {
        var boundsStr = bounds.toString();
        
        
+       
        var message = '지도 중심좌표는 위도 ' + center.getLat() + ', <br>';
        message += '경도 ' + center.getLng() + ' 이고 <br>';
        message += '지도 레벨은 ' + level + ' 입니다 <br> <br>';
@@ -383,12 +389,18 @@ function now() {
         console.log(message);
         $(".ge").remove();  
         var n = 0;
+    	var sum = new Array();
         for (var i = 0; i < listlng.length; i++) {
-        	
         	if((swLatLng.getLat() <= listlat[i] && listlat[i] <= neLatLng.getLat()) && (swLatLng.getLng() <= listlng[i] && listlng[i] <= neLatLng.getLng())&&n<5){	        		
         		n+=1
-        		$("#list").append("<tr class='ge'><td>"+listname[i]+"</td></tr>");
-        		console.log(listlng[i]);
+        		sum.push(i);
         	}
+        	
+        } 
+        for(var i = 0; i< sum.length; i++){ 
+       		$("#list").append("<tr class='ge'><td>"+listname[sum[i]]+"</td><td>"+listAddr[sum[i]]+"</td><td><button onclick=res("+sum[i]+");>예약하기</button></td></tr>");
+     
         }
+      
+        
    }
