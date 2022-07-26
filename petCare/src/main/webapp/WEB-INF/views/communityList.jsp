@@ -14,7 +14,7 @@
 		 		alert("로그인 이후 이용가능합니다.");
 		 	}
 		 	else{ 
-		 		location.href="/board/write";
+		 		location.href="/board/writeForm";
 		 	}
 	 
 	}
