@@ -111,12 +111,14 @@ text-align: center;
 		<div class="menu" id="loginChk2"  style="display:none"></div>
 		
 		
+		
 		<div id='calendar'></div>
 		<a href="javascript:doDisplay();"></a><br/>
 		<div id="time">
 				<form action="/res/insertRes" method="get" onsubmit="doalert();">
 					<input type="hidden" name="UserKey" value="${userinfo.userkey }">
-					<input type="hidden" name="HospitalKey" value="${hospitalinfo.hospitalKey }">
+					<input type="hidden" id="hn" name="HospitalName" value="${hospitalinfo.hospitalName}">
+					
 					<table id="table">
 						<section id="sel_option">
 						  <div id="sel1">
@@ -171,12 +173,18 @@ text-align: center;
 								</td>
 							</tr>
 					</div>
+					
 				</tr>
 				
 				</form>
+				
+		
+		
 		</div>
 		
 		<br>
+		
+		
 </body>
 
 <script type="text/javascript">
@@ -259,7 +267,7 @@ text-align: center;
 					if(a >= b){
 					let str = document.getElementById("bc");
 					str.setAttribute("value",BookDate);
-					
+					console.log("${hospitalinfo.hospitalName}");
 					doDisplay();
 					}
 					else{
@@ -277,10 +285,11 @@ text-align: center;
 	function ResDblChk(){
 		var BookHour = $("#abc").val();
 		var BookDate = $("#bc").val();
+		var HosName = $("#hn").val();
         $.ajax({
             url:"/res/resCheck", //Controller에서 인식할 주소
             type:"post", //POST 방식으로 전달
-            data:{"BH":BookHour, "BD":BookDate},
+            data:{"BH":BookHour, "BD":BookDate, "HN":HosName},
             success:function(cnt){
             	if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 예약 가능 
             		swal('예약 가능!', "예약 가능한 시간입니다", 'success');
