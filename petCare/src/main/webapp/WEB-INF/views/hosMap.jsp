@@ -4,7 +4,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
-<%@ include file="/WEB-INF/views/template/menu.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +41,6 @@
          </div>
    </div>
    <div>
-
       <div id="area">
          <div>주소 찾기</div>
          <form action="/map/region" method="get">
@@ -71,15 +69,18 @@
             <input type="submit" value="확인">
          </form>
       </div>
+      
       <table id="list" border="1">
          
       </table>
    </div>
    <script>
-     
+
+   
 	  var listlng = new Array();
       var listlat = new Array();
       var listname = new Array();
+      var listAddr = new Array();
       var listnum = new Array(); 
       var avglat = 0;
       var avglng = 0; 
@@ -88,6 +89,7 @@
       listlng.push("${list.getLng()}");
       listlat.push("${list.getLat()}");
       listname.push("${list.getHospitalname()}");
+      listAddr.push("${list.getAddr()}");
       listnum.push(0);
       </c:forEach>
       
@@ -124,7 +126,7 @@
          info(new kakao.maps.LatLng(listlat[i], listlng[i]), listname[i],
                listnum[i]);
       }
-
+      
       function info(position, name, num) {
          // 마커를 생성합니다
          var marker = new kakao.maps.Marker({
