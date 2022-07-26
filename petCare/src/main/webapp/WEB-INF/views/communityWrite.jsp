@@ -8,16 +8,21 @@
 </head>
 <body>
 <form action="/board/write" method="post">
-	<input type="hidden" value="${userkey }" name="userKey">
-	<div>
-		제목
+	<input type="hidden" value="${userkey}" name="userKey">
+ 	<div>
+		<label>제목</label>
 		<input type="text" name=comTitle>
 	</div>
-	<div>
-		파일 첨부
-		<input type="file" >
-	<!--  <input type="file" name="file"> -->
+ 	<div>
+		<label>병원 이름</label>
+		<input type="text" name=field1>
 	</div>
+	<div>
+		<label>파일 첨부</label>	
+		<input type="file" >
+	</div>
+	 
+	<!--  <input type="file" name="file"> -->
 	<div>
 		<textarea cols=15 rows=15 name=comContent></textarea>
 	</div>

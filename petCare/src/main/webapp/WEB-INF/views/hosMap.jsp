@@ -20,15 +20,31 @@
    border: 1px solid black;
    background-color: pink;
    position: absolute;
-   top: 400px;
-   left: 400px;
+   top: 30%; 
+   left: 40%;
+   right:40%;
    display: none;
+}
+#map{
+	position: absolute;
+	top: 8%;
+	left: 15%;
+	right: 15%;
+}
+#list{ 
+	margin-left: 20%;
+	margin-top: 10%;
+}
+#selectbar{
+	position: absolute;
+	top:13%;
+	left: 25%;
 }
 </style>
 
 <body>
  
-   <div>
+   <div id="selectbar">
       <button onclick="now();">현위치</button>
       <button onclick="openarea();">주소선택</button>
       <button>필터옵션</button>
@@ -36,7 +52,7 @@
    <!-- 지도를 표시할 div 입니다 -->
    <div style="width: 100%; height: 500px">
       <div id="map"
-         style="width: 60%; height: 500px; margin: 100px; border: 3px solid blue;">
+         style="width: auto%; height: 500px; margin: 100px; border: 3px solid blue;">
          
          </div>
    </div>

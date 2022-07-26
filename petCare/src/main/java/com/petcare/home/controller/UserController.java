@@ -93,7 +93,6 @@ public class UserController {
 		if(chk_info==1) {
 			String userid = request.getParameter("userid");
 			String userpw = request.getParameter("userpw");
-
 			session.setAttribute("userid", userid);
 			session.setAttribute("userpw", userpw);
 			session.setAttribute("userkey",userService.UserChk(userid).getUserkey());
