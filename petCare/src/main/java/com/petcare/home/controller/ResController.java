@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petcare.home.model.dto.ResDto;
-import com.petcare.home.model.service.AdminService;
 import com.petcare.home.model.service.HospitalService;
 import com.petcare.home.model.service.ResService;
 import com.petcare.home.model.service.UserService;
@@ -37,9 +36,11 @@ public class ResController {
 	private HospitalService hospitalservice;
 	
 	@GetMapping("/calendar")
-	public String root(HttpSession session, Model model) {
+	public String root(HttpServletRequest request, HttpSession session, Model model) {
+		String HospitalName = request.getParameter("HospitalName");
+		session.setAttribute("HospitalName", HospitalName);
 		String userid = (String)session.getAttribute("userid");
-		String hospitalkey = (String)session.getAttribute("HospitalId");
+		String hospitalkey = (String)session.getAttribute("HospitalName");
 		model.addAttribute("userinfo", userservice.UserSelect(userid));
 		model.addAttribute("hospitalinfo", hospitalservice.HosSelect(hospitalkey));
 		return "calendar";
@@ -47,10 +48,15 @@ public class ResController {
 	
 	@GetMapping("/insertRes")
 	public String insertRes(HttpServletRequest request ,ResDto dto, HttpSession session) throws InterruptedException {
+		//String HospitalName = request.getParameter("HospitalName");
 		String BookHour = request.getParameter("BookHour");
 		String BookDate= request.getParameter("BookDate");
+		
+		//String HospitalName= request.getParameter("HospitalName");
 		dto.setBookHour(BookHour);
 		dto.setBookDate(BookDate);
+		//dto.setHospitalName(HospitalName);
+		
 		if(resservice.insertRes(dto) > 0) {
 			TimeUnit.SECONDS.sleep(2);
 			return "redirect:/res/calendar";
@@ -62,10 +68,10 @@ public class ResController {
 	}
 	@PostMapping("/resCheck")
 	@ResponseBody
-	public int resCheck(HttpServletRequest request, @RequestParam("BH") String BH, @RequestParam("BD") String BD, ResDto dto) {
+	public int resCheck(HttpServletRequest request, @RequestParam("BH") String BH, @RequestParam("BD") String BD, @RequestParam("HN") String HN, ResDto dto) {
 		String BookDate= request.getParameter("BookDate");
 		dto.setBookDate(BookDate);
-		int cnt = resservice.resCheck(BH, BD);
+		int cnt = resservice.resCheck(BH, BD, HN);
 		return cnt;
 	}
 }

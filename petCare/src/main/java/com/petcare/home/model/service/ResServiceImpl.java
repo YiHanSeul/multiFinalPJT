@@ -1,12 +1,10 @@
 package com.petcare.home.model.service;
 
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.petcare.home.model.dto.HospitalDto;
 import com.petcare.home.model.dto.ResDto;
 import com.petcare.home.model.mapper.ResMapper;
 
@@ -23,8 +21,8 @@ public class ResServiceImpl implements ResService{
 	}
 
 	@Override
-	public int resCheck(String BH, String BD) {
-		return resMapper.resCheck(BH,BD);
+	public int resCheck(String BH, String BD, String HN) {
+		return resMapper.resCheck(BH,BD,HN);
 	}
 
 	@Override
