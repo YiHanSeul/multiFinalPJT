@@ -80,6 +80,52 @@ public class PetController {
 		 
 	   }
 		 
+	   @GetMapping("/petInsuInfo")
+	   public String petInsuInfo() {
+		   return "petInsuInfo";
+	   }
 	   
+	   @GetMapping("/petInsuInfoRes")
+	   public String petInsuInfoRes(String petInsuName, String petInsuGender, float petInsuAge, String petInsuType, String petInsuType2 ) {
+//		   System.out.println(petInsuName);
+//		   System.out.println(petInsuGender);
+//		   System.out.println(petInsuAge);
+//		   System.out.println(petInsuType);
+//		   System.out.println(petInsuType2);
+
+		   if(petInsuType2 == null) {
+			   if(petInsuType.equals("초소형견")) {
+				   
+			   }else if(petInsuType.equals("소형견")) {
+				   
+			   }
+			   else if(petInsuType.equals("중형견")) {
+				   
+			   }else if(petInsuType.equals("대형견")) {
+				   
+			   }
+			   
+		   }else {
+			   if(petInsuType.equals("소형견D")) {
+				   
+			   }else if(petInsuType.equals("중형견D")) {
+				   
+			   }else if(petInsuType.equals("대형견D")) {
+				   
+			   }
+			   
+		   }
+		   
+		   
+
+			   
+			   
+			   
+			   
+		   
+		   
+		   
+		   return "index1";
+	   }
 	   
 }
