@@ -282,7 +282,12 @@ public class UserController {
 	@GetMapping("/idCheck")
 	@ResponseBody
 	public int idCheck(@RequestParam("userid") String userid) {
-		int cnt = userService.UserChkId(userid);
+		int cnt=0;
+		if(userid==null || userid=="") {
+			cnt=-1;
+			return cnt;
+		}
+		cnt = userService.UserChkId(userid);
 		return cnt;
 	}
 
