@@ -3,6 +3,7 @@ package com.petcare.home.model.service;
 import java.util.List;
 
 import com.petcare.home.model.dto.BoardDto;
+import com.petcare.home.model.dto.MapDto;
 
 public interface BoardService {
 
@@ -12,5 +13,7 @@ public interface BoardService {
 	
 	public int write(BoardDto writeDto);
 	
+	public BoardDto selectKey(String id);
 	
+	public MapDto selecthosname(String ComTitle);
 }

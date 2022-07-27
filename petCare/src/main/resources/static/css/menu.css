@@ -15,6 +15,8 @@ a {
 	display: flex;
 	justify-content: right;
 	height: 30px;
+	background-color: #FFFFFF;
+	width: 100%;
 }
 
 #menus1 .menu {
@@ -34,7 +36,9 @@ a {
 	align-items: center;
 	height: 80px;
 	margin-top: 5px;
-	width: 100%
+	position: fixed;
+	width: 100%;
+	z-index:5;
 }
 
 #menus2>.menu {

@@ -80,5 +80,8 @@ public class HospitalController {
 	public String ocrForm() {
 		return "ocrRes";
 	}
-
+	@GetMapping("/vacc")
+	public String vacc() {
+		return "vacc";
+	}
 }

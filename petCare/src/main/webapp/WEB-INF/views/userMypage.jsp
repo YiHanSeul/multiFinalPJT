@@ -1,140 +1,147 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    isELIgnored="false" %>   
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-
-</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link href="/resources/css/userMypage.css" rel="stylesheet" type="text/css">
 <script>
-function test(){
-	if(confirm("회원 탈퇴하시겠습니까?")){
-		location.href='userDelete'
-	}else{
-		alert("취소를 누르셨습니다.");
+	function test() {
+		if (confirm("회원 탈퇴하시겠습니까?")) {
+			location.href = 'userDelete'
+		} else {
+			alert("취소를 누르셨습니다.");
+		}
 	}
-}
-
 
 </script>
 </head>
 <body>
-<div style="display:inline-block;">
-	<ul>
-		<li style="cursor:pointer; margin: 8% 0px 20px 0px;"><h4><a href="#check1">보호자 정보관리</a></h4></li>
-		<li style="cursor:pointer; margin: 0px 0px 20px 0px;"><h4><a href="#check2">마이펫 관리</a></h4></li>
-		<li style="margin: 0px 0px 20px 0px;"><h4><a href="#">예약 목록</a></h4></li>
-		<li style="cursor:pointer; margin: 0px 0px 20px 0px;"><h4>후기 관리</h4></li>
-		<li style="cursor:pointer; margin: 0px 0px 20px 0px;"><h4>게시글 관리</h4></li>
-		<li style="cursor:pointer; margin: 0px 0px 20px 0px;"><h4>1:1 문의</h4></li>
-	</ul>
-</div>
-<!-- 페이지를 따로 만들지 말고 a태그로 같은 페이지에 있는 아이디로 이동하기 -->
-<div style="display:inline-block;">
-	<h1 style="margin:15% 0px 60px 800px;" id="">마이페이지</h1>
-	<c:if test="${not empty dto }">
+	<%@ include file="/WEB-INF/views/template/menu.jsp"%>
+	<div id="menu-lists">
 		<ul>
-			<li style="list-style:none; margin:0px 0px 20px 15%;  border-top:2px solid;"><h4>아이디: ${dto.username}</h4></li>
-			<li style="list-style:none; margin:0px 0px 20px 15%;"><h4>닉네임 : ${dto.usernick } <input id="usernick" class="btn btn-primary" type="button" value="수정" onclick="location.href='userChnick'"></h4></li>
-			<li style="list-style:none; margin:0px 0px 20px 15%;"><h4>이메일: ${dto.useremail } <input id="useremail" class="btn btn-primary" type="button" value="수정" onclick="location.href='userChemail'"></h4></li>
-			<li style="list-style:none; margin:0px 0px 20px 15%; border-bottom: 2px solid;"><h4>전화번호: ${dto.userphone } <input id="userphone" class="btn btn-primary" type="button" value="수정" onclick="location.href='userChphone'"></h4></li>
+			<li class="menu-list"><a href="#check1">보호자 정보관리</a></li>
+			<li class="menu-list"><a href="#check2">마이펫 관리</a></li>
+			<li class="menu-list"><a href="#">예약 목록</a></li>
+			<li class="menu-list"><a href="#">후기관리</a></li>
+			<li class="menu-list"><a href="#">게시글 관리</a></li>
+			<li class="menu-list"><a href="/user/findpwing">비밀번호찾기</a></li>
 		</ul>
-	</c:if>
-</div>
-
-
-
-
-<div style="display:inline-block">
-<h1 style="margin:5% 0px 50px 1050px;" id="check2">나의 펫</h1>
-<c:if test="${empty petDto }">
- 	펫 정보가 없습니다.
- </c:if>
- <c:if test="${not empty petDto}">
- <c:forEach var="petDto" items="${petDto }">
- <ul>
- 	<li style="list-style:none; margin:0px 0px 20px 27%; border-top:2px solid;"><h4>펫 이름: ${petDto.petName }</h4></li>
- 	<li style="list-style:none; margin:0px 0px 20px 27%;"><h4>펫 나이: ${petDto.petAge }</h4></li>
- 	<li style="list-style:none; margin:0px 0px 20px 27%;"><h4>펫 성별: ${petDto.petGender }</h4></li>
- 	<li style="list-style:none; margin:0px 0px 20px 27%;"><h4>petVac1: ${petDto.petVac1 } | petVac2: ${petDto.petVac2 } | petVac3: ${petDto.petVac3 }</h4></li>
- 	<li style="list-style:none; margin:0px 0px 20px 27%; border-bottom: 2px solid;"><h4>펫 중성화: ${petDto.petNe }</h4></li>
- </ul>
-
-</c:forEach>
-</c:if>
-</div>
-
-
-<h1>예약현황</h1>
- <c:if test="${empty resDto }">
- 	예약 정보가 없습니다.
- </c:if>
- 
- 
- 
- 
- 
-  <c:if test="${not empty resDto }"> 
-
- <table border="1">
- <tr>
- 	<td>예약ID</td>
- 	<td>예약시간</td>
- 	<td>품종</td>
- 	<td>예약날짜</td>
- 	<td>방문목적</td>
-
- </tr>
- 
- <tr>
- 	<td>${resDto.bookId }</td>
- 	<td>${resDto.bookHour }</td>
- 	<td>${resDto.bookPetType }</td>
- 	<td>${resDto.bookDate } </td>
- 	<td>${resDto.bookWhy }</td>
- 
- </tr>
- </table>
-
-
-
-
-
-</c:if>
-<h1>병원 방문 후기</h1>
-
-
-<h1>고객센터 문의내용</h1>
-
-<h1>비밀번호 찾기</h1>
-<a href="/user/findpwing">비밀번호 찾기</a><br>
-
-
-<input type="button" value="회원탈퇴" onclick="test()"><br>
-
-
-
-	<!-- 전체를 감싸는 태그 -->
-	<div id="page-wrapper">
-		<!-- 헤더 -->
-		<header id="main-header"></header>
-		<!-- 내비게이션 -->
-		<nav id="main-navigation"></nav>
-		<div id="content">
-			<!-- 본문 좌측 영역 -->
-			<section id="main-section"></section>
-			<!-- 본문 우측 영역 -->
-			<aside id="main-aside"></aside>
-		</div>
-		<footer id="main-footer"></footer>
 	</div>
+	<!-- 페이지를 따로 만들지 말고 a태그로 같은 페이지에 있는 아이디로 이동하기 -->
+	<div id="myInfos">
+		<p class="myPage-p">내정보</p>
+		<hr />
+		<c:if test="${not empty dto }">
+			<ul>
+				<li class="myInfo">아이디: ${dto.username}</li>
+				<li class="myInfo">닉네임 : ${dto.usernick } <input id="usernick"
+					class="btn btn-warning" type="button" value="수정"
+					onclick="location.href='userChnick'">
+				</li>
+				<li class="myInfo">이메일: ${dto.useremail } <input id="useremail"
+					class="btn btn-warning" type="button" value="수정"
+					onclick="location.href='userChemail'">
+				</li>
+				<li class="myInfo">전화번호: ${dto.userphone } <input
+					id="userphone" class="btn btn-warning" type="button" value="수정"
+					onclick="location.href='userChphone'">
+				</li>
+			</ul>
+		</c:if>
+	</div>
+	<div id="myPets">
+		<p class="myPage-p">나의펫</p>
+		<hr>
+		<c:if test="${empty petDto }">
+			<p class="not">펫 정보가 없습니다.</p>
+		</c:if>
+		<c:if test="${not empty petDto}">
+			<c:forEach var="petDto" items="${petDto }">
+				<ul>
+					<li class="myInfo">펫 이름: ${petDto.petName }</li>
+					<li class="myInfo">펫 나이: ${petDto.petAge }</li>
+					<li class="myInfo">펫 성별: ${petDto.petGender }</li>
+					<li class="myInfo">petVac1: ${petDto.petVac1 } | petVac2:
+						${petDto.petVac2 } | petVac3: ${petDto.petVac3 }</li>
+					<li class="myInfo">펫 중성화: ${petDto.petNe }</li>
+				</ul>
+			</c:forEach>
+		</c:if>
+		
+		<form id="petAdd-forms" action="petInfoRes" method="get">
+			<ul class="petAdd-form">
+				<li>반려견이름 <input type="text" name="petName"></li>
+			</ul>
+			<ul class="petAdd-form">
+				<li>반려견나이 <input type="text" name="petAge"></li>
+			</ul>
+			<ul class="petAdd-form">
+				<li>반려견성별 남<input type="radio" id="petGender" name="petGender"
+					value="남"> 여<input type="radio" id="petGender"
+					name="petGender" value="여">
+				</li>
+			</ul >
+			<ul class="petAdd-form">
+				<li>반려견품종 <input type="text" id="petType" name="petType"></li>
+			</ul>
+			<ul class="petAdd-form">
+				<li>중성화여부 O<input type="radio" name="petNe" value="O"
+					id="petNe"> X<input type="radio" name="petNe" value="X"
+					id="petNe"></li>
+			</ul>
+			<ul class="petAdd-form">
+				<li>예방접종현황 A<input type="checkbox" value="A" name="petVac">
+					B<input type="checkbox" value="B" name="petVac"> C<input
+					type="checkbox" value="C" name="petVac"></li>
+			</ul>
+			<input class ="btn btn-primary" type="submit" value="전송">
 
- 
+		</form>
+
+		<button id="petadd-btn" class="btn btn-warning"
+			onclick="location.href='/pet/petInfo'">등록</button>
+	</div>
+	<!-- 수정해야함 -->
+	<div id="myPets">
+		<p class="myPage-p">예약현황</p>
+		<hr>
+		<c:if test="${empty resDto }">
+			<p class="not">예약 정보가 없습니다.</p>
+		</c:if>
+		<c:if test="${not empty resDto }">
+			<table class="table">
+				<tr>
+					<td>예약번호</td>
+					<td>예약시간</td>
+					<td>견종</td>
+					<td>예약날짜</td>
+					<td>방문목적</td>
+				</tr>
+				<tr>
+					<td>${resDto.bookId }</td>
+					<td>${resDto.bookHour }</td>
+					<td>${resDto.bookPetType }</td>
+					<td>${resDto.bookDate }</td>
+					<td>${resDto.bookWhy }</td>
+				</tr>
+			</table>
+		</c:if>
+	</div>
+	<div id="myPets">
+		<p class="myPage-p">병원 방문 후기</p>
+		<hr />
+	</div>
+	<div id="myPets">
+		<hr />
+		<p class="myPage-p">고객센터 문의내용</p>
+		<hr>
+	</div>
+	
+	<input type="button" value="회원탈퇴" onclick="test()">
+	
 </body>
 </html>
 
