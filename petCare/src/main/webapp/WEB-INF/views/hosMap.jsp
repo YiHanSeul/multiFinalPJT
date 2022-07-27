@@ -14,50 +14,103 @@
 <script type="text/javascript"
    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1744d3b2aeed48eacbfc639e7fad61d3"></script>
 <script src="/resources/js/map.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
  
 <style>
+.btn-warning{
+	text-align: right !important;
+	padding-left: 4px !important;
+}
+
 #area {
    border: 1px solid black;
    background-color: pink;
-   position: absolute;
    top: 30%; 
    left: 40%;
    right:40%;
    display: none;
 }
-#map{
-	position: absolute;
-	top: 8%;
-	left: 15%;
-	right: 15%;
+#mapbox{
+	display: flex;
+	position: relative;
+	flex-direction: column;
 }
-#list{ 
-	margin-left: 20%;
-	margin-top: 10%;
+
+#tbt{
+width:5%;
+}
+
+#map{
+	left: 17%;
+	right: 15%;
+	overflow: visible;
+}
+
+#listtable{
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	width:100%; 
+	margin: 0;
+	align-items: center;
+	left:2.15%;
+}
+
+#list{
+	width:70%;
 }
 #selectbar{
-	position: absolute;
-	top:13%;
-	left: 25%;
+	display: flex;
+	position: relative;
+	left: 17.15%
 }
+
+.search-top-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    background: #FAFAD2;
+    opacity: 0.7;
+}
+
+#stt{
+	font-size: 30pt !important;
+    font-weight: bolder !important;
+    opacity: 1 !important;
+}
+
 </style>
 
 <body>
- <%@ include file="/WEB-INF/views/template/menu.jsp" %>
+ 	<%@ include file="/WEB-INF/views/template/menu.jsp" %>
+	<div class="menu" id="loginChk2"  style="display:none"></div>
+ 
+ 	<div class="search-top-container">
+ 		<h3 class="title" id="stt">동물병원 찾기</h3>
+ 	</div>
+	<div style="padding:10px;"></div>
    <div id="selectbar">
-      <button onclick="now();">현위치</button>
-      <button onclick="openarea();">주소선택</button>
-      <button>필터옵션</button>
+      <button class="btn btn-warning" onclick="now();">현위치</button>
+      <!-- <button class="btn btn-warning" onclick="openarea();">주소선택</button>
+      <button class="btn btn-warning">필터옵션</button> -->
    </div>
    <!-- 지도를 표시할 div 입니다 -->
-   <div style="width: 100%; height: 500px">
+   <div id="mapbox" style="width: 100%; height: 500px;">
       <div id="map"
-         style="width: auto%; height: 500px; margin: 100px; border: 3px solid blue;">
-         
-         </div>
+         style="width: 70%; height: 100%; border: 3px solid orange;">
+      </div>
    </div>
-   <div>
-      <div id="area">
+   <div style="padding:10px;"></div>
+   <div id="listtable">
+   
+   	<table id="list" border="0"></table>
+   </div>
+   
+   		<!--
+         <div id="area">
          <div>주소 찾기</div>
          <form action="/map/region" method="get">
             <select name="region" id="region" onchange="chageSelect()">
@@ -84,12 +137,8 @@
             </select>
             <input type="submit" value="확인">
          </form>
-      </div>
+      -->
       
-      <table id="list" border="1">
-         
-      </table>
-   </div>
    <script>
 
    
@@ -144,6 +193,7 @@
       }
       
       function info(position, name, num) {
+    	  
          // 마커를 생성합니다
          var marker = new kakao.maps.Marker({
             position : position,
@@ -156,7 +206,7 @@
          //임의로 저장
          var iwContent = '<div style="padding:5px;">'
                + name
-               + '<br><a href="https://map.kakao.com/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">자세히</a> <a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">예약</a></div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+               + '<br><a href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query='+name+'" style="color:blue" target="_blank">자세히</a></div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 
          // 인포윈도우를 생성합니다
          var infowindow = new kakao.maps.InfoWindow({
