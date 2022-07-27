@@ -1,0 +1,49 @@
+@charset "UTF-8";
+#btn_toggle, #btn_toggle2, #btn_toggle3 {
+	font-size: 10px;
+	padding: 10px 15px;
+	border: 1px solid #ddd;
+	background-color: #0a76b7;
+	border-radius: 5px;
+	color: #fff;
+	font-weight: bold;
+}
+
+#Toggle, #Toggle2, #Toggle3 {
+	font-size: 14px;
+	color: #666;
+	display: none;
+}
+.main{
+	margin-left:10%;
+	margin-right:10%;
+	margin-top: 10%;
+}
+.main2{
+	margin-left:10%;
+	margin-right:10%;
+	margin-top: 2%;
+}
+#mainText{
+	border: 1px solid;
+	padding-bottom: 1%;
+	align: center;
+	text-align: center;
+}
+.main_{
+	border-top: 1px solid;
+	margin-top: 1%;
+	padding-top: 1%;
+}
+#main_1{
+	border-top: 1px solid;
+	margin-top: 1%;
+	padding-top: 1%;
+	border-bottom: 1px solid;
+	padding-bottom: 1%;
+}
+#download{
+	position: relative; 
+	left: 85%;
+	
+}

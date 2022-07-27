@@ -1,4 +1,4 @@
-package com.petcare.home.api;
+package com.petcare.home.controller;
 
 import java.util.Locale;
 

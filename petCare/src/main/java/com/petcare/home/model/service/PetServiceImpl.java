@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.petcare.home.model.dto.PetDto;
-import com.petcare.home.model.dto.PetInsuDto;
 import com.petcare.home.model.mapper.PetMapper;
 
 @Service
@@ -27,10 +26,15 @@ public class PetServiceImpl implements PetService{
 	}
 
 	@Override
-	public int petInsuPrice(float petInsuAge, String petInsuType) {
-		// TODO Auto-generated method stub
-		return petMapper.petInsuPrice(petInsuAge, petInsuType);
+	public int petPriceI(float petAgeI, String petTypeI) {
+		return petMapper.petPriceI(petAgeI, petTypeI);
 	}
+
+	@Override
+	public String petNameI(float petAgeI, String petTypeI) {
+		return petMapper.petNameI(petAgeI, petTypeI);
+	}
+
 
 	
 
