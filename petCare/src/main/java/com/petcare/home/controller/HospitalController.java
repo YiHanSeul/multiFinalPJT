@@ -33,7 +33,7 @@ public class HospitalController {
 
 	@GetMapping("/insertHosForm")
 	public String insertHosForm() {
-		return "insertHos";
+		return "hosInsert";
 	}
 	@Autowired
 	ResourceLoader resourceLoader;
@@ -67,7 +67,7 @@ public class HospitalController {
 		if (res1 > 0) {
 			return "index";
 		} else {
-			return "insertHos";
+			return "hosInsert";
 		}
 	}
 
