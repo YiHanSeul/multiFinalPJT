@@ -8,8 +8,12 @@
 </head>
 <body>
 <script type="text/javascript">
-		let a = ${no};
-		alert(a+" 병원이름이 일치하지 않습니다.");
+ 	let ck = ${no};
+ 	if( ck==1){
+		alert(" 병원이름이 일치하지 않습니다. "); 		
+ 	}else if(ck==2){
+ 		alert(" 잘못된 정보를 입력하였습니다. "); 
+ 	}
 </script>
 <form action="/board/write" method="post">
 	<div>

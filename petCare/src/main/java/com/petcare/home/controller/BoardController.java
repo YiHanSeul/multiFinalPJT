@@ -36,28 +36,34 @@ public class BoardController {
 	
 	@PostMapping("/write")
 	public String write(Model model, BoardDto writeDto) {
-		System.out.println(writeDto);
-		MapDto mapdto = boardService.selecthosname(writeDto.getField1());
-		System.out.println(mapdto);
-		if(mapdto==null) {
-			model.addAttribute("no", mapdto);
-			return "redirect:/board/writeForm";
+		System.out.println(writeDto); 
+		MapDto mapdto = null;
+		try {
+			mapdto = boardService.selecthosname(writeDto.getField1());			
+			System.out.println(mapdto);
+		} catch (Exception e) {
+			model.addAttribute("no", 1);
+			return "communityWrite";
 		}
-		int res = -1; 
-//		boardService.write(writeDto);
-		
-		if (res>0) {
-			return "redirect:/board/list";
-		}else {
-			return "redirect:/board/writeForm";
-		} 
+			if(mapdto==null) {
+				model.addAttribute("no", 1);
+				return "communityWrite";
+			}else {
+				writeDto.setField1(mapdto.getHospitalname());
+				int res = boardService.write(writeDto);
+				if(res > 0) {
+					return "redirect:/board/list";				
+				}else {
+					model.addAttribute("no", 2);
+					return "communityWrite";
+				}
+			} 
 	}
 		
 	 
 	@GetMapping("/writeForm")
 	public String insertForm(Model model) {
-		
-		
+		model.addAttribute("no", 0); 
 		return "communityWrite";
 	}
 	
