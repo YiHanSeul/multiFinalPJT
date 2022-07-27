@@ -11,6 +11,7 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/template/menu.jsp" %>
+ 
 	<div class="slider">
     <input type="radio" name="slide" id="slide1" checked>
     <input type="radio" name="slide" id="slide2">
@@ -28,6 +29,6 @@
         <label for="slide3">&nbsp;</label>
         <label for="slide4">&nbsp;</label>
     </div>
-</div>
+</div> 
 </body>
 </html> 
