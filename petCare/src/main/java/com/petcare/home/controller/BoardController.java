@@ -1,5 +1,6 @@
 package com.petcare.home.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,10 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.petcare.home.model.dto.BoardDto;
 import com.petcare.home.model.dto.MapDto;
 import com.petcare.home.model.service.BoardService;
+
 
 @Controller
 @RequestMapping("/board")
@@ -35,7 +39,9 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String write(Model model, BoardDto writeDto) {
+	public String write(Model model, BoardDto writeDto,@RequestParam("file") 
+	MultipartFile file) {
+	 
 		System.out.println(writeDto); 
 		MapDto mapdto = null;
 		try {
@@ -52,6 +58,18 @@ public class BoardController {
 				writeDto.setField1(mapdto.getHospitalname());
 				int res = boardService.write(writeDto);
 				if(res > 0) {
+					
+					File saveFile = null;
+					String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+					
+					saveFile = new File(projectPath,writeDto.getUserKey()+writeDto.getComTitle());
+					
+					try {
+						file.transferTo(saveFile);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
 					return "redirect:/board/list";				
 				}else {
 					model.addAttribute("no", 2);
