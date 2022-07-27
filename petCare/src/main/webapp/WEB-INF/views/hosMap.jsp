@@ -43,7 +43,7 @@
 </style>
 
 <body>
- 
+ <%@ include file="/WEB-INF/views/template/menu.jsp" %>
    <div id="selectbar">
       <button onclick="now();">현위치</button>
       <button onclick="openarea();">주소선택</button>
