@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import com.petcare.home.model.dto.PetDto;
+import com.petcare.home.model.dto.PetInsuDto;
 
 @Mapper
 public interface PetMapper {
@@ -17,4 +18,7 @@ public interface PetMapper {
 	
 	@Select(" SELECT * FROM PET where USERKEY=#{userkey} ")
 	List<PetDto> selectPetAll(int UserKey);
+	
+	@Select(" SELECT PetInsuPrice FROM PetInsu WHERE PetInsuAge=#{petInsuAge} and PetInsuType=#{petInsuType} ")
+	int petInsuPrice(float petInsuAge, String petInsuType);
 }
