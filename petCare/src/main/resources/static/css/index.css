@@ -1,17 +1,21 @@
 .slider{
-    width: 640px;
-    height: 480px;
+    width: 70%;
+    height: 600px;
     position: relative;
     margin: 0 auto;
+    margin-top: 4.5%;
 }
 .slider input[type=radio]{
     display: none;
 }
 
+img{
+	width: 100%;
+	
+}
 ul.imgs{
     padding: 0;
     margin: 0;
-    width: 100%;
 }
 ul.imgs li{
     position: absolute; /* 슬라이드가 겹쳐서 모여야 하므로 absolute 속성으로 배치 */
@@ -24,8 +28,8 @@ ul.imgs li{
     position: absolute;
     left: 50%; /* 가로로 가운데 정렬 */
     transform: translateX(-50%);
-    bottom: 20px; /* 슬라이드 밑에서 20px 간격 띄움 */
-    z-index: 2; /* 슬라이드 위에 보이도록 레이어 순위를 높임 */
+    bottom: -25%; /* 슬라이드 밑에서 20px 간격 띄움 */
+   	z-index: 2; /* 슬라이드 위에 보이도록 레이어 순위를 높임 */
 }
 .bullets label{
     display: inline-block; /* 한 줄로 불릿 나열*/
@@ -47,6 +51,7 @@ ul.imgs li{
 .slider input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){
     background-color: #fff;
 }
+
 .slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){
     opacity: 1;
     transition: 1s;
@@ -66,12 +71,4 @@ ul.imgs li{
     opacity: 1;
     transition: 1s;
     z-index: 1;
-}
-ul.imgs li{
-    position: absolute;
-    opacity: 0;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    transition-delay: 0.9s; /* 트랜지션 지연 시간 지정 */
 }

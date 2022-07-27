@@ -11,16 +11,17 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/template/menu.jsp" %>
+ 
 	<div class="slider">
     <input type="radio" name="slide" id="slide1" checked>
     <input type="radio" name="slide" id="slide2">
     <input type="radio" name="slide" id="slide3">
     <input type="radio" name="slide" id="slide4">
     <ul id="imgholder" class="imgs">
-        <li><img src="/resources/img/slide1.jpg"></li>
-        <li><img src="/resources/img/slide2.jpg"></li>
-        <li><img src="/resources/img/slide3.jpg"></li>
-        <li><img src="/resources/img/slide4.jpg"></li>
+        <li><a href="/map/hosMap"><img src="/resources/img/slide1.jpg"></a></li>
+        <li><a href="/hos/vacc"><img src="/resources/img/slide2.jpg"></a></li>
+        <li><a href="/pet/petInsuInfo"><img src="/resources/img/slide3.jpg"></a></li>
+        <li><a href="/board/list"><img src="/resources/img/slide4.jpg"></a></li>
     </ul>
     <div class="bullets">
         <label for="slide1">&nbsp;</label>
@@ -28,9 +29,6 @@
         <label for="slide3">&nbsp;</label>
         <label for="slide4">&nbsp;</label>
     </div>
-</div>
-
-
-
+</div> 
 </body>
 </html> 

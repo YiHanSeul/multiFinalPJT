@@ -14,11 +14,17 @@
 		 		alert("로그인 이후 이용가능합니다.");
 		 	}
 		 	else{ 
-		 		location.href="/board/write";
+		 		location.href="/board/writeForm";
 		 	}
 	 
 	}
 </script>
+<style>
+img{
+	width: 200px;
+	height: 200px;
+}
+</style>
 <body>
 		<h1>Community List</h1>
 		<table>
@@ -37,8 +43,10 @@
 					<td>${Dto.userKey}</td>
 					<td>${Dto.comDate}</td>
 				</tr>
-			</c:forEach>	
+				<img src="/resources/files/${Dto.userKey}${Dto.comTitle}">
+			</c:forEach>	 
 		</table>
+		 
 		<button onclick = "chk();">글작성</button>
 		
 		
