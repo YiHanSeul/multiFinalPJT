@@ -70,7 +70,7 @@
 			<p class="not">>펫 정보가 없습니다.</p>
 		</c:if> 
 		<c:if test="${not empty petDto}">
-			<c:forEach var="petDtos" items="${petDto}">
+			<c:forEach var="petDto" items="${petDto}">
 				<ul>
 					<li class="myInfo">펫 이름: ${petDto.petName }</li>
 					<li class="myInfo">펫 나이: ${petDto.petAge }</li>
