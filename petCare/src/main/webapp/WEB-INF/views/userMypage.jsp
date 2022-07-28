@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -63,14 +63,14 @@
 			</ul>
 		</c:if>
 	</div>
-	<div id="myPets">
+<!-- 	<div id="myPets"> -->
 		<p class="myPage-p">나의펫</p>
 		<hr>
-		<c:if test="${empty petDto }">
-			<p class="not">펫 정보가 없습니다.</p>
-		</c:if>
+ 		<c:if test="${empty petDto}">
+			<p class="not">>펫 정보가 없습니다.</p>
+		</c:if> 
 		<c:if test="${not empty petDto}">
-			<c:forEach var="petDto" items="${petDto }">
+			<c:forEach var="petDtos" items="${petDto}">
 				<ul>
 					<li class="myInfo">펫 이름: ${petDto.petName }</li>
 					<li class="myInfo">펫 나이: ${petDto.petAge }</li>
