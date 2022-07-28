@@ -44,6 +44,13 @@ public class UserController {
 	
 	@Autowired
 	private ResService resService;
+	
+	@GetMapping("/index1")
+	public String index1() {
+		return "index1";
+	}
+	
+	
 
 	@GetMapping("/user")
 	public String test() {

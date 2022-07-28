@@ -73,9 +73,9 @@ public class PetController {
 	    if(res>0) {
 	    	model.addAttribute("petDto", petDto);
 	    	
+	    	System.out.println(petDto);
 	    	
-	    	
-	    	return "index1";
+	    	return "userMypage";
 	    }else {
 	    	return "index1";
 	    }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -52,26 +52,26 @@
 			</ul>
 		</c:if>
 	</div>
-	<div id="myPets">
+<!-- 	<div id="myPets"> -->
 		<p class="myPage-p">나의펫</p>
 		<hr>
-		<c:if test="${empty petDto }">
-			<p class="not">펫 정보가 없습니다.</p>
-		</c:if>
+ 		<c:if test="${empty petDto}">
+			<p class="not">>펫 정보가 없습니다.</p>
+		</c:if> 
 		<c:if test="${not empty petDto}">
-			<c:forEach var="petDto" items="${petDto }">
+			<c:forEach var="petDtos" items="${petDto}">
 				<ul>
-					<li class="myInfo">펫 이름: ${petDto.petName }</li>
-					<li class="myInfo">펫 나이: ${petDto.petAge }</li>
-					<li class="myInfo">펫 성별: ${petDto.petGender }</li>
-					<li class="myInfo">petVac1: ${petDto.petVac1 } | petVac2:
-						${petDto.petVac2 } | petVac3: ${petDto.petVac3 }</li>
-					<li class="myInfo">펫 중성화: ${petDto.petNe }</li>
+ 					<li class="myInfo">펫 이름: ${petDto.petName }</li>
+					<li class="myInfo">펫 나이: ${petDto.petAge}</li>
+					<li class="myInfo">펫 성별: ${petDto.petGender}</li>
+					<li class="myInfo">petVac1: ${petDto.petVac1} | petVac2:
+						${petDto.petVac2} | petVac3: ${petDto.petVac3}</li>
+					<li class="myInfo">펫 중성화: ${petDto.petNe}</li> 
 				</ul>
 			</c:forEach>
 		</c:if>
-		
-		<form id="petAdd-forms" action="petInfoRes" method="get">
+		 
+	<form id="petAdd-forms" action="petInfoRes" method="get">
 			<ul class="petAdd-form">
 				<li>반려견이름 <input type="text" name="petName"></li>
 			</ul>
@@ -100,7 +100,7 @@
 			<input class ="btn btn-primary" type="submit" value="전송">
 
 		</form>
-
+ 
 		<button id="petadd-btn" class="btn btn-warning"
 			onclick="location.href='/pet/petInfo'">등록</button>
 	</div>
