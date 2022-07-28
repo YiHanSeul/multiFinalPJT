@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link href="/resources/css/userMypage.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link href="/resources/css/userMypage.css" rel="stylesheet"
+	type="text/css">
 <script>
 	function test() {
 		if (confirm("회원 탈퇴하시겠습니까?")) {
@@ -16,14 +18,15 @@
 			alert("취소를 누르셨습니다.");
 		}
 	}
-	function petRegitst(){
-		const popup = document.querySelector('#petAdd-forms');;
+	function petRegitst() {
+		const popup = document.querySelector('#petAdd-forms');
+		;
 		popup.classList.add('has-filter');
 		popup.classList.remove('hide');
 	}
-	function closePopup(){
+	function closePopup() {
 		const popup = document.querySelector('#petAdd-forms');
-		  popup.classList.add('hide');
+		popup.classList.add('hide');
 
 	}
 </script>
@@ -62,12 +65,12 @@
 			</ul>
 		</c:if>
 	</div>
-<!-- 	<div id="myPets"> -->
+	<div id="myPets">
 		<p class="myPage-p">나의펫</p>
 		<hr>
- 		<c:if test="${empty petDto}">
+		<c:if test="${empty petDto}">
 			<p class="not">>펫 정보가 없습니다.</p>
-		</c:if> 
+		</c:if>
 		<c:if test="${not empty petDto}">
 			<c:forEach var="petDto" items="${petDto}">
 				<ul>
@@ -77,52 +80,51 @@
 					<li class="myInfo">petVac1: ${petDto.petVac1 } | petVac2:
 						${petDto.petVac2 } | petVac3: ${petDto.petVac3 }</li>
 					<li class="myInfo">펫 중성화: ${petDto.petNe }</li>
-					<hr id="line"/>
+					<hr id="line" />
 				</ul>
 			</c:forEach>
 		</c:if>
-		<div  id="petAdd-forms" class="hide" >
-		<form action="/pet/petInfoRes" method="get">
-			<ul class="petAdd-form">
-				<li>반려견이름 <input type="text" name="petName"></li>
-			</ul>
-			<ul class="petAdd-form">
-				<li>반려견나이 <input type="text" name="petAge"></li>
-			</ul>
-			<ul class="petAdd-form">
-				<li>반려견성별 남<input type="radio" id="petGender" name="petGender"
-					value="남"> 여<input type="radio" id="petGender"
-					name="petGender" value="여">
-				</li>
-			</ul >
-			<ul class="petAdd-form">
-				<li>반려견품종 <input type="text" id="petType" name="petType"></li>
-			</ul>
-			<ul class="petAdd-form">
-				<li>중성화여부 O<input type="radio" name="petNe" value="O"
-					id="petNe"> X<input type="radio" name="petNe" value="X"
-					id="petNe"></li>
-			</ul>
-			<ul class="petAdd-form">
-				<li>예방접종현황 A<input type="checkbox" value="A" name="petVac">
-					B<input type="checkbox" value="B" name="petVac"> C<input
-					type="checkbox" value="C" name="petVac"></li>
-			</ul>
-			<div id="petAddform-btn">
-			<span class="btn btn-danger" onclick="closePopup()">취소</span>
-			<input class ="btn btn-primary" type="submit" value="전송">
-			</div>
-		</form>
+		<div id="petAdd-forms" class="hide">
+			<form action="/pet/petInfoRes" method="get">
+				<ul class="petAdd-form">
+					<li>반려견이름 <input type="text" name="petName"></li>
+				</ul>
+				<ul class="petAdd-form">
+					<li>반려견나이 <input type="text" name="petAge"></li>
+				</ul>
+				<ul class="petAdd-form">
+					<li>반려견성별 남<input type="radio" id="petGender" name="petGender"
+						value="남"> 여<input type="radio" id="petGender"
+						name="petGender" value="여">
+					</li>
+				</ul>
+				<ul class="petAdd-form">
+					<li>반려견품종 <input type="text" id="petType" name="petType"></li>
+				</ul>
+				<ul class="petAdd-form">
+					<li>중성화여부 O<input type="radio" name="petNe" value="O"
+						id="petNe"> X<input type="radio" name="petNe" value="X"
+						id="petNe"></li>
+				</ul>
+				<ul class="petAdd-form">
+					<li>예방접종현황 A<input type="checkbox" value="A" name="petVac">
+						B<input type="checkbox" value="B" name="petVac"> C<input
+						type="checkbox" value="C" name="petVac"></li>
+				</ul>
+				<div id="petAddform-btn">
+					<span class="btn btn-danger" onclick="closePopup()">취소</span> <input
+						class="btn btn-primary" type="submit" value="전송">
+				</div>
+			</form>
 		</div>
 		<button class="btn btn-warning" id="petAdd-btn" onclick="petRegitst()">등록</button>
-		
+
 	</div>
-	
-	
+
 	<!-- 수정해야함 -->
 	<div id="myPets">
 		<p class="myPage-p">예약현황</p>
-		<hr/>
+		<hr />
 		<c:if test="${empty resDto }">
 			<p class="not">예약 정보가 없습니다.</p>
 		</c:if>
@@ -154,9 +156,9 @@
 		<p class="myPage-p">고객센터 문의내용</p>
 		<hr>
 	</div>
-	
+
 	<input type="button" value="회원탈퇴" onclick="test()">
-	
+
 </body>
 </html>
 
