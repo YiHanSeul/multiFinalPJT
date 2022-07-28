@@ -353,6 +353,7 @@ function now() {
 	    console.log(HospitalName);
 	    location.href="/res/calendar?HospitalName="+HospitalName;
 	       }
+	       
    
    function getInfo() {
        // 지도의 현재 중심좌표를 얻어옵니다 
@@ -398,7 +399,7 @@ function now() {
         	
         } 
         for(var i = 0; i< sum.length; i++){ 
-       		$("#list").append("<tr class='ge'><td>"+listname[sum[i]]+"</td><td>"+listAddr[sum[i]]+"</td><td><button onclick=res("+sum[i]+");>예약하기</button></td></tr>");
+       		$("#list").append("<tr class='ge'><td>"+listname[sum[i]]+"</td><td>"+listAddr[sum[i]]+"</td><td id='tbt'><button class='btn btn-warning' onclick=res("+sum[i]+");>예약하기</button></td></tr>");
      
         }
       

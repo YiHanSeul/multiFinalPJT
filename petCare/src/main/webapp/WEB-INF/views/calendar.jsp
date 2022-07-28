@@ -20,19 +20,20 @@ a{
 color:black !important;
 }
 #sel_option{
-left: 75%;
-top: 16%;
-float: right;
+display: flex;
 margin-right: 0;
-position: fixed;
+padding-top:3%;
+padding-left: 10%;
 }
 
 #calendar{
+	display: flex;
+    flex-direction: column;
 	margin-left: 10%;
-	margin-top: 80pt;
+	margin-top: 40pt;
 	float: left;
 	width: 55%;
-	position: fixed;
+	position: relative;
 }
 
 #but {
@@ -63,17 +64,27 @@ text-align: center;
 #SB{
 width: 100pt;
 height: 50pt;
-float: right;
 margin-top: 3%;
 }
 body{
 height:700pt;
 }
 #tb{
-left: 75%;
-top: 50%;
-float: right;
-position: fixed;
+display: flex;
+flex-direction: column;
+width: 15%;
+padding-top:1%;
+padding-left: 10%;
+}
+
+.search-top-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    background: #FAFAD2;
+    opacity: 0.7;
 }
 
 @media(max-width:1030px){
@@ -103,14 +114,18 @@ color : black;
 font-size: medium;
 text-align: center;
 }
+#aaa{
+text-align: center;
+}
 </style>
 </head>
 <body>
 		
 		<%@ include file="/WEB-INF/views/template/menu.jsp" %>
 		<div class="menu" id="loginChk2"  style="display:none"></div>
-		
-		
+		<div class="search-top-container">
+ 		<h3 class="title" id="stt">진료 상담 예약</h3>
+		</div>
 		
 		<div id='calendar'></div>
 		<a href="javascript:doDisplay();"></a><br/>
@@ -120,6 +135,11 @@ text-align: center;
 					<input type="hidden" id="hn" name="HospitalName" value="${hospitalinfo.hospitalName}">
 					
 					<table id="table">
+						<tr>
+							<td>
+				      			<input type="hidden" id="bc" name="BookDate" value="">
+				      		</td>
+			      		</tr>
 						<section id="sel_option">
 						  <div id="sel1">
 						    <div>
@@ -146,13 +166,9 @@ text-align: center;
 						    </div>
 						  </div>
 						</table>
-						<tr>
-							<td>
-				      			<input type="hidden" id="bc" name="BookDate" value="">
-				      		</td>
-			      		</tr>
+						
 						</section>
-			     <tr>
+				<table id="aaaa">
 			     	<div id="tb">
 					      	<tr>
 					      		<th>반려견 견종</th></br>
@@ -173,9 +189,7 @@ text-align: center;
 								</td>
 							</tr>
 					</div>
-					
-				</tr>
-				
+				</table>
 				</form>
 				
 		
