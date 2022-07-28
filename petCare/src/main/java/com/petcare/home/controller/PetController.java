@@ -110,7 +110,9 @@ public class PetController {
 			   }
 			   
 			   int petPriceI = petService.petPriceI(petAgeI, petTypeI);
-			   model.addAttribute("petPriceI", petPriceI);
+			   comma cm = new comma();
+			    String petPriceI2 = cm.Test(petPriceI);
+			   model.addAttribute("petPriceI2", petPriceI2);
 			   String petNameI = petService.petNameI(petAgeI, petTypeI);
 			   model.addAttribute("petNameI", petNameI);
 			   model.addAttribute("petName", petName);
