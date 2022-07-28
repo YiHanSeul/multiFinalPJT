@@ -17,7 +17,6 @@
 		}
 	}
 	function petRegitst(){
-		console.log("클릭되나?");
 		const popup = document.querySelector('#petAdd-forms');;
 		popup.classList.add('has-filter');
 		popup.classList.remove('hide');
