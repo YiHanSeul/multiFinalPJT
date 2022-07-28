@@ -1,7 +1,17 @@
 package com.petcare.home.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
+import java.util.Base64; 
+
 
 import javax.servlet.http.HttpSession;
 
@@ -40,7 +50,7 @@ public class BoardController {
 	
 	@PostMapping("/write")
 	public String write(Model model, BoardDto writeDto,@RequestParam("file") 
-	MultipartFile file) {
+	MultipartFile file) throws IOException {
 	 
 		System.out.println(writeDto); 
 		MapDto mapdto = null;
@@ -59,17 +69,31 @@ public class BoardController {
 				int res = boardService.write(writeDto);
 				if(res > 0) {
 					
-					File saveFile = null;
-					String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+//					File saveFile = null;
+//					String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+//					
+//					saveFile = new File(projectPath,writeDto.getUserKey()+writeDto.getComTitle());
 					
-					saveFile = new File(projectPath,writeDto.getUserKey()+writeDto.getComTitle());
-					
-					try {
-						file.transferTo(saveFile);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					
+//					try {
+//						file.transferTo(saveFile);
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+			        InputStream in = null;
+			        OutputStream out = null;
+			         
+			        in = file.getInputStream();
+			        out = new FileOutputStream("C:\\Users\\tpdls\\OneDrive\\바탕 화면\\img\\"+writeDto.getUserKey()+writeDto.getComTitle());
+			        while(true) {
+			        	int data = in.read();
+			        	if(data==-1) {
+			        		break;
+			        	}
+			        	out.write(data);
+			        }
+			        in.close();
+			        out.close();
+			        
 					return "redirect:/board/list";				
 				}else {
 					model.addAttribute("no", 2);
