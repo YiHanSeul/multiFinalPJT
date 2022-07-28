@@ -34,6 +34,7 @@
 		<div class="menu" id="logout" style="display:none;"><a href="/user/logout">로그아웃</a></div>
 		<div class="menu" id="join" style="display:none;"><a href="/user/join">회원가입</a></div>
 	</div>
+	<div id="tmp"></div>
 	<div id="menus2">
 		<div class="menu"><a href="/map/hosMap">병원찾기</a></div>
 		<div class="menu"><a href="/hos/vacc">예방접종</a></div>

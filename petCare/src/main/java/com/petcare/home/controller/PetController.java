@@ -41,17 +41,10 @@ public class PetController {
 				  petDto.getPetGender()== "" || petDto.getPetType() == null ||
 				  petDto.getPetType() == "" || petDto.getPetNe() == null ||
 				  petDto.getPetNe() =="") {
-			   
-			   
 		   }
 		   
-		   
 		   String userid = (String)session.getAttribute("userid");
-		  
 		   petDto.setUserKey(userService.userKeyChk(userid));
-		   
-		   
-		   
 		   
 		   String[] arr = petVac.split(",");
 		    petDto.setPetVac1("X");	
@@ -72,15 +65,10 @@ public class PetController {
 	    int res = petService.insertPet(petDto);
 	    if(res>0) {
 	    	model.addAttribute("petDto", petDto);
-	    	
-	    	
-	    	
-	    	return "index1";
+	    	return "redirect:/user/userMypage";
 	    }else {
 	    	return "index1";
 	    }
-		    
-		 
 	   }
 		 
 	   @GetMapping("/petInsuInfo")
