@@ -29,9 +29,6 @@
         <label for="slide3">&nbsp;</label>
         <label for="slide4">&nbsp;</label>
     </div>
-</div>
-
-
-
+</div> 
 </body>
 </html> 
