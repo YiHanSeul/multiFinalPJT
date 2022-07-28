@@ -23,5 +23,10 @@ public class MapServiceImpl implements MapService {
 	public List<MapDto> selectreigon(String addr) {
 		return mapMapper.selectreigon(addr);
 	}
+
+	@Override
+	public int search(String name) {
+		return mapMapper.search(name);
+	}
  
 }
