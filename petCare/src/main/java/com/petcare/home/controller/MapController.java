@@ -1,10 +1,15 @@
 package com.petcare.home.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petcare.home.model.service.MapService; 
 
@@ -22,10 +27,11 @@ public class MapController {
       return "hosMap";
    }
    
-   @GetMapping("/search")
-   public int search(Model model) {
-       model.addAttribute("namelist",mapservice.search());
-       int cnt = "namelist".length();
+   @PostMapping("/search")
+   @ResponseBody
+   public int search(HttpServletRequest request, @RequestParam("hn") String HosName) {
+	   System.out.println(HosName);
+	  int cnt = mapservice.search(HosName);
       return cnt;
    }
    

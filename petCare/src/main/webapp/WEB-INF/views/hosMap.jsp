@@ -201,10 +201,6 @@ width:5%;
       -->
       
    <script>
-   	
-   
-
-   
    
 	  var listlng = new Array();
       var listlat = new Array();
@@ -224,9 +220,6 @@ width:5%;
       listname.push("${list.getHospitalname()}");
       listAddr.push("${list.getAddr()}");
       listnum.push(0);
-      </c:forEach>
-      
-      <c:forEach var="namelist" items="${list}">
       </c:forEach>
       
       for (var i = 0; i < listlng.length; i++) {
@@ -323,6 +316,25 @@ width:5%;
       kakao.maps.event.addListener(map, 'mousemove', function(mouseEvent) {
    		getInfo();
    	});	
+      
+      function search(){
+  		var HosName = $("#name").val();
+  		console.log(HosName);
+          $.ajax({
+              url:"/map/search", //Controller에서 인식할 주소
+              type:"post", //POST 방식으로 전달
+              data:{"hn":HosName},
+              success:function(cnt){
+              	if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 예약 가능 
+              		alert("없음");
+                  } else { // cnt가 1일 경우 -> 예약 불가능
+                  	alert(cnt);
+                  }
+              },
+          });
+  		
+  		};
+  	
       
    </script>
 </body>
