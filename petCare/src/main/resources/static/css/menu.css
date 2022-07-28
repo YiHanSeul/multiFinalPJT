@@ -28,7 +28,13 @@ a {
 	padding: 0px 20px 0px 20px;
 	color: black;
 }
-
+#tmp{
+	background-color: #FFFFFF;
+	width: 80%;
+	height: 10%;
+	position: fixed;
+	top:0%;
+}
 #menus2 {
 	background-color: #f0ce5d;
 	display: flex;

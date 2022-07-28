@@ -82,6 +82,62 @@ width:5%;
     opacity: 1 !important;
 }
 
+.section-map .search-head {
+    position: relative;
+    z-index: 3;
+    margin-top: -115px;
+    margin-bottom: 40px;
+}
+
+.search-box-container {
+	display: flex;
+    flex-direction: column;
+    margin: 0 auto 0;
+    padding: 10px;
+    max-width: 640px;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(90deg,#f7aa1d,#e1e500);
+    box-shadow: 0 6px 15px 0 rgb(36 36 36 / 21%);
+}
+.search-box-container .inner {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+
+.search-box-container .inner input[type=text] {
+    padding: 0 90px 0 20px;
+    width: 100%;
+    height: 100%;
+    font-size: 34px;
+    color: #0dbcaf;
+    font-weight: 300;
+    border: none!important;
+}
+
+.search-box-container .inner button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 90px;
+    height: 100%;
+    background: url(/resources/img/search.jpg) no-repeat 50%;
+    background-size: cover;
+}
+#nametable{
+	display: none;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	width:100%; 
+	margin: 0;
+	align-items: center;
+	left:2.15%;
+}
+
 </style>
 
 <body>
@@ -91,6 +147,11 @@ width:5%;
  	<div class="search-top-container">
  		<h3 class="title" id="stt">동물병원 찾기</h3>
  	</div>
+ 	<div class="search-head"><div class="search-box-container"><div class="inner"><input type="text" id="name"><button type="button" onclick="search()"></button></div><!----></div></div>
+ 	<div id="nametable">
+   
+   		<table id="namelist" border="0"></table>
+   </div>
 	<div style="padding:10px;"></div>
    <div id="selectbar">
       <button class="btn btn-warning" onclick="now();">현위치</button>
@@ -140,15 +201,18 @@ width:5%;
       -->
       
    <script>
-
    
 	  var listlng = new Array();
       var listlat = new Array();
       var listname = new Array();
       var listAddr = new Array();
-      var listnum = new Array(); 
+      var listnum = new Array();
+      var namelistname = new Array();
+      var namelistAddr = new Array();
+      var namelistnum = new Array();
       var avglat = 0;
       var avglng = 0; 
+      
       
       <c:forEach var="list" items="${list}">
       listlng.push("${list.getLng()}");
@@ -252,6 +316,25 @@ width:5%;
       kakao.maps.event.addListener(map, 'mousemove', function(mouseEvent) {
    		getInfo();
    	});	
+      
+      function search(){
+  		var HosName = $("#name").val();
+  		console.log(HosName);
+          $.ajax({
+              url:"/map/search", //Controller에서 인식할 주소
+              type:"post", //POST 방식으로 전달
+              data:{"hn":HosName},
+              success:function(cnt){
+              	if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 예약 가능 
+              		alert("없음");
+                  } else { // cnt가 1일 경우 -> 예약 불가능
+                  	alert(cnt);
+                  }
+              },
+          });
+  		
+  		};
+  	
       
    </script>
 </body>

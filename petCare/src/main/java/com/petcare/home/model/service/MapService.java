@@ -8,5 +8,6 @@ public interface MapService {
  
    public List<MapDto> selectMap();
    public List<MapDto> selectreigon(String addr);
+   public int search(String name);
    
 }
