@@ -21,6 +21,14 @@ public class MapController {
        model.addAttribute("list",mapservice.selectMap());
       return "hosMap";
    }
+   
+   @GetMapping("/search")
+   public int search(Model model) {
+       model.addAttribute("namelist",mapservice.search());
+       int cnt = "namelist".length();
+      return cnt;
+   }
+   
    @GetMapping("/region")
    public String region(Model model,String region,String zone) { 
       model.addAttribute("list",mapservice.selectreigon(region+" "+zone));
