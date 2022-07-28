@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.petcare.home.api.comma;
 import com.petcare.home.model.dto.PetDto;
 import com.petcare.home.model.service.PetService;
 import com.petcare.home.model.service.UserService;
@@ -88,20 +89,39 @@ public class PetController {
 	   }
 	   
 	   @GetMapping("/petInsuInfoRes")
-	   public String petInsuInfoRes(String petInsuName, String petInsuGender, float petInsuAge, String petInsuType, String petInsuType2 ) {
+	   public String petInsuInfoRes(Model model, float petAgeI, String petTypeI, String petTypeI2, String petName) {
 
 
-		   if(petInsuType2 == null) {
-			   int petInsuPrice = petService.petInsuPrice(petInsuAge, petInsuType);
-			   System.out.println(petInsuType+"의 가격은 "+petInsuPrice+"입니다.");
+		   if(petTypeI2 == null) {
+			   int petPriceI = petService.petPriceI(petAgeI, petTypeI);
+			    comma cm = new comma();
+			    String petPriceI2 = cm.Test(petPriceI);
+			   
+			   
+			   model.addAttribute("petPriceI2", petPriceI2);
+			   String petNameI = petService.petNameI(petAgeI, petTypeI);
+			   model.addAttribute("petNameI", petNameI);
+			   
+//			   System.out.println(petName);
+			   model.addAttribute("petName", petName);
 		   }else{
-			   petInsuType += "D";
-			   //System.out.println(petInsuType);
-			   int petInsuPrice = petService.petInsuPrice(petInsuAge, petInsuType);
-			   System.out.println(petInsuType+"의 가격은 "+petInsuPrice+"입니다.");
+			   if(!petTypeI.equals("초소형견")) {
+				   petTypeI += "D";
+			   }
+			   
+			   int petPriceI = petService.petPriceI(petAgeI, petTypeI);
+			   comma cm = new comma();
+			    String petPriceI2 = cm.Test(petPriceI);
+			   model.addAttribute("petPriceI2", petPriceI2);
+			   String petNameI = petService.petNameI(petAgeI, petTypeI);
+			   model.addAttribute("petNameI", petNameI);
+			   model.addAttribute("petName", petName);
 		   }
 		   
-		   return "index1";
+		   return "petRePage";
 	   }
+	   
+	   
+	   
 	   
 }

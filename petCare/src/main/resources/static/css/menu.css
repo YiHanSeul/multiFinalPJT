@@ -36,7 +36,7 @@ a {
 	align-items: center;
 	height: 80px;
 	margin-top: 5px;
-	position: relative;
+	position: fixed;
 	width: 100%;
 	z-index:5;
 }
