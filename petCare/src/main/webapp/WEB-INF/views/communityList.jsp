@@ -43,7 +43,7 @@ img{
 					<td>${Dto.userKey}</td>
 					<td>${Dto.comDate}</td>
 				</tr>
-				<img src="https://localhost:8787//${Dto.userKey}${Dto.comTitle}">
+				<img src="/imagePath/${Dto.userKey}${Dto.comTitle}">
 			</c:forEach>	 
 		</table>
 		 
