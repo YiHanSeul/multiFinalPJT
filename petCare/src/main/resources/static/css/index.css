@@ -9,10 +9,12 @@
     display: none;
 }
 
-img{
-	width: 100%;
-	
-}
+ul.imgs li a img{
+	position:fixed;
+	left:0%;
+	width:100%;
+	top:5%;
+	}
 ul.imgs{
     padding: 0;
     margin: 0;
