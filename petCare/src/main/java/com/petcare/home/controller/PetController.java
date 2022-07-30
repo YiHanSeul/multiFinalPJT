@@ -43,6 +43,7 @@ public class PetController {
 				  petDto.getPetNe() =="") {
 		   }
 		   
+		   
 		   String userid = (String)session.getAttribute("userid");
 		   petDto.setUserKey(userService.userKeyChk(userid));
 		   
