@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 
@@ -132,5 +133,17 @@ public class BoardController {
 		
 		return "communityDetail";
 	}
-	
+	@GetMapping("/del")
+	public String del(int boardCnt) {
+		int res = 0;
+		try {
+			res = boardService.del(boardCnt);
+		} catch (Exception e) {
+			return "redirect:/board/list";
+		}
+		if(res>0) {
+			return "redirect:/board/list";
+		}
+		return "redirect:/board/list";
+	}
 }
