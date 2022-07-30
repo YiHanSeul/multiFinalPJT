@@ -47,6 +47,11 @@ public class BoardServiceImpl implements BoardService{
 	public int selecthosname(String Field1) {
 		return boardMapper.selecthosname(Field1);
 	}
+
+	@Override
+	public int del(int boardCnt) {
+		return boardMapper.del(boardCnt);
+	}
 	
 	
 }

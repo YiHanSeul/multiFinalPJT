@@ -21,7 +21,9 @@
 		 	}
 	 
 	}
-	
+	function del(boardCnt){
+		location.href="/board/del?boardCnt="+boardCnt;
+	}
 	
 	var BoardCnt = new Array(); 
     
@@ -202,6 +204,7 @@ td{
 						<img src="/imagePath/${Dto.userKey}${Dto.comTitle}">
 							<div class="date">${Dto.comDate}</div>
 						</a>
+						<button onclick = "del(${Dto.boardCnt});" class="btn btn-warning">삭제</button>
 					</td>
 				</tr>
 			</c:forEach>	 
