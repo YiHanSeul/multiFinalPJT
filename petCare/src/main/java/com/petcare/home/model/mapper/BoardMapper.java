@@ -2,6 +2,7 @@ package com.petcare.home.model.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -27,4 +28,6 @@ public interface BoardMapper {
 	@Select(" select count(*) from MAP where HOSPITALNAME = #{Field1} ")
 	int selecthosname(String Field1);
 	
+	@Delete(" delete from community where boardCnt= #{boardCnt} ")
+	int del(int boardCnt);
 }

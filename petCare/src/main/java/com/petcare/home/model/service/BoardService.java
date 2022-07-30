@@ -16,4 +16,6 @@ public interface BoardService {
 	public BoardDto selectKey(String id);
 	
 	public int selecthosname(String ComTitle);
+	
+	public int del(int boardCnt);
 }
