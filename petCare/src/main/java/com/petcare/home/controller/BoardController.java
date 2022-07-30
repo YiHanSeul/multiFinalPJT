@@ -1,16 +1,11 @@
 package com.petcare.home.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+ 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
-import java.util.Base64; 
 
 
 import javax.servlet.http.HttpSession;
@@ -41,10 +36,32 @@ public class BoardController {
 		
 		List<BoardDto> list = boardService.selectList();
 		model.addAttribute("BoardList", list);
+		model.addAttribute("num", 1);
+		model.addAttribute("begin", 0);
+		model.addAttribute("end", 8);
 		
 		BoardDto  dto = boardService.selectKey((String)session.getAttribute("userid"));
 		session.setAttribute("userKey", dto.getUserKey());
  
+		return  "communityList";
+	}
+	
+	@GetMapping("/list1")
+	public String BoardList1(int num, Model model, HttpSession session){
+		
+		List<BoardDto> list = boardService.selectList();
+		model.addAttribute("BoardList", list);
+		model.addAttribute("num", num);
+		
+		if(list.size()/9==(num-1)) {
+		model.addAttribute("begin", (num-1)*9);
+		model.addAttribute("end", list.size()-1);
+		}else {
+			model.addAttribute("begin", (num-1)*9);
+			model.addAttribute("end", (num*9)-1);
+		}
+		BoardDto  dto = boardService.selectKey((String)session.getAttribute("userid"));
+		session.setAttribute("userKey", dto.getUserKey());
 		return  "communityList";
 	}
 	
