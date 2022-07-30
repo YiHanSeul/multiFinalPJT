@@ -68,21 +68,19 @@ public class BoardController {
 	@PostMapping("/write")
 	public String write(Model model, BoardDto writeDto,@RequestParam("file") 
 	MultipartFile file) throws IOException {
-	 
+	 int num = 0;
 		System.out.println(writeDto); 
-		MapDto mapdto = null;
 		try {
-			mapdto = boardService.selecthosname(writeDto.getField1());			
-			System.out.println(mapdto);
+			num = boardService.selecthosname(writeDto.getField1());		
+			System.out.println(num);
 		} catch (Exception e) {
 			model.addAttribute("no", 1);
 			return "communityWrite";
 		}
-			if(mapdto==null) {
+			if(num<=0) {
 				model.addAttribute("no", 1);
 				return "communityWrite";
 			}else {
-				writeDto.setField1(mapdto.getHospitalname());
 				int res = boardService.write(writeDto);
 				if(res > 0) {
 					
@@ -118,7 +116,6 @@ public class BoardController {
 				}
 			} 
 	}
-		
 	 
 	@GetMapping("/writeForm")
 	public String insertForm(Model model) {
@@ -129,7 +126,6 @@ public class BoardController {
 	@GetMapping("/detail")
 	public String detail(Model model, int boardCnt) {
 
-		
 		BoardDto one= boardService.selectOne(boardCnt);
 		
 		model.addAttribute("detail", one);

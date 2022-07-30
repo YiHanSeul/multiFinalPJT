@@ -24,7 +24,7 @@ public interface BoardMapper {
 	@Select(" select * from User where UserId = #{id} ")
 	BoardDto selectKey(String id);
 	
-	@Select(" select * from MAP where HOSPITALNAME = #{Field1} ")
-	MapDto selecthosname(String Field1);
+	@Select(" select count(*) from MAP where HOSPITALNAME = #{Field1} ")
+	int selecthosname(String Field1);
 	
 }

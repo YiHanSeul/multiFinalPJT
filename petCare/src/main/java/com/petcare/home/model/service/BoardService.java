@@ -15,5 +15,5 @@ public interface BoardService {
 	
 	public BoardDto selectKey(String id);
 	
-	public MapDto selecthosname(String ComTitle);
+	public int selecthosname(String ComTitle);
 }

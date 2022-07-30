@@ -44,7 +44,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
-	public MapDto selecthosname(String Field1) {
+	public int selecthosname(String Field1) {
 		return boardMapper.selecthosname(Field1);
 	}
 	
