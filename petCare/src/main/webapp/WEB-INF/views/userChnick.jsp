@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="/user/userMypageRes" method="get">
-	<input type="text" placeholder="${usernick }" name="usernick">
+	<input type="text" placeholder="바꿀 닉네임을 입력해주세요." name="usernick" style="width:15%">
 	<input type="submit" value="수정">
 </form>
 </body>

@@ -20,3 +20,26 @@ function check(){
 		}
 	}); 
 }
+
+$(document).keyup(function(){
+	
+	
+ 	var pwd1 = $("#userpw").val();
+    var pwd2 = $("#userpwConfirm").val();
+    
+
+    if ( pwd1 == '' && pwd2 =='' ) { 
+        $("#alert-success").css('display', 'none');
+        $("#alert-danger").css('display', 'none');
+    } else{
+        if (pwd1 == pwd2) {
+            $("#alert-success").css('display', 'inline-block');
+            $("#alert-danger").css('display', 'none');
+        } else {
+            $("#alert-success").css('display', 'none');
+            $("#alert-danger").css('display', 'inline-block');
+        }
+    
+    }
+
+});

@@ -7,63 +7,62 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/resources/css/petRePage.css" rel="stylesheet"type="text/css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$("#btn_toggle").click(function() {
-			$("#Toggle").toggle();
-		});
-		$("#btn_toggle2").click(function() {
-			$("#Toggle2").toggle();
-		});
-		$("#btn_toggle3").click(function() {
-			$("#Toggle3").toggle();
-		});
-	});
-</script>
+<script type="text/javascript" src="/resources/js/petRePage.js"></script> <!-- Pet Result Page -->
 </head>
 <body>
-<%@ include file="/WEB-INF/views/template/menu.jsp" %>
+	<%@ include file="/WEB-INF/views/template/menu.jsp"%>
 	<div class="main">
 		<div id="mainText">
-			<h3>${petName }님의 보험 추천상품으로 가격이 ${petPriceI2 }원인 ${petNameI } 상품을
+			<h3>${petName }님의보험 추천상품으로 가격이 ${petPriceI2 }원인 ${petNameI } 상품을
 				추천합니다.</h3>
 		</div>
 	</div>
 	<br>
 
+
+		<h4>
+			<a
+				href="https://direct.samsungfire.com/ria/pc/product/pet/?state=Front&gclid=Cj0KCQjw0JiXBhCFARIsAOSAKqA0eKIuT5tLoISxS-9xVBIxwQBWcDps9PinHV3KVn4MpDDM-5gUR8oaAtU1EALw_wcB"
+				target='_blank'>삼성화재 다이렉트 반려견보험</a> &nbsp;&nbsp;&nbsp;
+			<a
+				href="https://www.ppmint.com/pet/product.do#!/contractPopup"
+				target='_blank'>메리츠화재 공식 펫퍼민트</a> &nbsp;&nbsp;&nbsp;
+			<a
+				href="https://petsafe.co.kr/"
+				target="_blank">DB 손해보험 펫세이프</a> &nbsp;&nbsp;&nbsp;
+		</h4>
+		
+	
 	<div class="main2">
-		<div class="main_">
-			우리 아이 보장 내역</div>
-		<div class="main_">
-			통원의료비보장 연 500만원 한도 1일당 1만원 공제 후 70% 보상
+		
+		<div class="mainList">
+			가. 특약에 따라 보상하는 손해의 종류
 			<button id="btn_toggle">자세히</button>
-			<div id="Toggle">통원의료비보장 동물병원 통원(수술 포함)시
-				매년 횟수에 제한 없이 가입금액 한도로 보상해 드립니다. 보험개시일을 포함하여 30일 이내에 발생한 질병은 보상 하지
-				않습니다. 보장개시일을 포함하여 1년 이내에 발생한 슬관절, 고관절 관련 질병 및 상해에 대해서는 보상하지 않습니다.
-				자세한 사항은 반드시 약관을 확인하시기 바랍니다.</div>
-		</div>
-		<div class="main_">
-			입원의료비보장 연 500만원 한도 1일당 1만원 공제 후 70% 보상
-			<button id="btn_toggle2">자세히</button>
-			<div id="Toggle2">입원의료비보장 동물병원 입원(수술 포함)시
-				매년 횟수에 제한 없이 가입금액 한도로 보상해 드립니다. 보험개시일을 포함하여 30일 이내에 발생한 질병은 보상 하지
-				않습니다. 보장개시일을 포함하여 1년 이내에 발생한 슬관절, 고관절 관련 질병 및 상해에 대해서는 보상하지 않습니다.
-				자세한 사항은 반드시 약관을 확인하시기 바랍니다.</div>
+			<div id="Toggle">입원 치료비, 통원 치료비, 수술비, 검사비 등이 다름. (본 사이트는
+				통원의료비보장 연 500만원 한도 1일당 1만원 공제 후 70% 보상, 입원의료비보장 연 500만원 한도 1일당 1만원
+				공제 후 70% 보상, 반려견배상책임보장 연 1,000만원 한도를 기준으로 적합한 가격을 제시함을 알림.)</div>
 		</div>
 
-		<div id="main_1">
-			반려견배상책임보장 연 1,000만원 한도
+		<div class="mainList">
+			나. 가입 거절, 보험금 지급 거절, 계약 해지에 관한 내용
+
+			<button id="btn_toggle2">자세히</button>
+			<div id="Toggle2">본 사이트가 최대로 보는 신규 가입의 나이는 최대 만 6살을 기준으로 하고 있으며
+				이는 다른 사이트와 상이 할 수 있음. 반려 동물의 나이에 따라 가입이 거절될 수 있으며 계약 전 알릴 의무는 충실히
+				이행해야 함. 이를 어길 시 계약이 해지되거나 보험금 지급이 거절 될 수 있음.</div>
+		</div>
+
+		<div id="mainList2">
+			다. 순수보장성 보험이라 만기환급금이 없음.
 			<button id="btn_toggle3">자세히</button>
-			<div id="Toggle3">반려견배상책임보장 반려견이 타인 또는
-				타인의 반려동물에게 손해를 입혀 법률상 배상책임을 부담해야 하는 경우 가입 금액 한도로 보상해 드립니다. 1회 사고당
-				자기부담금 3만원을 공제 후 지급해 드립니다. 피보험자 이외의 제 3자가 반려견과 함께 있을 때 발생한 사고는 보상하지
-				않습니다. 자세한 사항은 반드시 약관을 확인하시기 바랍니다.</div>
+			<div id="Toggle3">다만, 보험사고가 발생하지 않은 채 중도해지시 미경과보험료를 받을 수 있음.</div>
 		</div>
 
 	</div>
 	
-	<br>
+	
+	
+	<br><br><br><br>
 	<div id="download">
 		<a href="/download">약관 다운로드</a>
 	</div>
