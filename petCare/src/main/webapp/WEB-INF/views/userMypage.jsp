@@ -77,8 +77,6 @@
 					<li class="myInfo">펫 이름: ${petDto.petName }</li>
 					<li class="myInfo">펫 나이: ${petDto.petAge }</li>
 					<li class="myInfo">펫 성별: ${petDto.petGender }</li>
-					<li class="myInfo">petVac1: ${petDto.petVac1 } | petVac2:
-						${petDto.petVac2 } | petVac3: ${petDto.petVac3 }</li>
 					<li class="myInfo">펫 중성화: ${petDto.petNe }</li>
 					<hr id="line" />
 				</ul>
@@ -106,11 +104,7 @@
 						id="petNe"> X<input type="radio" name="petNe" value="X"
 						id="petNe"></li>
 				</ul>
-				<ul class="petAdd-form">
-					<li>예방접종현황 A<input type="checkbox" value="A" name="petVac">
-						B<input type="checkbox" value="B" name="petVac"> C<input
-						type="checkbox" value="C" name="petVac"></li>
-				</ul>
+				
 				<div id="petAddform-btn">
 					<span class="btn btn-danger" onclick="closePopup()">취소</span> <input
 						class="btn btn-primary" type="submit" value="전송">

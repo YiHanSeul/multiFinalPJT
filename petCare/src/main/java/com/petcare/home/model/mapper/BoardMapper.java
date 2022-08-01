@@ -19,7 +19,7 @@ public interface BoardMapper {
 	@Select("select * from Community where BoardCnt=#{boardCnt}")
 	BoardDto selectOne(int boardCnt);
 	
-	@Insert(" insert into community values(null, now(), #{comContent} ,  #{comTitle}, #{field1}, #{userKey}) ")
+	@Insert(" insert into community values(null, now(), #{comContent} ,  #{comTitle}, #{field1}, #{userKey} ,#{rating}) ")
 	int write(BoardDto writeDto);
 	
 	@Select(" select * from User where UserId = #{id} ")
