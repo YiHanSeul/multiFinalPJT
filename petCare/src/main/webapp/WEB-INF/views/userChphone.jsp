@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="/user/userMypageRes" method="get">
-	<input type="text" placeholder="${userphone }" name="userphone">
+	<input type="text" placeholder="바꿀 전화번호를 입력해주세요." name="userphone" style="width:15%">
 	<input type="submit" value="수정">
 </form>
 </body>

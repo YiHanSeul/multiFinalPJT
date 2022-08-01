@@ -1,6 +1,4 @@
-package com.petcate.home.final_;
-
-
+package com.petcare.home.finalT;
 
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +18,7 @@ import javax.validation.Valid;
 public class MemberController {
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
+    
     @GetMapping(value = "/new")
     public String memberForm(Model model){
         model.addAttribute("memberFormDto", new MemberFormDto());

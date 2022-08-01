@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,18 +44,11 @@ public class UserController {
 	
 	@Autowired
 	private ResService resService;
-	
-	@GetMapping("/test")
-	public String test1() {
-		
-		return "index1";
-	}
-	
-
-	
 
 	@GetMapping("/user")
 	public String test() {
+		
+		
 		return "userInsert";
 	}
 
@@ -84,17 +76,25 @@ public class UserController {
 	// user.jsp파일에서 form 전송 클릭했을경우 실행되는 메소드
 	@GetMapping("/insertUser")
 	public String insertUser(UserDto user, HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
-		System.out.println(user);
-		int res = userService.joinUser(user);
-		if (res > 0) {
-			System.out.println(user);
-			session.setAttribute("userid", user.getUserid());
-
-			return "login";
-		} else {
-			return "index1";
+		
+		if(user.getUserid() == "" || user.getUserpw() == "" || user.getUsername() =="" || user.getUsernick() == "" || user.getUseremail() == "" || user.getUserphone() == "") {
+			return "userInsert";
 		}
-
+	
+			
+			int res = userService.joinUser(user);
+			
+			if (res > 0) {
+				System.out.println(user);
+				session.setAttribute("userid", user.getUserid());
+				
+				return "login";
+			} else {
+				return "index2";
+			}
+			
+		
+			
 	}
 
 	@PostMapping("/loginForm")
@@ -303,10 +303,10 @@ public class UserController {
 
 	@GetMapping("/findpwing")
 	public String findpwing() {
-		return "findpw";
+		return "userFindpw";
 	}
 
-	@GetMapping("/findpw")
+	@GetMapping("/userFindpw")
 	public void findPwPOST(@ModelAttribute UserDto userDto, HttpServletResponse response) throws Exception {
 		userService.findPw(response, userDto);
 	}

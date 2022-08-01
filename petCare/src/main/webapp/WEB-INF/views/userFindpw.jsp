@@ -32,11 +32,11 @@ function check(){
 
 	<p>
 		아이디
-		<input type="text" id="userid" name="userid" placeholder="회원가입한 아이디를 입력하세요">
+		<input type="text" id="userid" name="userid" placeholder="회원가입한 아이디를 입력하세요" style="width:15%;">
 	</p>
 	<p>
 		이메일
-		<input type="text" id="useremail" name="useremail" placeholder="회원가입한 아이디를 입력하세요">
+		<input type="text" id="useremail" name="useremail" placeholder="회원가입한 이메일을 입력하세요" style="width:15%;">
 	</p>
 	<p>
 		<input type="button" onclick="check()" value="찾기">

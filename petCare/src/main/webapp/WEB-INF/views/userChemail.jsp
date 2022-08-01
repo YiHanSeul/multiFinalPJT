@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="/user/userMypageRes" method="get">
-	<input type="text" placeholder="${useremail }" name="useremail">
+	<input type="text" placeholder="바꿀 이메일을 입력해주세요." name="useremail" style="width:15%">
 	<input type="submit" value="수정">
 </form>
 </body>
