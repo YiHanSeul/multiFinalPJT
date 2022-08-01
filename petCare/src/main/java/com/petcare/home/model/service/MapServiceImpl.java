@@ -25,8 +25,8 @@ public class MapServiceImpl implements MapService {
 	}
 
 	@Override
-	public int search(String name) {
-		return mapMapper.search(name);
+	public List<MapDto> search(String HN) {
+		return mapMapper.search(HN);
 	}
- 
+
 }

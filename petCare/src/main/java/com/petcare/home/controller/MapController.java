@@ -1,5 +1,7 @@
 package com.petcare.home.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +29,22 @@ public class MapController {
       return "hosMap";
    }
    
-   @PostMapping("/search")
-   @ResponseBody
-   public int search(HttpServletRequest request, @RequestParam("hn") String HosName) {
-	   System.out.println(HosName);
-	  int cnt = mapservice.search(HosName);
-      return cnt;
+   @GetMapping("/hosSearchRes")
+   public String hosSearchRes() {
+      return "hosSearchRes";
    }
+   
+   @GetMapping("/search")
+   public String search(HttpServletRequest request, Model model) {
+	   String HN= request.getParameter("HN");
+	   System.out.println(HN);
+	   System.out.println(mapservice.search(HN));
+	   model.addAttribute("list",mapservice.search(HN));
+	   
+		return "redirect:/map/hosSearchRes";
+	}
+	
+	   
    
    @GetMapping("/region")
    public String region(Model model,String region,String zone) { 

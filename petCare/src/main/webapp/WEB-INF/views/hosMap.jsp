@@ -147,11 +147,15 @@ width:5%;
  	<div class="search-top-container">
  		<h3 class="title" id="stt">동물병원 찾기</h3>
  	</div>
- 	<div class="search-head"><div class="search-box-container"><div class="inner"><input type="text" id="name"><button type="button" onclick="search()"></button></div><!----></div></div>
+ 	
+ 	<form action="/map/search" method="get">
+ 	<div class="search-head"><div class="search-box-container"><div class="inner"><input type="text" name="HN"><button type="submit" onclick="search()"></button></div><!----></div></div>
+ 	</form>
+ 	
  	<div id="nametable">
-   
    		<table id="namelist" border="0"></table>
    </div>
+   
 	<div style="padding:10px;"></div>
    <div id="selectbar">
       <button class="btn btn-warning" onclick="now();">현위치</button>
@@ -207,9 +211,6 @@ width:5%;
       var listname = new Array();
       var listAddr = new Array();
       var listnum = new Array();
-      var namelistname = new Array();
-      var namelistAddr = new Array();
-      var namelistnum = new Array();
       var avglat = 0;
       var avglng = 0; 
       
@@ -316,25 +317,6 @@ width:5%;
       kakao.maps.event.addListener(map, 'mousemove', function(mouseEvent) {
    		getInfo();
    	});	
-      
-      function search(){
-  		var HosName = $("#name").val();
-  		console.log(HosName);
-          $.ajax({
-              url:"/map/search", //Controller에서 인식할 주소
-              type:"post", //POST 방식으로 전달
-              data:{"hn":HosName},
-              success:function(cnt){
-              	if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 예약 가능 
-              		alert("없음");
-                  } else { // cnt가 1일 경우 -> 예약 불가능
-                  	alert(cnt);
-                  }
-              },
-          });
-  		
-  		};
-  	
       
    </script>
 </body>
