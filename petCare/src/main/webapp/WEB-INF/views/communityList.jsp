@@ -21,8 +21,13 @@
 		 	}
 	 
 	}
-	function del(boardCnt){
-		location.href="/board/del?boardCnt="+boardCnt;
+	function del(boardCnt, Key){
+		if(Key==${userKey}){
+		location.href="/board/del?boardCnt="+boardCnt;			
+		}
+		else{
+			alert("본인 게시물이 아닙니다. 삭제할 수 없습니다.");
+		}
 	}
 	
 	var BoardCnt = new Array(); 
@@ -69,9 +74,21 @@
 		}
 
 		document.getElementById('paging').innerHTML = html;
-	}
+	} 
 </script>
 <style>
+label{
+    font-size: 2em;
+    color: transparent;
+   text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+ 
+.one{
+    font-size: 2em;
+    color: transparent;
+	text-shadow: 0 0 0 #f0f0f0;
+}
+ 
 li{
 	display: inline-block !important;
 	align-self: center !important; 
@@ -177,7 +194,6 @@ td{
 </style>
 <body>
 	<%@ include file="/WEB-INF/views/template/menu.jsp" %>
-		
 		<div id="top"></div> 
 		<div id="com">
 			<h1>커뮤니티</h1>
@@ -191,20 +207,29 @@ td{
 				<tr>
 					<td>
 						<a class="at" href="/board/detail?boardCnt=${Dto.boardCnt}">
-						<span class="seq"> 
+							<span class="seq"> 
 						게시물  --- ${Dto.boardCnt}
-						</span>
-						<div class="tit">
-							<b>작성자(번호) : ${Dto.userKey}</b><br>
-							<b>병원 : ${Dto.field1}</b><br>
-						</div>
-						<div class="desc">
-							<h3>제목 : ${Dto.comTitle}</h3><br>
-						</div>
-						<img src="/imagePath/${Dto.userKey}${Dto.comTitle}">
+							</span>
+							<div class="tit">
+								<b>작성자(번호) : ${Dto.userKey}</b><br>
+								<b>병원 : ${Dto.field1}</b><br>
+							</div>
+							<div class="desc">
+								<h3>제목 : ${Dto.comTitle}</h3><br>
+							</div>
+							<img src="/imagePath/${Dto.userKey}${Dto.comTitle}">
 							<div class="date">${Dto.comDate}</div>
 						</a>
-						<button onclick = "del(${Dto.boardCnt});" class="btn btn-warning">삭제</button>
+							
+						<span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;평점 : </span>
+						<c:forEach begin="1" end="${Dto.rating}">
+						<span ><label >★</label></span>
+						</c:forEach>
+						<c:forEach begin="${Dto.rating}" end="4">
+						<span ><label class="one">★</label></span>
+						</c:forEach>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<button onclick = "del(${Dto.boardCnt},${Dto.userKey});" class="btn btn-warning">삭제</button>
 					</td>
 				</tr>
 			</c:forEach>	 
