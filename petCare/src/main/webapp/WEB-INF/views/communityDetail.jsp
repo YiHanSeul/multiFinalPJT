@@ -6,7 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+ #top{
+	width: 100%;
+	height: 100px;
+}
+</style>
 <body>
+<%@ include file="/WEB-INF/views/template/menu.jsp" %>
+<div id="top"></div> 
 	detail
 	<table>
 		<tr>
