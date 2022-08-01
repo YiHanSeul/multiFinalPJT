@@ -66,6 +66,7 @@ public class ResController {
 	
 		
 	}
+	
 	@PostMapping("/resCheck")
 	@ResponseBody
 	public int resCheck(HttpServletRequest request, @RequestParam("BH") String BH, @RequestParam("BD") String BD, @RequestParam("HN") String HN, ResDto dto) {

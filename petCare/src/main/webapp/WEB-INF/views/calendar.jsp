@@ -22,15 +22,14 @@ color:black !important;
 #sel_option{
 display: flex;
 margin-right: 0;
-padding-top:3%;
 padding-left: 10%;
+position: relative;
 }
 
 #calendar{
 	display: flex;
     flex-direction: column;
 	margin-left: 10%;
-	margin-top: 40pt;
 	float: left;
 	width: 55%;
 	position: relative;
@@ -72,9 +71,10 @@ height:700pt;
 #tb{
 display: flex;
 flex-direction: column;
-width: 15%;
+width: 30%;
 padding-top:1%;
 padding-left: 10%;
+margin-left: 50pt;
 }
 
 .search-top-container {
@@ -85,6 +85,7 @@ padding-left: 10%;
     height: 120px;
     background: #FAFAD2;
     opacity: 0.7;
+    width: 100%;
 }
 
 @media(max-width:1030px){
@@ -102,6 +103,7 @@ padding-left: 10%;
 }
 
 #dt{
+	width:60%;
 	border: 0;
   border-radius: 15px;
   outline: none;
@@ -145,30 +147,29 @@ text-align: center;
 						    <div>
 						      <div id="aaa"> 오전</div>
 						      <input type="hidden" name="BookHour" id="abc" value="">
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="10:00" onclick="select('10:00');">10:00</button>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="10:30" onclick="select('10:30');">10:30</button>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="11:00" onclick="select('11:00');">11:00</button>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="11:30" onclick="select('11:30');">11:30</button><br/><br/>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="10:00" onclick="ResDblChk(select('10:00'));">10:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="10:30" onclick="ResDblChk(select('10:30'));;">10:30</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="11:00" onclick="ResDblChk()select('11:00');">11:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="11:30" onclick="ResDblChk()select('11:30');">11:30</button><br/><br/>
 						      <div id="aaa"> 오후</div>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="12:00" onclick="select('12:00');">12:00</button>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="12:30" onclick="select('12:30');">12:30</button>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="13:00" onclick="select('13:00');">13:00</button>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="13:30" onclick="select('13:30');">13:30</button><br/><br/>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="14:00" onclick="select('14:00');">14:00</button>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="14:30" onclick="select('14:30');">14:30</button>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="15:00" onclick="select('15:00');">15:00</button>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="15:30" onclick="select('15:30');">15:30</button><br/><br/>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="16:00" onclick="select('16:00');">16:00</button>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="16:30" onclick="select('16:30');">16:30</button>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="17:00" onclick="select('17:00');">17:00</button>
-						      <button class="btn btn-warning" name="btn1" type="button" data-num="17:30" onclick="select('17:30');">17:30</button><br/></br>
-						      <div id="aaa"><input class="btn btn-warning" type="button" id="CB" disabled="disabled" value="가능확인" onclick="ResDblChk();" required></br></div>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="12:00" onclick="ResDblChk(select('12:00'));">12:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="12:30" onclick="ResDblChk(select('12:30'));">12:30</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="13:00" onclick="ResDblChk(select('13:00'));">13:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="13:30" onclick="ResDblChk(select('13:30'));">13:30</button><br/><br/>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="14:00" onclick="ResDblChk(select('14:00'));">14:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="14:30" onclick="ResDblChk(select('14:30'));">14:30</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="15:00" onclick="ResDblChk(select('15:00'));">15:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="15:30" onclick="ResDblChk(select('15:30'));">15:30</button><br/><br/>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="16:00" onclick="ResDblChk(select('16:00'));">16:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="16:30" onclick="ResDblChk(select('16:30'));">16:30</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="17:00" onclick="ResDblChk(select('17:00'));">17:00</button>
+						      <button class="btn btn-warning" name="btn1" type="button" data-num="17:30" onclick="ResDblChk(select('17:30'));">17:30</button><br/></br>
 						    </div>
 						  </div>
 						</table>
 						
 						</section>
-				<table id="aaaa">
+				
 			     	<div id="tb">
 					      	<tr>
 					      		<th>반려견 견종</th></br>
@@ -189,7 +190,6 @@ text-align: center;
 								</td>
 							</tr>
 					</div>
-				</table>
 				</form>
 				
 		
