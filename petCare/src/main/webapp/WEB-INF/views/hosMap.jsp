@@ -254,7 +254,7 @@
       // 지도에 표시된 마커 객체를 가지고 있을 배열입니다
       
       var markers = [];
-
+</script>
 	<div class="search-top-container">
 		<h3 class="title" id="stt">동물병원 찾기</h3>
 	</div>
