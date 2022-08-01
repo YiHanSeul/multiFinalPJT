@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 
@@ -68,21 +69,19 @@ public class BoardController {
 	@PostMapping("/write")
 	public String write(Model model, BoardDto writeDto,@RequestParam("file") 
 	MultipartFile file) throws IOException {
-	 
+	 int num = 0;
 		System.out.println(writeDto); 
-		MapDto mapdto = null;
 		try {
-			mapdto = boardService.selecthosname(writeDto.getField1());			
-			System.out.println(mapdto);
+			num = boardService.selecthosname(writeDto.getField1());		
+			System.out.println(num);
 		} catch (Exception e) {
 			model.addAttribute("no", 1);
 			return "communityWrite";
 		}
-			if(mapdto==null) {
+			if(num<=0) {
 				model.addAttribute("no", 1);
 				return "communityWrite";
 			}else {
-				writeDto.setField1(mapdto.getHospitalname());
 				int res = boardService.write(writeDto);
 				if(res > 0) {
 					
@@ -100,7 +99,7 @@ public class BoardController {
 			        OutputStream out = null;
 			         
 			        in = file.getInputStream();
-			        out = new FileOutputStream("C:\\Users\\tpdls\\OneDrive\\바탕 화면\\img\\"+writeDto.getUserKey()+writeDto.getComTitle());
+			        out = new FileOutputStream("C:\\Users\\ihans\\OneDrive\\바탕 화면\\img\\"+writeDto.getUserKey()+writeDto.getComTitle());
 			        while(true) {
 			        	int data = in.read();
 			        	if(data==-1) {
@@ -118,7 +117,6 @@ public class BoardController {
 				}
 			} 
 	}
-		
 	 
 	@GetMapping("/writeForm")
 	public String insertForm(Model model) {
@@ -129,12 +127,23 @@ public class BoardController {
 	@GetMapping("/detail")
 	public String detail(Model model, int boardCnt) {
 
-		
 		BoardDto one= boardService.selectOne(boardCnt);
 		
 		model.addAttribute("detail", one);
 		
 		return "communityDetail";
 	}
-	
+	@GetMapping("/del")
+	public String del(int boardCnt) {
+		int res = 0;
+		try {
+			res = boardService.del(boardCnt);
+		} catch (Exception e) {
+			return "redirect:/board/list";
+		}
+		if(res>0) {
+			return "redirect:/board/list";
+		}
+		return "redirect:/board/list";
+	}
 }

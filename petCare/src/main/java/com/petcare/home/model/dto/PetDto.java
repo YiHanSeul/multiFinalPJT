@@ -8,14 +8,10 @@ public class PetDto {
 	private String petGender;
 	private String petType;
 	private String petNe;
-	private String petVac1;
-	private String petVac2;
-	private String petVac3;
 	public PetDto() {
 		super();
 	}
-	public PetDto(int petKey, int userKey, String petName, int petAge, String petGender, String petType, String petNe,
-			String petVac1, String petVac2, String petVac3) {
+	public PetDto(int petKey, int userKey, String petName, int petAge, String petGender, String petType, String petNe) {
 		super();
 		this.petKey = petKey;
 		UserKey = userKey;
@@ -24,9 +20,6 @@ public class PetDto {
 		this.petGender = petGender;
 		this.petType = petType;
 		this.petNe = petNe;
-		this.petVac1 = petVac1;
-		this.petVac2 = petVac2;
-		this.petVac3 = petVac3;
 	}
 	public int getPetKey() {
 		return petKey;
@@ -70,32 +63,10 @@ public class PetDto {
 	public void setPetNe(String petNe) {
 		this.petNe = petNe;
 	}
-	public String getPetVac1() {
-		return petVac1;
-	}
-	public void setPetVac1(String petVac1) {
-		this.petVac1 = petVac1;
-	}
-	public String getPetVac2() {
-		return petVac2;
-	}
-	public void setPetVac2(String petVac2) {
-		this.petVac2 = petVac2;
-	}
-	public String getPetVac3() {
-		return petVac3;
-	}
-	public void setPetVac3(String petVac3) {
-		this.petVac3 = petVac3;
-	}
 	@Override
 	public String toString() {
 		return "PetDto [petKey=" + petKey + ", UserKey=" + UserKey + ", petName=" + petName + ", petAge=" + petAge
-				+ ", petGender=" + petGender + ", petType=" + petType + ", petNe=" + petNe + ", petVac1=" + petVac1
-				+ ", petVac2=" + petVac2 + ", petVac3=" + petVac3 + "]";
+				+ ", petGender=" + petGender + ", petType=" + petType + ", petNe=" + petNe + "]";
 	}
-	
-	
-	
 	
 }
