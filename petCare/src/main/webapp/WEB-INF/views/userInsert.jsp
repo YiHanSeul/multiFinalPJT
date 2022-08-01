@@ -4,10 +4,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="/resources/css/userInsert.css" rel="stylesheet" type="text/css">
+<link href="/resources/css/userInsert.css" rel="stylesheet" type="text/css"> 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/resources/js/userInsert.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script>
+
+$(document).ready(function() {
+		$("#join-btn").click(function () {
+			var userid = $("#userid").val();
+			var userpw = $("#userpw").val();
+			var username = $("#username").val();
+			var usernick = $("#usernick").val();
+			var useremail = $("#useremail").val();
+			var userphone = $("#userphone").val();
+			 console.log(userid); 
+			if(userid == ""){
+				alert("아이디가 없습니다");
+			}else if(userpw == ""){
+				alert("비밀번호가 없습니다");
+			}else if(username == ""){
+				alert("이름이 없습니다");
+			}else if(usernick == ""){
+				alert("닉네임이 없습니다");
+			}else if(useremail == ""){
+				alert("이메일이 없습니다");
+			}else if(userphone == ""){
+				alert("전화번호가 없습니다");
+			}
+			
+			
+			//취소누르면 return
+		});
+	});
+
+
+</script>
 </head>
 <body>
 
@@ -26,28 +58,40 @@
 	</div>
 	<div class="join">
 		<div class="text">PASSWORD</div>
-		<input class="form-control" type="password" name=userpw placeholder="비밀번호를 입력하세요.">
+		<input class="form-control" type="password" name=userpw id="userpw" placeholder="비밀번호를 입력하세요.">
 	</div>
 	<div class="join">
+		<div class="text">PASSWORD체크</div>
+		<input class="form-control" type="password" name=userpwConfirm id="userpwConfirm" placeholder="비밀번호를 다시 입력하세요.">
+		<font id="checkPw"></font>
+	</div>
+	 <span id="alert-success" style="display: none; color:blue;">비밀번호가 일치합니다.</span>
+    <span id="alert-danger" style="display: none; color: red; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
+	
+	
+	<div class="join">
 	<div class="text">NAME</div>
-		<input class="form-control" type="text" name=username placeholder="이름을 입력하세요.">
+		<input class="form-control" type="text" name=username id="username" placeholder="이름을 입력하세요.">
 	</div>
 	<div class="join">
 	<div class="text">NICKNAME</div>
-		<input class="form-control"  type="text" name=usernick placeholder="닉네임을 입력하세요.">
+		<input class="form-control"  type="text" name=usernick id="usernick" placeholder="닉네임을 입력하세요.">
 	</div>
 	<div class="join">
 	<div class="text">E-MAIL</div>
-		<input class="form-control" type="email" name=useremail placeholder="이메일을 입력하세요.">
+		<input class="form-control" type="email" name=useremail id="useremail" placeholder="이메일을 입력하세요.">
 	</div>
 	<div class="join">
 	<div class="text">PHONE</div>
-		<input class="form-control" type="text" name=userphone placeholder="전화번호를 입력하세요.">
+		<input class="form-control" type="text" name=userphone id="userphone" placeholder="전화번호를 입력하세요.">
 	</div>
 	<div>
 	<input id="join-btn" class="btn btn-warning" type="submit" value="가입">
+	
+	
 	</div>
 </form>
 </div>
+
 </body>
 </html>

@@ -14,9 +14,9 @@ public class PetCareApplication {
 		SpringApplication.run(PetCareApplication.class, args);
 	}
 	
-	@Bean 
-	  public ServerEndpointExporter serverEndpointExporter() { 
-		  return new ServerEndpointExporter(); 
-	}
-
+	
+	  @Bean public ServerEndpointExporter serverEndpointExporter() 
+	  { return new ServerEndpointExporter(); }
+	 
+	
 }

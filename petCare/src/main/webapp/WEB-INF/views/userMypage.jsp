@@ -35,17 +35,17 @@
 	<%@ include file="/WEB-INF/views/template/menu.jsp"%>
 	<div id="menu-lists">
 		<ul>
-			<li class="menu-list"><a href="#check1">보호자 정보관리</a></li>
-			<li class="menu-list"><a href="#check2">마이펫 관리</a></li>
-			<li class="menu-list"><a href="#">예약 목록</a></li>
-			<li class="menu-list"><a href="#">후기관리</a></li>
+			<li class="menu-list"><a href="#myPage">보호자 정보관리</a></li>
+			<li class="menu-list"><a href="#myPet">마이펫 관리</a></li>
+			<li class="menu-list"><a href="#myBook">예약 목록</a></li>
+			<li class="menu-list"><a href="#myHosBookRe">후기관리</a></li>
 			<li class="menu-list"><a href="#">게시글 관리</a></li>
 			<li class="menu-list"><a href="/user/findpwing">비밀번호찾기</a></li>
 		</ul>
 	</div>
 	<!-- 페이지를 따로 만들지 말고 a태그로 같은 페이지에 있는 아이디로 이동하기 -->
 	<div id="myInfos">
-		<p class="myPage-p">내정보</p>
+		<p class="myPage-p" id="myPage">내정보</p>
 		<hr />
 		<c:if test="${not empty dto }">
 			<ul>
@@ -66,7 +66,7 @@
 		</c:if>
 	</div>
 	<div id="myPets">
-		<p class="myPage-p">나의펫</p>
+		<p class="myPage-p" id="myPet">나의펫</p>
 		<hr>
 		<c:if test="${empty petDto}">
 			<p class="not">>펫 정보가 없습니다.</p>
@@ -117,7 +117,7 @@
 
 	<!-- 수정해야함 -->
 	<div id="myPets">
-		<p class="myPage-p">예약현황</p>
+		<p class="myPage-p" id="myBook">예약현황</p>
 		<hr />
 		<c:if test="${empty resDto }">
 			<p class="not">예약 정보가 없습니다.</p>
@@ -142,7 +142,7 @@
 		</c:if>
 	</div>
 	<div id="myPets">
-		<p class="myPage-p">병원 방문 후기</p>
+		<p class="myPage-p" id="myHosBookRe">병원 방문 후기</p> <!-- myHospitalBookReview -->
 		<hr />
 	</div>
 	<div id="myPets">

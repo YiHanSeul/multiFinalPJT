@@ -43,6 +43,7 @@ public class PetController {
 				  petDto.getPetNe() =="") {
 		   }
 		   
+		   
 		   String userid = (String)session.getAttribute("userid");
 		   petDto.setUserKey(userService.userKeyChk(userid));
 		   
@@ -63,36 +64,64 @@ public class PetController {
 	   }
 	   
 	   @GetMapping("/petInsuInfoRes")
-	   public String petInsuInfoRes(Model model, float petAgeI, String petTypeI, String petTypeI2, String petName) {
-
-
-		   if(petTypeI2 == null) {
-			   int petPriceI = petService.petPriceI(petAgeI, petTypeI);
-			    comma cm = new comma();
-			    String petPriceI2 = cm.Test(petPriceI);
-			   
-			   
-			   model.addAttribute("petPriceI2", petPriceI2);
-			   String petNameI = petService.petNameI(petAgeI, petTypeI);
-			   model.addAttribute("petNameI", petNameI);
-			   
-//			   System.out.println(petName);
-			   model.addAttribute("petName", petName);
-		   }else{
-			   if(!petTypeI.equals("초소형견")) {
-				   petTypeI += "D";
-			   }
-			   
-			   int petPriceI = petService.petPriceI(petAgeI, petTypeI);
-			   comma cm = new comma();
-			    String petPriceI2 = cm.Test(petPriceI);
-			   model.addAttribute("petPriceI2", petPriceI2);
-			   String petNameI = petService.petNameI(petAgeI, petTypeI);
-			   model.addAttribute("petNameI", petNameI);
-			   model.addAttribute("petName", petName);
+	   public String petInsuInfoRes(String petGender, Model model, float petAgeI, String petTypeI, String petTypeI_, String petName) {
+		   if(petName == "") {
+			   String msg = "펫 이름이 없습니다!";
+			   model.addAttribute("msg", msg);
+			   return "petInsuInfo";
+		   }
+		   if(petTypeI_ != null && petTypeI.equals("초소형견")) {
+			   return "petInsuInfo";
 		   }
 		   
+
+		   
+		   
+			try {
+				if(petTypeI_ == null) {
+					
+					
+					   int petPriceI = petService.petPriceI(petAgeI, petTypeI);
+					    comma cm = new comma();
+					    String petPriceI2 = cm.Test(petPriceI);
+					   
+					   
+					   model.addAttribute("petPriceI2", petPriceI2);
+					   String petNameI = petService.petNameI(petAgeI, petTypeI);
+					   model.addAttribute("petNameI", petNameI);
+					   
+					   model.addAttribute("petName", petName);
+					   
+
+				   }else{
+					   
+					   		
+					   
+					   
+					   if(!petTypeI.equals("초소형견")) {
+						   petTypeI += "D";
+					   }
+					   
+					   
+					   int petPriceI = petService.petPriceI(petAgeI, petTypeI);
+					   comma cm = new comma();
+					    String petPriceI2 = cm.Test(petPriceI);
+					   model.addAttribute("petPriceI2", petPriceI2);
+					   String petNameI = petService.petNameI(petAgeI, petTypeI);
+					   model.addAttribute("petNameI", petNameI);
+					   model.addAttribute("petName", petName);
+				   }
+			} catch (NullPointerException e) {	
+				
+				return "petInsuInfo";
+			}
+		
+		   
+		   
+			
+		   
 		   return "petRePage";
+
 	   }
 	   
 	   
