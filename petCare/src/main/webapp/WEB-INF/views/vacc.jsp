@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,11 @@
 <link href="/resources/css/vacc.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<title>Insert title here</title>
+<script>
+	let pet = "${petDto}"
+	let user = "${userDto}"
+	console.log(pet, user);
+</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/template/menu.jsp"%>
@@ -36,60 +41,35 @@
 			<span>생후 3개월 이상 된 강아지에게 1회 접종한 후 6개월 후 재접종한다. 매년 추가접종을 해야 한다.</span>
 		</div>
 
-		<div id="nametable">
-			<table id="namelist"></table>
-		</div>
-		<div style="padding: 10px;"></div>
-		<div id="selectbar">
-			<button class="btn btn-warning" onclick="now();">현위치</button>
-			<button class="btn btn-warning" onclick="openarea();">주소선택</button>
-			<!--   <button class="btn btn-warning">필터옵션</button> -->
-		</div>
-		<!-- 지도를 표시할 div 입니다 -->
-		<div id="mapbox" style="width: 100%; height: 500px;">
-			<div id="map"
-				style="width: 100%; height: 100%; border: 3px solid orange;"></div>
-		</div>
-		<div style="padding: 10px;"></div>
-		<div id="listtable">
-
-			<table id="list"></table>
-		</div>
-
-		<div id="area" class="hide">
-			<div id="areaForm">
-			<p id="addrfindtxt">주소 찾기</p>
-			<form action="/prevent/addrfind" method="get" >
-			<div id="innerForm">
-				<select class="btn btn-default" data-toggle="dropdown"name="region" id="region" onchange="chageSelect()">
-					<option value="" selected>시,도</option>
-					<option value="서울특별시">서울특별시</option>
-					<option value="부산광역시">부산광역시</option>
-					<option value="대구광역시">대구광역시</option>
-					<option value="인천광역시">인천광역시</option>
-					<option value="광주광역시">광주광역시</option>
-					<option value="대전광역시">대전광역시</option>
-					<option value="울산광역시">울산광역시</option>
-					<option value="세종특별자치시">세종특별자치시</option>
-					<option value="경기도">경기도</option>
-					<option value="강원도">강원도</option>
-					<option value="충청북도">충청북도</option>
-					<option value="충청남도">충청남도</option>
-					<option value="전라북도">전라북도</option>
-					<option value="전라남도">전라남도</option>
-					<option value="경상북도">경상북도</option>
-					<option value="경상남도">경상남도</option>
-					<option value="제주특별자치도">제주특별자치도</option>
-				</select> <select class="btn btn-default" name="zone">
-					<option  value="" id="zone" selected>시.군.구</option>
-				</select>
-				</div>
-				<input class="btn btn-primary" onclick="closePopup()" value="취소">
-				<input class="btn btn-warning" type="submit" value="확인">
-			</form>
-		</div>
+		<div id="myPet">
+			<c:if test="${empty petDto}">
+				<p class="not">>펫 정보가 없습니다.</p>
+			</c:if>
+			<c:if test="${not empty petDto}">
+				<c:forEach var="petDto" items="${petDto}">
+					<div class="petInfoDetail">
+						<p class="petInfo">이름: ${petDto.petName }</p>
+						<p class="petInfo">나이: ${petDto.petAge }</p>
+						<p class="petInfo">성별: ${petDto.petGender }</p>
+						<p class="petInfo">중성화: ${petDto.petNe }</p>
+						<form action="/vacc/vaccadd" method="get">
+						<select name="vaccName">
+							<option value="종합 7종백신">종합 7종백신</option>
+							<option value="코로나 백신">코로나</option>
+							<option value="캔넬코프 백신">캔넬코프</option>
+							<option value="광견병 백신">광견병백신</option>
+						</select>
+						<input class="btn btn-warning" type="submit" value="예방접종 기록 추가" >
+						</form> 
+					</div>
+				</c:forEach>
+			</c:if>
 		</div>
 	</div>
+
+
+
+
 </body>
 </html>
 

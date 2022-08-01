@@ -34,7 +34,7 @@ public class PetController {
 	   
 		
 	   @GetMapping("/petInfoRes") 
-	   public String petInfoRes(HttpSession session, Model model, PetDto petDto, String petVac) {
+	   public String petInfoRes(HttpSession session, Model model, PetDto petDto) {
 		   
 		   if(petDto.getPetName()==null || petDto.getPetName()=="" ||
 				  petDto.getPetAge() < 0 || petDto.getPetGender() == null ||
@@ -46,27 +46,13 @@ public class PetController {
 		   String userid = (String)session.getAttribute("userid");
 		   petDto.setUserKey(userService.userKeyChk(userid));
 		   
-		   String[] arr = petVac.split(",");
-		    petDto.setPetVac1("X");	
-		    petDto.setPetVac2("X");	
-		    petDto.setPetVac3("X");	
-		    for(String s : arr) {
-		    	if(s.equals("A")) {
-		    		petDto.setPetVac1("O");
-		    	}
-		    	if(s.equals("B")) {
-		    		petDto.setPetVac2("O");
-		    	}
-		    	if(s.equals("C")) {
-		    		petDto.setPetVac3("O");
-		    	}
-		    }
-		    
 	    int res = petService.insertPet(petDto);
 	    if(res>0) {
 	    	model.addAttribute("petDto", petDto);
+	    	System.out.println("성공");
 	    	return "redirect:/user/userMypage";
 	    }else {
+	    	System.out.println("실패");
 	    	return "index1";
 	    }
 	   }

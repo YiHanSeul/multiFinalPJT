@@ -18,45 +18,19 @@ p {
 .vacc {
 	margin-bottom: 2%;
 }
-
-span {
-	font-size: 1.3em;
+#myPet{
+	width: 100%;
+	height: 10%;
+	margin: 10px auto;
+	display: flex;
+	justify-content: space-around;
 }
-.hide{
-	display: none;
-}
-#area{
- display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, .7);
-  z-index: 20;
-}
-#area.has-filter{
-	backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-#area #areaForm{
-	width:20%;
-	height:30%;
+.petInfoDetail{
+	width: 30%;
+	height :50%;
 	border: 3px solid #f0ad4e;
-	background-color: white;
-	border-radius: 3%;
-	position: flex;
-	justify-content: center;
 }
-#addrfindtxt{
-	display: fixd;
-	justify-content: center;
-	text-align: center;
-}
-#innerForm{
-	margin-top: 20%;
-	margin-left: 20%;
-	margin-bottom: 8%;
+
+.petInfo{
+	font-size: 1.3em;
 }

@@ -12,7 +12,7 @@ import com.petcare.home.model.dto.PetDto;
 public interface PetMapper {
 
 	
-	@Insert(" INSERT INTO PET VALUES(null, #{UserKey}, #{petName},#{petAge},#{petGender},#{petType},#{petNe},#{petVac1},#{petVac2},#{petVac3})  ")
+	@Insert(" INSERT INTO PET VALUES(null, #{UserKey}, #{petName},#{petAge},#{petGender},#{petType},#{petNe} )  ")
 	int insertPet(PetDto petdto);
 	
 	@Select(" SELECT * FROM PET where USERKEY=#{userkey} ")
