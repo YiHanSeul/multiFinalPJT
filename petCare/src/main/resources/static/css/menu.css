@@ -45,6 +45,7 @@ a {
 	align-items: center;
 	height: 80px;
 	position: fixed;
+	margin-top: 5px;
 	width: 100%;
 	z-index:5;
 	top:3%;
