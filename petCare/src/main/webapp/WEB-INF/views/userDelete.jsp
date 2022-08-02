@@ -18,8 +18,14 @@
     		success: function(data){
     			console.log(data);
 			if(data==1){
-				location.href="index";
-				swal("탈퇴완료", "탈퇴가 정상적으로 완료되었습니다","success");
+				/* swal("탈퇴완료", "탈퇴가 정상적으로 완료되었습니다","success"); */
+				swal({
+					title : "탈퇴 완료",
+					icon : "success",
+					closeOnClickOutside : false
+				}).then(function(){
+					location.href = "index";
+				});
 			}else{
 				swal("오류","비밀번호를 다시 입력해주세요.","error");
 				}       		
