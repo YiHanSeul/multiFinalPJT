@@ -1,8 +1,10 @@
 package com.petcare.home.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.petcare.home.model.dto.BoardDto;
 import com.petcare.home.model.service.MapService; 
 
 
@@ -29,22 +32,37 @@ public class MapController {
       return "hosMap";
    }
    
-   @GetMapping("/hosSearchRes")
-   public String hosSearchRes() {
-      return "hosSearchRes";
-   }
    
    @GetMapping("/search")
    public String search(HttpServletRequest request, Model model) {
 	   String HN= request.getParameter("HN");
-	   System.out.println(HN);
-	   System.out.println(mapservice.search(HN));
 	   model.addAttribute("list",mapservice.search(HN));
-	   
-		return "redirect:/map/hosSearchRes";
+	   model.addAttribute("num", 1);
+	   model.addAttribute("begin", 0);
+	   model.addAttribute("end", 9);
+	  
+		return "hosSearchRes";
 	}
 	
+  @GetMapping("/list")
+	public String BoardList1(HttpServletRequest request, int num, Model model, HttpSession session){
+		
+	   String HN= request.getParameter("HN");
+	   model.addAttribute("list",mapservice.search(HN));
+	    model.addAttribute("num", num);
+	   List a = mapservice.search(HN);
+		if(a.size()/9==(num-1)) {
+		model.addAttribute("begin", (num-1)*9);
+		model.addAttribute("end", a.size()-1);
+		}else {
+			model.addAttribute("begin", (num-1)*9);
+			model.addAttribute("end", (num*9)-1);
+		}
 	   
+	   System.out.println(a.size());
+		
+		return  "hosSearchRes";
+	}
    
    @GetMapping("/region")
    public String region(Model model,String region,String zone) { 
