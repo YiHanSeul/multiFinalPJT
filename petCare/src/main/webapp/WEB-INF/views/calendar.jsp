@@ -86,6 +86,7 @@ margin-left: 50pt;
     background: #FAFAD2;
     opacity: 0.7;
     width: 100%;
+    margin-top:70pt;
 }
 
 @media(max-width:1030px){
