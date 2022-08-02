@@ -53,14 +53,31 @@
 						<p class="petInfo">성별: ${petDto.petGender }</p>
 						<p class="petInfo">중성화: ${petDto.petNe }</p>
 						<form action="/vacc/vaccadd" method="get">
-						<select name="vaccName">
-							<option value="종합 7종백신">종합 7종백신</option>
-							<option value="코로나 백신">코로나</option>
-							<option value="캔넬코프 백신">캔넬코프</option>
-							<option value="광견병 백신">광견병백신</option>
-						</select>
-						<input class="btn btn-warning" type="submit" value="예방접종 기록 추가" >
-						</form> 
+							<input type="hidden" value="${petDto.petKey}" name="petKey">
+							<select name="vaccName">
+								<option value="종합7종">종합 7종백신</option>
+								<option value="코로나">코로나</option>
+								<option value="캔넬코프">캔넬코프</option>
+								<option value="광견병">광견병백신</option>
+							</select> <input type="date" name="vaccMonth"> <input
+								class="btn btn-warning" type="submit" value="예방접종 기록 추가">
+						</form>
+						<c:if test="${empty petVaccDto}">
+							<p class="not">>백신 접종 현황이 없습니다.</p>
+						</c:if>
+						<c:if test="${not empty petVaccDto}">
+							<c:forEach var="petVaccDto" items="${petVaccDto}">
+							<p > ${petDto.petKey}  eq ${petVaccDto.petKey}</p>
+								<c:if test=" ${petDto.petKey eq petVaccDto.petKe }"  var="petVaccDto">
+									<div class="petInfoDetail">
+										<p class="petInfo">펫키: ${petVaccDto.petKey }</p>
+										<p class="petInfo">백신명: ${petVaccDto.vaccName }</p>
+										<p class="petInfo">최근 백신접종일: ${petVaccDto.vaccMonth }</p>
+										<p class="petInfo">다음 백신접종일: ${petVaccDto.nextVaccMonth }</p>
+									</div>
+								</c:if>
+							</c:forEach>
+						</c:if>
 					</div>
 				</c:forEach>
 			</c:if>

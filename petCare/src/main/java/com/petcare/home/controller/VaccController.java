@@ -1,6 +1,10 @@
 package com.petcare.home.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,17 +41,37 @@ public class VaccController {
 		model.addAttribute("petDto",petDto);
 		
 		List<PetVaccDto> petVaccDto=petVaccService.selectPetVaccAll(userkey);
-		System.out.println(petVaccDto);
+		//System.out.println(petVaccDto);
 		model.addAttribute("petVaccDto",petVaccDto);
 		
-		UserDto userDto =userService.UserChk(userid);
-		model.addAttribute("userDto",userDto);
 		
 		return "vacc";
 	}
 	
 	@GetMapping("/vaccadd")
-	public String vaccadd() {
-		return null;
+	public String vaccadd(Model model, HttpSession session, PetVaccDto petVaccDto) throws ParseException {
+		String userid=(String)session.getAttribute("userid");
+		int userkey =userService.UserChk(userid).getUserkey();
+		//date 포맷 설정
+		SimpleDateFormat sdfYMD= new SimpleDateFormat("yyyy-MM-dd");
+		//string-> date 변환
+		Date date=sdfYMD.parse(petVaccDto.getVaccMonth());
+		//날짜 연산을 위한 calenda객체 생성
+		Calendar cal=Calendar.getInstance();
+		cal.setTime(date);
+		// 6달뒤
+		cal.add(Calendar.MONTH,6);
+		petVaccDto.setUserKey(userkey);
+		petVaccDto.setNextVaccMonth(sdfYMD.format(cal.getTime()));
+		System.out.println(petVaccDto);
+		
+		int res=petVaccService.vaccadd(petVaccDto);
+		
+		if(res>0) {
+			return "redirect:/vacc/vaccform";
+		}else {
+			return null;
+			
+		}
 	}
 }

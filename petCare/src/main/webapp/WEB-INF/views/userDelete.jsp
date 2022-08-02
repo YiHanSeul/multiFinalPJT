@@ -18,10 +18,10 @@
     		success: function(data){
     			console.log(data);
 			if(data==1){
-				swal("탈퇴완료", "탈퇴가 정상적으로 완료되었습니다","success");
 				location.href="index";
+				swal("탈퇴완료", "탈퇴가 정상적으로 완료되었습니다","success");
 			}else{
-				alert("비밀번호를 다시 입력해주세요.");
+				swal("오류","비밀번호를 다시 입력해주세요.","error");
 				}       		
     		},
     		error: function(error){
