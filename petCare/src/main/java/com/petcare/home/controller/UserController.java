@@ -133,7 +133,7 @@ public class UserController {
 					}		
 				}
 						
-				if(0 == gradeChk) {
+				if(1 == gradeChk) {
 					if(idChk) {
 						//아이디 성공
 						if(pwChk) {
@@ -141,7 +141,7 @@ public class UserController {
 							session.setAttribute("userid", userid);
 							session.setAttribute("userpw", userpw);
 							model.addAttribute("dto", adminService.HospitalVChk());
-		  					return "adminCheck";
+		  					return "index";
 						}else {
 							//비밀번호 실패
 							model.addAttribute("num", 2);
