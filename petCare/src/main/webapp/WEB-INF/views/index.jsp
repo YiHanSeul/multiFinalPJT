@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/resources/css/index.css" rel="stylesheet"type="text/css">
-</head>
+</head> 
 <body>
 <%@ include file="/WEB-INF/views/template/menu.jsp" %>
  

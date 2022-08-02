@@ -41,6 +41,6 @@ function check(){
 	<p>
 		<input type="button" onclick="check()" value="찾기">
 	</p>
-
+	<a href="javascript:history.back()" class="btn btn-primary">Back</a>
 </body>
 </html>

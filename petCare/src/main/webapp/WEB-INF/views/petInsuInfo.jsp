@@ -26,7 +26,7 @@
 	
 }
 
-#main1_input {
+#petName {
 	border-top: none;
 	border-left: none;
 	border-right: none;
@@ -52,22 +52,19 @@
 		</div>
 		<!-- 이름과 성별은 필요 없어서 I를 붙이지 아니함 -->
 		<div class="main">
-			나이 : 6개월 미만<input type="radio" name="petAgeI" id="petAgeI1"
-				value="0.5" checked>&nbsp; 1년 미만<input type="radio"
-				name="petAgeI" id="petAgeI2" value="1">&nbsp; 2년 미만<input
-				type="radio" name="petAgeI" id="petAgeI3" value="2">&nbsp;
-			4년 미만<input type="radio" name="petAgeI" id="petAgeI4" value="4">&nbsp;
-			6년 미만<input type="radio" name="petAgeI" id="petAgeI5" value="6">
+			나이 : 6개월 미만<input type="radio" name="petAgeI" id="petAgeI1" value="0.5" checked>&nbsp; 
+					1년 미만<input type="radio" name="petAgeI" id="petAgeI2" value="1">&nbsp; 	
+					2년 미만<input type="radio" name="petAgeI" id="petAgeI3" value="2">&nbsp;
+					4년 미만<input type="radio" name="petAgeI" id="petAgeI4" value="4">&nbsp;
+					6년 미만<input type="radio" name="petAgeI" id="petAgeI5" value="6">
 		</div>
 
 
 		<div class="main">
-			종류 : 초소형견(4kg 미만) <input type="radio" name="petTypeI" id="petTypeI1"
-				value="초소형견" checked>&nbsp; 소형견(10kg 미만) <input type="radio"
-				name="petTypeI" id="petTypeI2" value="소형견"> &nbsp; 중형견(25kg
-			미만) <input type="radio" name="petTypeI" id="petTypeI3" value="중형견">
-			&nbsp; 대형견(25kg 이상) <input type="radio" name="petTypeI"
-				id="petTypeI4" value="대형견"> &nbsp;
+			종류 : 초소형견(4kg 미만) <input type="radio" name="petTypeI" id="petTypeI1" value="초소형견" checked> &nbsp; 
+					소형견(10kg 미만) <input type="radio" name="petTypeI" id="petTypeI2" value="소형견"> &nbsp; 
+					중형견(25kg미만) <input type="radio" name="petTypeI" id="petTypeI3" value="중형견"> &nbsp; 	
+					대형견(25kg 이상) <input type="radio" name="petTypeI" id="petTypeI4" value="대형견"> &nbsp;
 		</div>
 		<div class="main">
 			맹견 <input type="checkbox" name="petTypeI_" id="petTypeI_" value="맹견">
