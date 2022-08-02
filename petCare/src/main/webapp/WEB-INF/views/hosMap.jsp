@@ -66,7 +66,7 @@
 #selectbar {
    display: flex;
    position: relative;
-   left: 17.15%
+   left: 17.15%;
 }
 
 .search-top-container {
@@ -77,6 +77,7 @@
    height: 120px;
    background: #FAFAD2;
    opacity: 0.7;
+   margin-top:70pt;
 }
 
 #stt {
@@ -144,22 +145,19 @@
 }
 </style>
 
-<body>
+<body onload="javascript:start();">
    <%@ include file="/WEB-INF/views/template/menu.jsp"%>
    <div class="menu" id="loginChk2" style="display: none"></div>
 
    <div class="search-top-container">
       <h3 class="title" id="stt">동물병원 찾기</h3>
    </div>
-   <div class="search-head">
-      <div class="search-box-container">
-         <div class="inner">
-            <input type="text" id="name">
-            <button type="button" onclick="search()"></button>
-         </div>
-         <!---->
-      </div>
-   </div>
+   
+
+ 	<form action="/map/search" method="get">
+ 	<div class="search-head"><div class="search-box-container"><div class="inner"><input type="text" name="HN"><button type="submit"></button></div><!----></div></div>
+ 	</form>
+
    <div id="nametable">
       <table id="namelist" border="0"></table>
    </div>
@@ -322,26 +320,12 @@
       kakao.maps.event.addListener(map, 'mousemove', function(mouseEvent) {
          getInfo();
       });
-
-      function search() {
-         var HosName = $("#name").val();
-         console.log(HosName);
-         $.ajax({
-            url : "/map/search", //Controller에서 인식할 주소
-            type : "post", //POST 방식으로 전달
-            data : {
-               "hn" : HosName
-            },
-            success : function(cnt) {
-               if (cnt == 0) { //cnt가 1이 아니면(=0일 경우) -> 예약 가능 
-                  alert("없음");
-               } else { // cnt가 1일 경우 -> 예약 불가능
-                  alert(cnt);
-               }
-            },
-         });
-
-      };
+      
+      function start(){
+    	  now();
+    	  getInfo();
+      }
+      
    </script>
 </body>
 </html>

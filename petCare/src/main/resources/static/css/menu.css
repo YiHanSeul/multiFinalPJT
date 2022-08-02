@@ -1,17 +1,17 @@
 body {
 	margin: 0;
-}
-
-* {
+ }
+ 
+ * {
 	font-family: 'Noto Sans KR', sans-serif;
-}
-
-a {
+ }
+ 
+ a {
 	text-decoration: none;
 	font-family: 'Noto Sans KR', sans-serif;
-}
-
-#menus1 {
+ }
+ 
+ #menus1 {
 	display: flex;
 	justify-content: right;
 	height: 30px;
@@ -20,25 +20,25 @@ a {
 	position: fixed;
 	top:0%;
 	z-index:100;
-}
-
-#menus1 .menu {
+ }
+ 
+ #menus1 .menu {
 	margin-top: 5px;
-}
-
-#menus1 .menu a {
+ }
+ 
+ #menus1 .menu a {
 	width: 100px;
 	padding: 0px 20px 0px 20px;
 	color: black;
-}
-#tmp{
+ }
+ #tmp{
 	background-color: #FFFFFF;
 	width: 80%;
 	height: 10%;
 	position: fixed;
 	top:0%;
-}
-#menus2 {
+ }
+ #menus2 {
 	background-color: #f0ce5d;
 	display: flex;
 	justify-content: space-evenly;
@@ -49,19 +49,19 @@ a {
 	width: 100%;
 	z-index:5;
 	top:3%;
-}
-
-#menus2>.menu {
+ }
+ 
+ #menus2>.menu {
 	display: flex;
 	justify-content: center;
 	font-size: large;
-}
-
-#menus2 .menu a {
+ }
+ 
+ #menus2 .menu a {
 	color: white;
-}
-
-#logo {
+ }
+ 
+ #logo {
 	width: 75px;
 	height: 70px;
-}
+ }

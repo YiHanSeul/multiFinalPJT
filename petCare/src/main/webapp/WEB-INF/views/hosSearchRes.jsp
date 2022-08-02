@@ -13,7 +13,54 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
- 
+<script>
+var listname = new Array();
+var listAddr = new Array();
+
+<c:forEach var="list" items="${list}" begin="${begin}" end="${end}">
+listname.push("${list.getHospitalname()}");
+listAddr.push("${list.getAddr()}");
+</c:forEach>
+
+let pageSize = Math.ceil(listname.length/9); 	//﻿ 화면에 표시할 페이지 번호 수
+let totCnt = listname.length;	// ﻿전체 데이터 목록 수
+let listCnt = 9;	// ﻿페이지당 표시할 데이터 목록 수
+let pageNo = ${num};		// ﻿현재 페이지 번호
+
+
+function list(i){
+	location.href="/map/list?num="+i;
+	}
+
+function paging(pageSize, totCnt, listCnt, pageNo) {
+	//화면에 표시할 페이지 번호 수, 총 데이터 수, 페이지당 표시할 데이터 수, 현재 페이지 번호
+
+	let pageCnt = Math.ceil(totCnt / listCnt);	//총 페이지 번호 개수
+	let start = Math.floor((pageNo - 1) / pageSize) * pageSize + 1;	//시작 페이지 번호
+	let end = (start + pageSize < pageCnt ? start + pageSize : pageCnt + 1); //끝 페이지 번호
+
+	let html = '';
+	if(start > 1) {		//시작점 페이지가 아닌 경우 왼쪽 이동 버튼 활성화
+		html += '<li class="page-item"><button type="button" onclick="list(1)" class="page-link"><<</button></li>';
+		html += '<li class="page-item"><button type="button" onclick="list('+ (start - pageSize) +')" class="page-link"><</button></li>';
+	} else {	//disabled 처리
+		html += '<li class="page-item disabled"><button type="button" class="page-link" tabindex="-1" aria-disabled="true"><</button></li>';
+	}
+
+	for(let i = start; i < end; i++) {
+		html += '<li class="page-item ' + (i == pageNo ? 'active' : '') + '" aria-current="page"><button type="button" onclick="list('+ i +')" class="page-link">'+ i +'</button></li>';
+	}
+
+	if(end < pageCnt + 1) {	//마지막점 페이지가 아닌 경우 오른쪽 이동 버튼 활성화
+		html += '<li class="page-item"><button type="button" onclick="list('+ (start + pageSize) +')" class="page-link">></button></li>';
+		html += '<li class="page-item"><button type="button" onclick="list('+ pageCnt +')" class="page-link">>></button></li>';
+	} else {	//disabled 처리
+		html += '<li class="page-item disabled"><button type="button" class="page-link" tabindex="-1" aria-disabled="true">></button></li>';
+	}
+
+	document.getElementById('paging').innerHTML = html;
+} 
+</script>
 <style>
 .btn-warning{
 	text-align: right !important;
@@ -136,7 +183,6 @@ width:5%;
 }
 
 </style>
-
 <body>
  	<%@ include file="/WEB-INF/views/template/menu.jsp" %>
 	<div class="menu" id="loginChk2"  style="display:none"></div>
@@ -151,17 +197,15 @@ width:5%;
    <div id="listtable">
    	<table id="list" border="0"></table>
    </div>
+   <nav aria-label="Pagination">
+				<hr class="my-0" />
+				<ul class="pagination justify-content-center my-4" id="paging"></ul>
+	</nav>
 </body>
 
 <script>
 
-var listname = new Array();
-var listAddr = new Array();
 
-<c:forEach var="list" items="${list}">
-listname.push("${list.getHospitalname()}");
-listAddr.push("${list.getAddr()}");
-</c:forEach>
 
 window.onload=function(){
 	$(".ge").remove();  
@@ -174,6 +218,7 @@ for (var i = 0; i < listname.length; i++) {
 	
 }
 
+paging(pageSize, totCnt, listCnt, pageNo);
 
 </script>
 </html>
