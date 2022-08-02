@@ -1,5 +1,5 @@
 
-$(function(){
+$(document).ready(function(){
 	getInfo(); 
 	 }); 
 var areanum = true;
@@ -333,19 +333,7 @@ function chageSelect() {
 }
 
 
-//현재 위치로 변경
-function now() {
-		if( navigator.geolocation){
-			navigator.geolocation.getCurrentPosition(function(position){
-				
-				var lat = position.coords.latitude,
-					lon = position.coords.longitude;
-				
-				locPosition = new kakao.maps.LatLng(lat,lon);
-				map.setCenter(locPosition);
-			}); 
-		}
-   } 
+
 
 	function res(i){ 
 	
@@ -403,5 +391,18 @@ function now() {
      
         }
       
-        
    }
+   
+   //현재 위치로 변경
+	function now() {
+		if( navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(function(position){
+				
+				var lat = position.coords.latitude,
+					lon = position.coords.longitude;
+				
+				locPosition = new kakao.maps.LatLng(lat,lon);
+				map.setCenter(locPosition);
+			}); 
+		}
+   } 

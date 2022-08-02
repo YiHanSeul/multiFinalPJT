@@ -19,7 +19,7 @@
     display: none;
 }
 #myform label{
-    font-size: 2em;
+    font-size: 3em;
     color: transparent;
     text-shadow: 0 0 0 #f0f0f0;
 }
@@ -32,8 +32,73 @@
 }
  #top{
 	width: 100%;
-	height: 100px;
+	height: 120px;
 }
+.inwrap {
+    width: 120rem;
+    height: 100%;
+    position: relative;
+    margin: auto;
+}
+
+.at {
+   display: block;
+    height: 100%;
+    line-height: 1.4;
+    padding: 4.3rem 3.2rem 3.8rem 3rem;
+}
+ 
+ 
+.container {
+    position: relative;
+    min-height: calc(100% - 25rem);
+    border-top: 1px solid #cdcdcd;
+}
+ 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 1.4rem;
+    background-color: #fff;
+}
+.inwrap {
+    width: 120rem;
+    height: 100%;
+    position: relative;
+    margin: auto;
+}
+.seq{
+    line-height: 2.4rem;
+    margin-bottom: 2.5rem;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    font-weight: 500;
+    font-size: 1.4rem;
+    color: #fd7e14;
+}
+.tit{
+	display: block;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    font-size: 1.6rem;
+    color: #000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.4;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+div{
+text-align: center;
+}
+ 
 </style>
 <script type="text/javascript">
  	let ck = ${no};
@@ -48,24 +113,23 @@
 <body>
 <%@ include file="/WEB-INF/views/template/menu.jsp" %>
 <div id="top"></div> 
+
 <form action="/board/write" class="mb-3" name="myform" id="myform" method="post" enctype="multipart/form-data">
+	<div class="inwrap">
+	<h1><b>글작성</b></h1>
+		<div class="container">
 	<div>
 	화원번호 : ${userkey}
 	<input type="hidden" name=userKey value="${userKey}">
 	</div>
-	 
- 	<div>
-		<label>제목</label>
+		<spen><b>제목 : </b></spen>
 		<input type="text" name=comTitle>
-	</div>
- 	<div>
-		<label>병원 이름</label>
+ 	<br>
+ 	<br>
+	 	<spen><b>병원 이름 : </b></spen>
 		<input type="text" name=field1>
-	</div>
-	<div>
-		<label>파일 첨부</label>	
-		<input type="file"  name="file" multiple="multiple"/>
-	</div>
+ 	<br>
+	
 	<fieldset>
 		<span class="text-bold">별점을 선택해주세요</span>
 		<input type="radio" name="rating" value="5" id="rate1"><label for="rate1">★</label>
@@ -74,13 +138,18 @@
 		<input type="radio" name="rating" value="2" id="rate4"><label for="rate4">★</label>
 		<input type="radio" name="rating" value="1" id="rate5"><label for="rate5">★</label>
 	</fieldset> 
+	
+	<div style="margin-left: 5%;" class="btn btn-warning">
+	
+		<input type="file"  name="file" multiple="multiple" class="btn btn-warning"/>
+	</div><br><br>
 	<!--  <input type="file" name="file"> -->
 	<div>
 		<textarea cols=150 rows=15 name=comContent></textarea>
 	</div>
-	
+	</div></div>
 	<div>
-		<input type="submit"  value="등록하기">
+		<input type="submit"  value="등록하기" class="btn btn-warning">
 	</div>
 
 
