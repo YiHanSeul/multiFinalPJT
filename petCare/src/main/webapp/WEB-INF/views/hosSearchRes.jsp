@@ -14,19 +14,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-var listname = new Array();
-var listAddr = new Array();
+var listss = new Array(); 
 
-<c:forEach var="list" items="${list}" begin="${begin}" end="${end}">
-listname.push("${list.getHospitalname()}");
-listAddr.push("${list.getAddr()}");
-</c:forEach>
+listss = ${lsize};
 
-let pageSize = Math.ceil(listname.length/9); 	//﻿ 화면에 표시할 페이지 번호 수
-let totCnt = listname.length;	// ﻿전체 데이터 목록 수
+let pageSize = Math.ceil(${lsize}/9); 	//﻿ 화면에 표시할 페이지 번호 수
+let totCnt = ${lsize};	// ﻿전체 데이터 목록 수
 let listCnt = 9;	// ﻿페이지당 표시할 데이터 목록 수
 let pageNo = ${num};		// ﻿현재 페이지 번호
-
 
 function list(i){
 	location.href="/map/list?num="+i;
@@ -103,6 +98,10 @@ width:5%;
 
 #list{
 	width:70%;
+	margin-left: 15%;
+	border-collapse: separate;
+  border-spacing: 0 10px;
+  padding-top: 15px;
 }
 #selectbar{
 	display: flex;
@@ -161,7 +160,11 @@ width:5%;
     font-weight: 300;
     border: none!important;
 }
-
+#hname{
+	font-weight: bold;
+	color: orange;
+	font-size: 20px;
+}
 .search-box-container .inner button {
     position: absolute;
     top: 0;
@@ -181,44 +184,67 @@ width:5%;
 	align-items: center;
 	left:2.15%;
 }
-
+#nav{
+  width:30%;
+  margin-left:35%;
+}
+#paging{
+	margin-left: 40%;
+}
+.search-top-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 120px;
+   background: #FAFAD2;
+   opacity: 0.7;
+   margin-top:70pt;
+}
 </style>
 <body>
  	<%@ include file="/WEB-INF/views/template/menu.jsp" %>
 	<div class="menu" id="loginChk2"  style="display:none"></div>
  
  	<div class="search-top-container">
- 		<h3 class="title" id="stt">동물병원 찾기</h3>
+ 		<h3 class="title" id="stt">검색결과</h3>
  	</div>
  	
  	<form action="/map/search" method="get">
  	<div class="search-head"><div class="search-box-container"><div class="inner"><input type="text" name="HN"><button type="submit" onclick="search()"></button></div><!----></div></div>
  	</form>
-   <div id="listtable">
-   	<table id="list" border="0"></table>
-   </div>
-   <nav aria-label="Pagination">
+   
+	
+	<input type="hidden" name="keyword" value=${keyword}>
+	<table id="list"> 
+		<tbody>
+			<c:forEach var="list" items="${list}" begin="${begin}" end="${end}">
+				<tr >
+					<td id="hname">${list.hospitalname}</td>
+					<td>주소 : ${list.addr}</td>
+					<td><button class='btn btn-success' onClick="location.href='https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=${list.hospitalname}'">자세히</button></td>
+					<td><button class='btn btn-warning' onclick="res('${list.hospitalname}');">예약하기</button></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<nav aria-label="Pagination" id="nav">
 				<hr class="my-0" />
 				<ul class="pagination justify-content-center my-4" id="paging"></ul>
 	</nav>
+	
+	
 </body>
 
 <script>
 
-
-
-window.onload=function(){
-	$(".ge").remove();  
-var n = 0;
-var sum = new Array();
-for (var i = 0; i < listname.length; i++) {
-		$("#list").append("<tr class='ge'><td>"+listname[i]+"</td><td>"+listAddr[i]+"</td><td id='tbt'><button class='btn btn-warning' onclick=res("+[i]+");>예약하기</button></td></tr>");
-
-}
-	
-}
-
 paging(pageSize, totCnt, listCnt, pageNo);
+
+ function res(hospitalname){ 
+	 var HospitalName =  hospitalname;
+	 console.log(HospitalName)
+    location.href="/res/calendar?HospitalName="+HospitalName;
+       }
 
 </script>
 </html>
