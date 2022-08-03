@@ -23,7 +23,11 @@
    text-align: right !important;
    padding-left: 4px !important;
 }
-
+#hname{
+	font-weight: bold;
+	color: orange;
+	font-size: 20px;
+}
 #area {
    border: 1px solid black;
    background-color: pink;
@@ -57,10 +61,13 @@
    margin: 0;
    align-items: center;
    left: 2.15%;
+   
 }
 
 #list {
    width: 70%;
+   border-collapse: separate;
+  border-spacing: 0 10px;
 }
 
 #selectbar {
@@ -79,7 +86,9 @@
    opacity: 0.7;
    margin-top:70pt;
 }
-
+body{
+height: 1080px;
+}
 #stt {
    font-size: 30pt !important;
    font-weight: bolder !important;
@@ -145,7 +154,7 @@
 }
 </style>
 
-<body onload="javascript:start();">
+<body onload="start();">
    <%@ include file="/WEB-INF/views/template/menu.jsp"%>
    <div class="menu" id="loginChk2" style="display: none"></div>
 
@@ -324,7 +333,7 @@
       function start(){
     	  now();
     	  getInfo();
-      }
+      };
       
    </script>
 </body>

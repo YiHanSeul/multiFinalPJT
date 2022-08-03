@@ -47,12 +47,12 @@ witdh: 20%;
 }
 #ta{
 display:none;
-width: auto;
 border: 0;
 border-radius: 15px;
 outline: none;
 background-color: rgb(233, 233, 233);
 resize:none;
+width: 260px;
 }
 #context{
 width: 100pt;
@@ -119,6 +119,11 @@ text-align: center;
 }
 #aaa{
 text-align: center;
+}
+#stt {
+   font-size: 30pt !important;
+   font-weight: bolder !important;
+   opacity: 1 !important;
 }
 </style>
 </head>
@@ -277,8 +282,14 @@ text-align: center;
 				if (arg) {
 					BookDate = arg.startStr;
 					let c = new Date(BookDate);
-					let a = c.toLocaleDateString();
-					let b = today.toLocaleDateString();
+					let cc = c.toLocaleDateString();
+					let ccc = cc.replaceAll(".", "");
+					let a = parseInt(ccc.replaceAll(" ", ""));
+					let bb = today.toLocaleDateString();
+					let bbb = bb.replaceAll(".", "");
+					let b = parseInt(bbb.replaceAll(" ", ""));
+					console.log(a,b);
+					console.log(a+b);
 					if(a >= b){
 					let str = document.getElementById("bc");
 					str.setAttribute("value",BookDate);
