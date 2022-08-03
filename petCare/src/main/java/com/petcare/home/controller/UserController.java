@@ -52,6 +52,12 @@ public class UserController {
 		return "userInsert";
 	}
 
+	@GetMapping("/index2")
+	public String index2() {
+		return "front";
+	}
+	
+	
 	@GetMapping("/index")
 	public String index() {
 		return "index";
@@ -98,51 +104,190 @@ public class UserController {
 	}
 
 	@PostMapping("/loginForm")
-	public String loginForm(Model model, HttpServletRequest request, HttpServletResponse response,HttpSession session , int chk_info) {
-		System.out.println(chk_info);
-		if(chk_info==1) {
-			String userid = request.getParameter("userid");
-			String userpw = request.getParameter("userpw");
-			session.setAttribute("userid", userid);
-			session.setAttribute("userpw", userpw);
-			session.setAttribute("userkey",userService.UserChk(userid).getUserkey());
-			if (0 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
-					&& userpw.equals(userService.UserChk(userid).getUserpw())) {
-				//model.addAttribute("userid", userid);
-				System.out.println(adminService.HospitalVChk());
-
-				model.addAttribute("dto", adminService.HospitalVChk());
-
-				return "adminCheck";
-			} else if (1 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
-					&& userpw.equals(userService.UserChk(userid).getUserpw())) {
-				//model.addAttribute("userid", userid);
-				return "index";
-			}
-
-		}else {
-			String HospitalId = request.getParameter("userid");
-			String HospitalPw = request.getParameter("userpw");
-			session.setAttribute("userid", HospitalId);
-			session.setAttribute("userpw", HospitalPw);
-					
-			if (1 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-					&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
-					&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
-
-				return "index";
-			}
-
-			if (0 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-					&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
-					&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
-
-				model.addAttribute("text", "비활성");
-				return "loginHos";
-			}
-		}
+	public String loginForm(Model model, String userid, String userpw, HttpSession session , int chk_info) {
+		
+		try {
+			if(chk_info == 1) {
+				int gradeChk = userService.UserChk(userid).getGrade();
+				boolean idChk = userid.equals(userService.UserChk(userid).getUserid());
+				boolean pwChk =	 userpw.equals(userService.UserChk(userid).getUserpw());
+ 				
+				if(0 == gradeChk) {
+					if(idChk) {
+						//아이디 성공
+						if(pwChk) {
+							//비밀번호 성공
+							session.setAttribute("userid", userid);
+							session.setAttribute("userpw", userpw);
+							model.addAttribute("dto", adminService.HospitalVChk());
+		  					return "adminCheck";
+						}else {
+							//비밀번호 실패
+							model.addAttribute("num", 2);
+							return "login";
+						}
+					}else {
+						//아이디 실패
+						model.addAttribute("num", 1);
+						return "login";
+					}		
+				}
+						
+				if(1 == gradeChk) {
+					if(idChk) {
+						//아이디 성공
+						if(pwChk) {
+							//비밀번호 성공
+							session.setAttribute("userid", userid);
+							session.setAttribute("userpw", userpw);
+							model.addAttribute("dto", adminService.HospitalVChk());
+		  					return "index";
+						}else {
+							//비밀번호 실패
+							model.addAttribute("num", 2);
+							return "login";
+						}
+					}else {
+						//아이디 실패
+						model.addAttribute("num", 1);
+						return "login";
+					}		
+				}
+				
 				return "login";
-	}
+				
+				//어드민도 넣어줘야함 => 마지막이 else가 되서 필요없음
+				
+//				else if (1 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
+//						&& userpw.equals(userService.UserChk(userid).getUserpw())) {
+//					session.setAttribute("userid", userid);
+//					session.setAttribute("userpw", userpw);
+//					return "index";	
+//				}else {
+//					model.addAttribute("num", 1);
+//					return "login";
+//				}
+//				
+			}else {
+				
+					String HospitalId = userid;
+					String HospitalPw = userpw;
+					
+							
+					if (1 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
+							&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
+							&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
+						session.setAttribute("userid", HospitalId);
+						session.setAttribute("userpw", HospitalPw);
+						System.out.println("test4");
+						return "index";
+					}
+
+					if (0 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
+							&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
+							&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
+						session.setAttribute("userid", HospitalId);
+						session.setAttribute("userpw", HospitalPw);
+						model.addAttribute("text", "비활성");
+						System.out.println("test5");
+						return "loginHos";
+					}else {
+//						model.addAttribute("num", 1);
+						return "login";
+					}
+				}
+		} catch (NullPointerException e) {
+			model.addAttribute("num", 3);
+			return "login";
+		}
+				
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+/*				
+		String userid = request.getParameter("userid");
+		String userpw = request.getParameter("userpw");
+		try {
+			
+			Dto  = service.ck(userid,userpw);
+		}
+		odel.addAttribute("num",0);
+		return login;*/
+/*		System.out.println("test");
+				String msg="";
+					try {
+						if(chk_info==1) {
+							String userid = request.getParameter("userid");
+							String userpw = request.getParameter("userpw");
+							session.setAttribute("userid", userid);
+							session.setAttribute("userpw", userpw);
+							
+							  model.addAttribute("num",0); return index; else if{
+							  model.addAttribute("num",1); return login; }
+							 
+							session.setAttribute("userkey",userService.UserChk(userid).getUserkey());
+							System.out.println("test1");
+						if (0 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
+								&& userpw.equals(userService.UserChk(userid).getUserpw())) {
+							//model.addAttribute("userid", userid);
+							System.out.println(adminService.HospitalVChk());
+							model.addAttribute("dto", adminService.HospitalVChk());
+							System.out.println("test2");
+							return "adminCheck";
+						} else if (1 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
+								&& userpw.equals(userService.UserChk(userid).getUserpw())) {
+							//model.addAttribute("userid", userid);
+							System.out.println("test3");
+							
+
+							model.addAttribute("userpw", userService.UserChk(userid).getUserpw());
+							
+							return "index";
+						}
+						
+					}else  {
+						String HospitalId = request.getParameter("userid");
+						String HospitalPw = request.getParameter("userpw");
+						session.setAttribute("userid", HospitalId);
+						session.setAttribute("userpw", HospitalPw);
+								
+						if (1 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
+								&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
+								&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
+							System.out.println("test4");
+							return "index";
+						}
+
+						if (0 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
+								&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
+								&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
+							model.addAttribute("text", "비활성");
+							System.out.println("test5");
+							return "loginHos";
+						}
+					}
+						} catch (NullPointerException e) {
+							System.out.println("test6");
+							msg = "아이디 또는 비밀번호가 잘못 입력되었습니다!";
+							model.addAttribute("msg", msg);
+							msg="";
+						return "login";
+						
+					} finally {
+						msg ="finally";
+					}
+					System.out.println("test7");
+					return "login";*/
+		
+	
 
 	@GetMapping("/userMypage")
 	public String userMypage(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {		
