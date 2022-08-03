@@ -35,14 +35,15 @@
 }
 #imageLeft img{
 	position:relative;
-	left: 3%;
-	top: 50px;
+	float: left;
+	margin-top: 4.5%;
 }
 #imageRight img{
  width:60%;
-left: 40%;
+margin-top: 3%;
 position:relative;
-bottom: 50%;
+
+float: right;
 }
 #mainInfo{
 	bottom: 80%;
@@ -75,6 +76,12 @@ bottom: 50%;
 	left: 60%;
 	bottom: 50%;
 }
+#protect{
+	margin-top: 25%;
+	left: 8%;
+	
+	font-size: 50pt;
+}
 </style>
 </head>
 <body>
@@ -91,12 +98,14 @@ bottom: 50%;
 		
 	</div>
 	
+	
+	
 	<form action="petInsuInfoRes">
 	
 		<div class="main" id="mainInfo">
 			<h2>반려견에 대한 정보를 알려주세요.</h2>
 		</div>
-	
+		
 	
  		<div class="main" id="mainName">
 
@@ -140,6 +149,11 @@ bottom: 50%;
     
 	
 	</form>
+	
+	
+	<div class="main" id="protect">
+		우리 아이 지킴이
+	</div>
  	<script>
 
 document.getElementById("mainSubmit").onclick = function() {isName(); isType1();};
