@@ -387,7 +387,7 @@ function chageSelect() {
         	
         } 
         for(var i = 0; i< sum.length; i++){ 
-       		$("#list").append("<tr class='ge'><td>"+listname[sum[i]]+"</td><td>"+listAddr[sum[i]]+"</td><td id='tbt'><button class='btn btn-warning' onclick=res("+sum[i]+");>예약하기</button></td></tr>");
+       		$("#list").append("<tr class='ge'><td id='hname'>"+listname[sum[i]]+"</td><td>"+listAddr[sum[i]]+"</td><td id='tbt'><button class='btn btn-warning' onclick=res("+sum[i]+");>예약하기</button></td></tr>");
      
         }
       
