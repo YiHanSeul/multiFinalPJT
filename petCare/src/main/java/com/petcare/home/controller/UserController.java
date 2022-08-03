@@ -111,7 +111,7 @@ public class UserController {
 				int gradeChk = userService.UserChk(userid).getGrade();
 				boolean idChk = userid.equals(userService.UserChk(userid).getUserid());
 				boolean pwChk =	 userpw.equals(userService.UserChk(userid).getUserpw());
- 				
+ 				//0은 관리자
 				if(0 == gradeChk) {
 					if(idChk) {
 						//아이디 성공
@@ -132,7 +132,7 @@ public class UserController {
 						return "login";
 					}		
 				}
-						
+				//1은 일반유저
 				if(1 == gradeChk) {
 					if(idChk) {
 						//아이디 성공
