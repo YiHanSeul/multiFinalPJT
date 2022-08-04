@@ -27,7 +27,7 @@
 					location.href = "index";
 				});
 			}else{
-				alert("비밀번호를 다시 입력해주세요.");
+				swal("오류","비밀번호를 다시 입력해주세요.","error");
 				}       		
     		},
     		error: function(error){

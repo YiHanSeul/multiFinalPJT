@@ -139,7 +139,7 @@ public class UserController {
 						return "login";
 					}		
 				}
-						
+				//1은 일반유저
 				if(1 == gradeChk) {
 					if(idChk) {
 						//아이디 성공

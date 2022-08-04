@@ -18,6 +18,11 @@ public class PetVaccServiceImpl  implements PetVaccService{
 		return petVaccMapper.selectPetVaccAll(userkey);
 	}
 
+	@Override
+	public int vaccadd(PetVaccDto petVaccDto) {
+		return petVaccMapper.vaccadd(petVaccDto);
+	}
+
 
 
 }

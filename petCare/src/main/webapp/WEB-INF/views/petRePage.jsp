@@ -7,14 +7,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/resources/css/petRePage.css" rel="stylesheet"type="text/css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/resources/js/petRePage.js"></script> <!-- Pet Result Page -->
+
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/template/menu.jsp"%>
 	<div class="main">
 		<div id="mainText">
-			<h3>${petName }님의보험 추천상품으로 가격이 ${petPriceI2 }원인 ${petNameI } 상품을
-				추천합니다.</h3>
+			<h3>${petName }님의 펫보험 상품으로 가격이 ${petPriceI2 }원인 ${petNameI }을 추천합니다!</h3>
+
 		</div>
 	</div>
 	<br>

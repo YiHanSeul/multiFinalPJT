@@ -10,12 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petcare.home.model.dto.BoardDto;
+import com.petcare.home.model.dto.MapDto;
 import com.petcare.home.model.service.MapService; 
 
 
@@ -34,32 +32,39 @@ public class MapController {
    
    
    @GetMapping("/search")
-   public String search(HttpServletRequest request, Model model) {
+   public String search(HttpServletRequest request, Model model, HttpSession session) {
 	   String HN= request.getParameter("HN");
-	   model.addAttribute("list",mapservice.search(HN));
+	   List<MapDto> list = mapservice.search(HN);
+	   session.setAttribute("keyword", HN);
+	  
+	   int size = list.size();
+	   model.addAttribute("list",list);
 	   model.addAttribute("num", 1);
 	   model.addAttribute("begin", 0);
 	   model.addAttribute("end", 9);
-	  
+	   model.addAttribute("lsize", size);
 		return "hosSearchRes";
 	}
 	
   @GetMapping("/list")
 	public String BoardList1(HttpServletRequest request, int num, Model model, HttpSession session){
-		
-	   String HN= request.getParameter("HN");
-	   model.addAttribute("list",mapservice.search(HN));
+		System.out.println(num);
+		String keyword = (String)session.getAttribute("keyword");
+	   String HN= request.getParameter("keyword");
+	   List<MapDto> list = mapservice.search(keyword);
+	   int size = list.size();
+	   model.addAttribute("list",list);
 	    model.addAttribute("num", num);
-	   List a = mapservice.search(HN);
-		if(a.size()/9==(num-1)) {
+	    model.addAttribute("lsize", size);
+		if(list.size()/9==(num-1)) {
 		model.addAttribute("begin", (num-1)*9);
-		model.addAttribute("end", a.size()-1);
+		model.addAttribute("end", list.size()-1);
 		}else {
 			model.addAttribute("begin", (num-1)*9);
 			model.addAttribute("end", (num*9)-1);
 		}
 	   
-	   System.out.println(a.size());
+	   System.out.println(list.size());
 		
 		return  "hosSearchRes";
 	}
