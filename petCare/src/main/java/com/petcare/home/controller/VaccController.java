@@ -40,9 +40,12 @@ public class VaccController {
 		List<PetDto> petDto=petService.selectPetAll(userkey);
 		model.addAttribute("petDto",petDto);
 		
-		List<PetVaccDto> petVaccDto=petVaccService.selectPetVaccAll(userkey);
-		//System.out.println(petVaccDto);
-		model.addAttribute("petVaccDto",petVaccDto);
+		//백신 기록 상세보기 과거에 맞은거 싹다 조회함
+		List<PetVaccDto> petVaccListDto=petVaccService.selectPetVaccAll(userkey);
+		model.addAttribute("petVaccListDto",petVaccListDto);
+		//최근 접종 백신기록 조회
+		List<PetVaccDto> petvaccDto=petVaccService.selectPetVacc(userkey);
+		model.addAttribute("petVaccDto",petvaccDto);
 		
 		
 		return "vacc";
@@ -51,6 +54,7 @@ public class VaccController {
 	@GetMapping("/vaccadd")
 	public String vaccadd(Model model, HttpSession session, PetVaccDto petVaccDto) throws ParseException {
 		String userid=(String)session.getAttribute("userid");
+		System.out.println(petVaccDto.getVaccName());
 		int userkey =userService.UserChk(userid).getUserkey();
 		//date 포맷 설정
 		SimpleDateFormat sdfYMD= new SimpleDateFormat("yyyy-MM-dd");

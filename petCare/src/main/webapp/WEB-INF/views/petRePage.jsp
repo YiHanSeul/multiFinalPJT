@@ -21,6 +21,12 @@
 	</div>
 	<br>
 
+<form action="/pay">
+	<input type="hidden" value="${petPriceI2 }" name="petPriceI">
+	${petPriceI2 }
+	<input type="submit" value="결제">
+</form>
+
 
 		<h4>
 			<a
