@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import lombok.Setter;
 import lombok.extern.java.Log;
  
-@Log
+//@Log
 @Controller
 public class SampleController {
     
-    @Setter(onMethod_ = @Autowired)
+    @Autowired
     private KakaoPay kakaopay;
     
+
     
     @GetMapping("/pay")
     public String kakaoPayGet(String petPriceI, Model model) {
@@ -27,7 +28,7 @@ public class SampleController {
     
     @PostMapping("/kakaoPay")
     public String kakaoPay(String petPriceI, Model model) {
-        log.info("kakaoPay post............................................");
+//        log.info("kakaoPay post............................................");
         model.addAttribute("petPriceI", petPriceI);
         return "redirect:" + kakaopay.kakaoPayReady();
  
@@ -35,8 +36,8 @@ public class SampleController {
     
     @GetMapping("/kakaoPaySuccess")
     public void kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model) {
-        log.info("kakaoPaySuccess get............................................");
-        log.info("kakaoPaySuccess pg_token : " + pg_token);
+//        log.info("kakaoPaySuccess get............................................");
+//        log.info("kakaoPaySuccess pg_token : " + pg_token);
         model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));
     }
     

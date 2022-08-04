@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import lombok.extern.java.Log;
  
 @Service
-@Log
+//@Log
 public class KakaoPay {
  
     private static final String HOST = "https://kapi.kakao.com";
@@ -54,7 +54,7 @@ public class KakaoPay {
         try {
             kakaoPayReadyVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);
             
-            log.info("" + kakaoPayReadyVO);
+//            log.info("" + kakaoPayReadyVO);
             
             return kakaoPayReadyVO.getNext_redirect_pc_url();
  
@@ -72,8 +72,8 @@ public class KakaoPay {
     
     public KakaoPayApprovalVO kakaoPayInfo(String pg_token) {
     	 
-        log.info("KakaoPayInfoVO............................................");
-        log.info("-----------------------------");
+//        log.info("KakaoPayInfoVO............................................");
+//        log.info("-----------------------------");
         
         RestTemplate restTemplate = new RestTemplate();
  
@@ -96,7 +96,7 @@ public class KakaoPay {
         
         try {
             kakaoPayApprovalVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/approve"), body, KakaoPayApprovalVO.class);
-            log.info("" + kakaoPayApprovalVO);
+//            log.info("" + kakaoPayApprovalVO);
           
             return kakaoPayApprovalVO;
         
