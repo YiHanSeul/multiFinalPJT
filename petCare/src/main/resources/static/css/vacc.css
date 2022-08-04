@@ -34,3 +34,24 @@ p {
 .petInfo{
 	font-size: 1.3em;
 }
+
+#petVaccInfos{
+	border : 1px solid black;
+}
+.petVaccInfo{
+	font-size: 1em;
+}
+
+#myPet{
+	margin: auto;
+	margin-top: 10% ;
+	margin-bottom: 10%;
+	width: 60%;
+}
+
+.hideVaccForm.has-filter{
+
+}
+#total.blur{
+   
+}

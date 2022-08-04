@@ -20,7 +20,6 @@
 	}
 	function petRegitst() {
 		const popup = document.querySelector('#petAdd-forms');
-		;
 		popup.classList.add('has-filter');
 		popup.classList.remove('hide');
 	}
