@@ -10,6 +10,11 @@
 <link href="/resources/css/vacc.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+<script type='text/javascript'
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+
 <script>
 	let pet = "${petDto}";
 	let user = "${userDto}";
@@ -18,14 +23,15 @@
 	function petVaccRegitst(get) {
 		let classNM = $(get);
 		console.log($(get).next());
-		$(get).next().removeClass('hide');
-		$('#total').addClass("blur");
-		$(get).next().addClass('has-filter');
+		$(get).parent().parent().next().removeClass('hide');
 	}
-	function closePopup() {
-		const popup = document.querySelector('#petVaccAdd-forms');
-		popup.classList.add('hide');
+	function closePopup(get) {
+		$(get).parent().addClass('hide');
+	}
 
+	function vaccAdd(get) {
+		$(get).next().removeClass('hide');
+		$(get).addClass('hide');
 	}
 </script>
 </head>
@@ -63,41 +69,87 @@
 			<c:if test="${not empty petDto}">
 				<c:forEach var="petDto" items="${petDto}">
 					<div class="petInfoDetail">
-						<p class="petInfo">이름: ${petDto.petName }</p>
-						<p class="petInfo">나이: ${petDto.petAge }</p>
-						<p class="petInfo">성별: ${petDto.petGender }</p>
-						<p class="petInfo">중성화: ${petDto.petNe }</p>
-						<c:if test="${empty petVaccDto}">
-							<p class="not">>백신 접종 현황이 없습니다.</p>
-						</c:if>
-						<c:if test="${not empty petVaccDto}">
-							<c:forEach var="petVaccDto" items="${petVaccDto}">
-								<c:choose>
-									<c:when test="${petDto.petKey  eq  petVaccDto.petKey }">
-										<div id="petVaccInfos">
-											<p class="petVaccInfo">백신명: ${petVaccDto.vaccName }</p>
-											<p class="petVaccInfo">최근 백신접종일: ${petVaccDto.vaccMonth }</p>
-											<p class="petVaccInfo">다음 백신접종일:
-												${petVaccDto.nextVaccMonth }</p>
-										</div>
-									</c:when>
-								</c:choose>
-							</c:forEach>
-						</c:if>
-						<input type="button" class="btn btn-warning"
-							data-target="${petDto.petKey}" value="예방접종 상세보기"
-							onclick="petVaccRegitst(this)">
-						<div class="hideVaccForm hide" data-target="${petDto.petKey}">
-							<form action="/vacc/vaccadd" method="get">
-								<input type="hidden" value="${petDto.petKey}" name="petKey">
-								<select name="vaccName">
-									<option value="종합7종">종합 7종백신</option>
-									<option value="코로나">코로나</option>
-									<option value="캔넬코프">캔넬코프</option>
-									<option value="광견병">광견병백신</option>
-								</select> <input type="date" name="vaccMonth"> <input
-									class="btn btn-warning" type="submit" value="예방접종 기록 추가">
-							</form>
+						<div class="petform1">
+							<div>
+								<p class="petInfo">이름: ${petDto.petName }</p>
+								<p class="petInfo">나이: ${petDto.petAge }</p>
+								<p class="petInfo">성별: ${petDto.petGender }</p>
+								<p class="petInfo">중성화: ${petDto.petNe }</p>
+								<input type="button" class="btn btn-warning"
+									data-target="${petDto.petKey}" value="예방접종 상세보기"
+									onclick="petVaccRegitst(this)">
+							</div>
+							<div>
+								<c:if test="${empty petVaccListDto}">
+									<p class="not">백신 접종 현황이 없습니다.</p>
+								</c:if>
+								<c:if test="${not empty petVaccListDto}">
+									<table class="table">
+										<tr>
+											<th>백신명</th>
+											<th>최근 백신 접종일</th>
+											<th>다음 백신 접종일</th>
+										</tr>
+										<c:forEach var="items" items="${petVaccDto}">
+											<c:choose>
+												<c:when test="${petDto.petKey  eq  items.petKey }">
+													<tr id="petVaccInfos">
+														<td class="petVaccInfo">${items.vaccName }</td>
+														<td class="petVaccInfo">${items.vaccMonth }</td>
+														<td class="petVaccInfo">${items.nextVaccMonth }</td>
+													</tr>
+												</c:when>
+											</c:choose>
+										</c:forEach>
+									</table>
+								</c:if>
+							</div>
+						</div>
+						<div class="petform2 hide">
+							<div class="hideVaccForm" data-target="${petDto.petKey}">
+								<c:if test="${empty petVaccListDto}">
+									<p class="not">백신 접종 현황이 없습니다.</p>
+								</c:if>
+								<c:if test="${not empty petVaccListDto}">
+									<table class="table">
+										<tr>
+											<th>백신명</th>
+											<th>접종일</th>
+											<th>다음 백신일</th>
+										</tr>
+										<c:forEach var="items" items="${petVaccListDto}">
+											<c:choose>
+												<c:when test="${petDto.petKey  eq  items.petKey }">
+													<tr id="petVaccInfos">
+														<td class="petVaccInfo">${items.vaccName }</td>
+														<td class="petVaccInfo">${items.vaccMonth }</td>
+														<td class="petVaccInfo">${items.nextVaccMonth }</td>
+													</tr>
+												</c:when>
+											</c:choose>
+										</c:forEach>
+									</table>
+								</c:if>
+								<input type="button" class="btn" value="백신추가"
+									onclick="vaccAdd(this)">
+								<form action="/vacc/vaccadd" method="get" class="hide">
+									<hr>
+									<input type="hidden" value="${petDto.petKey}" name="petKey">
+									<div id="selectForms">
+										<select class="form-control" name="vaccName"
+											class="selectForm">
+											<option value="종합7종">종합 7종백신</option>
+											<option value="코로나">코로나</option>
+											<option value="캔넬코프">캔넬코프</option>
+											<option value="광견병">광견병백신</option>
+										</select> <input class="form-control selectForm" type="date"
+											name="vaccMonth"> <input class="btn btn-warning"
+											type="submit" value="예방접종 기록">
+									</div>
+								</form>
+							</div>
+							<input type="button" class="btn btn-danger" id="selectCloseBtn"
+								value="닫기" onclick="closePopup(this)">
 						</div>
 					</div>
 				</c:forEach>

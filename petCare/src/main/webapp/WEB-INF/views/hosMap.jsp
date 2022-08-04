@@ -220,6 +220,7 @@ height: 1080px;
       var listname = new Array();
       var listAddr = new Array();
       var listnum = new Array();
+      var listcare = new Array();
       var namelistname = new Array();
       var namelistAddr = new Array();
       var namelistnum = new Array();
@@ -231,6 +232,7 @@ height: 1080px;
       listlat.push("${list.getLat()}");
       listname.push("${list.getHospitalname()}");
       listAddr.push("${list.getAddr()}");
+      listcare.push("${list.getCare()}");
       listnum.push(0);
       </c:forEach>
 
@@ -264,18 +266,33 @@ height: 1080px;
       // 마커 하나를 지도위에 표시합니다 
       for (var i = 0; i < listlng.length; i++) {
          info(new kakao.maps.LatLng(listlat[i], listlng[i]), listname[i],
-               listnum[i]);
+               listnum[i],listcare[i]);
       }
 
-      function info(position, name, num) {
-
-         // 마커를 생성합니다
-         var marker = new kakao.maps.Marker({
-            position : position,
-            clickable : true
-         // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-         });
-
+      function info(position, name, num, listcare) {
+    	  	 //맡아주는 병원
+    		 if(listcare == 1){
+    			 //이미지 설정
+		   	  	 var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+		   	     imageSize = new kakao.maps.Size(34, 39), // 마커이미지의 크기입니다
+		   	     imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		   	     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+		         // 마커를 생성합니다
+		         var marker = new kakao.maps.Marker({
+		            position : position,
+		            clickable : true,
+		            image: markerImage
+		         // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+		         });
+    		 }
+    	  	 //일반 병원
+    		 else{
+    			 var marker = new kakao.maps.Marker({
+ 		            position : position,
+ 		            clickable : true,
+ 		         // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+ 		         });
+    		 }
          // 마커가 지도 위에 표시되도록 설정합니다
          marker.setMap(map);
          //임의로 저장
@@ -331,7 +348,7 @@ height: 1080px;
       });
       
       function start(){
-    	  now();
+    	  
     	  getInfo();
       };
       
