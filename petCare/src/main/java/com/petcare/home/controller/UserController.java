@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.petcare.home.config.BcryptPassEncoder;
 import com.petcare.home.model.dto.PetDto;
 import com.petcare.home.model.dto.ResDto;
 import com.petcare.home.model.dto.UserDto;
@@ -44,7 +46,12 @@ public class UserController {
 	
 	@Autowired
 	private ResService resService;
+	
+	@Autowired
+	private BcryptPassEncoder bcryptPassEncoder;
 
+
+ 
 	@GetMapping("/user")
 	public String test() {
 		
@@ -86,8 +93,9 @@ public class UserController {
 		if(user.getUserid() == "" || user.getUserpw() == "" || user.getUsername() =="" || user.getUsernick() == "" || user.getUseremail() == "" || user.getUserphone() == "") {
 			return "userInsert";
 		}
-	
-			
+			//암호화 회원가입
+			user.setUserpw(bcryptPassEncoder.encode(user.getUserpw()));
+			System.out.println(user.getUserpw());
 			int res = userService.joinUser(user);
 			
 			if (res > 0) {
@@ -110,8 +118,8 @@ public class UserController {
 			if(chk_info == 1) {
 				int gradeChk = userService.UserChk(userid).getGrade();
 				boolean idChk = userid.equals(userService.UserChk(userid).getUserid());
-				boolean pwChk =	 userpw.equals(userService.UserChk(userid).getUserpw());
- 				
+				//복호화 작업
+				boolean pwChk = bcryptPassEncoder.matches(userpw, userService.UserChk(userid).getUserpw());
 				if(0 == gradeChk) {
 					if(idChk) {
 						//아이디 성공
@@ -132,7 +140,7 @@ public class UserController {
 						return "login";
 					}		
 				}
-						
+				//1은 일반유저
 				if(1 == gradeChk) {
 					if(idChk) {
 						//아이디 성공

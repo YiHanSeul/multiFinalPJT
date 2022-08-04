@@ -1,28 +1,24 @@
 package com.petcare.home.model.dto;
 
-import java.util.Date;
-
 public class PetVaccDto {
 	private int petVaccCode;
 	private int userKey;
 	private int petKey;
 	private String vaccName;
-	private Date vaccMonth;
-	private String nextVaccName;
-	private Date nextVaccMonth;
+	private String vaccMonth;
+	private String nextVaccMonth;
 	public PetVaccDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PetVaccDto(int petVaccCode, int userKey, int petKey, String vaccName, Date vaccMonth, String nextVaccName,
-			Date nextVaccMonth) {
+	public PetVaccDto(int petVaccCode, int userKey, int petKey, String vaccName, String vaccMonth,
+			String nextVaccMonth) {
 		super();
 		this.petVaccCode = petVaccCode;
 		this.userKey = userKey;
 		this.petKey = petKey;
 		this.vaccName = vaccName;
 		this.vaccMonth = vaccMonth;
-		this.nextVaccName = nextVaccName;
 		this.nextVaccMonth = nextVaccMonth;
 	}
 	public int getPetVaccCode() {
@@ -49,30 +45,24 @@ public class PetVaccDto {
 	public void setVaccName(String vaccName) {
 		this.vaccName = vaccName;
 	}
-	public Date getVaccMonth() {
+	public String getVaccMonth() {
 		return vaccMonth;
 	}
-	public void setVaccMonth(Date vaccMonth) {
+	public void setVaccMonth(String vaccMonth) {
 		this.vaccMonth = vaccMonth;
 	}
-	public String getNextVaccName() {
-		return nextVaccName;
-	}
-	public void setNextVaccName(String nextVaccName) {
-		this.nextVaccName = nextVaccName;
-	}
-	public Date getNextVaccMonth() {
+	public String getNextVaccMonth() {
 		return nextVaccMonth;
 	}
-	public void setNextVaccMonth(Date nextVaccMonth) {
+	public void setNextVaccMonth(String nextVaccMonth) {
 		this.nextVaccMonth = nextVaccMonth;
 	}
 	@Override
 	public String toString() {
 		return "PetVaccDto [petVaccCode=" + petVaccCode + ", userKey=" + userKey + ", petKey=" + petKey + ", vaccName="
-				+ vaccName + ", vaccMonth=" + vaccMonth + ", nextVaccName=" + nextVaccName + ", nextVaccMonth="
-				+ nextVaccMonth + "]";
+				+ vaccName + ", vaccMonth=" + vaccMonth + ", nextVaccMonth=" + nextVaccMonth + "]";
 	}
+	
 	
 	
 }
