@@ -8,4 +8,6 @@ public interface PetVaccService {
 	public List<PetVaccDto> selectPetVaccAll(int userkey);
 
 	public int vaccadd(PetVaccDto petVaccDto);
+
+	public List<PetVaccDto> selectPetVacc(int userkey);
 }
