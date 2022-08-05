@@ -29,7 +29,6 @@
 </head>
 <body>
 	<div id="menus1">
-		<a href="/pay">결제</a>
 		<div class="menu" id="myPage" style="display:none;"><a href="/user/userMypage">마이페이지</a></div>
 		<div class="menu" id="login" style="display:none;"><a href="/user/login">로그인</a></div>
 		<div class="menu" id="logout" style="display:none;"><a href="/user/logout">로그아웃</a></div>
