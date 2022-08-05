@@ -3,7 +3,7 @@ package com.petcare.home.test;
 import java.util.Date;
 
 import lombok.Data;
-
+ 
 
 public class KakaoPayApprovalVO {
     
@@ -16,11 +16,13 @@ public class KakaoPayApprovalVO {
     private Integer quantity, tax_free_amount, vat_amount;
     private Date created_at, approved_at;
     
-
+    
     public KakaoPayApprovalVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+
 
 
 	public KakaoPayApprovalVO(String aid, String tid, String cid, String sid, String partner_order_id,
@@ -47,11 +49,14 @@ public class KakaoPayApprovalVO {
 		this.approved_at = approved_at;
 	}
 
-	
+
+
 
 	public String getAid() {
 		return aid;
 	}
+
+
 
 
 	public void setAid(String aid) {
@@ -59,9 +64,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public String getTid() {
 		return tid;
 	}
+
+
 
 
 	public void setTid(String tid) {
@@ -69,9 +78,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public String getCid() {
 		return cid;
 	}
+
+
 
 
 	public void setCid(String cid) {
@@ -79,9 +92,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public String getSid() {
 		return sid;
 	}
+
+
 
 
 	public void setSid(String sid) {
@@ -89,9 +106,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public String getPartner_order_id() {
 		return partner_order_id;
 	}
+
+
 
 
 	public void setPartner_order_id(String partner_order_id) {
@@ -99,9 +120,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public String getPartner_user_id() {
 		return partner_user_id;
 	}
+
+
 
 
 	public void setPartner_user_id(String partner_user_id) {
@@ -109,9 +134,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public String getPayment_method_type() {
 		return payment_method_type;
 	}
+
+
 
 
 	public void setPayment_method_type(String payment_method_type) {
@@ -119,9 +148,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public AmountVO getAmount() {
 		return amount;
 	}
+
+
 
 
 	public void setAmount(AmountVO amount) {
@@ -129,9 +162,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public CardVO getCard_info() {
 		return card_info;
 	}
+
+
 
 
 	public void setCard_info(CardVO card_info) {
@@ -139,9 +176,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public String getItem_name() {
 		return item_name;
 	}
+
+
 
 
 	public void setItem_name(String item_name) {
@@ -149,9 +190,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public String getItem_code() {
 		return item_code;
 	}
+
+
 
 
 	public void setItem_code(String item_code) {
@@ -159,9 +204,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public String getPayload() {
 		return payload;
 	}
+
+
 
 
 	public void setPayload(String payload) {
@@ -169,9 +218,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public Integer getQuantity() {
 		return quantity;
 	}
+
+
 
 
 	public void setQuantity(Integer quantity) {
@@ -179,9 +232,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public Integer getTax_free_amount() {
 		return tax_free_amount;
 	}
+
+
 
 
 	public void setTax_free_amount(Integer tax_free_amount) {
@@ -189,9 +246,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public Integer getVat_amount() {
 		return vat_amount;
 	}
+
+
 
 
 	public void setVat_amount(Integer vat_amount) {
@@ -199,9 +260,13 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public Date getCreated_at() {
 		return created_at;
 	}
+
+
 
 
 	public void setCreated_at(Date created_at) {
@@ -209,14 +274,19 @@ public class KakaoPayApprovalVO {
 	}
 
 
+
+
 	public Date getApproved_at() {
 		return approved_at;
 	}
 
 
+
+
 	public void setApproved_at(Date approved_at) {
 		this.approved_at = approved_at;
 	}
+
 
 
 
@@ -278,9 +348,12 @@ public class KakaoPayApprovalVO {
 			this.discount = discount;
 		}
     	
+    	
     }
-    
 
+
+    
+    
     public class CardVO {
     	
     	private String purchase_corp, purchase_corp_code;
@@ -376,4 +449,6 @@ public class KakaoPayApprovalVO {
     	
     	
     }
+    
+    
 }

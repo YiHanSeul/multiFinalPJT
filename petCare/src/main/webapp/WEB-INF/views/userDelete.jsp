@@ -4,6 +4,8 @@
 <html>
 <head>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <meta charset="UTF-8">
 <title>회원 탈퇴 구현</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -24,8 +26,9 @@
 					icon : "success",
 					closeOnClickOutside : false
 				}).then(function(){
-					location.href = "index";
-				});
+					window.close();
+				}); 
+				//어디로 이동을 시켜주긴해야함
 			}else{
 				swal("오류","비밀번호를 다시 입력해주세요.","error");
 				}       		
@@ -39,9 +42,9 @@
 </script>
 </head>
 <body>
-
-비밀번호를 입력해주세요. <input type="text" name="userpw" id="userpw">
-<input type="button" value="회원탈퇴" onclick="check()">
+<h4>회원 탈퇴를 원하시면 비밀번호를 입력해주세요!<br><br></h4>
+<h4>비밀번호 입력: <input type="text" name="userpw" id="userpw">
+<input type="button" value="회원탈퇴" class="btn btn-warning" onclick="check()"></h4>
 
 
 </body>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,20 +16,28 @@
 	<%@ include file="/WEB-INF/views/template/menu.jsp"%>
 	<div class="main">
 		<div id="mainText">
-			<h3>${petName }님의 펫보험 상품으로 가격이 ${petPriceI2 }원인 ${petNameI }을 추천합니다!</h3>
+			<h3>${petName }님의
+				펫보험 상품으로 가격이 ${petPriceI2 }원인 ${petNameI }을 추천합니다!
+				<c:set var="test" value="${petPriceI2 }" scope="session" />
 
+				<c:if test="${test == '41,940'}">
+					<a href="/pay">결제</a>
+				</c:if>
+				<c:if test="${test == '42,700'}">
+					<a href="/pay1">결제1</a>
+				</c:if>
+				<c:if test="${test == '45,170'}">
+					<a href="/pay2">결제2</a>
+				</c:if>
+			</h3>
 		</div>
 	</div>
 	<br>
 
-<form action="/pay">
-	<input type="hidden" value="${petPriceI2 }" name="petPriceI">
-	${petPriceI2 }
-	<input type="submit" value="결제">
-</form>
 
 
-		<h4>
+
+	<h4>
 			<a
 				href="https://direct.samsungfire.com/ria/pc/product/pet/?state=Front&gclid=Cj0KCQjw0JiXBhCFARIsAOSAKqA0eKIuT5tLoISxS-9xVBIxwQBWcDps9PinHV3KVn4MpDDM-5gUR8oaAtU1EALw_wcB"
 				target='_blank'>삼성화재 다이렉트 반려견보험</a> &nbsp;&nbsp;&nbsp;

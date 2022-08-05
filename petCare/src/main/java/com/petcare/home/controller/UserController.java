@@ -420,7 +420,8 @@ public class UserController {
 	public int delete(HttpSession session, @RequestParam("userpw") String userpw) {
 		String userid = (String) session.getAttribute("userid");
 		int res = 0;
-		if (userpw.equals(userService.UserChk(userid).getUserpw())) {
+		boolean pwChk = bcryptPassEncoder.matches(userpw, userService.UserChk(userid).getUserpw());
+		if (pwChk) {
 
 			res = userService.deleteUser(userid);
 			System.out.println(res);
