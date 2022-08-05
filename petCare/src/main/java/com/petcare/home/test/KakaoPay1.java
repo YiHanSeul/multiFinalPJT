@@ -17,7 +17,7 @@ import lombok.extern.java.Log;
 
 @Service
 @Log
-	public class KakaoPay {
+	public class KakaoPay1 {
 	 
 	    private static final String HOST = "https://kapi.kakao.com";
 	    
@@ -26,7 +26,7 @@ import lombok.extern.java.Log;
 	    
 
 	    
-	    public String kakaoPayReady() {
+	    public String kakaoPayReady1() {
 	    	
 	        RestTemplate restTemplate = new RestTemplate();
 	 
@@ -39,15 +39,15 @@ import lombok.extern.java.Log;
 	        // 서버로 요청할 Body
 	        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 	        params.add("cid", "TC0ONETIME");
-	        params.add("partner_order_id", "0");
+	        params.add("partner_order_id", "1");
 	        params.add("partner_user_id", "gorany");
-	        params.add("item_name", "소형견");
+	        params.add("item_name", "소형견1");
 	        params.add("quantity", "1");
-	        params.add("total_amount", "41940");
+	        params.add("total_amount", "42700");
 	        params.add("tax_free_amount", "100");
-	        params.add("approval_url", "http://localhost:8787/kakaoPaySuccess");
-	        params.add("cancel_url", "http://localhost:8787/kakaoPayCancel");
-	        params.add("fail_url", "http://localhost:8787/kakaoPaySuccessFail");
+	        params.add("approval_url", "http://localhost:8787/kakaoPaySuccess1");
+	        params.add("cancel_url", "http://localhost:8787/kakaoPayCancel1");
+	        params.add("fail_url", "http://localhost:8787/kakaoPaySuccessFail1");
 	 
 	         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 	 
@@ -66,12 +66,12 @@ import lombok.extern.java.Log;
 	            e.printStackTrace();
 	        }
 	        
-	        return "/pay";
+	        return "/pay1";
 	        
 	    }
 
 	    
-	    public KakaoPayApprovalVO kakaoPayInfo(String pg_token) {
+	    public KakaoPayApprovalVO kakaoPayInfo1(String pg_token) {
 	 
 	        log.info("KakaoPayInfoVO............................................");
 	        log.info("-----------------------------");
@@ -88,10 +88,10 @@ import lombok.extern.java.Log;
 	        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 	        params.add("cid", "TC0ONETIME");
 	        params.add("tid", kakaoPayReadyVO.getTid());
-	        params.add("partner_order_id", "0");
+	        params.add("partner_order_id", "1");
 	        params.add("partner_user_id", "gorany");
 	        params.add("pg_token", pg_token);
-	        params.add("total_amount", "41940");
+	        params.add("total_amount", "42700");
 	        
 	        HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 	        
