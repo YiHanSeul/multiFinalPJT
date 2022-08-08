@@ -187,13 +187,7 @@ height: 1080px;
    <div id="listtable">
 
       <table id="list">
-      	<tr>
-      		<th>병원명</th>
-      		<th>주소</th>
-      		<th>종합7종백신</th>
-      		<th>코로나 장염 예방접종</th>
-      		<th>켄넬코프</th>
-      	</tr>
+      	
       	</table>
    </div>
 

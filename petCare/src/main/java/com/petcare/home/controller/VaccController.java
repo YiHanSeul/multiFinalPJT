@@ -16,8 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.petcare.home.model.dto.BoardDto;
 import com.petcare.home.model.dto.PetDto;
 import com.petcare.home.model.dto.PetVaccDto;
+import com.petcare.home.model.dto.ResDto;
+import com.petcare.home.model.service.HospitalService;
 import com.petcare.home.model.service.MapService;
 import com.petcare.home.model.service.PetService;
 import com.petcare.home.model.service.PetVaccService;
@@ -33,8 +36,9 @@ public class VaccController {
 	@Autowired
 	private PetVaccService petVaccService;
 	@Autowired
-	private MapService mapservice;
-	
+	private MapService mapService;
+	@Autowired
+	private HospitalService hospitalService;
 	@GetMapping("/vaccform")
 	public String vaccModel (Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {	
 		String userid=(String)session.getAttribute("userid");
@@ -83,7 +87,23 @@ public class VaccController {
 	
 	@GetMapping("/vacchos")
 	public String vacchos(Model model) {
-		 model.addAttribute("list",mapservice.selectMap());
+		 model.addAttribute("list",mapService.selectMap());
 		return "vacchos";
+	}
+	
+	@GetMapping("/vacccalendar")
+	public String vacccalendar(HttpServletRequest request, HttpSession session, Model model,ResDto resDto) {
+		String HospitalName = request.getParameter("HospitalName");
+		System.out.println(resDto.getVacc1());
+		System.out.println(resDto);
+		session.setAttribute("HospitalName", HospitalName);
+		String userid = (String)session.getAttribute("userid");
+		String hospitalkey = (String)session.getAttribute("HospitalName");
+		model.addAttribute("userinfo", userService.UserSelect(userid));
+		model.addAttribute("hospitalinfo", hospitalService.HosSelect(hospitalkey));
+		model.addAttribute("vacc1",resDto.getVacc1());
+		model.addAttribute("vacc2",resDto.getVacc2());
+		model.addAttribute("vacc3",resDto.getVacc3());
+		return "vacccalendar";
 	}
 }
