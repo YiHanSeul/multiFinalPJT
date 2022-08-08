@@ -387,13 +387,9 @@ function chageSelect() {
         	
         } 
        
-        if(sum.length>=1){
+        for(var i = 0; i< sum.length; i++){
 	        $("#list").append("<tr><th>병원명</th><th>주소</th><th>종합7종백신</th><th>코로나 장염 예방접종</th><th>켄넬코프</th></tr>");
-		        for(var i = 0; i< sum.length; i++){
-		         
-		       		$("#list").append("<tr class='ge'><td id='hname'>"+listname[sum[i]]+"</td><td>"+listAddr[sum[i]]+"</td><td>"+listVacc1[sum[i]]+"</td><td>"+listVacc2[sum[i]]+"</td><td>"+listVacc3[sum[i]]+"</td><td id='tbt'><button class='btn btn-warning' onclick=res("+sum[i]+");>예약하기</button></td></tr>");
-		     
-		        }
+       		$("#list").append("<tr class='ge'><td id='hname'>"+listname[sum[i]]+"</td><td>"+listAddr[sum[i]]+"</td><td>"+listVacc1[sum[i]]+"</td><td>"+listVacc2[sum[i]]+"</td><td>"+listVacc3[sum[i]]+"</td><td id='tbt'><button class='btn btn-warning' onclick=res("+sum[i]+");>예약하기</button></td></tr>");
         }
         
       
