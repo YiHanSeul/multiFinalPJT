@@ -78,15 +78,14 @@ margin-left: 50pt;
 }
 
 .search-top-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 120px;
-    background: #FAFAD2;
-    opacity: 0.7;
-    width: 100%;
-    margin-top:70pt;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 120px;
+   background: #FAFAD2;
+   opacity: 0.7;
+   margin-top:70pt;
 }
 
 @media(max-width:1030px){

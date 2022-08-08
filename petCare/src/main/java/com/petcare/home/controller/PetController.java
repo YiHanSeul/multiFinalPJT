@@ -1,7 +1,15 @@
 package com.petcare.home.controller;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.net.URLEncoder;
+import java.util.concurrent.TimeUnit;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,19 +72,15 @@ public class PetController {
 	   }
 	   
 	   @GetMapping("/petInsuInfoRes")
-	   public String petInsuInfoRes(String petGender, Model model, float petAgeI, String petTypeI, String petTypeI_, String petName) {
+	   public String petInsuInfoRes(HttpServletResponse response, String petGender, Model model, float petAgeI, String petTypeI, String petTypeI_, String petName) throws InterruptedException {
 		   if(petName == "") {
-			   String msg = "펫 이름이 없습니다!";
-			   model.addAttribute("msg", msg);
+			   TimeUnit.SECONDS.sleep(2);
 			   return "petInsuInfo";
 		   }
 		   if(petTypeI_ != null && petTypeI.equals("초소형견")) {
+			   TimeUnit.SECONDS.sleep(3);
 			   return "petInsuInfo";
 		   }
-		   
-
-		   
-		   
 			try {
 				if(petTypeI_ == null) {
 					
