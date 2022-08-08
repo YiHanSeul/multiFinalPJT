@@ -363,8 +363,9 @@ height: 1080px;
        }
       
    function care(num) {
-      let chks = document.getElementsByName("t");
       setMarkers(null);
+	   markers=[];
+     
       for (var i = 0; i < listlng.length; i++) {
          if (listcare[i] == num) {
             info(new kakao.maps.LatLng(listlat[i], listlng[i]),
@@ -374,6 +375,7 @@ height: 1080px;
                   listname[i], listnum[i], listcare[i]);
          }
       }
+      getInfo();
    }
 </script>
 </body>

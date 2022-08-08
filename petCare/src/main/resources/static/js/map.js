@@ -375,17 +375,38 @@ function chageSelect() {
        message += '북동쪽 좌표는 ' + neLatLng.getLat() + ', ' + neLatLng.getLng() + ' 입니다';
        
        // 개발자도구를 통해 직접 message 내용을 확인해 보세요.
+       let k = 3;
         console.log(message);
+        let chks = document.getElementsByName("t");
+	      for(let i=0; i<chks.length;i++){ 
+	    	  if(chks[i].checked){
+				if(i==0){
+				k=1;
+				}else if(i==1){
+				k=0;
+				}
+				else{
+				k=i;
+	    	  	}
+	    	  }
+	      }
+      
         $(".ge").remove();  
         var n = 0;
     	var sum = new Array();
         for (var i = 0; i < listlng.length; i++) {
-        	if((swLatLng.getLat() <= listlat[i] && listlat[i] <= neLatLng.getLat()) && (swLatLng.getLng() <= listlng[i] && listlng[i] <= neLatLng.getLng())&&n<5){	        		
+        	if((swLatLng.getLat() <= listlat[i] && listlat[i] <= neLatLng.getLat()) && (swLatLng.getLng() <= listlng[i] && listlng[i] <= neLatLng.getLng())&& n<5 ){	        		
+        		if(listcare[i]==k){
         		n+=1
         		sum.push(i);
+        		}
+        		else if(k==2){
+        		n+=1
+        		sum.push(i);
+        		}
         	}
-        	
         } 
+
         for(var i = 0; i< sum.length; i++){ 
        		$("#list").append("<tr class='ge'><td id='hname'>"+listname[sum[i]]+"</td><td>"+listAddr[sum[i]]+"</td><td id='tbt'><button class='btn btn-warning' onclick=res("+sum[i]+");>예약하기</button></td></tr>");
      
