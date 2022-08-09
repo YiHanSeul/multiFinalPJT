@@ -15,9 +15,9 @@
 	display: none;
 }
 .main{
-	margin-left:10%;
-	margin-right:10%;
-	margin-top: 10%;
+	margin-left: 25%;
+	margin-right: 25%;
+	margin-top: 3%;
 }
 .main2{
 	margin-left:10%;
@@ -25,10 +25,14 @@
 	margin-top: 2%;
 }
 #mainText{
-	border: 1px solid;
+	border: 2px solid;
+	border-color: gold;
+	background-color: lemon;
+	border-radius: 50pt;
 	padding-bottom: 1%;
 	align: center;
 	text-align: center;
+	
 }
 .mainList{
 	border-top: 1px solid;

@@ -99,6 +99,7 @@ color: orange;
    align-items: center;
    justify-content: center;
     background: #FAFAD2;
+    margin-top: 38%;
 }
 .footer-top {
     padding: 43px 0 75px;
@@ -137,6 +138,14 @@ color: orange;
     content: "";
     display: block;
     clear: both;
+}
+@media(max-width:1225px){
+	.search-top-container{
+		display:none;
+	}
+	.footer{
+		display:none;
+	}
 }
 </style>
 </head>
