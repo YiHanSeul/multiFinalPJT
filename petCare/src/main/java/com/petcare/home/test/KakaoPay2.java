@@ -54,8 +54,6 @@ import lombok.extern.java.Log;
            try {
                kakaoPayReadyVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);
                
-               log.info("" + kakaoPayReadyVO);
-               
                return kakaoPayReadyVO.getNext_redirect_pc_url();
     
            } catch (RestClientException e) {
