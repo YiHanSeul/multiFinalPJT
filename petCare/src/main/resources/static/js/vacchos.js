@@ -338,8 +338,11 @@ function chageSelect() {
 	function res(i){ 
 	
 	    var HospitalName = listname[i];
-	    console.log(HospitalName);
-	    location.href="/res/calendar?HospitalName="+HospitalName;
+	    let Vacc1=listVacc1[i];
+	    let Vacc2=listVacc2[i];
+	    let Vacc3=listVacc3[i];
+	    console.log(HospitalName,Vacc1,Vacc2,Vacc3);
+	    location.href="/vacc/vacccalendar?HospitalName="+HospitalName+"&Vacc1="+Vacc1+"&Vacc2="+Vacc2+"&Vacc3="+Vacc3;
 	       }
 	       
    
@@ -386,14 +389,21 @@ function chageSelect() {
         	}
         	
         } 
-       
-        for(var i = 0; i< sum.length; i++){
-	        $("#list").append("<tr><th>병원명</th><th>주소</th><th>종합7종백신</th><th>코로나 장염 예방접종</th><th>켄넬코프</th></tr>");
-       		$("#list").append("<tr class='ge'><td id='hname'>"+listname[sum[i]]+"</td><td>"+listAddr[sum[i]]+"</td><td>"+listVacc1[sum[i]]+"</td><td>"+listVacc2[sum[i]]+"</td><td>"+listVacc3[sum[i]]+"</td><td id='tbt'><button class='btn btn-warning' onclick=res("+sum[i]+");>예약하기</button></td></tr>");
+		  $("#a").remove();  
+	        for(var i = 0; i< sum.length; i++){
+	       		if(sum.length==0){
+					 $("#a").remove();  
+				}	       		
+				else if(sum.length>0 && i==0){
+					$("#list").append("<tr id='a'><th>병원명</th><th>주소</th><th>종합7종백신</th><th>코로나 장염 예방접종</th><th>켄넬코프</th></tr>");
+	       		}
+	       		$("#list").append("<tr class='ge'><td id='hname'>"+listname[sum[i]]+"</td><td>"+listAddr[sum[i]]+"</td><td>"+listVacc1[sum[i]]+"원</td><td>"+listVacc2[sum[i]]+"원</td><td>"+listVacc3[sum[i]]+"원</td><td id='tbt'><button class='btn btn-warning' onclick=res("+sum[i]+");>예약하기</button></td></tr>");
+	        }
+		       
+	        
         }
-        
       
-   }
+   
    
    //현재 위치로 변경
 	function now() {
