@@ -13,7 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1744d3b2aeed48eacbfc639e7fad61d3"></script>
-<script src="/resources/js/map.js"></script>
+<script src="/resources/js/vacchos.js"></script>
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -24,9 +24,9 @@
    padding-left: 4px !important;
 }
 #hname{
-   font-weight: bold;
-   color: orange;
-   font-size: 20px;
+	font-weight: bold;
+	color: orange;
+	font-size: 20px;
 }
 #area {
    border: 1px solid black;
@@ -151,6 +151,7 @@ height: 1080px;
    margin: 0;
    align-items: center;
    left: 2.15%;
+   margin-top: 12%;
 }
 </style>
 
@@ -158,31 +159,23 @@ height: 1080px;
    <%@ include file="/WEB-INF/views/template/menu.jsp"%>
    <div class="menu" id="loginChk2" style="display: none"></div>
 
-   <div class="search-top-container">
-      <h3 class="title" id="stt">동물병원 찾기</h3>
-   </div>
-   
-
-    <form action="/map/search" method="get">
-    <div class="search-head"><div class="search-box-container"><div class="inner"><input type="text" name="HN"><button type="submit"></button></div><!----></div></div>
-    </form>
-
    <div id="nametable">
-      <table id="namelist" border="0"></table>
+      <table id="namelist" >
+      </table>
    </div>
    <div style="padding: 10px;"></div>
    <div id="selectbar">
       <button class="btn btn-warning" onclick="now();">현위치</button>
       <button class="btn btn-warning" onclick="openarea();">주소선택</button>
       &nbsp;&nbsp;&nbsp;
-      <div id="radio-box">
-         <input type="radio" name="t" id="t" onclick="care(1);" >
-         <label for="t">맡아주는 병원</label>
-         <input type="radio" name="t" id="f" onclick="care(0);">
-         <label for="f">일반 병원</label>
-         <input type="radio" name="t" id="all" onclick="care(2);" checked="checked">
-         <label for="all">모든 병원 보기</label>
-      </div>   
+	   <div id="radio-box">
+	      <input type="radio" name="t" id="t" onclick="care(1);" >
+	      <label for="t">맡아주는 병원</label>
+	      <input type="radio" name="t" id="f" onclick="care(0);">
+	      <label for="f">일반 병원</label>
+	      <input type="radio" name="t" id="all" onclick="care(2);" checked="checked">
+	      <label for="all">모든 병원 보기</label>
+	   </div>   
       <!--   <button class="btn btn-warning">필터옵션</button> -->
    </div>
    <!-- 지도를 표시할 div 입니다 -->
@@ -193,7 +186,15 @@ height: 1080px;
    <div style="padding: 10px;"></div>
    <div id="listtable">
 
-      <table id="list" border="0"></table>
+      <table id="list">
+      	<tr>
+      		<th>병원명</th>
+      		<th>주소</th>
+      		<th>종합7종백신</th>
+      		<th>코로나 장염 예방접종</th>
+      		<th>켄넬코프</th>
+      	</tr>
+      	</table>
    </div>
 
    <div id="area">
@@ -230,6 +231,9 @@ height: 1080px;
       var listAddr = new Array();
       var listnum = new Array();
       var listcare = new Array();
+      var listVacc1 = new Array();
+      var listVacc2 = new Array();
+      var listVacc3 = new Array();
       var namelistname = new Array();
       var namelistAddr = new Array();
       var namelistnum = new Array();
@@ -242,6 +246,9 @@ height: 1080px;
       listname.push("${list.getHospitalname()}");
       listAddr.push("${list.getAddr()}");
       listcare.push("${list.getCare()}");
+      listVacc1.push("${list.getVacc1()}");
+		listVacc2.push("${list.getVacc2()}");
+		listVacc3.push("${list.getVacc3()}");
       listnum.push(0);
       </c:forEach>
 
@@ -274,34 +281,34 @@ height: 1080px;
 
       // 마커 하나를 지도위에 표시합니다 
       for (var i = 0; i < listlng.length; i++) {
-         info(new kakao.maps.LatLng(listlat[i], listlng[i]), listname[i],
+         info(new kakao.maps.LatLng(listlat[i], listlng[i]), listname[i] ,
                listnum[i],listcare[i]);
       }
 
       function info(position, name, num, listcare) {
-             //맡아주는 병원
-           if(listcare == 1){
-              //이미지 설정
-                  var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
-                 imageSize = new kakao.maps.Size(34, 39), // 마커이미지의 크기입니다
-                 imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-                 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
-               // 마커를 생성합니다
-               var marker = new kakao.maps.Marker({
-                  position : position,
-                  clickable : true,
-                  image: markerImage
-               // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-               });
-           }
-             //일반 병원
-           else{
-              var marker = new kakao.maps.Marker({
-                   position : position,
-                   clickable : true,
-                // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-                });
-           }
+    	  	 //맡아주는 병원
+    		 if(listcare == 1){
+    			 //이미지 설정
+		   	  	 var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+		   	     imageSize = new kakao.maps.Size(34, 39), // 마커이미지의 크기입니다
+		   	     imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		   	     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+		         // 마커를 생성합니다
+		         var marker = new kakao.maps.Marker({
+		            position : position,
+		            clickable : true,
+		            image: markerImage
+		         // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+		         });
+    		 }
+    	  	 //일반 병원
+    		 else{
+    			 var marker = new kakao.maps.Marker({
+ 		            position : position,
+ 		            clickable : true,
+ 		         // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+ 		         });
+    		 }
          // 마커가 지도 위에 표시되도록 설정합니다
          marker.setMap(map);
          //임의로 저장
@@ -357,24 +364,24 @@ height: 1080px;
       });
      
       function setMarkers(map) {
-           for (var i = 0; i < markers.length; i++) {
-               markers[i].setMap(map);
-           }            
-       }
+    	    for (var i = 0; i < markers.length; i++) {
+    	        markers[i].setMap(map);
+    	    }            
+    	}
       
-   function care(num) {
-      let chks = document.getElementsByName("t");
-      setMarkers(null);
-      for (var i = 0; i < listlng.length; i++) {
-         if (listcare[i] == num) {
-            info(new kakao.maps.LatLng(listlat[i], listlng[i]),
-                  listname[i], listnum[i], listcare[i]);
-         }else if(num==2){
-            info(new kakao.maps.LatLng(listlat[i], listlng[i]),
-                  listname[i], listnum[i], listcare[i]);
-         }
-      }
-   }
+	function care(num) {
+		let chks = document.getElementsByName("t");
+		setMarkers(null);
+		for (var i = 0; i < listlng.length; i++) {
+			if (listcare[i] == num) {
+				info(new kakao.maps.LatLng(listlat[i], listlng[i]),
+						listname[i], listnum[i], listcare[i]);
+			}else if(num==2){
+				info(new kakao.maps.LatLng(listlat[i], listlng[i]),
+						listname[i], listnum[i], listcare[i]);
+			}
+		}
+	}
 </script>
 </body>
 </html>

@@ -57,10 +57,6 @@
 				<span>주로 강아지들이 대량으로 있는 곳에서 공기를 통해 쉽게 감염되며 심한 마른기침을 일으키며 폐렴으로
 					진행되기도 한다. 생후 6~8주부터 2~3주 간격으로 3회 접종, 6개월마다 환절기 전 추가접종한다.</span>
 			</div>
-			<div class="vacc">
-				<p>광견병 예방접종</p>
-				<span>생후 3개월 이상 된 강아지에게 1회 접종한 후 6개월 후 재접종한다. 매년 추가접종을 해야 한다.</span>
-			</div>
 		</div>
 		<div id="myPet">
 			<c:if test="${empty petDto}">
@@ -75,9 +71,8 @@
 								<p class="petInfo">나이: ${petDto.petAge }</p>
 								<p class="petInfo">성별: ${petDto.petGender }</p>
 								<p class="petInfo">중성화: ${petDto.petNe }</p>
-								<input type="button" class="btn btn-warning"
-									data-target="${petDto.petKey}" value="예방접종 상세보기"
-									onclick="petVaccRegitst(this)">
+								<input type="button" class="btn btn-warning" data-target="${petDto.petKey}" value="예방접종 상세보기" onclick="petVaccRegitst(this)">
+								<input type="button" class="btn btn-warning" value="예약하기" onclick="location.href='/vacc/vacchos'">
 							</div>
 							<div>
 								<c:if test="${empty petVaccListDto}">
@@ -142,9 +137,9 @@
 											<option value="코로나">코로나</option>
 											<option value="캔넬코프">캔넬코프</option>
 											<option value="광견병">광견병백신</option>
-										</select> <input class="form-control selectForm" type="date"
-											name="vaccMonth"> <input class="btn btn-warning"
-											type="submit" value="예방접종 기록">
+										</select> 
+										<input class="form-control selectForm" type="date" name="vaccMonth">
+										<input class="btn btn-warning" type="submit" value="예방접종 기록">
 									</div>
 								</form>
 							</div>
@@ -156,7 +151,6 @@
 			</c:if>
 		</div>
 	</div>
-
 
 
 </body>

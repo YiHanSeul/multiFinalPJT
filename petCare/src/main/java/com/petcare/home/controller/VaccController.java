@@ -1,10 +1,10 @@
 package com.petcare.home.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.petcare.home.model.dto.PetDto;
 import com.petcare.home.model.dto.PetVaccDto;
-import com.petcare.home.model.dto.UserDto;
+import com.petcare.home.model.service.MapService;
 import com.petcare.home.model.service.PetService;
 import com.petcare.home.model.service.PetVaccService;
 import com.petcare.home.model.service.UserService;
@@ -32,6 +32,8 @@ public class VaccController {
 	private PetService petService;
 	@Autowired
 	private PetVaccService petVaccService;
+	@Autowired
+	private MapService mapservice;
 	
 	@GetMapping("/vaccform")
 	public String vaccModel (Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {	
@@ -74,8 +76,14 @@ public class VaccController {
 		if(res>0) {
 			return "redirect:/vacc/vaccform";
 		}else {
-			return null;
+			return "index";
 			
 		}
+	}
+	
+	@GetMapping("/vacchos")
+	public String vacchos(Model model) {
+		 model.addAttribute("list",mapservice.selectMap());
+		return "vacchos";
 	}
 }
