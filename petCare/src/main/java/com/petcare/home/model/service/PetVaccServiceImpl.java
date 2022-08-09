@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.petcare.home.model.dto.PetVaccDto;
+import com.petcare.home.model.dto.ResDto;
 import com.petcare.home.model.mapper.PetVaccMapper;
 
 @Service
@@ -26,6 +27,12 @@ public class PetVaccServiceImpl  implements PetVaccService{
 	@Override
 	public List<PetVaccDto> selectPetVacc(int userkey) {
 		return petVaccMapper.selectPetVacc(userkey);
+	}
+
+	@Override
+	public int vaccInsertRes(ResDto resDto) {
+		
+		return petVaccMapper.vaccInsertRes(resDto);
 	}
 
 
