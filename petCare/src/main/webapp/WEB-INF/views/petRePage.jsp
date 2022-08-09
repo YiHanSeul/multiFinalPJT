@@ -10,6 +10,10 @@
 <link href="/resources/css/petRePage.css" rel="stylesheet"type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/resources/js/petRePage.js"></script> <!-- Pet Result Page -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -34,9 +38,6 @@
 	</div>
 	<br>
 
-
-
-
 	<h4>
 			<a
 				href="https://direct.samsungfire.com/ria/pc/product/pet/?state=Front&gclid=Cj0KCQjw0JiXBhCFARIsAOSAKqA0eKIuT5tLoISxS-9xVBIxwQBWcDps9PinHV3KVn4MpDDM-5gUR8oaAtU1EALw_wcB"
@@ -48,9 +49,12 @@
 				href="https://petsafe.co.kr/"
 				target="_blank">DB 손해보험 펫세이프</a> &nbsp;&nbsp;&nbsp;
 		</h4>
-		
+
+	
 	
 	<div class="main2">
+		
+	
 		
 		<div class="mainList">
 			가. 특약에 따라 보상하는 손해의 종류
@@ -75,14 +79,17 @@
 			<div id="Toggle3">다만, 보험사고가 발생하지 않은 채 중도해지시 미경과보험료를 받을 수 있음.</div>
 		</div>
 
+
+
 	</div>
 	
-	
-	
+
 	<br><br><br><br>
 	<div id="download">
 		<a href="/download">약관 다운로드</a>
 	</div>
+
+
 
 </body>
 </html>
