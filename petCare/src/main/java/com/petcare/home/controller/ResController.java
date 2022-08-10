@@ -37,13 +37,17 @@ public class ResController {
 	
 	@GetMapping("/calendar")
 	public String root(HttpServletRequest request, HttpSession session, Model model) {
+		if((String)session.getAttribute("userid")  == null) {
+			
+			return "redirect:/user/login";
+		}else {
 		String HospitalName = request.getParameter("HospitalName");
 		session.setAttribute("HospitalName", HospitalName);
 		String userid = (String)session.getAttribute("userid");
 		String hospitalkey = (String)session.getAttribute("HospitalName");
 		model.addAttribute("userinfo", userservice.UserSelect(userid));
 		model.addAttribute("hospitalinfo", hospitalservice.HosSelect(hospitalkey));
-		return "calendar";
+		return "calendar";}
 	}	
 	
 	@GetMapping("/insertRes")

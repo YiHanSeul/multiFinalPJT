@@ -99,7 +99,7 @@ color: orange;
    align-items: center;
    justify-content: center;
     background: #FAFAD2;
-    margin-top: 38%;
+    margin-top: 35%;
 }
 .footer-top {
     padding: 43px 0 75px;
@@ -178,10 +178,10 @@ color: orange;
 		<div class="list" id="mainAge">
 		나이 : <select class="box" name="petAgeI" id="domain-list">
 				  <option value="0.5" id="petAgeI1">6개월 미만</option>
-				  <option value="1" id="petAgeI1">1년 미만</option>
-				  <option value="2" id="petAgeI1">2년 미만</option>
-				  <option value="4" id="petAgeI1">4년 미만</option>
-				  <option value="6" id="petAgeI1">6년 미만</option>
+				  <option value="1" id="petAgeI1">1살 미만</option>
+				  <option value="2" id="petAgeI1">2살 미만</option>
+				  <option value="4" id="petAgeI1">4살 미만</option>
+				  <option value="6" id="petAgeI1">6살 미만</option>
 				</select>
 		</div>
 
