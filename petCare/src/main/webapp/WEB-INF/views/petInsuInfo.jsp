@@ -99,6 +99,8 @@ color: orange;
    align-items: center;
    justify-content: center;
     background: #FAFAD2;
+
+
 }
 .footer-top {
     padding: 43px 0 75px;
@@ -138,6 +140,7 @@ color: orange;
     display: block;
     clear: both;
 }
+
 </style>
 </head>
 <body>
@@ -268,3 +271,8 @@ color: orange;
 </footer>
 </body>
 </html>
+
+
+
+
+
