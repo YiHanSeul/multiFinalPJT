@@ -13,13 +13,12 @@
 <script>
 	function test() {
 		if (confirm("회원 탈퇴하시겠습니까?")) {
-			 window.open("http://localhost:8787/user/userDelete", "PopupNew", "width=500,height=400"); 
+			window.open("http://localhost:8787/user/userDelete", "PopupNew",
+					"width=500,height=400");
 			//추후 주소가 바뀌면 그 주소로 해줘야함
-			
-			 /* window.open('about:blank', 'width=300, height=200').location.href = 'userDelete'  */
-			
-			
-			
+
+			/* window.open('about:blank', 'width=300, height=200').location.href = 'userDelete'  */
+
 		} else {
 			alert("취소를 누르셨습니다.");
 		}
@@ -34,6 +33,8 @@
 		popup.classList.add('hide');
 
 	}
+	test = "${vaccResDto}";
+	console.log(test);
 </script>
 </head>
 <body>
@@ -46,6 +47,7 @@
 			<li class="menu-list"><a href="#myHosBookRe">후기관리</a></li>
 			<li class="menu-list"><a href="#">게시글 관리</a></li>
 			<li class="menu-list"><a href="/user/findpwing">비밀번호찾기</a></li>
+			<li class="menu-list"><p onclick="test()">회원탈퇴</p></li>
 		</ul>
 	</div>
 	<!-- 페이지를 따로 만들지 말고 a태그로 같은 페이지에 있는 아이디로 이동하기 -->
@@ -83,7 +85,6 @@
 					<li class="myInfo">펫 나이: ${petDto.petAge }</li>
 					<li class="myInfo">펫 성별: ${petDto.petGender }</li>
 					<li class="myInfo">펫 중성화: ${petDto.petNe }</li>
-					<hr id="line" />
 				</ul>
 			</c:forEach>
 		</c:if>
@@ -109,21 +110,21 @@
 						id="petNe"> X<input type="radio" name="petNe" value="X"
 						id="petNe"></li>
 				</ul>
-				
+
 				<div id="petAddform-btn">
 					<span class="btn btn-danger" onclick="closePopup()">취소</span> <input
 						class="btn btn-primary" type="submit" value="전송">
 				</div>
 			</form>
+		<hr />
 		</div>
 		<button class="btn btn-warning" id="petAdd-btn" onclick="petRegitst()">등록</button>
-
+		<hr>
 	</div>
 
 	<!-- 수정해야함 -->
 	<div id="myPets">
-		<p class="myPage-p" id="myBook">예약현황</p>
-		<hr />
+		<p class="myPage-p" id="myBook">병원 예약현황</p>
 		<c:if test="${empty resDto }">
 			<p class="not">예약 정보가 없습니다.</p>
 		</c:if>
@@ -131,32 +132,81 @@
 			<table class="table">
 				<tr>
 					<td>예약번호</td>
+					<td>예약날짜</td>
 					<td>예약시간</td>
 					<td>견종</td>
-					<td>예약날짜</td>
 					<td>방문목적</td>
 				</tr>
+				<c:forEach var="resDto" items="${resDto}">
 				<tr>
 					<td>${resDto.bookId }</td>
+					<td>${resDto.bookDate }</td>
 					<td>${resDto.bookHour }</td>
 					<td>${resDto.bookPetType }</td>
-					<td>${resDto.bookDate }</td>
 					<td>${resDto.bookWhy }</td>
 				</tr>
+				</c:forEach>
+			</table>
+		</c:if>
+		<hr />
+	</div>
+	<div id="myPets">
+		<p class="myPage-p" id="myHosBookRe">예방접종 예약현황</p>
+		<c:if test="${empty vaccResDto}">
+			<p class="not">예방접종 예약이 없습니다.</p>
+		</c:if>
+		<c:if test="${not empty vaccResDto}">
+			<table class="table">
+				<tr>
+					<td>예약번호</td>
+					<th>예약날짜</th>
+					<th>예약시간</th>
+					<th>예약병원</th>
+					<th>예방접종 주사</th>
+					<th>가격</th>
+				</tr>
+				<c:forEach var="vaccResDto" items="${vaccResDto}">
+					<tr>
+						<td> ${vaccResDto.bookId}</td>
+						<td> ${vaccResDto.bookDate}</td>
+						<td>${vaccResDto.bookHour}</td>
+						<td> ${vaccResDto.hospitalName}</td>
+						<td> ${vaccResDto.vaccName}</td>
+						<td>${vaccResDto.vacc}</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</c:if>
 	</div>
 	<div id="myPets">
-		<p class="myPage-p" id="myHosBookRe">병원 방문 후기</p> <!-- myHospitalBookReview -->
 		<hr />
-	</div>
-	<div id="myPets">
-		<hr />
-		<p class="myPage-p">고객센터 문의내용</p>
-		<hr>
+		<p class="myPage-p">동물병원 후기</p>
+		<c:if test="${empty listBoardDto}">
+			<p class="not">예방접종 예약이 없습니다.</p>
+		</c:if>
+		<c:if test="${not empty listBoardDto}">
+			<table class="table">
+				<tr>
+					<td>글번호</td>
+					<th>작성날짜</th>
+					<th>제목</th>
+					<th>병원이름</th>
+					<th>별점</th>
+				</tr>
+				<c:forEach var="listBoardDto" items="${listBoardDto}">
+					<tr>
+						<td> ${listBoardDto.boardCnt}</td>
+						<td> ${listBoardDto.comDate}</td>
+						<td>${listBoardDto.comTitle}</td>
+						<td> ${listBoardDto.field1}</td>
+						<td>${listBoardDto.rating}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>
+		
 	</div>
 
-	<input type="button" value="회원탈퇴" onclick="test()">
 
 </body>
 </html>

@@ -1,6 +1,8 @@
 package com.petcare.home.model.mapper;
 
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -18,7 +20,7 @@ public interface ResMapper {
 	int insert(ResDto dto);
 	
 	@Select(" SELECT * FROM BOOK WHERE USERKEY=#{userkey} ")
-	ResDto resBook(int userkey); 
+	List<ResDto> resBook(int userkey); 
 	
 	
 }

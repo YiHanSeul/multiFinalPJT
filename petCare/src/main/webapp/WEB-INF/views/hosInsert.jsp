@@ -25,7 +25,7 @@
 			</div>
 			<div class="join">
 				<div class="text">아이디</div>
-				<input class="form-control" type="text" name=HosPitalId>
+				<input class="form-control" type="text" name=HospitalId>
 			</div>
 			<div class="join">
 				<div class="text">비밀번호</div>

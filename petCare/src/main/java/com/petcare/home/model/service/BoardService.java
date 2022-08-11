@@ -18,4 +18,6 @@ public interface BoardService {
 	public int selecthosname(String ComTitle);
 	
 	public int del(int boardCnt);
+
+	public List<BoardDto> myBoardList(int userkey);
 }
