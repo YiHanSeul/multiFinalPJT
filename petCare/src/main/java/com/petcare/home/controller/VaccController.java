@@ -15,7 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petcare.home.model.dto.BoardDto;
 import com.petcare.home.model.dto.PetDto;
@@ -25,6 +28,7 @@ import com.petcare.home.model.service.HospitalService;
 import com.petcare.home.model.service.MapService;
 import com.petcare.home.model.service.PetService;
 import com.petcare.home.model.service.PetVaccService;
+import com.petcare.home.model.service.ResService;
 import com.petcare.home.model.service.UserService;
 
 @Controller
@@ -40,6 +44,9 @@ public class VaccController {
 	private MapService mapService;
 	@Autowired
 	private HospitalService hospitalService;
+	@Autowired
+	private ResService resService;
+	
 	@GetMapping("/vaccform")
 	public String vaccModel (Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {	
 		String userid=(String)session.getAttribute("userid");
@@ -108,8 +115,18 @@ public class VaccController {
 		return "vacccalendar";
 	}
 	
+	@PostMapping("/resVacCheck")
+	@ResponseBody
+	public int resCheck(HttpServletRequest request, @RequestParam("BH") String BH, @RequestParam("BD") String BD, @RequestParam("HN") String HN, ResDto dto) {
+		String BookDate= request.getParameter("BookDate");
+		dto.setBookDate(BookDate);
+		int cnt = resService.resVacCheck(BH, BD, HN);
+		return cnt;
+	}
+	
 	@GetMapping("/vaccInsertRes")
 	public String vaccInsertRes(HttpServletRequest request ,ResDto resDto, HttpSession session) throws InterruptedException {
+		
 		String BookHour = request.getParameter("BookHour");
 		String BookDate= request.getParameter("BookDate");
 		

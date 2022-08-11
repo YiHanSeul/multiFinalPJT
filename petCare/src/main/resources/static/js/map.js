@@ -1,7 +1,4 @@
 
-$(document).ready(function(){
-	getInfo(); 
-	 }); 
 var areanum = true;
 
 function openarea() {
@@ -336,9 +333,7 @@ function chageSelect() {
 
 
 	function res(i){ 
-	
 	    var HospitalName = listname[i];
-	    console.log(HospitalName);
 	    location.href="/res/calendar?HospitalName="+HospitalName;
 	       }
 	       
