@@ -12,7 +12,7 @@
 <body>
 	<img id="login-img" src="/resources/img/login.jpg">
 	<div id="test">
-		<a href="/user/index"><img id="logo" src="/resources/img/logo.png"></a>
+		<a href="/"><img id="logo" src="/resources/img/logo.png"></a>
 	</div>
 	<div id="join-form">
 		<p id="join">Join</p>
@@ -25,7 +25,7 @@
 			</div>
 			<div class="join">
 				<div class="text">아이디</div>
-				<input class="form-control" type="text" name=HosPitalId>
+				<input class="form-control" type="text" name=HospitalId>
 			</div>
 			<div class="join">
 				<div class="text">비밀번호</div>

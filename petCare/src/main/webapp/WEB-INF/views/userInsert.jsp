@@ -44,7 +44,7 @@ $(document).ready(function() {
 <body>
 
 <img id="login-img" src="/resources/img/login.jpg">
-<div id="test"><a href="/user/index"><img id="logo" src="/resources/img/logo.png"></a></div>
+<div id="test"><a href="/"><img id="logo" src="/resources/img/logo.png"></a></div>
 <div id="join-form">
 <p id="join">Join</p>
 <hr>

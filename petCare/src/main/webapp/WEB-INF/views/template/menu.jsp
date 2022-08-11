@@ -9,7 +9,7 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
  <script type="text/javascript">
  	userId="${userid}";
- 	console.log(userId);
+/*  	console.log(userId); */
  	$(function(){
  		if(userId==null || userId==""){
  			$("#login").show();
@@ -40,7 +40,7 @@
 	<div id="menus2">
 		<div class="menu"><a href="/map/hosMap">병원찾기</a></div>
 		<div class="menu"><a href="/vacc/vaccform">예방접종</a></div>
-		<div class="menu" id="logImg"><a href="/user/index"><img id="logo" src="/resources/img/logo.png"></a></div>
+		<div class="menu" id="logImg"><a href="/"><img id="logo" src="/resources/img/logo.png"></a></div>
 		<div class="menu"><a href="/pet/petInsuInfo">보험</a></div>
 		<div class="menu"><a href="/board/list">커뮤니티</a></div>
 	</div>
