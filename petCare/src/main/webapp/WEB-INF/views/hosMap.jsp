@@ -154,7 +154,7 @@ height: 1080px;
 }
 </style>
 
-<body  >
+<body  onload="now()">
    <%@ include file="/WEB-INF/views/template/menu.jsp"%>
    <div class="menu" id="loginChk2" style="display: none"></div>
 
@@ -172,17 +172,19 @@ height: 1080px;
    </div>
    <div style="padding: 10px;"></div>
    <div id="selectbar">
-      <button class="btn btn-warning" onclick="now();">현위치</button>
+      <button class="btn btn-warning" onclick="now();">현위치</button>&nbsp;
       <button class="btn btn-warning" onclick="openarea();">주소선택</button>
       &nbsp;&nbsp;&nbsp;
       <div id="radio-box">
-         <input type="radio" name="t" id="t" onclick="care(1);" >
-         <label for="t">맡아주는 병원</label>
+      	 <input type="radio" name="t" id="all" onclick="care(2);" checked="checked">
+         <label for="all">모든 병원 보기</label>
          <input type="radio" name="t" id="f" onclick="care(0);">
          <label for="f">일반 병원</label>
-         <input type="radio" name="t" id="all" onclick="care(2);" checked="checked">
-         <label for="all">모든 병원 보기</label>
+		 <input type="radio" name="t" id="t" onclick="care(1);" >
+         <label for="t">맡아주는 병원</label>
+
       </div>   
+      <br>
       <!--   <button class="btn btn-warning">필터옵션</button> -->
    </div>
    <!-- 지도를 표시할 div 입니다 -->

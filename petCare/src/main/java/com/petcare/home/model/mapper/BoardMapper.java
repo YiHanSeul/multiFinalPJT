@@ -30,4 +30,8 @@ public interface BoardMapper {
 	
 	@Delete(" delete from community where boardCnt= #{boardCnt} ")
 	int del(int boardCnt);
+	
+	
+	@Select(" select * from community where userkey= #{userkey} ")
+	List<BoardDto> myBoardList(int userkey);
 }

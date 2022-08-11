@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petcare.home.model.dto.BoardDto;
 import com.petcare.home.model.dto.PetDto;
@@ -24,6 +28,7 @@ import com.petcare.home.model.service.HospitalService;
 import com.petcare.home.model.service.MapService;
 import com.petcare.home.model.service.PetService;
 import com.petcare.home.model.service.PetVaccService;
+import com.petcare.home.model.service.ResService;
 import com.petcare.home.model.service.UserService;
 
 @Controller
@@ -39,6 +44,9 @@ public class VaccController {
 	private MapService mapService;
 	@Autowired
 	private HospitalService hospitalService;
+	@Autowired
+	private ResService resService;
+	
 	@GetMapping("/vaccform")
 	public String vaccModel (Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {	
 		String userid=(String)session.getAttribute("userid");
@@ -94,7 +102,6 @@ public class VaccController {
 	@GetMapping("/vacccalendar")
 	public String vacccalendar(HttpServletRequest request, HttpSession session, Model model,ResDto resDto) {
 		String HospitalName = request.getParameter("HospitalName");
-		System.out.println(resDto.getVacc1());
 		System.out.println(resDto);
 		session.setAttribute("HospitalName", HospitalName);
 		String userid = (String)session.getAttribute("userid");
@@ -104,6 +111,47 @@ public class VaccController {
 		model.addAttribute("vacc1",resDto.getVacc1());
 		model.addAttribute("vacc2",resDto.getVacc2());
 		model.addAttribute("vacc3",resDto.getVacc3());
+		model.addAttribute("hospitalkey",hospitalkey);
 		return "vacccalendar";
+	}
+	
+	@PostMapping("/resVacCheck")
+	@ResponseBody
+	public int resCheck(HttpServletRequest request, @RequestParam("BH") String BH, @RequestParam("BD") String BD, @RequestParam("HN") String HN, ResDto dto) {
+		String BookDate= request.getParameter("BookDate");
+		dto.setBookDate(BookDate);
+		int cnt = resService.resVacCheck(BH, BD, HN);
+		return cnt;
+	}
+	
+	@GetMapping("/vaccInsertRes")
+	public String vaccInsertRes(HttpServletRequest request ,ResDto resDto, HttpSession session) throws InterruptedException {
+		
+		String BookHour = request.getParameter("BookHour");
+		String BookDate= request.getParameter("BookDate");
+		
+		//String HospitalName= request.getParameter("HospitalName");
+		resDto.setBookHour(BookHour);
+		resDto.setBookDate(BookDate);
+		//dto.setHospitalName(HospitalName);
+		String lastChar=resDto.getVacc().substring(resDto.getVacc().length()-1);
+		resDto.setVacc(resDto.getVacc().strip().substring(0,resDto.getVacc().length()-1));
+		
+		switch(lastChar) {
+		case "1": resDto.setVaccName("종합8종");
+			break;
+		case "2":resDto.setVaccName("캔넬코프");
+			break;
+		case "3":resDto.setVaccName("코로나");
+		}
+		
+		int res=petVaccService.vaccInsertRes(resDto);
+		
+		if(res > 0) {
+			TimeUnit.SECONDS.sleep(2);
+			return "redirect:/vacc/vacccalendar";
+		} else {
+			return "redirect:/vacc/vacccalendar";
+		}
 	}
 }

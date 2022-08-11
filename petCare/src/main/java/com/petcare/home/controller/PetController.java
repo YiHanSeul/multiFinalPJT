@@ -1,15 +1,12 @@
 package com.petcare.home.controller;
 
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Writer;
-import java.net.URLEncoder;
+
 import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

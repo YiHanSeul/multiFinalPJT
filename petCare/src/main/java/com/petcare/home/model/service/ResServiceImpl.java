@@ -2,6 +2,8 @@ package com.petcare.home.model.service;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +28,13 @@ public class ResServiceImpl implements ResService{
 	}
 
 	@Override
-	public ResDto resBook(int userkey) {
+	public List<ResDto> resBook(int userkey) {
 		return resMapper.resBook(userkey);
+	}
+
+	@Override
+	public int resVacCheck(String BH, String BD, String HN) {
+		return resMapper.resVacCheck(BH,BD,HN);
 	}
 
 

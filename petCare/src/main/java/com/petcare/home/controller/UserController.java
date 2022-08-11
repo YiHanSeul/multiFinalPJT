@@ -17,12 +17,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petcare.home.config.BcryptPassEncoder;
+import com.petcare.home.model.dto.BoardDto;
 import com.petcare.home.model.dto.PetDto;
 import com.petcare.home.model.dto.ResDto;
 import com.petcare.home.model.dto.UserDto;
 import com.petcare.home.model.service.AdminService;
+import com.petcare.home.model.service.BoardService;
 import com.petcare.home.model.service.HospitalService;
 import com.petcare.home.model.service.PetService;
+import com.petcare.home.model.service.PetVaccService;
 import com.petcare.home.model.service.ResService;
 import com.petcare.home.model.service.UserService;
 
@@ -47,9 +50,15 @@ public class UserController {
 	private ResService resService;
 	
 	@Autowired
+	private PetVaccService petVaccService;
+	
+	@Autowired
+	private BoardService boardService;
+	
+	@Autowired
 	private BcryptPassEncoder bcryptPassEncoder;
 
-
+	
  
 	@GetMapping("/user")
 	public String test() {
@@ -63,11 +72,7 @@ public class UserController {
 		return "front";
 	}
 	
-	
-	@GetMapping("/index")
-	public String index() {
-		return "index";
-	}
+
 
 	@GetMapping("/join") // 개인회원&병원회원 로그인 가능하게힘
 	public String join() {
@@ -110,6 +115,17 @@ public class UserController {
 			
 	}
 
+	@GetMapping("/cleanNumb")
+	@ResponseBody
+	public void cleanNum(HttpSession session) {
+		session.setAttribute("num", 0);
+	}
+	
+	
+	
+	
+	
+	
 	@PostMapping("/loginForm")
 	public String loginForm(Model model, String userid, String userpw, HttpSession session , int chk_info) {
 		
@@ -127,16 +143,17 @@ public class UserController {
 							session.setAttribute("userid", userid);
 							session.setAttribute("userpw", userpw);
 							model.addAttribute("dto", adminService.HospitalVChk());
+							session.setAttribute("number", 0);
 		  					return "adminCheck";
 						}else {
 							//비밀번호 실패
-							model.addAttribute("num", 2);
-							return "login";
+							session.setAttribute("num", 5);
+							return "redirect:/user/login";
 						}
 					}else {
 						//아이디 실패
-						model.addAttribute("num", 1);
-						return "login";
+						session.setAttribute("num", 4);
+						return "redirect:/user/login";
 					}		
 				}
 				//1은 일반유저
@@ -151,17 +168,17 @@ public class UserController {
 		  					return "index";
 						}else {
 							//비밀번호 실패
-							model.addAttribute("num", 2);
-							return "login";
+							session.setAttribute("num", 5);
+							return "redirect:/user/login";
 						}
 					}else {
 						//아이디 실패
-						model.addAttribute("num", 1);
-						return "login";
+						session.setAttribute("num", 4);
+						return "redirect:/user/login";
 					}		
 				}
 				
-				return "login";
+				return "redirect:/user/login";
 				
 				//어드민도 넣어줘야함 => 마지막이 else가 되서 필요없음
 				
@@ -176,41 +193,111 @@ public class UserController {
 //				}
 //				
 			}else {
-				
-					String HospitalId = userid;
-					String HospitalPw = userpw;
-					
-							
-					if (1 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-							&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
-							&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
-						session.setAttribute("userid", HospitalId);
-						session.setAttribute("userpw", HospitalPw);
-						System.out.println("test4");
-						return "index";
-					}
 
-					if (0 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-							&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
-							&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
-						session.setAttribute("userid", HospitalId);
-						session.setAttribute("userpw", HospitalPw);
-						model.addAttribute("text", "비활성");
-						System.out.println("test5");
-						return "loginHos";
-					}else {
-//						model.addAttribute("num", 1);
-						return "login";
+				String HospitalId = userid;
+				String HospitalPw = userpw;
+				// 1은 활성
+				int actChk = hosService.HospitalLogChk(HospitalId).getHospitalChk();
+				boolean idChk = HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId());
+				boolean pwChk = bcryptPassEncoder.matches(HospitalPw, hosService.HospitalLogChk(HospitalId).getHospitalPw());
+
+				if (1 == actChk) {
+					// 활성화 성공
+					System.out.println("test");
+					if (idChk) {
+						// 아이디 성공
+						if (pwChk) {
+							// 비밀번호 성공
+							session.setAttribute("userid", HospitalId);
+							session.setAttribute("userpw", HospitalPw);
+							System.out.println("test2");
+							return "index";
+						} else {
+							// 비밀번호 실패
+							System.out.println("test3");
+							session.setAttribute("num", 5);
+							return "redirect:/user/login";
+						}
+					} else {
+						// 아이디 실패
+						System.out.println("test4");
+						return "redirect:/user/login";
 					}
+				} else if (0 == actChk) {
+					// 활성화 실패
+					if (idChk) {
+						// 아이디 성공
+						System.out.println("test5");
+						if (pwChk) {
+							// 비밀번호 성공
+							session.setAttribute("userid", HospitalId);
+							session.setAttribute("userpw", HospitalPw);
+							model.addAttribute("text", "비활성");
+							System.out.println("test6");
+							return "loginHos";
+
+						} else {
+							// 비밀번호 실패
+							System.out.println("test7");
+							return "redirect:/user/login";
+						}
+					} else {
+						// 아이디 실패
+						System.out.println("test8");
+						return "redirect:/user/login";
+					}
+				} else {
+					System.out.println("test9");
+					return "redirect:/user/login";
 				}
+			}
+
 		} catch (NullPointerException e) {
-			model.addAttribute("num", 3);
-			return "login";
+			session.setAttribute("num", 3);
+			System.out.println("test10");
+			return "redirect:/user/login";
 		}
-				
-			
-			
-		}
+		
+	
+	
+}		
+					
+					
+					
+					
+					
+//					
+//					
+//					if (1 == actChk
+//							&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
+//							&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
+//						session.setAttribute("userid", HospitalId);
+//						session.setAttribute("userpw", HospitalPw);
+//						System.out.println("test4");
+//						return "index";
+//					}
+//
+//					if (0 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
+//							&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
+//							&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
+//						session.setAttribute("userid", HospitalId);
+//						session.setAttribute("userpw", HospitalPw);
+//						model.addAttribute("text", "비활성");
+//						System.out.println("test5");
+//						return "loginHos";
+//					}else {
+////						model.addAttribute("num", 1);
+//						return "login";
+//					}
+//				}
+//		} catch (NullPointerException e) {
+//			model.addAttribute("num", 3);
+//			return "login";
+//		}
+//				
+//			
+//			
+//		}
 		
 		
 		
@@ -299,6 +386,10 @@ public class UserController {
 	@GetMapping("/userMypage")
 	public String userMypage(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {		
 		String userid = (String) session.getAttribute("userid");
+		if((String)session.getAttribute("userid")  == null) {
+			
+			return "redirect:/user/login";
+		}else {
 		int userkey = userService.UserChk(userid).getUserkey();
 		List<PetDto> petDto = petService.selectPetAll(userkey);
 		model.addAttribute("petDto",petDto);
@@ -306,10 +397,17 @@ public class UserController {
 		UserDto dto = userService.UserChk(userid);
 		model.addAttribute("dto", dto);
 		
-		ResDto resDto = resService.resBook(userkey);
+		List<ResDto> resDto = resService.resBook(userkey);
 		model.addAttribute("resDto" ,resDto);
+		//예방접종 예약 현황 리스트
+		List<ResDto> vaccResDto=petVaccService.resVaccBook(userkey);
+		System.out.println(vaccResDto);
+		model.addAttribute("vaccResDto",vaccResDto);
 		
+		List<BoardDto> listBoardDto=boardService.myBoardList(userkey);
+		model.addAttribute("listBoardDto",listBoardDto);
 		return "userMypage";
+		}
 	}
 
 	@GetMapping("/userMypageRes")
@@ -330,7 +428,7 @@ public class UserController {
 				int userkey = userService.UserChk(userid).getUserkey();
 				List<PetDto> petDto = petService.selectPetAll(userkey);
 				model.addAttribute("petDto",petDto);
-				ResDto resDto = resService.resBook(userkey);
+				List<ResDto> resDto = resService.resBook(userkey);
 				model.addAttribute("resDto" ,resDto);
 				
 				return "userMypage";
@@ -349,7 +447,7 @@ public class UserController {
 				int userkey = userService.UserChk(userid).getUserkey();
 				List<PetDto> petDto = petService.selectPetAll(userkey);
 				model.addAttribute("petDto",petDto);
-				ResDto resDto = resService.resBook(userkey);
+				List<ResDto> resDto = resService.resBook(userkey);
 				model.addAttribute("resDto" ,resDto);
 				
 				
@@ -369,7 +467,7 @@ public class UserController {
 				int userkey = userService.UserChk(userid).getUserkey();
 				List<PetDto> petDto = petService.selectPetAll(userkey);
 				model.addAttribute("petDto",petDto);
-				ResDto resDto = resService.resBook(userkey);
+				List<ResDto> resDto = resService.resBook(userkey);
 				model.addAttribute("resDto" ,resDto);
 				return "userMypage";
 			}else {return "index2";}

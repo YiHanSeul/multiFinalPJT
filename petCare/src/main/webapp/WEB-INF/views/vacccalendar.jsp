@@ -125,6 +125,9 @@ text-align: center;
    font-weight: bolder !important;
    opacity: 1 !important;
 }
+a{
+text-align: right;
+}
 </style>
 </head>
 <body>
@@ -132,15 +135,15 @@ text-align: center;
 		<%@ include file="/WEB-INF/views/template/menu.jsp" %>
 		<div class="menu" id="loginChk2"  style="display:none"></div>
 		<div class="search-top-container">
- 		<h3 class="title" id="stt">진료 상담 예약</h3>
+ 		<h3 class="title" id="stt">예방접종 예약</h3>
 		</div>
 		
 		<div id='calendar'></div>
 		<a href="javascript:doDisplay();"></a><br/>
 		<div id="time">
-				<form action="/res/insertRes" method="get" onsubmit="doalert();">
+				<form action="/vacc/vaccInsertRes" method="get" onsubmit="doalert();">
 					<input type="hidden" name="UserKey" value="${userinfo.userkey }">
-					<input type="hidden" id="hn" name="HospitalName" value="${hospitalinfo.hospitalName}">
+					<input type="hidden" id="hn" name="HospitalName" value="${hospitalkey}">
 					
 					<table id="table">
 						<tr>
@@ -177,11 +180,18 @@ text-align: center;
 						</section>
 				
 			     	<div id="tb">
-			     				<p><p><input type="checkbox" value="${vacc1}">
-								<textarea rows="7" cols="34" id="ta" name="BookWhy" placeholder="방문하시는 이유나 강아지의 증상을 적어주세요." required>${dto.BookWhy }</textarea>
+			     	
+			     	<p><b>반려견 견종</b></p>
+			     	<input type="text" id="dt" name="BookPetType" required>${dto.BookPetType }
+			     	<br>
+			     			<p><b>예방접종 가격</b></p>
+			     				<span>종합 7종백신 ${vacc1}원<input name="Vacc" type="radio" required value="${vacc1}1"></span>
+			     				<span>코로나 장염 &nbsp;&nbsp;<a>${vacc2}원</a><input name="Vacc" type="radio" value="${vacc2}2"></span>
+			     				<span>켄넬코프&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a>&nbsp;${vacc3}원</a><input name="Vacc" type="radio" value="${vacc3}3"></span>
+			     				<input type="hidden" name="Vacc1" value="${vacc1}">
+			     				<input type="hidden" name="Vacc2" value="${vacc2}">
+			     				<input type="hidden" name="Vacc3" value="${vacc3}">
 								<input class="btn btn-warning" type="submit" id="SB" disabled="disabled" value="예약하기">
-								</td>
-							</tr>
 					</div>
 				</form>
 				
@@ -195,10 +205,9 @@ text-align: center;
 </body>
 
 <script type="text/javascript">
-	let vacc1="${vacc1}";
-	let vacc2="${vacc2}";
-	let vacc3="${vacc3}";
-	console.log(vacc1,vacc2,vacc3);
+	let Vacc1="${vacc1}";
+	let Vacc2="${vacc2}";
+	let Vacc3="${vacc3}";
 	function select(a){
 		let str = document.getElementById("abc");
 		str.setAttribute("value",a);
@@ -212,11 +221,6 @@ text-align: center;
 			time.style.display = 'block';
 		}else{
 			time.style.display = 'block';
-		}
-		if(ta.style.display=='none'){
-			ta.style.display = 'block';
-		}else{
-			ta.style.display = 'block';
 		}
 	}
 	
@@ -233,8 +237,6 @@ text-align: center;
 		$("[name=btn1]").on('click', function() {
 			$(this).css("backgroundColor", "navy");
 		    $("[name=btn1]").not($(this)).css("backgroundColor", "orange");
-		    const target1 = document.getElementById('CB');
-		    target1.disabled = false;
 		    const target = document.getElementById('SB');
 	        target.disabled = true;
 		    
@@ -304,7 +306,7 @@ text-align: center;
 		var BookDate = $("#bc").val();
 		var HosName = $("#hn").val();
         $.ajax({
-            url:"/res/resCheck", //Controller에서 인식할 주소
+            url:"/vacc/resVacCheck", //Controller에서 인식할 주소
             type:"post", //POST 방식으로 전달
             data:{"BH":BookHour, "BD":BookDate, "HN":HosName},
             success:function(cnt){

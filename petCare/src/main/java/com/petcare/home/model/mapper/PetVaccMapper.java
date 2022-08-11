@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import com.petcare.home.model.dto.PetVaccDto;
+import com.petcare.home.model.dto.ResDto;
 
 @Mapper
 public interface PetVaccMapper {
@@ -21,5 +22,11 @@ public interface PetVaccMapper {
 	
 	@Select("select userkey,petkey, vaccName,max(vaccMonth)as vaccMonth, nextVaccMonth from (select * from petvacc order by vaccMonth desc) petvacc group by Vaccname ,petkey having userkey=#{userkey} ")
 	List<PetVaccDto> selectPetVacc(int userkey);
+	
+	@Insert(" INSERT INTO VACCBOOK VALUES(0, #{BookHour}, #{BookDate}, #{BookPetType}, #{UserKey}, #{HospitalName}, #{Vacc}, #{VaccName}) ")
+	int vaccInsertRes(ResDto resDto);
+	
+	@Select(" select * from vaccbook where userkey=#{userkey} ")
+	List<ResDto> resVaccBook(int userkey);
 
 }

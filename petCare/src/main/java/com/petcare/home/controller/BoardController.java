@@ -5,9 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.ProcessBuilder.Redirect;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,10 +18,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petcare.home.model.dto.BoardDto;
-import com.petcare.home.model.dto.MapDto;
 import com.petcare.home.model.service.BoardService;
 
 
@@ -32,20 +33,44 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
+	
+
+	
+	
 	@GetMapping("/list")
-	public String BoardList(Model model, HttpSession session){
+	public String BoardList(Model model, HttpSession session, RedirectAttributes rttr){
 		
-		List<BoardDto> list = boardService.selectList();
-		model.addAttribute("BoardList", list);
-		model.addAttribute("num", 1);
-		model.addAttribute("begin", 0);
-		model.addAttribute("end", 8);
-		
-		BoardDto  dto = boardService.selectKey((String)session.getAttribute("userid"));
-		session.setAttribute("userKey", dto.getUserKey());
+		try {
+			List<BoardDto> list = boardService.selectList();
+			model.addAttribute("BoardList", list);
+			model.addAttribute("num", 1);
+			model.addAttribute("begin", 0);
+			model.addAttribute("end", 8);
+			
+			BoardDto  dto = boardService.selectKey((String)session.getAttribute("userid"));
+			session.setAttribute("userKey", dto.getUserKey());
+		} catch (Exception e) {
+			session.setAttribute("number", 5);
+			
+			return "redirect:/";
+			
+		}
  
 		return  "communityList";
 	}
+	
+
+	
+	@GetMapping("/cleanNum")
+	@ResponseBody
+	public void cleanNum(HttpSession session) {
+		
+		session.setAttribute("number", 0);
+		
+	}
+	
+	
+	
 	
 	@GetMapping("/list1")
 	public String BoardList1(int num, Model model, HttpSession session){
@@ -99,7 +124,7 @@ public class BoardController {
 			        OutputStream out = null;
 			         
 			        in = file.getInputStream();
-			        out = new FileOutputStream("C:\\Users\\tpdls\\OneDrive\\바탕 화면\\img\\"+writeDto.getUserKey()+writeDto.getComTitle());
+			        out = new FileOutputStream("C:\\Users\\ihans\\OneDrive\\바탕 화면\\img\\"+writeDto.getUserKey()+writeDto.getComTitle());
 			        while(true) {
 			        	int data = in.read();
 			        	if(data==-1) {
