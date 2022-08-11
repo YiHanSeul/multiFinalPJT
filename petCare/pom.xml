@@ -16,7 +16,7 @@
 	<artifactId>petCare</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>petCare</name>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<description>Demo project for Spring Boot</description>
 	
 	
@@ -171,9 +171,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
-
-
-		
 	</dependencies>
 
 	<build>
@@ -182,7 +179,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-
 		</plugins>
 	</build>
 

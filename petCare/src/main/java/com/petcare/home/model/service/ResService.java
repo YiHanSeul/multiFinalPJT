@@ -1,6 +1,8 @@
 package com.petcare.home.model.service;
 
 
+import java.util.List;
+
 import com.petcare.home.model.dto.ResDto;
 
 public interface ResService {
@@ -9,7 +11,10 @@ public interface ResService {
 
 	public int resCheck(String BH, String BD, String HN);
 	
+	public List<ResDto> resBook(int userkey); 
+
 	public int resVacCheck(String BH, String BD, String HN);
 	
 	public ResDto resBook(int userkey); 
+
 }

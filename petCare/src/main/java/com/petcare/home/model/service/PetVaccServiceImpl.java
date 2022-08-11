@@ -35,6 +35,11 @@ public class PetVaccServiceImpl  implements PetVaccService{
 		return petVaccMapper.vaccInsertRes(resDto);
 	}
 
+	@Override
+	public List<ResDto> resVaccBook(int userkey) {
+		return petVaccMapper.resVaccBook(userkey);
+	}
+
 
 
 }

@@ -65,3 +65,11 @@ body {
 	width: 75px;
 	height: 70px;
  }
+ 
+ #chat{
+ 	position: fixed;
+ 	z-index: 999;
+ 	right: 3%;
+ 	bottom: 4%;
+ 	text-align: center;l
+ }
