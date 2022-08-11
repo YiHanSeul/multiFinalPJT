@@ -52,6 +52,11 @@ public class BoardServiceImpl implements BoardService{
 	public int del(int boardCnt) {
 		return boardMapper.del(boardCnt);
 	}
+
+	@Override
+	public List<BoardDto> myBoardList(int userkey) {
+		return boardMapper.myBoardList(userkey);
+	}
 	
 	
 }

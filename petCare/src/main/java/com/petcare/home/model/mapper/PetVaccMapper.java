@@ -25,5 +25,8 @@ public interface PetVaccMapper {
 	
 	@Insert(" INSERT INTO VACCBOOK VALUES(0, #{BookHour}, #{BookDate}, #{BookPetType}, #{UserKey}, #{HospitalName}, #{Vacc}, #{VaccName}) ")
 	int vaccInsertRes(ResDto resDto);
+	
+	@Select(" select * from vaccbook where userkey=#{userkey} ")
+	List<ResDto> resVaccBook(int userkey);
 
 }

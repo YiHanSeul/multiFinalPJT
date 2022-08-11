@@ -17,12 +17,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petcare.home.config.BcryptPassEncoder;
+import com.petcare.home.model.dto.BoardDto;
 import com.petcare.home.model.dto.PetDto;
 import com.petcare.home.model.dto.ResDto;
 import com.petcare.home.model.dto.UserDto;
 import com.petcare.home.model.service.AdminService;
+import com.petcare.home.model.service.BoardService;
 import com.petcare.home.model.service.HospitalService;
 import com.petcare.home.model.service.PetService;
+import com.petcare.home.model.service.PetVaccService;
 import com.petcare.home.model.service.ResService;
 import com.petcare.home.model.service.UserService;
 
@@ -47,9 +50,15 @@ public class UserController {
 	private ResService resService;
 	
 	@Autowired
+	private PetVaccService petVaccService;
+	
+	@Autowired
+	private BoardService boardService;
+	
+	@Autowired
 	private BcryptPassEncoder bcryptPassEncoder;
 
-
+	
  
 	@GetMapping("/user")
 	public String test() {
@@ -384,9 +393,15 @@ public class UserController {
 		UserDto dto = userService.UserChk(userid);
 		model.addAttribute("dto", dto);
 		
-		ResDto resDto = resService.resBook(userkey);
+		List<ResDto> resDto = resService.resBook(userkey);
 		model.addAttribute("resDto" ,resDto);
+		//예방접종 예약 현황 리스트
+		List<ResDto> vaccResDto=petVaccService.resVaccBook(userkey);
+		System.out.println(vaccResDto);
+		model.addAttribute("vaccResDto",vaccResDto);
 		
+		List<BoardDto> listBoardDto=boardService.myBoardList(userkey);
+		model.addAttribute("listBoardDto",listBoardDto);
 		return "userMypage";
 	}
 
@@ -408,7 +423,7 @@ public class UserController {
 				int userkey = userService.UserChk(userid).getUserkey();
 				List<PetDto> petDto = petService.selectPetAll(userkey);
 				model.addAttribute("petDto",petDto);
-				ResDto resDto = resService.resBook(userkey);
+				List<ResDto> resDto = resService.resBook(userkey);
 				model.addAttribute("resDto" ,resDto);
 				
 				return "userMypage";
@@ -427,7 +442,7 @@ public class UserController {
 				int userkey = userService.UserChk(userid).getUserkey();
 				List<PetDto> petDto = petService.selectPetAll(userkey);
 				model.addAttribute("petDto",petDto);
-				ResDto resDto = resService.resBook(userkey);
+				List<ResDto> resDto = resService.resBook(userkey);
 				model.addAttribute("resDto" ,resDto);
 				
 				
@@ -447,7 +462,7 @@ public class UserController {
 				int userkey = userService.UserChk(userid).getUserkey();
 				List<PetDto> petDto = petService.selectPetAll(userkey);
 				model.addAttribute("petDto",petDto);
-				ResDto resDto = resService.resBook(userkey);
+				List<ResDto> resDto = resService.resBook(userkey);
 				model.addAttribute("resDto" ,resDto);
 				return "userMypage";
 			}else {return "index2";}

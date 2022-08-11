@@ -41,6 +41,7 @@
 hr {
 	background-color: #f0ad4e;
 	height: 2px !important;
+	opacity: 0.3;
 }
 
 #myPets {

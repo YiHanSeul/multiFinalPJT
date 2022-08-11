@@ -13,4 +13,6 @@ public interface PetVaccService {
 	public List<PetVaccDto> selectPetVacc(int userkey);
 
 	public int vaccInsertRes(ResDto resDto);
+
+	public List<ResDto> resVaccBook(int userkey);
 }
