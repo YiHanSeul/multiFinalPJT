@@ -37,6 +37,9 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/template/menu.jsp"%>
+	 <div class="search-top-container">
+ 		<h3 class="title" id="stt">예방접종</h3>
+ 	</div>
 	<div id="total">
 		<div id="vaccs">
 			<div class="vacc">
@@ -152,7 +155,32 @@
 		</div>
 	</div>
 
-
+<footer class="footer">
+   <div class="footer-top">
+      <div class="container">
+         <div class="footer-col">
+            <ul class="footer-info">
+               <li>MUNGMUNG NETWORKS</li>
+               <li>대표이사 홍길동투더 그투더 라미</li>
+               <li>사업자등록번호 123456797</li>
+               <li> 서울 송파구 올림픽로 240 잠실동 40-1 </li>
+               <li>TEL. 1661-2000</li>
+               <li>E-mail ㅋㅋㅋ@아모르겟따.com</li>
+               <li>Copyright © 푸터위치 고정 어케함. All Rights reserved.</li>
+            </ul>
+         </div>
+         <div class="footer-col">
+            <ul class="footer-link">
+               <li><a href="">회사소개</a></li>
+               <li><a href="">이용약관</a></li>
+               <li><a href="">개인정보처리방침</a></li>
+               <li><a href="">광고문의·관리</a></li>
+               <li><a href="">고객의소리</a></li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</footer>
 </body>
 </html>
 

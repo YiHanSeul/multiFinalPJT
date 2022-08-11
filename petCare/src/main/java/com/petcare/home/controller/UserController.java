@@ -299,6 +299,10 @@ public class UserController {
 	@GetMapping("/userMypage")
 	public String userMypage(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {		
 		String userid = (String) session.getAttribute("userid");
+		if((String)session.getAttribute("userid")  == null) {
+			
+			return "redirect:/user/login";
+		}else {
 		int userkey = userService.UserChk(userid).getUserkey();
 		List<PetDto> petDto = petService.selectPetAll(userkey);
 		model.addAttribute("petDto",petDto);
@@ -310,6 +314,7 @@ public class UserController {
 		model.addAttribute("resDto" ,resDto);
 		
 		return "userMypage";
+		}
 	}
 
 	@GetMapping("/userMypageRes")

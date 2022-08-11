@@ -191,12 +191,28 @@ td{
 #com{
 	text-align: center;
 }
+#stt{
+	font-size: 30pt !important;
+    font-weight: bolder !important;
+    opacity: 1 !important;
+}
+.search-top-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 120px;
+   background: #FAFAD2;
+   opacity: 0.7;
+}
 </style>
 <body>
 	<%@ include file="/WEB-INF/views/template/menu.jsp" %>
 		<div id="top"></div> 
 		<div id="com">
-			<h1>커뮤니티</h1>
+			<div class="search-top-container">
+ 				<h3 class="title" id="stt">커뮤니티</h3>
+ 			</div>
 			<button onclick = "chk();" class="btn btn-warning">글작성</button>
 		</div>
 		<div class="inwrap">

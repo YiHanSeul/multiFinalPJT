@@ -125,6 +125,9 @@ text-align: center;
    font-weight: bolder !important;
    opacity: 1 !important;
 }
+a{
+text-align: right;
+}
 </style>
 </head>
 <body>
@@ -182,9 +185,9 @@ text-align: center;
 			     	<input type="text" id="dt" name="BookPetType" required>${dto.BookPetType }
 			     	<br>
 			     			<p><b>예방접종 가격</b></p>
-			     				<span>종합 7종백신 ${vacc1}원<input name="Vacc" type="radio" value="${vacc1}1"></span>
-			     				<span>코로나 장염 ${vacc2}원<input name="Vacc" type="radio" value="${vacc2}2"></span>
-			     				<span>켄넬코프 ${vacc3}원<input name="Vacc" type="radio" value="${vacc3}3"></span>
+			     				<span>종합 7종백신 ${vacc1}원<input name="Vacc" type="radio" required value="${vacc1}1"></span>
+			     				<span>코로나 장염 &nbsp;&nbsp;<a>${vacc2}원</a><input name="Vacc" type="radio" value="${vacc2}2"></span>
+			     				<span>켄넬코프&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a>&nbsp;${vacc3}원</a><input name="Vacc" type="radio" value="${vacc3}3"></span>
 			     				<input type="hidden" name="Vacc1" value="${vacc1}">
 			     				<input type="hidden" name="Vacc2" value="${vacc2}">
 			     				<input type="hidden" name="Vacc3" value="${vacc3}">
@@ -219,11 +222,6 @@ text-align: center;
 		}else{
 			time.style.display = 'block';
 		}
-		if(ta.style.display=='none'){
-			ta.style.display = 'block';
-		}else{
-			ta.style.display = 'block';
-		}
 	}
 	
 	function undoDisplay(){
@@ -239,8 +237,6 @@ text-align: center;
 		$("[name=btn1]").on('click', function() {
 			$(this).css("backgroundColor", "navy");
 		    $("[name=btn1]").not($(this)).css("backgroundColor", "orange");
-		    const target1 = document.getElementById('CB');
-		    target1.disabled = false;
 		    const target = document.getElementById('SB');
 	        target.disabled = true;
 		    
@@ -310,7 +306,7 @@ text-align: center;
 		var BookDate = $("#bc").val();
 		var HosName = $("#hn").val();
         $.ajax({
-            url:"/res/resCheck", //Controller에서 인식할 주소
+            url:"/vacc/resVacCheck", //Controller에서 인식할 주소
             type:"post", //POST 방식으로 전달
             data:{"BH":BookHour, "BD":BookDate, "HN":HosName},
             success:function(cnt){

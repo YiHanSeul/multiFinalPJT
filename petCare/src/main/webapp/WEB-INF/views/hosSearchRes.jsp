@@ -222,7 +222,7 @@ width:5%;
 				<tr >
 					<td id="hname">${list.hospitalname}</td>
 					<td>주소 : ${list.addr}</td>
-					<td><button class='btn btn-success' onClick="location.href='https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=${list.hospitalname}'">자세히</button></td>
+					<td><button class='btn btn-success' onClick="window.open('https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=${list.hospitalname}')">자세히</button></td>
 					<td><button class='btn btn-warning' onclick="res('${list.hospitalname}');">예약하기</button></td>
 				</tr>
 			</c:forEach>

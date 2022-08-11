@@ -30,6 +30,11 @@ public class ResServiceImpl implements ResService{
 		return resMapper.resBook(userkey);
 	}
 
+	@Override
+	public int resVacCheck(String BH, String BD, String HN) {
+		return resMapper.resVacCheck(BH,BD,HN);
+	}
+
 
 
 
