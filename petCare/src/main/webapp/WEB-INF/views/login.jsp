@@ -7,54 +7,46 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link href="/resources/css/login.css" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 	<script> 
-/* 	function isTest(){
-		console.log("zzzzzzzz");
-		
-		let msg="${msg}";
-		console.log(msg);
-			let userid = document.getElementById("userid").value;
-			let userpw = document.getElementById("userpw").value;
- 			console.log(userid);
-			console.log(userpw); 
-			if(msg != ""){
-				alert(msg);
-				msg="";
-			}
-			else if(userid == ""){
-				alert("아이디가 없습니다.");
-			}else if(userpw == ""){
-				alert("비밀번호가 없습니다.");
-			}
-			
-			
-			location.href = "/user/index2";
-			msg="";
-		} */
-	
+	/* 
+		html을 순서대로 읽음
+	*/
 	numb  = ${num};	
-		
-	if(numb == 1){
-		/* document.getElementById("test") */
+	
+	
+	if(numb == 4){
+
 		alert("아이디를 다시 확인해주세요!");
-		numb == 0;
-	}else if(numb == 2){
+		$.ajax({
+			type:"get",
+			url:"/user/cleanNumb"
+		});
+	}else if(numb == 5){
 		alert("비밀번호를 다시 확인해주세요!");
-		numb == 0;
+		$.ajax({
+			type:"get",
+			url:"/user/cleanNumb"
+		});
 	}else if(numb == 3){
 		alert("일치하는 회원이 없습니다!");
-		numb == 0;
-	}
+		$.ajax({
+			type:"get",
+			url:"/user/cleanNumb"
+		});
+	}else{
 		
+	}
+
 		
 		
 		
 	</script>
 <body>
 	<img id="login-img" src="/resources/img/login.jpg">
-	<div id="test"><a href="/user/index"><img id="logo" src="/resources/img/logo.png"></a></div>
+	<div id="test"><a href="/"><img id="logo" src="/resources/img/logo.png"></a></div>
 	<div id="login-form">
 		<p id="login">Login</p>
 		<form class="form-inline" name="admin" action="/user/loginForm"

@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.petcare.home.api.ocr;
+import com.petcare.home.config.BcryptPassEncoder;
 import com.petcare.home.model.dto.HospitalDto;
 import com.petcare.home.model.service.HospitalService;
 
@@ -37,6 +39,9 @@ public class HospitalController {
 	}
 	@Autowired
 	ResourceLoader resourceLoader;
+	
+	@Autowired
+	private BcryptPassEncoder bcryptPassEncoder;
 
 	@PostMapping("/insertHos")
 	public String insertHos(HospitalDto hospitalDto, MultipartFile file) throws Exception {
@@ -63,6 +68,10 @@ public class HospitalController {
 		HospitalKey = HospitalKey.substring(0, 3) + HospitalKey.substring(4, 6) + HospitalKey.substring(7, 12);
 		hospitalDto.setHospitalKey(HospitalKey);
 
+
+		//		user.setUserpw(bcryptPassEncoder.encode(user.getUserpw()));
+		hospitalDto.setHospitalPw(bcryptPassEncoder.encode(hospitalDto.getHospitalPw()));
+		
 		int res1 = hosService.insertHos(hospitalDto);
 		if (res1 > 0) {
 			return "index";

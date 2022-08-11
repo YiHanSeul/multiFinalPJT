@@ -118,10 +118,11 @@ font-size: 14pt;
     </div>
    <div class="main">
       <div id="mainText">
-         </br>
-         <span id="petDes">${petName }</span><span id="rcmd">님을 위한 추천 상품</span></br></br>
-         <span id="petDes1">${petNameI }</span></br>
-         <span id="month">월 </span><span id="price">${petPriceI2 }원</span>
+         <br>
+         <span id="petDes">${petName }</span><span id="rcmd">님을 위한 추천 상품</span><br><br>
+         <span id="petDes1">${petNameI }</span><br>
+         <span id="month">월 </span><span id="price">${petPriceI2 }원 <a href="/pay" onClick="window.open(this.href, '', 'width=400, height=430'); return false;">결제</a>
+</span> 
             <c:set var="test" value="${petPriceI2 }" scope="session" />
          
       </div>
