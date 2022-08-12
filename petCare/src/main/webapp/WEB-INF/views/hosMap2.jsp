@@ -13,7 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1744d3b2aeed48eacbfc639e7fad61d3"></script>
-<script src="/resources/js/vacchos.js"></script>
+<script src="/resources/js/map.js"></script>
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -77,7 +77,6 @@
    display: flex;
    position: relative;
    left: 17.15%;
-   margin-top: 40px;
 }
 
 .search-top-container {
@@ -168,25 +167,29 @@ background-color: #FAFAD2;
 }
 </style>
 
-<body onload="now()">
+<body>
    <%@ include file="/WEB-INF/views/template/menu.jsp"%>
    <div class="menu" id="loginChk2" style="display: none"></div>
+
    <div class="search-top-container">
- 		<h3 class="title" id="stt">예방 접종 병원 선택</h3>
+      <h3 class="title" id="stt">동물병원 찾기</h3>
    </div>
-<form action="/map/search" method="get">
+   
+
+    <form action="/map/search" method="get">
     <div class="search-head"><div class="search-box-container"><div class="inner"><input type="text" name="HN"><button type="submit"></button></div><!----></div></div>
     </form>
 
    <div id="nametable">
       <table id="namelist" border="0"></table>
    </div>
+   <div style="padding: 10px;"></div>
    <div id="selectbar">
       <button class="btn btn-warning" onclick="now();">현위치</button>&nbsp;
       <button class="btn btn-warning" onclick="openarea();">주소선택</button>&nbsp;
          <div id="area">
       <div>주소 찾기</div>
-      <form action="/vacc/region2" method="get">
+      <form action="/map/region" method="get">
          <select name="region" id="region" onchange="chageSelect()">
             <option value="" selected>시,도</option>
             <option value="서울특별시">서울특별시</option>
@@ -210,7 +213,19 @@ background-color: #FAFAD2;
             <option value="" id="zone" selected>시.군.구</option>
          </select> <input id="zone2" type="submit" value="확인">
       </form>
-    </div>
+   </div>
+      &nbsp;&nbsp;&nbsp;
+      <div id="radio-box">
+      	 <input type="radio" name="t" id="all" onclick="care(2);" checked="checked">
+         <label for="all">모든 병원 보기</label>
+         <input type="radio" name="t" id="f" onclick="care(0);">
+         <label for="f">일반 병원</label>
+		 <input type="radio" name="t" id="t" onclick="care(1);" >
+         <label for="t">맡아주는 병원</label>
+
+      </div>   
+      <br>
+      <!--   <button class="btn btn-warning">필터옵션</button> -->
    </div>
    <!-- 지도를 표시할 div 입니다 -->
    <div id="mapbox" style="width: 100%; height: 500px;">
@@ -220,9 +235,7 @@ background-color: #FAFAD2;
    <div style="padding: 10px;"></div>
    <div id="listtable">
 
-      <table id="list">
-      	
-      	</table>
+      <table id="list" border="0"></table>
    </div>
 
    <script>
@@ -232,9 +245,6 @@ background-color: #FAFAD2;
       var listAddr = new Array();
       var listnum = new Array();
       var listcare = new Array();
-      var listVacc1 = new Array();
-      var listVacc2 = new Array();
-      var listVacc3 = new Array();
       var namelistname = new Array();
       var namelistAddr = new Array();
       var namelistnum = new Array();
@@ -247,9 +257,6 @@ background-color: #FAFAD2;
       listname.push("${list.getHospitalname()}");
       listAddr.push("${list.getAddr()}");
       listcare.push("${list.getCare()}");
-      listVacc1.push("${list.getVacc1()}");
-		listVacc2.push("${list.getVacc2()}");
-		listVacc3.push("${list.getVacc3()}");
       listnum.push(0);
       </c:forEach>
 
@@ -282,34 +289,34 @@ background-color: #FAFAD2;
 
       // 마커 하나를 지도위에 표시합니다 
       for (var i = 0; i < listlng.length; i++) {
-         info(new kakao.maps.LatLng(listlat[i], listlng[i]), listname[i] ,
+         info(new kakao.maps.LatLng(listlat[i], listlng[i]), listname[i],
                listnum[i],listcare[i]);
       }
 
       function info(position, name, num, listcare) {
-    	  	 //맡아주는 병원
-    		 if(listcare == 1){
-    			 //이미지 설정
-		   	  	 var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
-		   	     imageSize = new kakao.maps.Size(34, 39), // 마커이미지의 크기입니다
-		   	     imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-		   	     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
-		         // 마커를 생성합니다
-		         var marker = new kakao.maps.Marker({
-		            position : position,
-		            clickable : true,
-		            image: markerImage
-		         // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-		         });
-    		 }
-    	  	 //일반 병원
-    		 else{
-    			 var marker = new kakao.maps.Marker({
- 		            position : position,
- 		            clickable : true,
- 		         // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
- 		         });
-    		 }
+             //맡아주는 병원
+           if(listcare == 1){
+              //이미지 설정
+                  var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+                 imageSize = new kakao.maps.Size(34, 39), // 마커이미지의 크기입니다
+                 imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+                 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+               // 마커를 생성합니다
+               var marker = new kakao.maps.Marker({
+                  position : position,
+                  clickable : true,
+                  image: markerImage
+               // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+               });
+           }
+             //일반 병원
+           else{
+              var marker = new kakao.maps.Marker({
+                   position : position,
+                   clickable : true,
+                // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+                });
+           }
          // 마커가 지도 위에 표시되도록 설정합니다
          marker.setMap(map);
          //임의로 저장
@@ -365,24 +372,26 @@ background-color: #FAFAD2;
       });
      
       function setMarkers(map) {
-    	    for (var i = 0; i < markers.length; i++) {
-    	        markers[i].setMap(map);
-    	    }            
-    	}
+           for (var i = 0; i < markers.length; i++) {
+               markers[i].setMap(map);
+           }            
+       }
       
-	function care(num) {
-		let chks = document.getElementsByName("t");
-		setMarkers(null);
-		for (var i = 0; i < listlng.length; i++) {
-			if (listcare[i] == num) {
-				info(new kakao.maps.LatLng(listlat[i], listlng[i]),
-						listname[i], listnum[i], listcare[i]);
-			}else if(num==2){
-				info(new kakao.maps.LatLng(listlat[i], listlng[i]),
-						listname[i], listnum[i], listcare[i]);
-			}
-		}
-	}
+   function care(num) {
+      setMarkers(null);
+	   markers=[];
+     
+      for (var i = 0; i < listlng.length; i++) {
+         if (listcare[i] == num) {
+            info(new kakao.maps.LatLng(listlat[i], listlng[i]),
+                  listname[i], listnum[i], listcare[i]);
+         }else if(num==2){
+            info(new kakao.maps.LatLng(listlat[i], listlng[i]),
+                  listname[i], listnum[i], listcare[i]);
+         }
+      }
+      getInfo();
+   }
 </script>
 </body>
 </html>

@@ -15,9 +15,8 @@ public interface ResService {
 
 	public int resVacCheck(String BH, String BD, String HN);
 	
-<<<<<<< HEAD
+	public int del(int bookId);
 
-=======
->>>>>>> master
+	public int delhos(int bookId);
 
 }
