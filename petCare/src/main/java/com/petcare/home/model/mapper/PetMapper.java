@@ -18,10 +18,10 @@ public interface PetMapper {
 	@Select(" SELECT * FROM PET where USERKEY=#{userkey} ")
 	List<PetDto> selectPetAll(int UserKey);
 	
-	@Select(" SELECT PetPriceI FROM PetInsu WHERE PetAgeI=#{petAgeI} and PetTypeI=#{petTypeI} ")
+	@Select(" SELECT PETPRICEI FROM PETINSU WHERE PETAGEI = #{petAgeI} and PETTYPEI = #{petTypeI} ")
 	int petPriceI(float petAgeI, String petTypeI);
 	
-	@Select(" SELECT PetNameI FROM PetInsu WHERE PetAgeI=#{petAgeI} and PetTypeI=#{petTypeI} ")
+	@Select(" SELECT PETNAMEI FROM PETINSU WHERE PETAGEI = #{petAgeI} and PETTYPEI = #{petTypeI} ")
 	String petNameI(float petAgeI, String petTypeI);
 	
 	
