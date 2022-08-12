@@ -1,4 +1,4 @@
-package com.petcare.home.test;
+package com.petcare.home.kakao;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -16,8 +16,8 @@ import lombok.extern.java.Log;
 
 
 @Service
-
-   public class KakaoPay2 {
+//@Log
+   public class KakaoPay1 {
     
        private static final String HOST = "https://kapi.kakao.com";
        
@@ -26,7 +26,7 @@ import lombok.extern.java.Log;
        
 
        
-       public String kakaoPayReady2() {
+       public String kakaoPayReady1() {
           
            RestTemplate restTemplate = new RestTemplate();
     
@@ -39,21 +39,23 @@ import lombok.extern.java.Log;
            // 서버로 요청할 Body
            MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
            params.add("cid", "TC0ONETIME");
-           params.add("partner_order_id", "2");
+           params.add("partner_order_id", "1");
            params.add("partner_user_id", "gorany");
-           params.add("item_name", "소형견2");
+           params.add("item_name", "소형견1");
            params.add("quantity", "1");
-           params.add("total_amount", "45170");
+           params.add("total_amount", "42700");
            params.add("tax_free_amount", "100");
-           params.add("approval_url", "http://localhost:8787/kakaoPaySuccess2");
-           params.add("cancel_url", "http://localhost:8787/kakaoPayCancel2");
-           params.add("fail_url", "http://localhost:8787/kakaoPaySuccessFail2");
+           params.add("approval_url", "http://localhost:8787/kakaoPaySuccess1");
+           params.add("cancel_url", "http://localhost:8787/kakaoPayCancel1");
+           params.add("fail_url", "http://localhost:8787/kakaoPaySuccessFail1");
     
             HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
     
            try {
                kakaoPayReadyVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);
- 
+               
+
+               
                return kakaoPayReadyVO.getNext_redirect_pc_url();
     
            } catch (RestClientException e) {
@@ -64,12 +66,12 @@ import lombok.extern.java.Log;
                e.printStackTrace();
            }
            
-           return "/pay2";
+           return "/pay1";
            
        }
 
        
-       public KakaoPayApprovalVO kakaoPayInfo2(String pg_token) {
+       public KakaoPayApprovalVO kakaoPayInfo1(String pg_token) {
     
 
            
@@ -85,10 +87,10 @@ import lombok.extern.java.Log;
            MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
            params.add("cid", "TC0ONETIME");
            params.add("tid", kakaoPayReadyVO.getTid());
-           params.add("partner_order_id", "2");
+           params.add("partner_order_id", "1");
            params.add("partner_user_id", "gorany");
            params.add("pg_token", pg_token);
-           params.add("total_amount", "45170");
+           params.add("total_amount", "42700");
            
            HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
            

@@ -8,38 +8,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/resources/js/userInsert.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<script>
+<script type="text/javascript" src="/resources/js/userInsert"></script>
 
-$(document).ready(function() {
-		$("#join-btn").click(function () {
-			var userid = $("#userid").val();
-			var userpw = $("#userpw").val();
-			var username = $("#username").val();
-			var usernick = $("#usernick").val();
-			var useremail = $("#useremail").val();
-			var userphone = $("#userphone").val();
-			 console.log(userid); 
-			if(userid == ""){
-				alert("아이디가 없습니다");
-			}else if(userpw == ""){
-				alert("비밀번호가 없습니다");
-			}else if(username == ""){
-				alert("이름이 없습니다");
-			}else if(usernick == ""){
-				alert("닉네임이 없습니다");
-			}else if(useremail == ""){
-				alert("이메일이 없습니다");
-			}else if(userphone == ""){
-				alert("전화번호가 없습니다");
-			}
-			
-			
-			//취소누르면 return
-		});
-	});
-
-
-</script>
 </head>
 <body>
 

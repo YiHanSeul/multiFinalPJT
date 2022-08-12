@@ -1,21 +1,13 @@
 package com.petcare.home.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.json.simple.parser.JSONParser;
-
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,9 +59,7 @@ public class HospitalController {
 		String HospitalKey = (String) inferText.get("inferText");
 		HospitalKey = HospitalKey.substring(0, 3) + HospitalKey.substring(4, 6) + HospitalKey.substring(7, 12);
 		hospitalDto.setHospitalKey(HospitalKey);
-
-
-		//		user.setUserpw(bcryptPassEncoder.encode(user.getUserpw()));
+		//병원 암호화
 		hospitalDto.setHospitalPw(bcryptPassEncoder.encode(hospitalDto.getHospitalPw()));
 		
 		int res1 = hosService.insertHos(hospitalDto);

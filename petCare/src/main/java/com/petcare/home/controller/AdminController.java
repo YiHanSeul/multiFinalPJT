@@ -35,7 +35,7 @@ public class AdminController {
 			return "adminCheck";
 		} 
 		else {
-			return "index2";
+			return "login";
 		}
 
 	}

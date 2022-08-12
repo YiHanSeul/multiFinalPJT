@@ -3,7 +3,6 @@ package com.petcare.home.model.service;
 import java.util.List;
 
 import com.petcare.home.model.dto.BoardDto;
-import com.petcare.home.model.dto.MapDto;
 
 public interface BoardService {
 

@@ -1,4 +1,4 @@
-package com.petcare.home.test;
+package com.petcare.home.kakao;
 
 import java.net.URI;
 import java.net.URISyntaxException;
