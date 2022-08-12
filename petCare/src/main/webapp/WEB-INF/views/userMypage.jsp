@@ -75,19 +75,25 @@
 	<div id="myPets">
 		<p class="myPage-p" id="myPet">나의펫</p>
 		<hr>
+		<div id="defaltPet">
 		<c:if test="${empty petDto}">
-			<p class="not">>펫 정보가 없습니다.</p>
+			<p class="not">펫 정보가 없습니다.</p>
 		</c:if>
 		<c:if test="${not empty petDto}">
 			<c:forEach var="petDto" items="${petDto}">
+				<div>
 				<ul>
 					<li class="myInfo">펫 이름: ${petDto.petName }</li>
 					<li class="myInfo">펫 나이: ${petDto.petAge }</li>
 					<li class="myInfo">펫 성별: ${petDto.petGender }</li>
 					<li class="myInfo">펫 중성화: ${petDto.petNe }</li>
 				</ul>
+				</div>
 			</c:forEach>
 		</c:if>
+		</div>
+		
+		
 		<div id="petAdd-forms" class="hide">
 			<form action="/pet/petInfoRes" method="get">
 				<ul class="petAdd-form">
@@ -118,7 +124,9 @@
 			</form>
 		<hr />
 		</div>
+		<br>
 		<button class="btn btn-warning" id="petAdd-btn" onclick="petRegitst()">등록</button>
+		<br>
 		<hr>
 	</div>
 
