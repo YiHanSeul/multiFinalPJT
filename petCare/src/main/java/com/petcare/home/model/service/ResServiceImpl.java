@@ -37,6 +37,16 @@ public class ResServiceImpl implements ResService{
 		return resMapper.resVacCheck(BH,BD,HN);
 	}
 
+	@Override
+	public int del(int bookId) {
+		return resMapper.del(bookId);
+	}
+
+	@Override
+	public int delhos(int bookId) {
+		return resMapper.delhos(bookId);
+	}
+
 
 
 

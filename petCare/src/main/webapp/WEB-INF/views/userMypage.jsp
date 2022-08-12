@@ -6,12 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link href="/resources/css/userMypage.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="/resources/js/userMypage.js"></script>
-
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+	function test() {
+		if (confirm("회원 탈퇴하시겠습니까?")) {
+			window.open("http://localhost:8787/user/userDelete", "PopupNew",
+					"width=500,height=400");
+			//추후 주소가 바뀌면 그 주소로 해줘야함
+		}
+	}
+</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/template/menu.jsp"%>
@@ -120,16 +127,20 @@
 					<td>예약번호</td>
 					<td>예약날짜</td>
 					<td>예약시간</td>
+					<td>예약병원</td>
 					<td>견종</td>
 					<td>방문목적</td>
+					<th>예약취소</th>
 				</tr>
 				<c:forEach var="resDto" items="${resDto}">
 				<tr>
 					<td>${resDto.bookId }</td>
 					<td>${resDto.bookDate }</td>
 					<td>${resDto.bookHour }</td>
+					<td>${resDto.hospitalName }</td>
 					<td>${resDto.bookPetType }</td>
 					<td>${resDto.bookWhy }</td>
+					<td><button class="btn btn-warning" onclick="deleteRes(${resDto.bookId })">예약취소</button>
 				</tr>
 				</c:forEach>
 			</table>
@@ -150,6 +161,7 @@
 					<th>예약병원</th>
 					<th>예방접종 주사</th>
 					<th>가격</th>
+					<th>예약취소</th>
 				</tr>
 				<c:forEach var="vaccResDto" items="${vaccResDto}">
 					<tr>
@@ -159,6 +171,7 @@
 						<td> ${vaccResDto.hospitalName}</td>
 						<td> ${vaccResDto.vaccName}</td>
 						<td>${vaccResDto.vacc}</td>
+						<td><button class="btn btn-warning" onclick="deleteVacRes(${vaccResDto.bookId})">예약취소</button>
 					</tr>
 				</c:forEach>
 			</table>
@@ -195,6 +208,14 @@
 
 
 </body>
+<script>
+	function deleteVacRes(bookId){
+		location.href="/res/del?bookId="+bookId;
+	}
+	function deleteRes(bookId){
+		location.href="/res/delhos?bookId="+bookId;
+	}
+</script>
 </html>
 
 

@@ -70,8 +70,10 @@ public class MapController {
    @GetMapping("/region")
    public String region(Model model,String region,String zone) { 
       model.addAttribute("list",mapservice.selectreigon(region+" "+zone));
-      return "hosMap";
+      return "hosMap2";
    } 
+   
+
    @GetMapping("/front")
    public String front() {
       return "front";

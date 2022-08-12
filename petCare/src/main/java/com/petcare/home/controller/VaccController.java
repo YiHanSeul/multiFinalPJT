@@ -49,7 +49,12 @@ public class VaccController {
 	
 	@GetMapping("/vaccform")
 	public String vaccModel (Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {	
+		if((String)session.getAttribute("userid")  == null) {
+			
+			return "redirect:/user/login";
+		}else {
 		String userid=(String)session.getAttribute("userid");
+		
 		int userkey =userService.UserChk(userid).getUserkey();
 		List<PetDto> petDto=petService.selectPetAll(userkey);
 		model.addAttribute("petDto",petDto);
@@ -62,7 +67,7 @@ public class VaccController {
 		model.addAttribute("petVaccDto",petvaccDto);
 		
 		
-		return "vacc";
+		return "vacc";}
 	}
 	
 	@GetMapping("/vaccadd")
@@ -99,6 +104,13 @@ public class VaccController {
 		return "vacchos";
 	}
 	
+	   @GetMapping("/region2")
+	   public String region2(Model model,String region,String zone) { 
+	      model.addAttribute("list",mapService.selectreigon(region+" "+zone));
+	      return "hosMap3";
+	   }
+	   
+	
 	@GetMapping("/vacccalendar")
 	public String vacccalendar(HttpServletRequest request, HttpSession session, Model model,ResDto resDto) {
 		String HospitalName = request.getParameter("HospitalName");
@@ -130,10 +142,8 @@ public class VaccController {
 		String BookHour = request.getParameter("BookHour");
 		String BookDate= request.getParameter("BookDate");
 		
-		//String HospitalName= request.getParameter("HospitalName");
 		resDto.setBookHour(BookHour);
 		resDto.setBookDate(BookDate);
-		//dto.setHospitalName(HospitalName);
 		String lastChar=resDto.getVacc().substring(resDto.getVacc().length()-1);
 		resDto.setVacc(resDto.getVacc().strip().substring(0,resDto.getVacc().length()-1));
 		
@@ -149,7 +159,7 @@ public class VaccController {
 		
 		if(res > 0) {
 			TimeUnit.SECONDS.sleep(2);
-			return "redirect:/vacc/vacccalendar";
+			return "redirect:/user/userMypage#myBook";
 		} else {
 			return "redirect:/vacc/vacccalendar";
 		}
