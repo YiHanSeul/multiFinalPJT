@@ -35,35 +35,31 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private HospitalService hosService;
-	
+
 	@Autowired
 	private AdminService adminService;
 	// 회원가입 폼으로 넘어감
-	
+
 	@Autowired
 	private PetService petService;
-	
+
 	@Autowired
 	private ResService resService;
-	
+
 	@Autowired
 	private PetVaccService petVaccService;
-	
+
 	@Autowired
 	private BoardService boardService;
-	
+
 	@Autowired
 	private BcryptPassEncoder bcryptPassEncoder;
 
-	
- 
 	@GetMapping("/user")
 	public String test() {
-		
-		
 		return "userInsert";
 	}
 
@@ -71,8 +67,6 @@ public class UserController {
 	public String index2() {
 		return "front";
 	}
-	
-
 
 	@GetMapping("/join") // 개인회원&병원회원 로그인 가능하게힘
 	public String join() {
@@ -92,27 +86,25 @@ public class UserController {
 
 	// user.jsp파일에서 form 전송 클릭했을경우 실행되는 메소드
 	@GetMapping("/insertUser")
-	public String insertUser(UserDto user, HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
-		
-		if(user.getUserid() == "" || user.getUserpw() == "" || user.getUsername() =="" || user.getUsernick() == "" || user.getUseremail() == "" || user.getUserphone() == "") {
+	public String insertUser(UserDto user, HttpSession session, Model model, HttpServletRequest request,
+			HttpServletResponse response) {
+
+		if (user.getUserid() == "" || user.getUserpw() == "" || user.getUsername() == "" || user.getUsernick() == ""
+				|| user.getUseremail() == "" || user.getUserphone() == "") {
 			return "userInsert";
 		}
-			//암호화 회원가입
-			user.setUserpw(bcryptPassEncoder.encode(user.getUserpw()));
-			System.out.println(user.getUserpw());
-			int res = userService.joinUser(user);
-			
-			if (res > 0) {
-				System.out.println(user);
-				session.setAttribute("userid", user.getUserid());
-				
-				return "login";
-			} else {
-				return "index2";
-			}
-			
-		
-			
+		// 암호화 회원가입
+		user.setUserpw(bcryptPassEncoder.encode(user.getUserpw()));
+		int res = userService.joinUser(user);
+
+		if (res > 0) {
+
+			session.setAttribute("userid", user.getUserid());
+
+			return "login";
+		} else {
+			return "index";
+		}
 	}
 
 	@GetMapping("/cleanNumb")
@@ -120,392 +112,226 @@ public class UserController {
 	public void cleanNum(HttpSession session) {
 		session.setAttribute("num", 0);
 	}
-	
-	
-	
-	
-	
-	
+
 	@PostMapping("/loginForm")
-	public String loginForm(Model model, String userid, String userpw, HttpSession session , int chk_info) {
-		
+	public String loginForm(Model model, String userid, String userpw, HttpSession session, int chk_info) {
+
 		try {
-			if(chk_info == 1) {
+			if (chk_info == 1) {
 				int gradeChk = userService.UserChk(userid).getGrade();
 				boolean idChk = userid.equals(userService.UserChk(userid).getUserid());
-				//복호화 작업
+				// 복호화 작업
 				boolean pwChk = bcryptPassEncoder.matches(userpw, userService.UserChk(userid).getUserpw());
-				if(0 == gradeChk) {
-					if(idChk) {
-						//아이디 성공
-						if(pwChk) {
-							//비밀번호 성공
+				if (0 == gradeChk) {
+					if (idChk) {
+						// 아이디 성공
+						if (pwChk) {
+							// 비밀번호 성공
 							session.setAttribute("userid", userid);
 							session.setAttribute("userpw", userpw);
 							model.addAttribute("dto", adminService.HospitalVChk());
 							session.setAttribute("number", 0);
-		  					return "adminCheck";
-						}else {
-							//비밀번호 실패
+							return "adminCheck";
+						} else {
+							// 비밀번호 실패
 							session.setAttribute("num", 5);
 							return "redirect:/user/login";
 						}
-					}else {
-						//아이디 실패
+					} else {
+						// 아이디 실패
 						session.setAttribute("num", 4);
 						return "redirect:/user/login";
-					}		
+					}
 				}
-				//1은 일반유저
-				if(1 == gradeChk) {
-					if(idChk) {
-						//아이디 성공
-						if(pwChk) {
-							//비밀번호 성공
+				// 1은 일반유저
+				if (1 == gradeChk) {
+					if (idChk) {
+						// 아이디 성공
+						if (pwChk) {
+							// 비밀번호 성공
 							session.setAttribute("userid", userid);
 							session.setAttribute("userpw", userpw);
 							model.addAttribute("dto", adminService.HospitalVChk());
-		  					return "index";
-						}else {
-							//비밀번호 실패
+							return "index";
+						} else {
+							// 비밀번호 실패
 							session.setAttribute("num", 5);
 							return "redirect:/user/login";
 						}
-					}else {
-						//아이디 실패
+					} else {
+						// 아이디 실패
 						session.setAttribute("num", 4);
 						return "redirect:/user/login";
-					}		
+					}
 				}
-				
+
 				return "redirect:/user/login";
-				
-				//어드민도 넣어줘야함 => 마지막이 else가 되서 필요없음
-				
-//				else if (1 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
-//						&& userpw.equals(userService.UserChk(userid).getUserpw())) {
-//					session.setAttribute("userid", userid);
-//					session.setAttribute("userpw", userpw);
-//					return "index";	
-//				}else {
-//					model.addAttribute("num", 1);
-//					return "login";
-//				}
-//				
-			}else {
+
+				// 어드민도 넣어줘야함 => 마지막이 else가 되서 필요없음
+
+			} else {
 
 				String HospitalId = userid;
 				String HospitalPw = userpw;
 				// 1은 활성
 				int actChk = hosService.HospitalLogChk(HospitalId).getHospitalChk();
 				boolean idChk = HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId());
-				boolean pwChk = bcryptPassEncoder.matches(HospitalPw, hosService.HospitalLogChk(HospitalId).getHospitalPw());
+				boolean pwChk = bcryptPassEncoder.matches(HospitalPw,
+						hosService.HospitalLogChk(HospitalId).getHospitalPw());
 
 				if (1 == actChk) {
 					// 활성화 성공
-					System.out.println("test");
 					if (idChk) {
 						// 아이디 성공
 						if (pwChk) {
 							// 비밀번호 성공
 							session.setAttribute("userid", HospitalId);
 							session.setAttribute("userpw", HospitalPw);
-							System.out.println("test2");
 							return "index";
 						} else {
 							// 비밀번호 실패
-							System.out.println("test3");
 							session.setAttribute("num", 5);
 							return "redirect:/user/login";
 						}
 					} else {
 						// 아이디 실패
-						System.out.println("test4");
 						return "redirect:/user/login";
 					}
 				} else if (0 == actChk) {
 					// 활성화 실패
 					if (idChk) {
 						// 아이디 성공
-						System.out.println("test5");
 						if (pwChk) {
 							// 비밀번호 성공
 							session.setAttribute("userid", HospitalId);
 							session.setAttribute("userpw", HospitalPw);
 							model.addAttribute("text", "비활성");
-							System.out.println("test6");
 							return "loginHos";
 
 						} else {
 							// 비밀번호 실패
-							System.out.println("test7");
 							return "redirect:/user/login";
 						}
 					} else {
 						// 아이디 실패
-						System.out.println("test8");
 						return "redirect:/user/login";
 					}
 				} else {
-					System.out.println("test9");
 					return "redirect:/user/login";
 				}
 			}
 
 		} catch (NullPointerException e) {
 			session.setAttribute("num", 3);
-			System.out.println("test10");
 			return "redirect:/user/login";
 		}
-		
-	
-	
-}		
-					
-					
-					
-					
-					
-//					
-//					
-//					if (1 == actChk
-//							&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
-//							&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
-//						session.setAttribute("userid", HospitalId);
-//						session.setAttribute("userpw", HospitalPw);
-//						System.out.println("test4");
-//						return "index";
-//					}
-//
-//					if (0 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-//							&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
-//							&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
-//						session.setAttribute("userid", HospitalId);
-//						session.setAttribute("userpw", HospitalPw);
-//						model.addAttribute("text", "비활성");
-//						System.out.println("test5");
-//						return "loginHos";
-//					}else {
-////						model.addAttribute("num", 1);
-//						return "login";
-//					}
-//				}
-//		} catch (NullPointerException e) {
-//			model.addAttribute("num", 3);
-//			return "login";
-//		}
-//				
-//			
-//			
-//		}
-		
-		
-		
-		
-		
-		
-		
-		
-/*				
-		String userid = request.getParameter("userid");
-		String userpw = request.getParameter("userpw");
-		try {
-			
-			Dto  = service.ck(userid,userpw);
-		}
-		odel.addAttribute("num",0);
-		return login;*/
-/*		System.out.println("test");
-				String msg="";
-					try {
-						if(chk_info==1) {
-							String userid = request.getParameter("userid");
-							String userpw = request.getParameter("userpw");
-							session.setAttribute("userid", userid);
-							session.setAttribute("userpw", userpw);
-							
-							  model.addAttribute("num",0); return index; else if{
-							  model.addAttribute("num",1); return login; }
-							 
-							session.setAttribute("userkey",userService.UserChk(userid).getUserkey());
-							System.out.println("test1");
-						if (0 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
-								&& userpw.equals(userService.UserChk(userid).getUserpw())) {
-							//model.addAttribute("userid", userid);
-							System.out.println(adminService.HospitalVChk());
-							model.addAttribute("dto", adminService.HospitalVChk());
-							System.out.println("test2");
-							return "adminCheck";
-						} else if (1 == userService.UserChk(userid).getGrade() && userid.equals(userService.UserChk(userid).getUserid())
-								&& userpw.equals(userService.UserChk(userid).getUserpw())) {
-							//model.addAttribute("userid", userid);
-							System.out.println("test3");
-							
 
-							model.addAttribute("userpw", userService.UserChk(userid).getUserpw());
-							
-							return "index";
-						}
-						
-					}else  {
-						String HospitalId = request.getParameter("userid");
-						String HospitalPw = request.getParameter("userpw");
-						session.setAttribute("userid", HospitalId);
-						session.setAttribute("userpw", HospitalPw);
-								
-						if (1 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-								&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
-								&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
-							System.out.println("test4");
-							return "index";
-						}
-
-						if (0 == hosService.HospitalLogChk(HospitalId).getHospitalChk()
-								&& HospitalId.equals(hosService.HospitalLogChk(HospitalId).getHospitalId())
-								&& HospitalPw.equals(hosService.HospitalLogChk(HospitalId).getHospitalPw())) {
-							model.addAttribute("text", "비활성");
-							System.out.println("test5");
-							return "loginHos";
-						}
-					}
-						} catch (NullPointerException e) {
-							System.out.println("test6");
-							msg = "아이디 또는 비밀번호가 잘못 입력되었습니다!";
-							model.addAttribute("msg", msg);
-							msg="";
-						return "login";
-						
-					} finally {
-						msg ="finally";
-					}
-					System.out.println("test7");
-					return "login";*/
-		
-	
+	}
 
 	@GetMapping("/userMypage")
-	public String userMypage(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {		
+	public String userMypage(Model model, HttpServletRequest request, HttpServletResponse response,
+			HttpSession session) {
 		String userid = (String) session.getAttribute("userid");
-		if((String)session.getAttribute("userid")  == null) {
-			
+		if ((String) session.getAttribute("userid") == null) {
+
 			return "redirect:/user/login";
-		}else {
-		int userkey = userService.UserChk(userid).getUserkey();
-		List<PetDto> petDto = petService.selectPetAll(userkey);
-		model.addAttribute("petDto",petDto);
-//		System.out.println(petDto);
-		UserDto dto = userService.UserChk(userid);
-		model.addAttribute("dto", dto);
-		
-		List<ResDto> resDto = resService.resBook(userkey);
-		model.addAttribute("resDto" ,resDto);
-		//예방접종 예약 현황 리스트
-		List<ResDto> vaccResDto=petVaccService.resVaccBook(userkey);
-		System.out.println(vaccResDto);
-		model.addAttribute("vaccResDto",vaccResDto);
-		
-		List<BoardDto> listBoardDto=boardService.myBoardList(userkey);
-		model.addAttribute("listBoardDto",listBoardDto);
-		return "userMypage";
+		} else {
+			int userkey = userService.UserChk(userid).getUserkey();
+			List<PetDto> petDto = petService.selectPetAll(userkey);
+			model.addAttribute("petDto", petDto);
+
+			UserDto dto = userService.UserChk(userid);
+			model.addAttribute("dto", dto);
+
+			List<ResDto> resDto = resService.resBook(userkey);
+			model.addAttribute("resDto", resDto);
+			// 예방접종 예약 현황 리스트
+			List<ResDto> vaccResDto = petVaccService.resVaccBook(userkey);
+			model.addAttribute("vaccResDto", vaccResDto);
+
+			List<BoardDto> listBoardDto = boardService.myBoardList(userkey);
+			model.addAttribute("listBoardDto", listBoardDto);
+			return "userMypage";
 		}
 	}
 
 	@GetMapping("/userMypageRes")
 	public String userMypageRes(HttpServletRequest request, HttpSession session, Model model) {
+		
+		
+		
 		String userid = (String) session.getAttribute("userid");
 		String usernick = request.getParameter("usernick");
 		String useremail = request.getParameter("useremail");
 		String userphone = request.getParameter("userphone");
-		//닉네임 확인하는 곳
-		if(usernick != null) {
-			
-			
+		// 닉네임 확인하는 곳
+		if (usernick != null) {
+
 			int res = userService.updateUserNick(userid, usernick);
 			if (res > 0) {
 				UserDto dto = userService.UserChk(userid);
 				model.addAttribute("dto", dto);
-				
+
 				int userkey = userService.UserChk(userid).getUserkey();
 				List<PetDto> petDto = petService.selectPetAll(userkey);
-				model.addAttribute("petDto",petDto);
+				model.addAttribute("petDto", petDto);
 				List<ResDto> resDto = resService.resBook(userkey);
-				model.addAttribute("resDto" ,resDto);
-				
+				model.addAttribute("resDto", resDto);
+
 				return "userMypage";
-			} else {return "index2";}
+			} else {
+				return "index";
+			}
 		}
-		//이메일 확인하는 곳
-		if(useremail != null) {
-			
-			
+		// 이메일 확인하는 곳
+		if (useremail != null) {
+
 			int res = userService.updateUserEmail(userid, useremail);
 			if (res > 0) {
 				UserDto dto = userService.UserChk(userid);
-				
+
 				model.addAttribute("dto", dto);
-				
+
 				int userkey = userService.UserChk(userid).getUserkey();
 				List<PetDto> petDto = petService.selectPetAll(userkey);
-				model.addAttribute("petDto",petDto);
+				model.addAttribute("petDto", petDto);
 				List<ResDto> resDto = resService.resBook(userkey);
-				model.addAttribute("resDto" ,resDto);
-				
-				
-				return "userMypage";
-			}else {return "index2";}
-		}
-		
-		//전화번호 확인하는 곳
-		if(request.getParameter("userphone") != null) {
+				model.addAttribute("resDto", resDto);
 
+				return "userMypage";
+			} else {
+				return "index";
+			}
+		}
+
+		// 전화번호 확인하는 곳
+		if (request.getParameter("userphone") != null) {
 
 			int res = userService.updateUserPhone(userid, userphone);
 			if (res > 0) {
 				UserDto dto = userService.UserChk(userid);
 				model.addAttribute("dto", dto);
-				
+
 				int userkey = userService.UserChk(userid).getUserkey();
 				List<PetDto> petDto = petService.selectPetAll(userkey);
-				model.addAttribute("petDto",petDto);
+				model.addAttribute("petDto", petDto);
 				List<ResDto> resDto = resService.resBook(userkey);
-				model.addAttribute("resDto" ,resDto);
+				model.addAttribute("resDto", resDto);
 				return "userMypage";
-			}else {return "index2";}
+			} else {
+				return "index";
+			}
 		}
-			//최종 실패시 나오는 인덱스
-			return "index2";
-		}
+		// 최종 실패시 나오는 인덱스
+		return "index";
+	}
 
+	@GetMapping("/userUpdate")
+	public String testNext() {
 		
-		
-
-	@GetMapping("/userChnick")
-	public String testNext(HttpSession session, String userid, Model model) {
-		userid = (String) session.getAttribute("userid");
-		UserDto dto = userService.UserChk(userid);
-		String usernick = dto.getUsernick();
-		model.addAttribute("usernick", usernick);
-		return "userChnick";
+		return "userUpdate";
 	}
 
-	@GetMapping("/userChemail")
-	public String testNext2(HttpSession session, String userid, Model model) {
-		userid = (String) session.getAttribute("userid");
-		UserDto dto = userService.UserChk(userid);
-		String useremail = dto.getUseremail();
-		model.addAttribute("useremail", useremail);
-		return "userChemail";
-	}
-
-	@GetMapping("/userChphone")
-	public String testNext3(HttpSession session, String userid, Model model) {
-		userid = (String) session.getAttribute("userid");
-		UserDto dto = userService.UserChk(userid);
-		String userphone = dto.getUserphone();
-		model.addAttribute("userphone", userphone);
-
-		return "userChphone";
-	}
 
 	@GetMapping("/userDelete")
 	public String userDelete(HttpSession session, Model model) {
@@ -522,7 +348,7 @@ public class UserController {
 		if (pwChk) {
 
 			res = userService.deleteUser(userid);
-			System.out.println(res);
+
 			if (res > 0) {
 				session.removeAttribute(userid);
 				session.invalidate();
@@ -543,9 +369,9 @@ public class UserController {
 	@GetMapping("/idCheck")
 	@ResponseBody
 	public int idCheck(@RequestParam("userid") String userid) {
-		int cnt=0;
-		if(userid==null || userid=="") {
-			cnt=-1;
+		int cnt = 0;
+		if (userid == null || userid == "") {
+			cnt = -1;
 			return cnt;
 		}
 		cnt = userService.UserChkId(userid);

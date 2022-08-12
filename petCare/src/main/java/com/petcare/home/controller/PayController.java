@@ -47,10 +47,8 @@ public class PayController {
 			BufferedReader transformer = new BufferedReader(canRead);
 			return transformer.readLine(); //본인은 비워짐
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
