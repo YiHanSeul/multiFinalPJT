@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,107 +10,7 @@
 <title>Insert title here</title>
 <link href="/resources/css/petRePage.css" rel="stylesheet"type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/resources/js/petRePage.js"></script> <!-- Pet Result Page -->
-<style>
-.search-top-container {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   height: 120px;
-   background: #FAFAD2;
-   opacity: 0.7;
-   margin-top:70pt;
-}
-#stt {
-   font-size: 30pt !important;
-   font-weight: bolder !important;
-   opacity: 1 !important;
-}
-#month{
-font-size: 24pt;
-font-weight: bold;
-}
-#price{
-font-size: 36pt;
-font-weight: bold;
-}
-#petDes{
-font-size: 18pt;
-font-weight: bold;
-}
-#petDes1{
-font-size: 17pt;
-font-weight: bold;
-color: blue;
-}
-#bs{
-background-color: navy;
-}
-#linktag{
-margin-left: 10%;
-}
-#rcmd{
-font-size: 14pt;
-}
-.footer {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-    background: #FAFAD2;
-    margin-top: 1%;
-}
-.footer-top {
-    padding: 43px 0 75px;
-}
-.container {
-    margin: auto;
-    max-width: 1200px;
-    padding: 0;
-}
-.footer .container {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-}
-@media (min-width: 1264px)
-.container {
-    max-width: 1185px;
-}
-.footer-col:first-child {
-    max-width: 524px;
-}
-.footer-info {
-    margin: 0 -8px;
-}
-.footer-link {
-    margin: 0 -8px;
-}
-.footer-link li {
-    float: left;
-    padding: 0 2px;
-}
-*, :after, :before {
-    box-sizing: inherit!important;
-}
-.footer-link:after {
-    content: "";
-    display: block;
-    clear: both;
-}
-@media(max-width:1075px){
-   .search-top-container{
-      display:none;
-   }
-   .footer{
-      display:none;
-   }
-   .main{
-   margin-top: 150px;
-   }
-}
-</style>
+   <script type="text/javascript" src="/resources/js/petRePage.js"></script> <!-- Pet Result Page -->
 </head>
 <body>
    <%@ include file="/WEB-INF/views/template/menu.jsp"%>
@@ -121,16 +22,23 @@ font-size: 14pt;
          <br>
          <span id="petDes">${petName }</span><span id="rcmd">님을 위한 추천 상품</span><br><br>
          <span id="petDes1">${petNameI }</span><br>
-         <span id="month">월 </span><span id="price">${petPriceI2 }원 <a href="/pay" onClick="window.open(this.href, '', 'width=400, height=430'); return false;">결제</a>
+         <span id="month">월 </span><span id="price">${petPriceI2 }원 
+         <c:if test="${petPriceI2 == '33,650' }">
+         <a href="/pay" onClick="window.open(this.href, '', 'width=400, height=430'); return false;">결제</a>
+         </c:if>
+         <c:if test="${petPriceI2 == '34,260' }">
+         <a href="/pay" onClick="window.open(this.href, '', 'width=400, height=430'); return false;">결제</a>
+         </c:if>
+         <c:if test="${petPriceI2 == '36,240' }">
+         <a href="/pay" onClick="window.open(this.href, '', 'width=400, height=430'); return false;">결제</a>
+         </c:if>
 </span> 
             <c:set var="test" value="${petPriceI2 }" scope="session" />
          
       </div>
    </div>
-   <br>
-   <br>
-   <br>
-   <br>
+
+   <br><br><br><br>
    
       <div id="linktag">
          <a

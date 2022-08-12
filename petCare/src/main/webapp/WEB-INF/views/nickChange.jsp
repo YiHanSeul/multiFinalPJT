@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-index2 파일
+닉네임을 변경했습니다.
+새로고침 후 확인해주세요!
 </body>
 </html>

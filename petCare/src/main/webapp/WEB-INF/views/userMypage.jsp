@@ -8,34 +8,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link href="/resources/css/userMypage.css" rel="stylesheet"
-	type="text/css">
-<script>
-	function test() {
-		if (confirm("회원 탈퇴하시겠습니까?")) {
-			window.open("http://localhost:8787/user/userDelete", "PopupNew",
-					"width=500,height=400");
-			//추후 주소가 바뀌면 그 주소로 해줘야함
+<link href="/resources/css/userMypage.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/resources/js/userMypage.js"></script>
 
-			/* window.open('about:blank', 'width=300, height=200').location.href = 'userDelete'  */
 
-		} else {
-			alert("취소를 누르셨습니다.");
-		}
-	}
-	function petRegitst() {
-		const popup = document.querySelector('#petAdd-forms');
-		popup.classList.add('has-filter');
-		popup.classList.remove('hide');
-	}
-	function closePopup() {
-		const popup = document.querySelector('#petAdd-forms');
-		popup.classList.add('hide');
-
-	}
-	test = "${vaccResDto}";
-	console.log(test);
-</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/template/menu.jsp"%>
@@ -47,7 +23,7 @@
 			<li class="menu-list"><a href="#myHosBookRe">후기관리</a></li>
 			<li class="menu-list"><a href="#">게시글 관리</a></li>
 			<li class="menu-list"><a href="/user/findpwing">비밀번호찾기</a></li>
-			<li class="menu-list"><p onclick="test()">회원탈퇴</p></li>
+			<li class="menu-list"><p onclick="userDelete()">회원탈퇴</p></li>
 		</ul>
 	</div>
 	<!-- 페이지를 따로 만들지 말고 a태그로 같은 페이지에 있는 아이디로 이동하기 -->
@@ -57,17 +33,19 @@
 		<c:if test="${not empty dto }">
 			<ul>
 				<li class="myInfo">아이디: ${dto.username}</li>
-				<li class="myInfo">닉네임 : ${dto.usernick } <input id="usernick"
-					class="btn btn-warning" type="button" value="수정"
-					onclick="location.href='userChnick'">
+				<li class="myInfo">닉네임 : ${dto.usernick } 
+				
+				
+					<!-- onclick="window.open('http://localhost:8787/user/userChnick', 'width=430, height=500')"> -->
+					
 				</li>
-				<li class="myInfo">이메일: ${dto.useremail } <input id="useremail"
-					class="btn btn-warning" type="button" value="수정"
-					onclick="location.href='userChemail'">
+				<li class="myInfo">이메일: ${dto.useremail } 
 				</li>
-				<li class="myInfo">전화번호: ${dto.userphone } <input
-					id="userphone" class="btn btn-warning" type="button" value="수정"
-					onclick="location.href='userChphone'">
+				<li class="myInfo">전화번호: ${dto.userphone } 
+				
+				</li>
+				<li class="myInfo">
+					<input id="userUpdate" class="btn btn-warning" type="button" value="내 정보 수정하기" onclick="location.href='userUpdate'"> 
 				</li>
 			</ul>
 		</c:if>

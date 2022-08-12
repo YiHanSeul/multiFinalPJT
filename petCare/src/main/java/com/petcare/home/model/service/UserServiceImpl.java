@@ -25,7 +25,6 @@ public class UserServiceImpl implements UserService{
    }
    @Override
    public UserDto UserChk(String userId) {
-//      System.out.println("service임플임");
       return userMapper.userChk(userId);
    }
 
