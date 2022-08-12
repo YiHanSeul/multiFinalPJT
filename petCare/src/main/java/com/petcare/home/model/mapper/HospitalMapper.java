@@ -10,7 +10,7 @@ import com.petcare.home.model.dto.HospitalDto;
 @Mapper
 public interface HospitalMapper {
 
-	@Insert(" INSERT INTO hospital_user VALUES(#{HospitalKey},#{HospitalName},#{HospitalId},#{HospitalPw},#{HospitalEmail},#{HospitalPhone},#{HospitalAddr},0,2)  ")
+	@Insert(" INSERT INTO HOSPITAL_USER VALUES(#{HospitalKey},#{HospitalName},#{HospitalId},#{HospitalPw},#{HospitalEmail},#{HospitalPhone},#{HospitalAddr},0,2)  ")
 	int insertHos(HospitalDto hospitalDto);
 
 	

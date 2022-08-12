@@ -18,6 +18,6 @@ public interface AdminMapper {
 	@Select(" SELECT * FROM HOSPITAL_USER WHERE HOSPITALCHK = 0 ")
 	List<HospitalDto> HospitalVChk(); //verify
 	
-	@Update(" UPDATE HOSPITAL_USER SET HospitalChk= 1 where HospitalKey=#{HospitalKey}")
+	@Update(" UPDATE HOSPITAL_USER SET HOSPITALCHK = 1 where HOSPITALKEY =#{HospitalKey}")
 	int updateHospitalVChk(String HospitalKey);
 }

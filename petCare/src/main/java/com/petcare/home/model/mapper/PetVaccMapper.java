@@ -20,13 +20,13 @@ public interface PetVaccMapper {
 	int vaccadd(PetVaccDto petVaccDto);
 	
 	
-	@Select("select userkey,petkey, vaccName,max(vaccMonth)as vaccMonth, nextVaccMonth from (select * from petvacc order by vaccMonth desc) petvacc group by Vaccname ,petkey having userkey=#{userkey} ")
+	@Select("select USERKEY , PETKEY , VACCNAME ,max(VACCMONTH) as VACCMONTH, NEXTVACCMONTH from (select * from PETVACC order by VACCMONTH desc) PETVACC group by VACCNAME  , PETKET having USERKEY = #{userkey} ")
 	List<PetVaccDto> selectPetVacc(int userkey);
 	
 	@Insert(" INSERT INTO VACCBOOK VALUES(0, #{BookHour}, #{BookDate}, #{BookPetType}, #{UserKey}, #{HospitalName}, #{Vacc}, #{VaccName}) ")
 	int vaccInsertRes(ResDto resDto);
 	
-	@Select(" select * from vaccbook where userkey=#{userkey} ")
+	@Select(" select * from VACCBOOK where USERKEY=#{userkey} ")
 	List<ResDto> resVaccBook(int userkey);
 
 }
