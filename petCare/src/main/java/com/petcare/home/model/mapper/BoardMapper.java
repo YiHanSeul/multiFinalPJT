@@ -13,25 +13,25 @@ import com.petcare.home.model.dto.MapDto;
 @Mapper
 public interface BoardMapper {
 
-	@Select(" select * from Community ")
+	@Select(" select * from COMMUNITY COMMUNITY ")
 	List<BoardDto> selectAll();
 	
-	@Select("select * from Community where BoardCnt=#{boardCnt}")
+	@Select("select * from COMMUNITY where BOARDCNT = #{boardCnt}")
 	BoardDto selectOne(int boardCnt);
 	
-	@Insert(" insert into community values(null, now(), #{comContent} ,  #{comTitle}, #{field1}, #{userKey} ,#{rating}) ")
+	@Insert(" insert into COMMUNITY values(null, now(), #{comContent} ,  #{comTitle}, #{field1}, #{userKey} ,#{rating}) ")
 	int write(BoardDto writeDto);
 	
-	@Select(" select * from User where UserId = #{id} ")
+	@Select(" select * from USER where USERID = #{id} ")
 	BoardDto selectKey(String id);
 	
 	@Select(" select count(*) from MAP where HOSPITALNAME = #{Field1} ")
 	int selecthosname(String Field1);
 	
-	@Delete(" delete from community where boardCnt= #{boardCnt} ")
+	@Delete(" delete from COMMUNITY where BOARDCNT = #{boardCnt} ")
 	int del(int boardCnt);
 	
 	
-	@Select(" select * from community where userkey= #{userkey} ")
+	@Select(" select * from COMMUNITY where USERKEY = #{userkey} ")
 	List<BoardDto> myBoardList(int userkey);
 }
