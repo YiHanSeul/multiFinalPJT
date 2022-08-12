@@ -111,3 +111,15 @@ hr {
 	width: 70%;
 	margin-left:0;
 }
+
+#defaltPet{
+	display: flex;
+	justify-content: space-around;
+}
+
+#defaltPet div{
+	border: 2px dashed #f0ad4e;
+	border-radius: 7%;
+	width: 30%;
+	padding :2%;
+}
