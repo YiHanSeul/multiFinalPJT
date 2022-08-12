@@ -168,7 +168,7 @@ background-color: #FAFAD2;
 }
 </style>
 
-<body onload="now()">
+<body>
    <%@ include file="/WEB-INF/views/template/menu.jsp"%>
    <div class="menu" id="loginChk2" style="display: none"></div>
    <div class="search-top-container">

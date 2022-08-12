@@ -15,6 +15,8 @@ public interface ResService {
 
 	public int resVacCheck(String BH, String BD, String HN);
 	
-	public ResDto resBook(int userkey); 
+	public int del(int bookId);
+
+	public int delhos(int bookId);
 
 }

@@ -100,9 +100,10 @@ color: orange;
    justify-content: center;
     background: #FAFAD2;
     margin-top: 35%;
+    height: 100%;
 }
 .footer-top {
-    padding: 43px 0 75px;
+    padding: 43px 0 35px;
 }
 .container {
     margin: auto;
@@ -143,6 +144,8 @@ color: orange;
 	.search-top-container{
 		display:none;
 	}
+}
+@media(max-width:1625px){
 	.footer{
 		display:none;
 	}
