@@ -12,7 +12,7 @@ import com.petcare.home.model.dto.UserDto;
 @Mapper
 public interface UserMapper {
 
-	@Insert(" INSERT INTO user VALUES(NULL,#{userid},#{userpw},#{username},#{usernick},#{useremail},#{userphone},1)  ")
+	@Insert(" INSERT INTO USER VALUES(NULL,#{userid},#{userpw},#{username},#{usernick},#{useremail},#{userphone},1)  ")
 	int joinUser(UserDto userDto);
 	
 	@Select(" SELECT * FROM USER WHERE USERID = #{userId} ")

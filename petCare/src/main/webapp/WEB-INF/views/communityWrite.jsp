@@ -128,6 +128,17 @@ text-align: center;
  	<br>
 	 	<spen><b>병원 이름 : </b></spen>
 		<input type="text" name=field1>
+		<div class="box" style="width: 200px; height: 100px; background: #F78181; overflow-y: scroll;">
+		    안녕하세요.<br>
+		    스크롤바 숨기기.<br>
+		    스크롤은 동작.<br>
+		    Scrollbar hide.<br>
+		    Scroll active.<br>
+		    스크롤바 숨기기.<br>
+		    스크롤은 동작.<br>
+		    Scrollbar hide.<br>
+		    Scroll active.<br>
+		</div>
  	<br>
 	
 	<fieldset>
