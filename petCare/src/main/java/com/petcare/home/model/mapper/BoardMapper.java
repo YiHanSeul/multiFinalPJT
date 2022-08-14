@@ -36,8 +36,8 @@ public interface BoardMapper {
 	List<BoardDto> myBoardList(int userkey);
 
 	
-	@Select(" select * from COMMUNITY where USERNAME LIKE '%${username}%' ")
-	List<BoardDto> selectBoardList(String username);
+	@Select(" select * from MAP where HOSPITALNAME LIKE '${USERNAME}%' LIMIT 10")
+	List<MapDto> selectBoardList(String USERNAME);
 	
 	
 }

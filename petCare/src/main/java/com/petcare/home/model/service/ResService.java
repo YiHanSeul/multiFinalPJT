@@ -18,6 +18,5 @@ public interface ResService {
 	public int del(int bookId);
 
 	public int delhos(int bookId);
- 
-
+   
 }

@@ -111,15 +111,31 @@ text-align: center;
  		alert(" 사진 형태가 png, jpg 형태가 아닙니다. "); 
  	}
  	function input(){
- 		var val = document.querySelector('#field1').value;
+ 		var name = document.querySelector('#field1').value;
+ 		var plus =  document.querySelector('.box');
 
+		$(".insert").remove();
+
+ 		console.log(name);
 		$.ajax({
 			type:"GET",
-			url:"",
-			data: ,
-			success: function(rouletteDto){ 
-				$('#view').val(rouletteDto.money);
+			url:"/board/aj",
+			data: {
+				name
 			},
+			success: function(Dto){
+				if(Dto==""){
+				console.log("데이터x");
+				}else{					
+					var list = new Array();
+					$(".insert").remove();
+					for(var i = 0;i<Dto.length;i++){
+						list.push(Dto[i].hospitalname);
+						console.log(list[i]);
+						 $(".box").append("<div class='insert'>"+list[i]+"</div>");
+						}
+					}
+				},
 			error: function(){
 				alert("통신실패");
 			}
@@ -146,7 +162,7 @@ text-align: center;
 	 	<spen><b>병원 이름 : </b></spen>
 		<input type="text" id=field1 name=field1 onkeyup="input()" >
 		<div class="box"  style="width: 200px; height: 100px; background: #F78181; overflow-y: scroll;">
-		     
+		  
 		</div>
  	<br>
 	
