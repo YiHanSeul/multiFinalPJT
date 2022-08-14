@@ -34,4 +34,10 @@ public interface BoardMapper {
 	
 	@Select(" select * from COMMUNITY where USERKEY = #{userkey} ")
 	List<BoardDto> myBoardList(int userkey);
+
+	
+	@Select(" select * from COMMUNITY where USERNAME LIKE '%${username}%' ")
+	List<BoardDto> selectBoardList(String username);
+	
+	
 }

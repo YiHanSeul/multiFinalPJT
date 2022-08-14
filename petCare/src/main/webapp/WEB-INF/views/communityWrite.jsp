@@ -100,6 +100,7 @@ text-align: center;
 }
  
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
  	let ck = ${no};
  	if( ck==1){
@@ -109,6 +110,22 @@ text-align: center;
  	}else if(ck==3){
  		alert(" 사진 형태가 png, jpg 형태가 아닙니다. "); 
  	}
+ 	function input(){
+ 		var val = document.querySelector('#field1').value;
+
+		$.ajax({
+			type:"GET",
+			url:"",
+			data: ,
+			success: function(rouletteDto){ 
+				$('#view').val(rouletteDto.money);
+			},
+			error: function(){
+				alert("통신실패");
+			}
+		});
+ 		
+ 	};
 </script>
 <body>
 <%@ include file="/WEB-INF/views/template/menu.jsp" %>
@@ -127,17 +144,9 @@ text-align: center;
  	<br>
  	<br>
 	 	<spen><b>병원 이름 : </b></spen>
-		<input type="text" name=field1>
-		<div class="box" style="width: 200px; height: 100px; background: #F78181; overflow-y: scroll;">
-		    안녕하세요.<br>
-		    스크롤바 숨기기.<br>
-		    스크롤은 동작.<br>
-		    Scrollbar hide.<br>
-		    Scroll active.<br>
-		    스크롤바 숨기기.<br>
-		    스크롤은 동작.<br>
-		    Scrollbar hide.<br>
-		    Scroll active.<br>
+		<input type="text" id=field1 name=field1 onkeyup="input()" >
+		<div class="box"  style="width: 200px; height: 100px; background: #F78181; overflow-y: scroll;">
+		     
 		</div>
  	<br>
 	

@@ -57,6 +57,11 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardDto> myBoardList(int userkey) {
 		return boardMapper.myBoardList(userkey);
 	}
+
+	@Override
+	public List<BoardDto> selectBoardList(String USERNAME) {
+		return boardMapper.selectBoardList(USERNAME);
+	}
 	
 	
 }

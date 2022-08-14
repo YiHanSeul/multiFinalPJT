@@ -171,4 +171,13 @@ public class BoardController {
 		}
 		return "redirect:/board/list";
 	}
+	
+	@GetMapping("/aj")
+	@ResponseBody
+	public List<BoardDto> aj(@RequestParam("name") String name){
+		System.out.println(name);
+		List<BoardDto> Dto = boardService.selectBoardList(name);
+		System.out.println(Dto);
+		return Dto;
+	}
 }

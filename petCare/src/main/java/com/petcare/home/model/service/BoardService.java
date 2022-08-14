@@ -20,4 +20,6 @@ public interface BoardService {
 	public int del(int boardCnt);
 
 	public List<BoardDto> myBoardList(int userkey);
+	
+	public List<BoardDto> selectBoardList(String USERNAME);
 }
