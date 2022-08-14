@@ -30,11 +30,14 @@
 }
 #area {
    border: 1px solid black;
-   background-color: pink;
+   border-radius: 5px;
    top: 30%;
    left: 40%;
    right: 40%;
    display: none;
+   background-color: #f0ad4e;
+   color: #fff;
+   
 }
 
 #mapbox {
@@ -152,6 +155,16 @@ height: 1080px;
    align-items: center;
    left: 2.15%;
 }
+#region{
+color: black !important;
+}
+#zone1{
+color: black !important;
+}
+#zone2{
+color: black !important;
+background-color: #FAFAD2;
+}
 </style>
 
 <body  onload="now()">
@@ -173,7 +186,34 @@ height: 1080px;
    <div style="padding: 10px;"></div>
    <div id="selectbar">
       <button class="btn btn-warning" onclick="now();">현위치</button>&nbsp;
-      <button class="btn btn-warning" onclick="openarea();">주소선택</button>
+      <button class="btn btn-warning" onclick="openarea();">주소선택</button>&nbsp;
+         <div id="area">
+      <div>주소 찾기</div>
+      <form action="/map/region" method="get">
+         <select name="region" id="region" onchange="chageSelect()">
+            <option value="" selected>시,도</option>
+            <option value="서울특별시">서울특별시</option>
+            <option value="부산광역시">부산광역시</option>
+            <option value="대구광역시">대구광역시</option>
+            <option value="인천광역시">인천광역시</option>
+            <option value="광주광역시">광주광역시</option>
+            <option value="대전광역시">대전광역시</option>
+            <option value="울산광역시">울산광역시</option>
+            <option value="세종특별자치시">세종특별자치시</option>
+            <option value="경기도">경기도</option>
+            <option value="강원도">강원도</option>
+            <option value="충청북도">충청북도</option>
+            <option value="충청남도">충청남도</option>
+            <option value="전라북도">전라북도</option>
+            <option value="전라남도">전라남도</option>
+            <option value="경상북도">경상북도</option>
+            <option value="경상남도">경상남도</option>
+            <option value="제주특별자치도">제주특별자치도</option>
+         </select> <select name="zone" id="zone1">
+            <option value="" id="zone" selected>시.군.구</option>
+         </select> <input id="zone2" type="submit" value="확인">
+      </form>
+   </div>
       &nbsp;&nbsp;&nbsp;
       <div id="radio-box">
       	 <input type="radio" name="t" id="all" onclick="care(2);" checked="checked">
@@ -198,33 +238,6 @@ height: 1080px;
       <table id="list" border="0"></table>
    </div>
 
-   <div id="area">
-      <div>주소 찾기</div>
-      <form action="/map/region" method="get">
-         <select name="region" id="region" onchange="chageSelect()">
-            <option value="" selected>시,도</option>
-            <option value="서울특별시">서울특별시</option>
-            <option value="부산광역시">부산광역시</option>
-            <option value="대구광역시">대구광역시</option>
-            <option value="인천광역시">인천광역시</option>
-            <option value="광주광역시">광주광역시</option>
-            <option value="대전광역시">대전광역시</option>
-            <option value="울산광역시">울산광역시</option>
-            <option value="세종특별자치시">세종특별자치시</option>
-            <option value="경기도">경기도</option>
-            <option value="강원도">강원도</option>
-            <option value="충청북도">충청북도</option>
-            <option value="충청남도">충청남도</option>
-            <option value="전라북도">전라북도</option>
-            <option value="전라남도">전라남도</option>
-            <option value="경상북도">경상북도</option>
-            <option value="경상남도">경상남도</option>
-            <option value="제주특별자치도">제주특별자치도</option>
-         </select> <select name="zone">
-            <option value="" id="zone" selected>시.군.구</option>
-         </select> <input type="submit" value="확인">
-      </form>
-   </div>
    <script>
       var listlng = new Array();
       var listlat = new Array();

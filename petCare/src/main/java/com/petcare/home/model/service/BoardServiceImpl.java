@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.petcare.home.model.dto.BoardDto;
-import com.petcare.home.model.dto.MapDto;
 import com.petcare.home.model.mapper.BoardMapper;
 
 @Service

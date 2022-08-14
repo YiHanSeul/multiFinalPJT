@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
 %>
 <%
-response.setContentType("text/html; charset=UTF-8");
+	response.setContentType("text/html; charset=UTF-8");
 %>
 <!DOCTYPE html>
 <html>
@@ -139,7 +139,7 @@ text-align: center;
 		<div id="time">
 				<form action="/res/insertRes" method="get" onsubmit="doalert();">
 					<input type="hidden" name="UserKey" value="${userinfo.userkey }">
-					<input type="hidden" id="hn" name="HospitalName" value="${hospitalinfo.hospitalName}">
+					<input type="hidden" id="hn" name="HospitalName" value="">
 					
 					<table id="table">
 						<tr>
@@ -241,8 +241,6 @@ text-align: center;
 		$("[name=btn1]").on('click', function() {
 			$(this).css("backgroundColor", "navy");
 		    $("[name=btn1]").not($(this)).css("backgroundColor", "orange");
-		    const target1 = document.getElementById('CB');
-		    target1.disabled = false;
 		    const target = document.getElementById('SB');
 	        target.disabled = true;
 		    
@@ -310,7 +308,8 @@ text-align: center;
 	function ResDblChk(){
 		var BookHour = $("#abc").val();
 		var BookDate = $("#bc").val();
-		var HosName = $("#hn").val();
+		var HosName = "<%=(String)session.getAttribute("HospitalName")%>";
+		console.log(HosName);
         $.ajax({
             url:"/res/resCheck", //Controller에서 인식할 주소
             type:"post", //POST 방식으로 전달

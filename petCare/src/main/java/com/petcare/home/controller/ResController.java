@@ -52,18 +52,17 @@ public class ResController {
 	
 	@GetMapping("/insertRes")
 	public String insertRes(HttpServletRequest request ,ResDto dto, HttpSession session) throws InterruptedException {
-		//String HospitalName = request.getParameter("HospitalName");
+		String HospitalName = (String)session.getAttribute("HospitalName");
 		String BookHour = request.getParameter("BookHour");
 		String BookDate= request.getParameter("BookDate");
 		
-		//String HospitalName= request.getParameter("HospitalName");
 		dto.setBookHour(BookHour);
 		dto.setBookDate(BookDate);
-		//dto.setHospitalName(HospitalName);
+		dto.setHospitalName(HospitalName);
 		
 		if(resservice.insertRes(dto) > 0) {
 			TimeUnit.SECONDS.sleep(2);
-			return "redirect:/res/calendar";
+			return "redirect:/user/userMypage#myBook";
 		} else {
 			return "redirect:/res/calendar";
 		}
@@ -78,5 +77,33 @@ public class ResController {
 		dto.setBookDate(BookDate);
 		int cnt = resservice.resCheck(BH, BD, HN);
 		return cnt;
+	}
+	
+	@GetMapping("/del")
+	public String del(int bookId) {
+		int res = 0;
+		try {
+			res = resservice.del(bookId);
+		} catch (Exception e) {
+			return "redirect:/user/userMypage#myBook";
+		}
+		if(res>0) {
+			return "redirect:/user/userMypage#myBook";
+		}
+		return "redirect:/user/userMypage#myBook";
+	}
+	
+	@GetMapping("/delhos")
+	public String delhos(int bookId) {
+		int res = 0;
+		try {
+			res = resservice.delhos(bookId);
+		} catch (Exception e) {
+			return "redirect:/user/userMypage#myBook";
+		}
+		if(res>0) {
+			return "redirect:/user/userMypage#myBook";
+		}
+		return "redirect:/user/userMypage#myBook";
 	}
 }

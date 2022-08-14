@@ -9,13 +9,12 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/resources/js/adminCheck.js"></script>
-<link href="/resources/css/adminCheck.css" rel="stylesheet" type="text/css">
+<link href="/resources/css/adminCheck.css" rel="stylesheet"
+	type="text/css">
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/template/menu.jsp"%>
-	<p>
-		병원 가입신청 리스트
-	</p>
+	<p>병원 가입신청 리스트</p>
 	<table id="adminChk" class="table table-bordered" border="1">
 		<tr>
 			<th>사업자번호</th>

@@ -14,7 +14,10 @@ public interface ResService {
 	public List<ResDto> resBook(int userkey); 
 
 	public int resVacCheck(String BH, String BD, String HN);
-	
+ 
+	public int del(int bookId);
+
+	public int delhos(int bookId);
  
 
 }

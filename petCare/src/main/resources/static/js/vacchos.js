@@ -8,7 +8,6 @@ function openarea() {
   if (areanum) {
      areanum = false;
      document.getElementById("area").style.display = "block";
-     document.body.style.background = "gray";
      document.getElementById("area").style.zIndex = 100;
   } else {
      areanum = true;

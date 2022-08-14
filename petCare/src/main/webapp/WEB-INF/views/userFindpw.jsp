@@ -40,7 +40,6 @@ function check(){
 		<input type="text" id="useremail" name="useremail" placeholder="회원가입한 이메일을 입력하세요" style="width:60%;">
 	</p>
 	<p>
-		<!-- <input type="button" onclick="check()" value="찾기"> -->
 		<button type="button" class="btn btn-warning btn-sm" onclick="check()">찾기</button>
 		
 	</p>

@@ -5,10 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,9 +61,7 @@ public class BoardController {
 	@GetMapping("/cleanNum")
 	@ResponseBody
 	public void cleanNum(HttpSession session) {
-		
 		session.setAttribute("number", 0);
-		
 	}
 	
 	

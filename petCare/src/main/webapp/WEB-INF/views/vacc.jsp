@@ -169,15 +169,6 @@
                <li>Copyright © 푸터위치 고정 어케함. All Rights reserved.</li>
             </ul>
          </div>
-         <div class="footer-col">
-            <ul class="footer-link">
-               <li><a href="">회사소개</a></li>
-               <li><a href="">이용약관</a></li>
-               <li><a href="">개인정보처리방침</a></li>
-               <li><a href="">광고문의·관리</a></li>
-               <li><a href="">고객의소리</a></li>
-            </ul>
-         </div>
       </div>
    </div>
 </footer>

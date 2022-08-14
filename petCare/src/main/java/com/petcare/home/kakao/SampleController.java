@@ -1,4 +1,4 @@
-package com.petcare.home.test;
+package com.petcare.home.kakao;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
