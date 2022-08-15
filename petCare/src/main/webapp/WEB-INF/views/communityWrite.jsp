@@ -132,7 +132,7 @@ text-align: center;
 					for(var i = 0;i<Dto.length;i++){
 						list.push(Dto[i].hospitalname);
 						console.log(list[i]);
-						 $(".box").append("<div class='insert'>"+list[i]+"</div>");
+						 $(".box").append("<div class='insert'><a>"+list[i]+"</a></div>");
 						}
 					}
 				},
@@ -161,7 +161,7 @@ text-align: center;
  	<br>
 	 	<spen><b>병원 이름 : </b></spen>
 		<input type="text" id=field1 name=field1 onkeyup="input()" >
-		<div class="box"  style="width: 200px; height: 100px; background: #F78181; overflow-y: scroll;">
+		<div class="box" style="width: 200px; height: 100px; position:relative; top:10px; left:45%; background: rgb(220,235,240); overflow-y: scroll;">
 		  
 		</div>
  	<br>

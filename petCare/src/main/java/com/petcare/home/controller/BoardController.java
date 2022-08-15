@@ -172,10 +172,9 @@ public class BoardController {
 	@ResponseBody
 	public List<MapDto> aj(@RequestParam("name") String name){
 		List<MapDto> Dto = null;
-		System.out.println(name);
-//		if (name == null && name == "") {
-//			return Dto;
-//		}
+		if (name == null || name == "" ) {
+			return Dto;
+		}
 		try {
 			Dto = boardService.selectBoardList(name);
 		} catch (Exception e) {
