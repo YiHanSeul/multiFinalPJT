@@ -249,7 +249,7 @@ text-align: center;
 	});
 
 	function doalert(){
-		swal('예약 완료!',"예약 ㄳㄳ", 'success')
+		swal('예약 완료!',"예약 해주셔서 감사합니다.", 'success')
 	}
 	
 	document.addEventListener('DOMContentLoaded', function() {

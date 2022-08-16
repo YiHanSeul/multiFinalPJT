@@ -5,11 +5,41 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link href="/resources/css/login.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
 </head>
-<script type="text/javascript" src="/resources/js/login.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+
+ 	var number = ${number};
+	console.log(number);
+	if(number == 5){
+		   alert("로그인 해야합니다!");
+		
+		
+		$.ajax({
+			type:"get",
+			url:"/board/cleanNum"
+		});
+	}
+	
+ 	var numvac = ${numvac};
+	console.log(numvac);
+	if(numvac == 5){
+		alert("로그인 해야합니다!");
+		
+		$.ajax({
+			type:"get",
+			url:"/vacc/numvacClean"
+		});
+	}
+
+</script>
+
+
 <body>
 	<img id="login-img" src="/resources/img/login.jpg">
 	<div id="test">
@@ -42,6 +72,35 @@
 			<button class="btn" onclick="location.href='/hos/insertHosForm'">병원회원가입</button>
 		</div>
 	</div>
+<script type="text/javascript">
+/* js파일에 넣으면 안 돌아갑니다 ㅠㅠㅠ */
 
+var numb = ${no};
+
+
+console.log(numb);
+if(numb == 4){
+
+	alert("아이디를 다시 확인해주세요!");
+	$.ajax({
+		type:"get",
+		url:"/user/cleanNumb"
+	});
+}else if(numb == 5){
+	alert("비밀번호를 다시 확인해주세요!");
+	$.ajax({
+		type:"get",
+		url:"/user/cleanNumb"
+	});
+}else if(numb == 3){
+	 alert("일치하는 회원이 없습니다!"); 
+	$.ajax({
+		type:"get",
+		url:"/user/cleanNumb"
+	});
+}else{
+	
+}
+</script>
 </body>
 </html>

@@ -110,12 +110,12 @@ public class UserController {
 	@GetMapping("/cleanNumb")
 	@ResponseBody
 	public void cleanNum(HttpSession session) {
-		session.setAttribute("num", 0);
+		session.setAttribute("no", 0);
 	}
 
 	@PostMapping("/loginForm")
 	public String loginForm(Model model, String userid, String userpw, HttpSession session, int chk_info) {
-
+System.out.println("test");
 		try {
 			if (chk_info == 1) {
 				int gradeChk = userService.UserChk(userid).getGrade();
@@ -134,12 +134,15 @@ public class UserController {
 							return "adminCheck";
 						} else {
 							// 비밀번호 실패
-							session.setAttribute("num", 5);
+							
+							session.setAttribute("no", 5);
+							System.out.println("test1");
 							return "redirect:/user/login";
 						}
 					} else {
 						// 아이디 실패
-						session.setAttribute("num", 4);
+						session.setAttribute("no", 4);
+						System.out.println("test2");
 						return "redirect:/user/login";
 					}
 				}
@@ -155,12 +158,17 @@ public class UserController {
 							return "index";
 						} else {
 							// 비밀번호 실패
-							session.setAttribute("num", 5);
+							session.setAttribute("no", 5);
+						
+							System.out.println("test3");
+							
+							model.addAttribute("no", 5);
 							return "redirect:/user/login";
 						}
 					} else {
 						// 아이디 실패
-						session.setAttribute("num", 4);
+						session.setAttribute("no", 4);
+						System.out.println("test4");
 						return "redirect:/user/login";
 					}
 				}
@@ -190,7 +198,7 @@ public class UserController {
 							return "index";
 						} else {
 							// 비밀번호 실패
-							session.setAttribute("num", 5);
+							session.setAttribute("no", 5);
 							return "redirect:/user/login";
 						}
 					} else {
@@ -222,7 +230,8 @@ public class UserController {
 			}
 
 		} catch (NullPointerException e) {
-			session.setAttribute("num", 3);
+			session.setAttribute("no", 3);
+			System.out.println("test5");
 			return "redirect:/user/login";
 		}
 
