@@ -46,7 +46,7 @@ public class BoardController {
 		} catch (Exception e) {
 			session.setAttribute("number", 5);
 			
-			return "redirect:/";
+			return "redirect:/user/login";
 			
 		}
  
