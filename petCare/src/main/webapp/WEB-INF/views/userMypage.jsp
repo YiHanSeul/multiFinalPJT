@@ -123,14 +123,14 @@
 		</c:if>
 		<c:if test="${not empty resDto }">
 			<table class="table">
-				<tr>
+				<tr id="th">
 					<td>예약번호</td>
 					<td>예약날짜</td>
 					<td>예약시간</td>
 					<td>예약병원</td>
 					<td>견종</td>
 					<td>방문목적</td>
-					<th>예약취소</th>
+					<th></th>
 				</tr>
 				<c:forEach var="resDto" items="${resDto}">
 				<tr>
@@ -154,14 +154,14 @@
 		</c:if>
 		<c:if test="${not empty vaccResDto}">
 			<table class="table">
-				<tr>
+				<tr id="th">
 					<td>예약번호</td>
 					<th>예약날짜</th>
 					<th>예약시간</th>
 					<th>예약병원</th>
 					<th>예방접종 주사</th>
 					<th>가격</th>
-					<th>예약취소</th>
+					<th></th>
 				</tr>
 				<c:forEach var="vaccResDto" items="${vaccResDto}">
 					<tr>
@@ -179,9 +179,9 @@
 	</div>
 	<div id="myPets">
 		<hr />
-		<p class="myPage-p">동물병원 후기</p>
+		<p class="myPage-p" id="myRev">동물병원 후기</p>
 		<c:if test="${empty listBoardDto}">
-			<p class="not">예방접종 예약이 없습니다.</p>
+			<p class="not">후기 내역이 없습니다.</p>
 		</c:if>
 		<c:if test="${not empty listBoardDto}">
 			<table class="table">
