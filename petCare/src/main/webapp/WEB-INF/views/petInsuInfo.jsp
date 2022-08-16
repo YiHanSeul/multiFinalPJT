@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link href="/resources/css/petInsuInfo.css" rel="stylesheet" type="text/css">
 <link href="/resources/css/userInsert.css" rel="stylesheet" type="text/css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
@@ -35,7 +36,6 @@
       여 <input type="radio" name="petGender" id="petGender2" value="여">
       </div>
       
-<!--        이름과 성별은 필요 없어서 I를 붙이지 아니함 -->
       <div class="list" id="mainAge">
       나이 : <select class="box" name="petAgeI" id="domain-list">
               <option value="0.5" id="petAgeI1">6개월 미만</option>
