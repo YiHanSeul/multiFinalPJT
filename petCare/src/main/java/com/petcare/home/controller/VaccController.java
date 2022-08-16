@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,10 +48,16 @@ public class VaccController {
 	@Autowired
 	private ResService resService;
 	
+	@GetMapping("/numvacClean")
+	public void numvacClean(HttpSession session) {
+		session.setAttribute("numvac", 0);
+	}
+	
+	
 	@GetMapping("/vaccform")
 	public String vaccModel (Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {	
 		if((String)session.getAttribute("userid")  == null) {
-			
+			session.setAttribute("numvac", 5);
 			return "redirect:/user/login";
 		}else {
 		String userid=(String)session.getAttribute("userid");

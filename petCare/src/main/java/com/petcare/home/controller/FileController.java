@@ -20,7 +20,7 @@ public class FileController {
 	
 	@GetMapping("/download")
 	public ResponseEntity<Object> download(){
-		String path = "C:/Users/juni3/Desktop/fileUpload/insurance terms.docx";
+		String path = "C:/Users/juni3/Desktop/fileUpload/Terms.docx";
 		
 		try {
 			Path filePath = Paths.get(path);
