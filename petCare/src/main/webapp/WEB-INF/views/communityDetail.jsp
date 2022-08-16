@@ -13,7 +13,7 @@
 <style>
  #top{
 	width: 100%;
-	height: 130px;
+	height: 115px;
 }
  
 li{
@@ -97,12 +97,22 @@ html, body {
 div{
 text-align: center;
 }
- 
+.search-top-container {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ height: 120px;
+ background: #FAFAD2;
+ opacity: 0.7;
+}
 </style>
 <body>
 <%@ include file="/WEB-INF/views/template/menu.jsp" %>
 <div id="top"></div> 
-	<h1 style="text-align: center;"><b>상세내용</b></h1>
+	<div class="search-top-container">
+ 		<h1 class="title" id="stt"><b>상세내용</b></h1>
+ 	</div>
 	<div class="inwrap">
 		<div class="container">
 		<span> 평점 : </span>
