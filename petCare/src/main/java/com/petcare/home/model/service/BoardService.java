@@ -3,6 +3,7 @@ package com.petcare.home.model.service;
 import java.util.List;
 
 import com.petcare.home.model.dto.BoardDto;
+import com.petcare.home.model.dto.MapDto;
 
 public interface BoardService {
 
@@ -19,4 +20,6 @@ public interface BoardService {
 	public int del(int boardCnt);
 
 	public List<BoardDto> myBoardList(int userkey);
+	
+	public List<MapDto> selectBoardList(String USERNAME);
 }

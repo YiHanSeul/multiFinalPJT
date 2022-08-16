@@ -21,18 +21,24 @@
 #myform label{
     font-size: 3em;
     color: transparent;
-    text-shadow: 0 0 0 #f0f0f0;
+    text-shadow: 0 0 0 rgba(100,100,100,0.4);
 }
+
 #myform label:hover{
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
+
+#myform label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
  
 #myform input[type=radio]:checked ~ label{
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
  #top{
 	width: 100%;
-	height: 120px;
+	height: 115px;
 }
 .inwrap {
     width: 120rem;
@@ -98,8 +104,17 @@ html, body {
 div{
 text-align: center;
 }
- 
+.search-top-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  background: #FAFAD2;
+  opacity: 0.7;
+}
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
  	let ck = ${no};
  	if( ck==1){
@@ -109,6 +124,45 @@ text-align: center;
  	}else if(ck==3){
  		alert(" 사진 형태가 png, jpg 형태가 아닙니다. "); 
  	}
+ 	function input(){
+ 		var name = document.querySelector('#field1').value;
+ 		var plus =  document.querySelector('.box');
+
+		$(".insert").remove();
+
+ 		console.log(name);
+		$.ajax({
+			type:"GET",
+			url:"/board/aj",
+			data: {
+				name
+			},
+			success: function(Dto){
+				if(Dto==""){
+				console.log("데이터x");
+				}else{					
+					var list = new Array();
+					$(".insert").remove();
+					for(var i = 0;i<Dto.length;i++){
+						list.push(Dto[i].hospitalname);
+						console.log(list[i]);
+						 $(".box").append("<div class='insert'><a style='cursor:pointer;' class ='getn' onclick='achk("+i+")' >"+list[i]+"</a></div>");
+						}
+					}
+				},
+			error: function(){
+				alert("통신실패");
+			}
+		});
+ 		
+ 	};
+ 	
+ 	function achk(num){
+ 		var getname = document.getElementsByClassName("getn");
+ 		var setname = getname[num].innerHTML;
+ 		document.getElementById("field1").value=setname
+ 	}
+ 	
 </script>
 <body>
 <%@ include file="/WEB-INF/views/template/menu.jsp" %>
@@ -116,38 +170,34 @@ text-align: center;
 
 <form action="/board/write" class="mb-3" name="myform" id="myform" method="post" enctype="multipart/form-data">
 	<div class="inwrap">
-	<h1><b>글작성</b></h1>
-		<div class="container">
+	<div class="search-top-container">
+		<h1><b>글작성</b></h1>
+	</div>
+		<div class="container" style="background:rgba(250, 230, 240, 0.99)">
 	<div>
-	화원번호 : ${userkey}
+ 
+	<h3>회원번호 : ${userkey}</h3>
+ 
 	<input type="hidden" name=userKey value="${userKey}">
 	</div>
 		<spen><b>제목 : </b></spen>
-		<input type="text" name=comTitle>
+		<input style="border: 2px solid rgba(250, 208, 0, 0.99); width: 300px; height: 40px;" type="text" name=comTitle>
  	<br>
  	<br>
 	 	<spen><b>병원 이름 : </b></spen>
-		<input type="text" name=field1>
-		<div class="box" style="width: 200px; height: 100px; background: #F78181; overflow-y: scroll;">
-		    안녕하세요.<br>
-		    스크롤바 숨기기.<br>
-		    스크롤은 동작.<br>
-		    Scrollbar hide.<br>
-		    Scroll active.<br>
-		    스크롤바 숨기기.<br>
-		    스크롤은 동작.<br>
-		    Scrollbar hide.<br>
-		    Scroll active.<br>
+		<input style="border: 2px solid rgba(250, 208, 0, 0.99); width: 300px; height: 40px;" type="text" id=field1 name=field1 onkeyup="input()" value="">
+		<div class="box" style="width: 300px; height: 100px; position:relative; top:10px; left:40%; background: rgb(220,235,240); overflow-y: scroll;">
+		  
 		</div>
  	<br>
 	
 	<fieldset>
-		<span class="text-bold">별점을 선택해주세요</span>
-		<input type="radio" name="rating" value="5" id="rate1"><label for="rate1">★</label>
-		<input type="radio" name="rating" value="4" id="rate2"><label for="rate2">★</label>
-		<input type="radio" name="rating" value="3" id="rate3"><label for="rate3">★</label>
-		<input type="radio" name="rating" value="2" id="rate4"><label for="rate4">★</label>
-		<input type="radio" name="rating" value="1" id="rate5"><label for="rate5">★</label>
+		<span class="text-bold"><b>별점을 선택해주세요</b></span>
+		<input type="radio" name="rating" value="5" id="rate1"><label for="rate1" style="cursor:pointer;">★</label>
+		<input type="radio" name="rating" value="4" id="rate2"><label for="rate2" style="cursor:pointer;">★</label>
+		<input type="radio" name="rating" value="3" id="rate3"><label for="rate3" style="cursor:pointer;">★</label>
+		<input type="radio" name="rating" value="2" id="rate4"><label for="rate4" style="cursor:pointer;">★</label>
+		<input type="radio" name="rating" value="1" id="rate5"><label for="rate5" style="cursor:pointer;">★</label>
 	</fieldset> 
 	
 	<div style="margin-left: 5%;" class="btn btn-warning">
@@ -156,7 +206,7 @@ text-align: center;
 	</div><br><br>
 	<!--  <input type="file" name="file"> -->
 	<div>
-		<textarea cols=150 rows=15 name=comContent></textarea>
+		<textarea cols=150 rows=15 name=comContent style="border: 2px solid rgba(250, 208, 0, 0.99); width: 750px; height: 500px;"></textarea>
 	</div>
 	</div></div>
 	<div>

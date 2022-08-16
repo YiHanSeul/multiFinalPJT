@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.petcare.home.model.dto.BoardDto;
+import com.petcare.home.model.dto.MapDto;
 import com.petcare.home.model.mapper.BoardMapper;
 
 @Service
@@ -55,6 +56,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<BoardDto> myBoardList(int userkey) {
 		return boardMapper.myBoardList(userkey);
+	}
+
+	@Override
+	public List<MapDto> selectBoardList(String USERNAME) {
+		return boardMapper.selectBoardList(USERNAME);
 	}
 	
 	
