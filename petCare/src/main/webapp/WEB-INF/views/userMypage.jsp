@@ -72,6 +72,8 @@
 					<li class="myInfo">펫 나이: ${petDto.petAge }</li>
 					<li class="myInfo">펫 성별: ${petDto.petGender }</li>
 					<li class="myInfo">펫 중성화: ${petDto.petNe }</li>
+					<br>
+					<li class="myInfo"><button class="btn btn-warning" onclick="deletePet(${petDto.petKey})">삭제</button></li>
 				</ul>
 				</div>
 			</c:forEach>
@@ -104,7 +106,7 @@
 
 				<div id="petAddform-btn">
 					<span class="btn btn-danger" onclick="closePopup()">취소</span> <input
-						class="btn btn-primary" type="submit" value="전송">
+						class="btn btn-primary" type="submit" value="등록">
 				</div>
 			</form>
 		<hr />
@@ -214,6 +216,9 @@
 	}
 	function deleteRes(bookId){
 		location.href="/res/delhos?bookId="+bookId;
+	}
+	function deletePet(petKey){
+		location.href="/pet/del?petKey="+petKey;
 	}
 </script>
 </html>
