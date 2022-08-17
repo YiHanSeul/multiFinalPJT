@@ -54,7 +54,7 @@ public class VaccController {
 	}
 	
 	
-	@GetMapping("/vaccform")
+/*	@GetMapping("/vaccform")
 	public String vaccModel (Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {	
 		if((String)session.getAttribute("userid")  == null) {
 			session.setAttribute("numvac", 5);
@@ -74,7 +74,36 @@ public class VaccController {
 		model.addAttribute("petVaccDto",petvaccDto);
 		
 		
-		return "vacc";}
+		return "vacc";
+		}
+	}
+	*/
+	
+	
+	@GetMapping("/vaccform")
+	public String vaccModel (Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {	
+		
+		try {
+			String userid=(String)session.getAttribute("userid");
+			
+			int userkey =userService.UserChk(userid).getUserkey();
+			List<PetDto> petDto=petService.selectPetAll(userkey);
+			model.addAttribute("petDto",petDto);
+			
+			//백신 기록 상세보기 과거에 맞은거 싹다 조회함
+			List<PetVaccDto> petVaccListDto=petVaccService.selectPetVaccAll(userkey);
+			model.addAttribute("petVaccListDto",petVaccListDto);
+			//최근 접종 백신기록 조회
+			List<PetVaccDto> petvaccDto=petVaccService.selectPetVacc(userkey);
+			model.addAttribute("petVaccDto",petvaccDto);
+			
+			
+			
+		} catch (Exception e) {
+			session.setAttribute("numvac", 5);
+			return "redirect:/user/login";
+		}
+		return "vacc";
 	}
 	
 	@GetMapping("/vaccadd")

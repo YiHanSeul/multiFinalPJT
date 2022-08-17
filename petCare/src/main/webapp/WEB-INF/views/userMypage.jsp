@@ -13,7 +13,7 @@
 <script>
 	function test() {
 		if (confirm("회원 탈퇴하시겠습니까?")) {
-			window.open("50.18.42.192:8787/user/userDelete", "PopupNew",
+			window.open("/user/userDelete", "PopupNew",
 					"width=500,height=400");
 			//추후 주소가 바뀌면 그 주소로 해줘야함
 		}
