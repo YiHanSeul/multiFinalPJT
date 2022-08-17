@@ -16,7 +16,7 @@ public interface PetVaccMapper {
 	@Select("SELECT * FROM PETVACC WHERE USERKEY=#{userkey} order by VaccName , VaccMonth ")
 	List<PetVaccDto> selectPetVaccAll(int userkey);
 
-	@Insert("INSERT INTO PETVACC VALUES(null, #{userKey},#{petKey},#{vaccName},#{vaccMonth},#{nextVaccMonth}) " )
+	@Insert(" INSERT INTO PETVACC VALUES(null, #{userKey},#{petKey},#{vaccName},#{vaccMonth},#{nextVaccMonth} )  " )
 	int vaccadd(PetVaccDto petVaccDto);
 	
 	

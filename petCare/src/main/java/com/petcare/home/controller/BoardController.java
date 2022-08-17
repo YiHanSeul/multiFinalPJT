@@ -117,6 +117,7 @@ public class BoardController {
 			         
 			        in = file.getInputStream();
 			        out = new FileOutputStream("C:\\Users\\ihans\\OneDrive\\바탕 화면\\img\\"+writeDto.getUserKey()+writeDto.getComTitle());
+			        //out = new FileOutputStream(writeDto.getUserKey()+writeDto.getComTitle());
 			        while(true) {
 			        	int data = in.read();
 			        	if(data==-1) {

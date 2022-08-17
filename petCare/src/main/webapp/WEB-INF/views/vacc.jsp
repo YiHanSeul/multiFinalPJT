@@ -63,7 +63,7 @@
 		</div>
 		<div id="myPet">
 			<c:if test="${empty petDto}">
-				<p class="not">>펫 정보가 없습니다.</p>
+				<p class="not">펫 정보가 없습니다.</p>
 			</c:if>
 			<c:if test="${not empty petDto}">
 				<c:forEach var="petDto" items="${petDto}">

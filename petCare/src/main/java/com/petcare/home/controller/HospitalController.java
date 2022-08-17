@@ -40,7 +40,8 @@ public class HospitalController {
 		System.out.println(hospitalDto);
 		System.out.println(file.getOriginalFilename());
 		// 경로지정
-		String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\file";
+		//String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\file";
+		String projectPath = System.getProperty("user.dir");
 		// 임의로 식별자 생성
 		UUID uuid = UUID.randomUUID();
 
@@ -48,8 +49,9 @@ public class HospitalController {
 		File saveFile = new File(projectPath, fileName);
 
 		file.transferTo(saveFile);
+		//String res = new ocr().ocrTest(projectPath + "/" + fileName);
 		String res = new ocr().ocrTest(projectPath + "\\" + fileName);
-
+		System.out.println(res);
 		JSONParser jsonParse = new JSONParser();
 		JSONObject jObj = (JSONObject) jsonParse.parse(res);
 		JSONArray images = (JSONArray) jObj.get("images");
@@ -57,7 +59,9 @@ public class HospitalController {
 		JSONArray fields = (JSONArray) uid.get("fields");
 		JSONObject inferText = (JSONObject) fields.get(1);
 		String HospitalKey = (String) inferText.get("inferText");
+		System.out.println(HospitalKey);
 		HospitalKey = HospitalKey.substring(0, 3) + HospitalKey.substring(4, 6) + HospitalKey.substring(7, 12);
+		System.out.println(HospitalKey);
 		hospitalDto.setHospitalKey(HospitalKey);
 		//병원 암호화
 		hospitalDto.setHospitalPw(bcryptPassEncoder.encode(hospitalDto.getHospitalPw()));

@@ -9,6 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     private String connectPath = "/imagePath/**";
     private String resourcePath ="file:///c:/Users/ihans/OneDrive/바탕 화면/img/";
+   // private String resourcePath ="file:///home/ubuntu/";
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler(connectPath)
