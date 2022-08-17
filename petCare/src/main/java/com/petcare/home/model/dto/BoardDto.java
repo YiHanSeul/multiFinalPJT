@@ -1,10 +1,9 @@
 package com.petcare.home.model.dto;
 
-import java.util.Date;
 
 public class BoardDto {
 	private int boardCnt;
-	private Date comDate;
+	private String comDate;
 	private String comContent;
 	private String comTitle;
 	private String field1;
@@ -26,7 +25,7 @@ public class BoardDto {
 	 * @param userKey
 	 * @param rating
 	 */
-	public BoardDto(int boardCnt, Date comDate, String comContent, String comTitle, String field1, int userKey,
+	public BoardDto(int boardCnt, String comDate, String comContent, String comTitle, String field1, int userKey,
 			int rating) {
 		super();
 		this.boardCnt = boardCnt;
@@ -43,10 +42,10 @@ public class BoardDto {
 	public void setBoardCnt(int boardCnt) {
 		this.boardCnt = boardCnt;
 	}
-	public Date getComDate() {
+	public String getComDate() {
 		return comDate;
 	}
-	public void setComDate(Date comDate) {
+	public void setComDate(String comDate) {
 		this.comDate = comDate;
 	}
 	public String getComContent() {

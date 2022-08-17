@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petcare.home.model.dto.BoardDto;
+import com.petcare.home.model.dto.MapDto;
 import com.petcare.home.model.service.BoardService;
 
 
@@ -165,5 +166,20 @@ public class BoardController {
 			return "redirect:/board/list";
 		}
 		return "redirect:/board/list";
+	}
+	
+	@GetMapping("/aj")
+	@ResponseBody
+	public List<MapDto> aj(@RequestParam("name") String name){
+		List<MapDto> Dto = null;
+		if (name == null || name == "" ) {
+			return Dto;
+		}
+		try {
+			Dto = boardService.selectBoardList(name);
+		} catch (Exception e) {
+			System.out.println("찾는 데이티가 없음");
+		}
+		return Dto;
 	}
 }
