@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class BcryptPassEncoder implements PasswordEncoder  {
 	
 	private PasswordEncoder passwordEncoder;
+	
 
 	public BcryptPassEncoder() {
 		this.passwordEncoder = new BCryptPasswordEncoder();
@@ -17,6 +18,10 @@ public class BcryptPassEncoder implements PasswordEncoder  {
 	public String encode(CharSequence rawPassword) {
 		return passwordEncoder.encode(rawPassword);
 	}
+	
+	
+	
+	
 
 	@Override
 	public boolean matches(CharSequence rawPassword, String encodedPassword) {

@@ -5,7 +5,7 @@
  	function userDelete() {
 		console.log("test");
 		if (confirm("회원 탈퇴하시겠습니까?")) {
-			window.open("http://localhost:8787/user/userDelete", "PopupNew",
+			window.open("/user/userDelete", "PopupNew",
 					"width=500,height=400");
 			//추후 주소가 바뀌면 그 주소로 해줘야함
 		} else {
