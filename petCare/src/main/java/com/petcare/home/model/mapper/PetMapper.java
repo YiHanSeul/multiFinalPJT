@@ -2,6 +2,7 @@ package com.petcare.home.model.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -23,6 +24,8 @@ public interface PetMapper {
 	
 	@Select(" SELECT PETNAMEI FROM PETINSU WHERE PETAGEI = #{petAgeI} and PETTYPEI = #{petTypeI} ")
 	String petNameI(float petAgeI, String petTypeI);
-	
+
+	@Delete(" DELETE FROM PET WHERE PETKEY= #{petKey} ")
+	int delpet(int petKey);
 	
 }

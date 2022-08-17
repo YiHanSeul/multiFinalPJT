@@ -35,6 +35,11 @@ public class PetServiceImpl implements PetService{
 		return petMapper.petNameI(petAgeI, petTypeI);
 	}
 
+	@Override
+	public int del(int petKey) {
+		return petMapper.delpet(petKey);
+	}
+
 
 	
 

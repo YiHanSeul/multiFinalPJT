@@ -12,4 +12,6 @@ public interface PetService {
 	public int petPriceI(float petAgeI, String petTypeI);
 	
 	public String petNameI(float petAgeI, String petTypeI);
+
+	public int del(int petKey);
 }
