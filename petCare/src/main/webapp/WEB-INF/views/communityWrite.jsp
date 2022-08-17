@@ -54,7 +54,6 @@
     padding: 4.3rem 3.2rem 3.8rem 3rem;
 }
  
- 
 .container {
     position: relative;
     min-height: calc(100% - 25rem);

@@ -31,10 +31,6 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	
-
-	
-	
 	@GetMapping("/list")
 	public String BoardList(Model model, HttpSession session, RedirectAttributes rttr){
 		
