@@ -392,8 +392,9 @@ System.out.println("test");
 		return "userFindpw";
 	}
 
-	@GetMapping("/userFindpw")
-	public void findPwPOST(@ModelAttribute UserDto userDto, HttpServletResponse response) throws Exception {
+	@GetMapping("/findpw")
+	@ResponseBody
+	public void findPw(@ModelAttribute UserDto userDto, HttpServletResponse response) throws Exception {
 		userService.findPw(response, userDto);
 	}
 

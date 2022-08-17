@@ -116,7 +116,7 @@ public class BoardController {
 			        OutputStream out = null;
 			         
 			        in = file.getInputStream();
-			        out = new FileOutputStream(" \\home\\ubuntu\\img\\"+writeDto.getUserKey()+writeDto.getComTitle());
+			        out = new FileOutputStream(" /home/ubuntu/img/"+writeDto.getUserKey()+writeDto.getComTitle());
 			        while(true) {
 			        	int data = in.read();
 			        	if(data==-1) {

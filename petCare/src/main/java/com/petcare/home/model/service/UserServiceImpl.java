@@ -57,8 +57,8 @@ public class UserServiceImpl implements UserService{
 		//Mail Server 설정
 		String charset="utf-8";
 		String hostSMTP="smtp.naver.com";
-		String hostSMTPid=""; //네이버 아이디 작성 필수
-		String hostSMTPpwd="";			//네이버 비밀번호 작성 필수
+		String hostSMTPid="juni303"; //네이버 아이디 작성 필수
+		String hostSMTPpwd="1q2w3e4r!!";			//네이버 비밀번호 작성 필수
 		
 		//보내는 사람 Email, 제목, 내용
 		String fromEmail = "juni303@naver.com"; 
