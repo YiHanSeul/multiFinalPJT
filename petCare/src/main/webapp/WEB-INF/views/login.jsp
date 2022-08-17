@@ -13,7 +13,7 @@
 </head>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-
+/*
  	var number = ${number};
 	console.log(number);
 	if(number == 5){
@@ -37,6 +37,42 @@
 		});
 	}
 
+	*/
+	
+	var no = ${no};
+	if(no == 1){
+		alert("로그인 해야합니다!");
+		$.ajax({
+			type:"get",
+			url:"/board/cleanNum"
+		});
+	}else if(no == 2){
+		alert("아이디를 다시 확인해주세요!");
+		$.ajax({
+			type:"get",
+			url:"/user/cleanNumb"
+		});
+	}else if(no == 3){
+		alert("비밀번호를 다시 확인해주세요!");
+		$.ajax({
+			type:"get",
+			url:"/user/cleanNumb"
+		});
+	}else if(no == 4){
+		alert("일치하는 회원이 없습니다!"); 
+		$.ajax({
+			type:"get",
+			url:"/user/cleanNumb"
+		});
+	}else if(no == 5){
+		alert("활성화가 필요합니다");
+		$.ajax({
+			type:"get",
+			url:"/user/cleanNumb"
+		});
+	}
+	
+	
 </script>
 
 
@@ -73,8 +109,8 @@
 		</div>
 	</div>
 <script type="text/javascript">
-/* js파일에 넣으면 안 돌아갑니다 ㅠㅠㅠ */
 
+/*
 var numb = ${no};
 
 
@@ -101,6 +137,31 @@ if(numb == 4){
 }else{
 	
 }
+로그인 해야합니다!              1
+아이디를 다시 확인해주세요!      2
+비밀번호를 다시 확인해주세요!   3
+일치하는 회원이 없습니다!        4 
+활성화가 필요합니다!               5
+
+초기화 번호는 0
+
+
+
+*/
+
+/*
+var hosno = ${hosno};
+if(hosno == 0){
+	alert("활성화가 필요합니다");
+	
+	$.ajax({
+		type:"get",
+		url:"/user/numhosClean"
+	});
+}
+
+*/
+
 </script>
 </body>
 </html>
