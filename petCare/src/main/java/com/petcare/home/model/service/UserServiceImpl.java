@@ -8,6 +8,7 @@ import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.petcare.home.config.BcryptPassEncoder;
 import com.petcare.home.model.dto.UserDto;
 import com.petcare.home.model.mapper.UserMapper;
 
@@ -51,14 +52,19 @@ public class UserServiceImpl implements UserService{
 	public int UserChkId(String userId) {
 		return userMapper.userChkId(userId);
 	}
+	
+	
+	@Autowired
+	private BcryptPassEncoder bcryptPassEncoder;
+	
 	//비밀번호 찾기 이메일 발송
 	@Override
 	public void sendEmail(UserDto userDto, String div) throws Exception {
 		//Mail Server 설정
 		String charset="utf-8";
 		String hostSMTP="smtp.naver.com";
-		String hostSMTPid=""; //네이버 아이디 작성 필수
-		String hostSMTPpwd="";			//네이버 비밀번호 작성 필수
+		String hostSMTPid="juni303"; //네이버 아이디 작성 필수
+		String hostSMTPpwd="1q2w3e4r!!";			//네이버 비밀번호 작성 필수
 		
 		//보내는 사람 Email, 제목, 내용
 		String fromEmail = "juni303@naver.com"; 
@@ -112,12 +118,17 @@ public class UserServiceImpl implements UserService{
 		else {
 			//임시 비밀번호 생성
 			String pw = "";
+			
+			
 			for(int i=0; i<12; i++) {
 				pw += (char)((Math.random()*26)+97);
 			}
+			String pw1 = bcryptPassEncoder.encode(pw);
+//			userDto.setUserpw(pw);
 			userDto.setUserpw(pw);
+			System.out.println("pw");
 			//비밀번호 변경
-			userMapper.updateUserPw(userDto.getUserid(), pw);
+			userMapper.updateUserPw(userDto.getUserid(), pw1);
 			//비밀번호 변경 메일 발송
 			sendEmail(userDto, "findpw");
 			
@@ -126,6 +137,8 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	
+	
 	@Override
    public UserDto UserSelect(String userid) {
 		return userMapper.userSelect(userid);

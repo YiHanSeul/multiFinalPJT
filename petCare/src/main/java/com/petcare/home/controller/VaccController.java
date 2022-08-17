@@ -100,7 +100,7 @@ public class VaccController {
 			
 			
 		} catch (Exception e) {
-			session.setAttribute("numvac", 5);
+			session.setAttribute("no", 1);
 			return "redirect:/user/login";
 		}
 		return "vacc";

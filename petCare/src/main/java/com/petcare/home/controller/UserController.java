@@ -75,6 +75,7 @@ public class UserController {
 
 	@GetMapping("/login") // 유저&어드민 로그인 페이지
 	public String loginPage() {
+		
 		return "login";
 	}
 
@@ -112,10 +113,12 @@ public class UserController {
 	public void cleanNum(HttpSession session) {
 		session.setAttribute("no", 0);
 	}
+	
+	
+
 
 	@PostMapping("/loginForm")
 	public String loginForm(Model model, String userid, String userpw, HttpSession session, int chk_info) {
-System.out.println("test");
 		try {
 			if (chk_info == 1) {
 				int gradeChk = userService.UserChk(userid).getGrade();
@@ -130,19 +133,17 @@ System.out.println("test");
 							session.setAttribute("userid", userid);
 							session.setAttribute("userpw", userpw);
 							model.addAttribute("dto", adminService.HospitalVChk());
-							session.setAttribute("number", 0);
+							
 							return "adminCheck";
 						} else {
 							// 비밀번호 실패
 							
-							session.setAttribute("no", 5);
-							System.out.println("test1");
+							session.setAttribute("no", 3);
 							return "redirect:/user/login";
 						}
 					} else {
 						// 아이디 실패
-						session.setAttribute("no", 4);
-						System.out.println("test2");
+						session.setAttribute("no", 2);
 						return "redirect:/user/login";
 					}
 				}
@@ -155,20 +156,18 @@ System.out.println("test");
 							session.setAttribute("userid", userid);
 							session.setAttribute("userpw", userpw);
 							model.addAttribute("dto", adminService.HospitalVChk());
+							
 							return "index";
 						} else {
 							// 비밀번호 실패
-							session.setAttribute("no", 5);
+							session.setAttribute("no", 3);
 						
-							System.out.println("test3");
 							
-							model.addAttribute("no", 5);
 							return "redirect:/user/login";
 						}
 					} else {
 						// 아이디 실패
-						session.setAttribute("no", 4);
-						System.out.println("test4");
+						session.setAttribute("no", 2);
 						return "redirect:/user/login";
 					}
 				}
@@ -177,7 +176,9 @@ System.out.println("test");
 
 				// 어드민도 넣어줘야함 => 마지막이 else가 되서 필요없음
 
-			} else {
+				
+				//병원 로그인 서비스
+			} else if (chk_info == 2){
 
 				String HospitalId = userid;
 				String HospitalPw = userpw;
@@ -198,7 +199,7 @@ System.out.println("test");
 							return "index";
 						} else {
 							// 비밀번호 실패
-							session.setAttribute("no", 5);
+							session.setAttribute("no", 3);
 							return "redirect:/user/login";
 						}
 					} else {
@@ -206,15 +207,16 @@ System.out.println("test");
 						return "redirect:/user/login";
 					}
 				} else if (0 == actChk) {
+					System.out.println("test0");
 					// 활성화 실패
 					if (idChk) {
 						// 아이디 성공
 						if (pwChk) {
 							// 비밀번호 성공
-							session.setAttribute("userid", HospitalId);
-							session.setAttribute("userpw", HospitalPw);
-							model.addAttribute("text", "비활성");
-							return "loginHos";
+							
+							session.setAttribute("no", 5);
+							System.out.println("test");
+							return "redirect:/user/login";
 
 						} else {
 							// 비밀번호 실패
@@ -225,16 +227,17 @@ System.out.println("test");
 						return "redirect:/user/login";
 					}
 				} else {
+					System.out.println("test1");
 					return "redirect:/user/login";
 				}
 			}
 
 		} catch (NullPointerException e) {
-			session.setAttribute("no", 3);
-			System.out.println("test5");
+			session.setAttribute("no", 4);
+			System.out.println("test2");
 			return "redirect:/user/login";
 		}
-
+		return "redirect:/user/login";
 	}
 
 	@GetMapping("/userMypage")
@@ -392,8 +395,9 @@ System.out.println("test");
 		return "userFindpw";
 	}
 
-	@GetMapping("/userFindpw")
-	public void findPwPOST(@ModelAttribute UserDto userDto, HttpServletResponse response) throws Exception {
+	@GetMapping("/findpw")
+	@ResponseBody
+	public void findPw(@ModelAttribute UserDto userDto, HttpServletResponse response) throws Exception {
 		userService.findPw(response, userDto);
 	}
 

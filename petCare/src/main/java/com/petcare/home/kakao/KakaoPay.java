@@ -45,9 +45,9 @@ import lombok.extern.java.Log;
            params.add("quantity", "1");
            params.add("total_amount", "41940");
            params.add("tax_free_amount", "100");
-           params.add("approval_url", "http://localhost:8787/kakaoPaySuccess");
-           params.add("cancel_url", "http://localhost:8787/kakaoPayCancel");
-           params.add("fail_url", "http://localhost:8787/kakaoPaySuccessFail");
+           params.add("approval_url", "http://54.176.130.216:8787/kakaoPaySuccess");
+           params.add("cancel_url", "http://54.176.130.216:8787/kakaoPayCancel");
+           params.add("fail_url", "http://54.176.130.216:8787/kakaoPaySuccessFail");
     
             HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
     
