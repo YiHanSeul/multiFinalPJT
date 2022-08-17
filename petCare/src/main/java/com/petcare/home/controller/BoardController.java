@@ -44,7 +44,7 @@ public class BoardController {
 			BoardDto  dto = boardService.selectKey((String)session.getAttribute("userid"));
 			session.setAttribute("userKey", dto.getUserKey());
 		} catch (Exception e) {
-			session.setAttribute("number", 5);
+			session.setAttribute("no", 1);
 			
 			return "redirect:/user/login";
 			
@@ -58,7 +58,7 @@ public class BoardController {
 	@GetMapping("/cleanNum")
 	@ResponseBody
 	public void cleanNum(HttpSession session) {
-		session.setAttribute("number", 0);
+		session.setAttribute("no", 0);
 	}
 	
 	
@@ -116,7 +116,7 @@ public class BoardController {
 			        OutputStream out = null;
 			         
 			        in = file.getInputStream();
-			        out = new FileOutputStream(" /home/ubuntu/img/"+writeDto.getUserKey()+writeDto.getComTitle());
+	                 out = new FileOutputStream(writeDto.getUserKey()+writeDto.getComTitle());
 			        while(true) {
 			        	int data = in.read();
 			        	if(data==-1) {
