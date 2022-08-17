@@ -45,9 +45,7 @@
 			</div>
 			<div class="join">
 				<div class="text">사업자등록번호</div>
-				<input class="form-control upload-name" value="첨부파일"
-					placeholder="첨부파일"> <label for="file" class="btn">파일찾기</label>
-				<input type="file" id="file" name="file">
+				<input type="file" id="file" name="file" class="form-control upload-name">
 			</div>
 			<input id="join-btn" class="btn btn-warning" type="submit" value="가입">
 
