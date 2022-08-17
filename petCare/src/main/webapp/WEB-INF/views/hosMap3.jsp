@@ -12,7 +12,7 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
-   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95f0cbfb013748e25297c1d87f3dcf00"></script>
+   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1b3797f7be769c05cd26712e82a1cb6b"></script>
 <script src="/resources/js/vacchos.js"></script>
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
