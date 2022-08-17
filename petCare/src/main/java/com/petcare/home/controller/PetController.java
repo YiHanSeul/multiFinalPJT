@@ -103,4 +103,18 @@ public class PetController {
 		return "petRePage";
 	}
 
+	
+	@GetMapping("/del")
+	public String del(int petKey) {
+		int res = 0;
+		try {
+			res = petService.del(petKey);
+		} catch (Exception e) {
+			return "redirect:/user/userMypage#myPet";
+		}
+		if(res>0) {
+			return "redirect:/user/userMypage#myPet";
+		}
+		return "redirect:/user/userMypage#myPet";
+	}
 }
