@@ -72,7 +72,7 @@ public class VaccController {
 	@GetMapping("/vaccform")
 	public String vaccModel(Model model, HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) {
-
+		
 		try {
 			String userid = (String) session.getAttribute("userid");
 
@@ -97,7 +97,7 @@ public class VaccController {
 
 	@GetMapping("/vaccadd")
 	public String vaccadd(Model model, HttpSession session, PetVaccDto petVaccDto) {
-
+		
 		try {
 			String userid = (String) session.getAttribute("userid");
 			System.out.println(petVaccDto.getVaccName());
@@ -122,6 +122,7 @@ public class VaccController {
 			petVaccDto.setNextVaccMonth(sdfYMD.format(cal.getTime()));
 			System.out.println(petVaccDto);
 		} catch (ParseException e) {
+			System.out.println("test");
 			session.setAttribute("no", 6);
 			// no == 6 날짜를 선택하지 않은 경우
 			return "redirect:/vacc/vaccform";
