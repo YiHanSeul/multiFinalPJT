@@ -108,30 +108,46 @@ public class VaccController {
 	
 	@GetMapping("/vaccadd")
 	public String vaccadd(Model model, HttpSession session, PetVaccDto petVaccDto) throws ParseException {
+		
 		String userid=(String)session.getAttribute("userid");
 		System.out.println(petVaccDto.getVaccName());
 		int userkey =userService.UserChk(userid).getUserkey();
 		//date 포맷 설정
 		SimpleDateFormat sdfYMD= new SimpleDateFormat("yyyy-MM-dd");
-		//string-> date 변환
-		Date date=sdfYMD.parse(petVaccDto.getVaccMonth());
-		//날짜 연산을 위한 calenda객체 생성
-		Calendar cal=Calendar.getInstance();
-		cal.setTime(date);
-		// 6달뒤
-		cal.add(Calendar.MONTH,6);
-		petVaccDto.setUserKey(userkey);
-		petVaccDto.setNextVaccMonth(sdfYMD.format(cal.getTime()));
-		System.out.println(petVaccDto);
-		
-		int res=petVaccService.vaccadd(petVaccDto);
-		
-		if(res>0) {
-			return "redirect:/vacc/vaccform";
-		}else {
-			return "index";
+		try {
+			Date date=sdfYMD.parse(petVaccDto.getVaccMonth());
+			//날짜 연산을 위한 calenda객체 생성
+			Calendar cal=Calendar.getInstance();
+			System.out.println("백신이름"+petVaccDto.getVaccName());
+			cal.setTime(date);
 			
+			if(petVaccDto.getVaccName().equals("종합7종") ||petVaccDto.getVaccName().equals("코로나")) {
+				//1년뒤
+				cal.add(Calendar.MONTH,12);
+			}else {
+				// 6달뒤
+				cal.add(Calendar.MONTH,6);	
+			}
+			petVaccDto.setUserKey(userkey);
+			petVaccDto.setNextVaccMonth(sdfYMD.format(cal.getTime()));
+			System.out.println(petVaccDto);
+			
+			int res=petVaccService.vaccadd(petVaccDto);
+			
+			if(res>0) {
+				return "redirect:/vacc/vaccform";
+			}else {
+				return "index";
+				
+			}
+			
+		} catch (Exception e) {
+			model.addAttribute("msg", "날짜를 입력해주세요");
+			return  "redirect:/vacc/vaccform";
 		}
+		
+		//string-> date 변환
+		
 	}
 	
 	@GetMapping("/vacchos")

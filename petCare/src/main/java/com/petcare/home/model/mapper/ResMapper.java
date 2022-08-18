@@ -20,10 +20,10 @@ public interface ResMapper {
 	@Select("SELECT COUNT(BOOKHOUR) FROM VACCBOOK WHERE BOOKHOUR = #{BH} AND BOOKDATE = #{BD} AND HOSPITALNAME = #{HN}")
 	int resVacCheck(String BH, String BD, String HN);
 	
-	@Insert("INSERT INTO BOOK VALUES(0, #{BookHour}, #{BookDate}, #{BookPetType}, #{BookWhy}, #{UserKey}, #{HospitalName}) ")
+	@Insert("INSERT INTO BOOK VALUES(0, #{BookHour}, #{BookDate}, #{BookPetType}, #{BookWhy}, #{UserKey}, #{HospitalName}, 0) ")
 	int insert(ResDto dto);
 	
-	@Select(" SELECT * FROM BOOK WHERE USERKEY=#{userkey} ")
+	@Select(" SELECT * FROM BOOK WHERE USERKEY=#{userkey} AND CHK=1 ")
 	List<ResDto> resBook(int userkey);
 
 	@Delete(" DELETE FROM VACCBOOK WHERE BOOKID= #{bookId} ")

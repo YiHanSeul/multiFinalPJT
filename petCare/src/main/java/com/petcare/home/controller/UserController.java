@@ -196,7 +196,7 @@ public class UserController {
 							// 비밀번호 성공
 							session.setAttribute("userid", HospitalId);
 							session.setAttribute("userpw", HospitalPw);
-							return "index";
+							return "redirect:/hos/hosmypage";
 						} else {
 							// 비밀번호 실패
 							session.setAttribute("no", 3);

@@ -13,13 +13,14 @@ public class ResDto {
 	private String Vacc2;
 	private String Vacc3;
 	private String VaccName;
+	private int Chk;
 	
 	public ResDto() {
 		super(); 
 	}
 
 	public ResDto(int bookId, String bookHour, String bookDate, String bookPetType, String bookWhy, int userKey,
-			String hospitalName, String vacc, String vacc1, String vacc2, String vacc3, String vaccName) {
+			String hospitalName, String vacc, String vacc1, String vacc2, String vacc3, String vaccName, int chk) {
 		super();
 		BookId = bookId;
 		BookHour = bookHour;
@@ -33,6 +34,7 @@ public class ResDto {
 		Vacc2 = vacc2;
 		Vacc3 = vacc3;
 		VaccName = vaccName;
+		Chk = chk;
 	}
 
 	public int getBookId() {
@@ -131,12 +133,20 @@ public class ResDto {
 		VaccName = vaccName;
 	}
 
+	public int getChk() {
+		return Chk;
+	}
+
+	public void setChk(int chk) {
+		Chk = chk;
+	}
+
 	@Override
 	public String toString() {
 		return "ResDto [BookId=" + BookId + ", BookHour=" + BookHour + ", BookDate=" + BookDate + ", BookPetType="
 				+ BookPetType + ", BookWhy=" + BookWhy + ", UserKey=" + UserKey + ", HospitalName=" + HospitalName
 				+ ", Vacc=" + Vacc + ", Vacc1=" + Vacc1 + ", Vacc2=" + Vacc2 + ", Vacc3=" + Vacc3 + ", VaccName="
-				+ VaccName + "]";
+				+ VaccName + ", Chk=" + Chk + "]";
 	}
 
 	

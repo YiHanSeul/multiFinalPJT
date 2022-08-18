@@ -63,6 +63,9 @@ p {
 .petform2{
 	position: relative;
 }
+.petform2 div{
+	margin: 1%;
+}
 .search-top-container {
    display: flex;
    flex-direction: column;
@@ -125,4 +128,8 @@ p {
     content: "";
     display: block;
     clear: both;
+}
+.not{
+	margin: auto;
+	text-align: center;
 }
