@@ -12,7 +12,7 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
-   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a723ffff623b38bd669410d258fd2b51"></script>
+   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b26863706d226e3f518b005c22ee135d"></script>
 <script src="/resources/js/map.js"></script>
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
