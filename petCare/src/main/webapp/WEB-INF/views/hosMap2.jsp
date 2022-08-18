@@ -19,6 +19,52 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <style>
+.footer {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+    background: #FAFAD2;
+    margin-top: 10%;
+}
+.footer-top {
+    padding: 43px 0 75px;
+}
+.container {
+    margin: auto;
+    max-width: 1200px;
+    padding: 0;
+}
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+@media (min-width: 1264px)
+.container {
+    max-width: 1185px;
+}
+.footer-col:first-child {
+    max-width: 524px;
+}
+.footer-info {
+    margin: 0 -8px;
+}
+.footer-link {
+    margin: 0 -8px;
+}
+.footer-link li {
+    float: left;
+    padding: 0 2px;
+}
+*, :after, :before {
+    box-sizing: inherit!important;
+}
+.footer-link:after {
+    content: "";
+    display: block;
+    clear: both;
+}
 .btn-warning {
    text-align: right !important;
    padding-left: 4px !important;
@@ -393,5 +439,22 @@ background-color: #FAFAD2;
       getInfo();
    }
 </script>
+<footer class="footer">
+   <div class="footer-top">
+      <div class="container">
+         <div class="footer-col">
+            <ul class="footer-info">
+               <li>MUNGMUNG NETWORKS</li>
+               <li>대표이사 한세현종</li>
+               <li>사업자등록번호 844-455-9887415</li>
+               <li> 서울 송파구 올림픽로 240 잠실동 40-1 </li>
+               <li>TEL. 1661-2000</li>
+               <li>MUNGMUNGnetworks@gmail.com</li>
+               <li>Copyright © MUNGMUNG NETWORKS. All Rights reserved.</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</footer>
 </body>
 </html>

@@ -14,7 +14,10 @@ p {
 	color: black;
 	font-size: 2em;
 }
-
+.not{
+	margin: auto;
+	text-align: center;
+}
 .vacc {
 	margin-bottom: 2%;
 }
@@ -63,6 +66,9 @@ p {
 .petform2{
 	position: relative;
 }
+.petform2 div{
+	margin: 1%;
+}
 .search-top-container {
    display: flex;
    flex-direction: column;
@@ -85,10 +91,11 @@ p {
    align-items: center;
    justify-content: center;
     background: #FAFAD2;
-    margin-top: 2%;
+    margin-top: 15%;
+    height: 100%;
 }
 .footer-top {
-    padding: 43px 0 75px;
+    padding: 43px 0 35px;
 }
 .container {
     margin: auto;
@@ -97,8 +104,8 @@ p {
 }
 .footer .container {
     display: flex;
+    justify-content: space-between;
     position: relative;
-    margin-left: 12% !important;
 }
 @media (min-width: 1264px)
 .container {
@@ -108,7 +115,6 @@ p {
     max-width: 524px;
 }
 .footer-info {
-	
     margin: 0 -8px;
 }
 .footer-link {
@@ -126,3 +132,15 @@ p {
     display: block;
     clear: both;
 }
+#mptxt{
+width: 400px !important;
+font-weight: blod;
+font-size: 30px;
+}
+#petins{
+	margin-bottom: 10px;
+	margin-right: 1%;
+	margin-top: 3px;
+	float: right;
+}
+
