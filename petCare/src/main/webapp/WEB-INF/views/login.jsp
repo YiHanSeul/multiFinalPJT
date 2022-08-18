@@ -41,7 +41,7 @@
 			</div>
 		</form>
 		
-		<button id="kakao-login" class="btn btn-warning" onclick="location.href='#'">카카오로그인</button>
+		<!-- <button id="kakao-login" class="btn btn-warning" onclick="location.href='#'">카카오로그인</button> -->
 		<div id="join">
 			<button id="user-join" class="btn" onclick="location.href='/user/user'">회원가입</button>
 			<button class="btn" onclick="location.href='/hos/insertHosForm'">병원회원가입</button>

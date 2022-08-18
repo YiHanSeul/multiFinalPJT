@@ -68,7 +68,7 @@ public class VaccController {
 	 * 
 	 * return "vacc"; } }
 	 */
-
+	
 	@GetMapping("/vaccform")
 	public String vaccModel(Model model, HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) {
