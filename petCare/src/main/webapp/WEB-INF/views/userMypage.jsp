@@ -24,18 +24,18 @@
 	<%@ include file="/WEB-INF/views/template/menu.jsp"%>
 	<div id="menu-lists">
 		<ul>
-			<li class="menu-list"><a href="#myPage">보호자 정보관리</a></li>
+			<li class="menu-list"><a href="#myPage">내정보 관리</a></li>
 			<li class="menu-list"><a href="#myPet">마이펫 관리</a></li>
-			<li class="menu-list"><a href="#myBook">예약 목록</a></li>
-			<li class="menu-list"><a href="#myHosBookRe">후기관리</a></li>
-			<li class="menu-list"><a href="#">게시글 관리</a></li>
-			<li class="menu-list"><a href="/user/findpwing">비밀번호찾기</a></li>
+			<li class="menu-list"><a href="#myBook">병원예약 현황</a></li>
+			<li class="menu-list"><a href="#myVaccBook">예방접종 예약현황</a></li>
+			<li class="menu-list"><a href="#myCommunity">동물병원 후기</a></li>
+			<!-- <li class="menu-list"><a href="/user/findpwing">비밀번호찾기</a></li> -->
 			<li class="menu-list"><p onclick="userDelete()">회원탈퇴</p></li>
 		</ul>
 	</div>
 	<!-- 페이지를 따로 만들지 말고 a태그로 같은 페이지에 있는 아이디로 이동하기 -->
 	<div id="myInfos">
-		<p class="myPage-p" id="myPage">내정보</p>
+		<p class="myPage-p" id="myPage">내정보 관리</p>
 		<hr />
 		<c:if test="${not empty dto }">
 			<ul>
@@ -58,7 +58,7 @@
 		</c:if>
 	</div>
 	<div id="myPets">
-		<p class="myPage-p" id="myPet">나의펫</p>
+		<p class="myPage-p" id="myPet">마이펫 관리</p>
 		<hr>
 		<div id="defaltPet">
 		<c:if test="${empty petDto}">
@@ -112,7 +112,10 @@
 		<hr />
 		</div>
 		<br>
-		<button class="btn btn-warning" id="petAdd-btn" onclick="petRegitst()">등록</button>
+		<div id="petAdd-btn">
+		<a class="btn btn-warning" href="/vacc/vaccform">펫 예방접종</a>
+		<button class="btn btn-warning"  onclick="petRegitst()">펫 등록</button>
+		</div>
 		<br>
 		<hr>
 	</div>
@@ -150,7 +153,7 @@
 		<hr />
 	</div>
 	<div id="myPets">
-		<p class="myPage-p" id="myHosBookRe">예방접종 예약현황</p>
+		<p class="myPage-p" id="myVaccBook">예방접종 예약현황</p>
 		<c:if test="${empty vaccResDto}">
 			<p class="not">예방접종 예약이 없습니다.</p>
 		</c:if>
@@ -181,7 +184,7 @@
 	</div>
 	<div id="myPets">
 		<hr />
-		<p class="myPage-p" id="myRev">동물병원 후기</p>
+		<p class="myPage-p" id="myCommunity">동물병원 후기</p>
 		<c:if test="${empty listBoardDto}">
 			<p class="not">후기 내역이 없습니다.</p>
 		</c:if>

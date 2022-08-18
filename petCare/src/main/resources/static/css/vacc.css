@@ -14,7 +14,10 @@ p {
 	color: black;
 	font-size: 2em;
 }
-
+.not{
+	margin: auto;
+	text-align: center;
+}
 .vacc {
 	margin-bottom: 2%;
 }
@@ -62,6 +65,9 @@ p {
 }
 .petform2{
 	position: relative;
+}
+.petform2 div{
+	margin: 1%;
 }
 .search-top-container {
    display: flex;
@@ -137,3 +143,4 @@ font-size: 30px;
 	margin-top: 3px;
 	float: right;
 }
+

@@ -14,13 +14,10 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
 <script type='text/javascript'
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
-
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 	let pet = "${petDto}";
 	let user = "${userDto}";
-	console.log(pet, user);
-
 	function petVaccRegitst(get) {
 		let classNM = $(get);
 		console.log($(get).next());
@@ -34,6 +31,7 @@
 		$(get).next().removeClass('hide');
 		$(get).addClass('hide');
 	}
+	
 </script>
 </head>
 <body>
@@ -66,6 +64,8 @@
 			<c:if test="${empty petDto}">
 				<span id="mptxt" class="not">펫 정보가 없습니다.</span>
 				<button id="petins" class="btn btn-warning" onclick="location.href='/user/userMypage'">펫등록하기</button>
+				<p class="not">펫 정보가 없습니다.</p>
+				<a class="btn btn-warning" href="/user/userMypage" >펫 등록</a>
 			</c:if>
 			<c:if test="${not empty petDto}">
 				<c:forEach var="petDto" items="${petDto}">
@@ -79,7 +79,6 @@
 								<input type="button" class="btn btn-warning" data-target="${petDto.petKey}" value="예방접종 상세보기" onclick="petVaccRegitst(this)">
 								<input type="button" class="btn btn-warning" value="예약하기" onclick="location.href='/vacc/vacchos'">
 							</div>
-							<div>
 								<c:if test="${empty petVaccListDto}">
 									<p class="not">백신 접종 현황이 없습니다.</p>
 								</c:if>
@@ -103,7 +102,6 @@
 										</c:forEach>
 									</table>
 								</c:if>
-							</div>
 						</div>
 						<div class="petform2 hide">
 							<div class="hideVaccForm" data-target="${petDto.petKey}">
@@ -136,15 +134,14 @@
 									<hr>
 									<input type="hidden" value="${petDto.petKey}" name="petKey">
 									<div id="selectForms">
-										<select class="form-control" name="vaccName"
-											class="selectForm">
+										<select class="form-control" name="vaccName" class="selectForm">
 											<option value="종합7종">종합 7종백신</option>
 											<option value="코로나">코로나</option>
 											<option value="캔넬코프">캔넬코프</option>
 											<option value="광견병">광견병백신</option>
 										</select> 
-										<input class="form-control selectForm" type="date" name="vaccMonth">
-										<input class="btn btn-warning" type="submit" value="예방접종 기록">
+										<input class="form-control selectForm" type="date" name="vaccMonth" id="vaccdate">
+										<input class="btn btn-warning" type="submit"value="예방접종 기록">
 									</div>
 								</form>
 							</div>
