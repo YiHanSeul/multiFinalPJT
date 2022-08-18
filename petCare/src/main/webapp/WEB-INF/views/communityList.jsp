@@ -210,7 +210,7 @@ td{
    flex-direction: column;
    align-items: center;
    justify-content: center;
-    background: #FAFAD2;
+   background: #FAFAD2;
 }
 .footer-top {
     padding: 43px 0 35px;

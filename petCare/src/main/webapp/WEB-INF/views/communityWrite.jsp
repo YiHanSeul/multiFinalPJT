@@ -189,7 +189,7 @@ padding-bottom: 10%;
 		<br>
 		<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;병원 이름 : </b>
 		<input style="border: 2px solid rgba(250, 208, 0, 0.99); width: 250px; height: 40px;" type="text" id=field1 name=field1 onkeyup="input()" value="">
-		<div class="box" style="width: 300px; height: 100px; position:relative; top:10px; margin-left: 42%; background: rgb(220,235,240); overflow-y: scroll;">
+		<div class="box" style="width: 300px; height: 100px; position:relative; top:10px; margin-left: 43.7%; background: rgb(220,235,240); overflow-y: scroll;">
 		  
 		</div>
 	</div>

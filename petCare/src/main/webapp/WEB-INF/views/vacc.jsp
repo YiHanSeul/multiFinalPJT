@@ -15,6 +15,7 @@
 <script type='text/javascript'
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
 
+
 <script>
 	let pet = "${petDto}";
 	let user = "${userDto}";
@@ -63,7 +64,8 @@
 		</div>
 		<div id="myPet">
 			<c:if test="${empty petDto}">
-				<p class="not">펫 정보가 없습니다.</p>
+				<span id="mptxt" class="not">펫 정보가 없습니다.</span>
+				<button id="petins" class="btn btn-warning" onclick="location.href='/user/userMypage'">펫등록하기</button>
 			</c:if>
 			<c:if test="${not empty petDto}">
 				<c:forEach var="petDto" items="${petDto}">

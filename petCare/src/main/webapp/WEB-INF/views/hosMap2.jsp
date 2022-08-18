@@ -25,7 +25,7 @@
    align-items: center;
    justify-content: center;
     background: #FAFAD2;
-    margin-top: 1%;
+    margin-top: 10%;
 }
 .footer-top {
     padding: 43px 0 75px;

@@ -126,3 +126,14 @@ p {
     display: block;
     clear: both;
 }
+#mptxt{
+width: 400px !important;
+font-weight: blod;
+font-size: 30px;
+}
+#petins{
+	margin-bottom: 10px;
+	margin-right: 1%;
+	margin-top: 3px;
+	float: right;
+}
