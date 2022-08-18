@@ -41,7 +41,7 @@
 	height: 115px;
 }
 .inwrap {
-    width: 120rem;
+    width: 100%;
     height: 100%;
     position: relative;
     margin: auto;
@@ -54,8 +54,9 @@
     padding: 4.3rem 3.2rem 3.8rem 3rem;
 }
  
-.container {
+.container1 {
     position: relative;
+    width: 100%;
     min-height: calc(100% - 25rem);
     border-top: 1px solid #cdcdcd;
 }
@@ -68,10 +69,9 @@ html, body {
     background-color: #fff;
 }
 .inwrap {
-    width: 120rem;
+    width: 100%;
     height: 100%;
     position: relative;
-    margin: auto;
 }
 .seq{
     line-height: 2.4rem;
@@ -111,6 +111,9 @@ text-align: center;
   height: 120px;
   background: #FAFAD2;
   opacity: 0.7;
+}
+#btmbtn{
+padding-bottom: 10%;
 }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -172,22 +175,27 @@ text-align: center;
 	<div class="search-top-container">
 		<h1><b>글작성</b></h1>
 	</div>
-		<div class="container" style="background:rgba(250, 230, 240, 0.99)">
+		<div class="container1" >
 	<div>
  
-	<h3>회원번호 : ${userkey}</h3>
+	<h3 type="hidden">회원번호 : ${userkey}</h3>
  
 	<input type="hidden" name=userKey value="${userKey}">
 	</div>
-		<spen><b>제목 : </b></spen>
+	<div>
+		<b>제목 : &nbsp; </b>
 		<input style="border: 2px solid rgba(250, 208, 0, 0.99); width: 300px; height: 40px;" type="text" name=comTitle>
- 	<br>
- 	<br>
-	 	<spen><b>병원 이름 : </b></spen>
-		<input style="border: 2px solid rgba(250, 208, 0, 0.99); width: 300px; height: 40px;" type="text" id=field1 name=field1 onkeyup="input()" value="">
-		<div class="box" style="width: 300px; height: 100px; position:relative; top:10px; left:40%; background: rgb(220,235,240); overflow-y: scroll;">
+		<br>
+		<br>
+		<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;병원 이름 : </b>
+		<input style="border: 2px solid rgba(250, 208, 0, 0.99); width: 250px; height: 40px;" type="text" id=field1 name=field1 onkeyup="input()" value="">
+		<div class="box" style="width: 300px; height: 100px; position:relative; top:10px; margin-left: 42%; background: rgb(220,235,240); overflow-y: scroll;">
 		  
 		</div>
+	</div>
+ 	<br>
+ 	<br>
+
  	<br>
 	
 	<fieldset>
@@ -208,7 +216,7 @@ text-align: center;
 		<textarea cols=150 rows=15 name=comContent style="border: 2px solid rgba(250, 208, 0, 0.99); width: 750px; height: 500px;"></textarea>
 	</div>
 	</div></div>
-	<div>
+	<div id="btmbtn">
 		<input type="submit"  value="등록하기" class="btn btn-warning">
 	</div>
 

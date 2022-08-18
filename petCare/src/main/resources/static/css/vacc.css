@@ -85,10 +85,11 @@ p {
    align-items: center;
    justify-content: center;
     background: #FAFAD2;
-    margin-top: 2%;
+    margin-top: 15%;
+    height: 100%;
 }
 .footer-top {
-    padding: 43px 0 75px;
+    padding: 43px 0 35px;
 }
 .container {
     margin: auto;
@@ -97,8 +98,8 @@ p {
 }
 .footer .container {
     display: flex;
+    justify-content: space-between;
     position: relative;
-    margin-left: 12% !important;
 }
 @media (min-width: 1264px)
 .container {
@@ -108,7 +109,6 @@ p {
     max-width: 524px;
 }
 .footer-info {
-	
     margin: 0 -8px;
 }
 .footer-link {

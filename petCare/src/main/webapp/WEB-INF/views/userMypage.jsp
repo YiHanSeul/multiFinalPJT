@@ -208,7 +208,23 @@
 		
 	</div>
 
-
+<footer class="footer">
+   <div class="footer-top">
+      <div class="container">
+         <div class="footer-col">
+            <ul class="footer-info">
+               <li>MUNGMUNG NETWORKS</li>
+               <li>대표이사 한세현종</li>
+               <li>사업자등록번호 844-455-9887415</li>
+               <li> 서울 송파구 올림픽로 240 잠실동 40-1 </li>
+               <li>TEL. 1661-2000</li>
+               <li>MUNGMUNGnetworks@gmail.com</li>
+               <li>Copyright © MUNGMUNG NETWORKS. All Rights reserved.</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</footer>
 </body>
 <script>
 	function deleteVacRes(bookId){
