@@ -408,17 +408,21 @@ function chageSelect() {
       
    }
    
+ function locationLoadSuccess(pos){
+    // 현재 위치 받아오기
+    var currentPos = new kakao.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
+
+    // 지도 이동(기존 위치와 가깝다면 부드럽게 이동)
+    map.panTo(currentPos);
+
+   };
+   
+   function locationLoadError(pos){
+       alert('위치 정보를 가져오는데 실패했습니다.');
+   };
+      
    //현재 위치로 변경
-	function now() {
-		if( navigator.geolocation){
-			navigator.geolocation.getCurrentPosition(function(position){
-				
-				var lat = position.coords.latitude,
-					lon = position.coords.longitude;
-				
-				locPosition = new kakao.maps.LatLng(lat,lon);
-				map.setCenter(locPosition);
-			}); 
-		}
+   function now() {
+      navigator.geolocation.getCurrentPosition(locationLoadSuccess,locationLoadError);
    } 
    
