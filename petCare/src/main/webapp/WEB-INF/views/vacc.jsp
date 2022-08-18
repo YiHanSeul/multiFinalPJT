@@ -138,7 +138,6 @@
 											<option value="종합7종">종합 7종백신</option>
 											<option value="코로나">코로나</option>
 											<option value="캔넬코프">캔넬코프</option>
-											<option value="광견병">광견병백신</option>
 										</select> 
 										<input class="form-control selectForm" type="date" name="vaccMonth" id="vaccdate">
 										<input class="btn btn-warning" type="submit"value="예방접종 기록">
