@@ -48,10 +48,7 @@ public class VaccController {
 	@Autowired
 	private ResService resService;
 	
-	@GetMapping("/numvacClean")
-	public void numvacClean(HttpSession session) {
-		session.setAttribute("numvac", 0);
-	}
+
 	
 	
 /*	@GetMapping("/vaccform")
@@ -101,34 +98,45 @@ public class VaccController {
 			
 		} catch (Exception e) {
 			session.setAttribute("no", 1);
+			
 			return "redirect:/user/login";
 		}
 		return "vacc";
 	}
 	
 	@GetMapping("/vaccadd")
-	public String vaccadd(Model model, HttpSession session, PetVaccDto petVaccDto) throws ParseException {
-		String userid=(String)session.getAttribute("userid");
-		System.out.println(petVaccDto.getVaccName());
-		int userkey =userService.UserChk(userid).getUserkey();
-		//date 포맷 설정
-		SimpleDateFormat sdfYMD= new SimpleDateFormat("yyyy-MM-dd");
-		//string-> date 변환
-		Date date=sdfYMD.parse(petVaccDto.getVaccMonth());
-		//날짜 연산을 위한 calenda객체 생성
-		Calendar cal=Calendar.getInstance();
-		cal.setTime(date);
-		// 6달뒤
-		cal.add(Calendar.MONTH,6);
-		petVaccDto.setUserKey(userkey);
-		petVaccDto.setNextVaccMonth(sdfYMD.format(cal.getTime()));
-		System.out.println(petVaccDto);
+	public String vaccadd(Model model, HttpSession session, PetVaccDto petVaccDto) {
+		
+		try {
+			String userid=(String)session.getAttribute("userid");
+			System.out.println(petVaccDto.getVaccName());
+			int userkey =userService.UserChk(userid).getUserkey();
+			//date 포맷 설정
+			SimpleDateFormat sdfYMD= new SimpleDateFormat("yyyy-MM-dd");
+			//string-> date 변환
+			Date date=sdfYMD.parse(petVaccDto.getVaccMonth());
+			//날짜 연산을 위한 calenda객체 생성
+			Calendar cal=Calendar.getInstance();
+			cal.setTime(date);
+			// 6달뒤
+			cal.add(Calendar.MONTH,6);
+			petVaccDto.setUserKey(userkey);
+			petVaccDto.setNextVaccMonth(sdfYMD.format(cal.getTime()));
+			System.out.println(petVaccDto);
+		} catch (ParseException e) {
+			session.setAttribute("no", 6);
+			//no == 6 날짜를 선택하지 않은 경우
+			return "redirect:/vacc/vaccform";
+		}
 		
 		int res=petVaccService.vaccadd(petVaccDto);
 		
 		if(res>0) {
 			return "redirect:/vacc/vaccform";
-		}else {
+		}
+		
+		
+		else {
 			return "index";
 			
 		}

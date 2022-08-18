@@ -67,7 +67,7 @@ public class HospitalController {
          
          int res1 = hosService.insertHos(hospitalDto);
          if (res1 > 0) {
-            return "index";
+            return "login";
          } else {
             return "hosInsert";
          }

@@ -59,12 +59,12 @@ public class UserServiceImpl implements UserService{
 	
 	//비밀번호 찾기 이메일 발송
 	@Override
-	public void sendEmail(UserDto userDto, String div) throws Exception {
+	public void sendEmail(UserDto userPwDto, String div) throws Exception {
 		//Mail Server 설정
 		String charset="utf-8";
 		String hostSMTP="smtp.naver.com";
 		String hostSMTPid="juni303"; //네이버 아이디 작성 필수
-		String hostSMTPpwd="1q2w3e4r!!";			//네이버 비밀번호 작성 필수
+		String hostSMTPpwd="guswns@11";			//네이버 비밀번호 작성 필수
 		
 		//보내는 사람 Email, 제목, 내용
 		String fromEmail = "juni303@naver.com"; 
@@ -74,19 +74,19 @@ public class UserServiceImpl implements UserService{
 		
 		if(div.equals("findpw")) {
 			subject = "임시 비밀번호 입니다";
-			msg += userDto.getUserid()+"님의 임시 비밀번호 입니다.";
-			msg += userDto.getUserpw();
+			msg += userPwDto.getUserid()+"님의 임시 비밀번호 입니다.";
+			msg += userPwDto.getUserpw();
 		}
 		
 		//받는 사람 E-mail 주소
-		String useremail = userDto.getUseremail();
+		String useremail = userPwDto.getUseremail();
 		try {
 			HtmlEmail email = new HtmlEmail();
 			email.setDebug(true);
 			email.setCharset(charset);
 			email.setSSL(true);
 			email.setHostName(hostSMTP);
-			email.setSmtpPort(587);
+			email.setSmtpPort(465);
 			
 			email.setAuthentication(hostSMTPid, hostSMTPpwd);
 			email.setTLS(true);
@@ -100,18 +100,20 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 	@Override
-	public void findPw(HttpServletResponse response, UserDto userDto) throws Exception {
+	public void findPw(HttpServletResponse response, UserDto userPwDto) throws Exception {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		UserDto ck = userMapper.userChk(userDto.getUserid());
-		System.out.println(userDto.getUseremail());
+		System.out.println(userPwDto.getUserid());
+		System.out.println(userMapper.userChk(userPwDto.getUserid()));
+		UserDto ck = userMapper.userChk(userPwDto.getUserid());
+		System.out.println(userPwDto.getUseremail());
 		System.out.println(ck.getUseremail());
-		if(userMapper.userIdChk(userDto.getUserid()) == null) {
+		if(userMapper.userIdChk(userPwDto.getUserid()) == null) {
 			out.print("등록되지 않은 아이디입니다.");
 			out.close();
 		}
 		//가입된 이메일이 아니면
-		else if(!userDto.getUseremail().equals(ck.getUseremail())) {
+		else if(!userPwDto.getUseremail().equals(ck.getUseremail())) {
 			out.print("등록되지 않은 이메일입니다.");
 			out.close();
 		}
@@ -125,12 +127,12 @@ public class UserServiceImpl implements UserService{
 			}
 			String pw1 = bcryptPassEncoder.encode(pw);
 //			userDto.setUserpw(pw);
-			userDto.setUserpw(pw);
-			System.out.println("pw");
+			userPwDto.setUserpw(pw);
+			System.out.println(pw);
 			//비밀번호 변경
-			userMapper.updateUserPw(userDto.getUserid(), pw1);
+			userMapper.updateUserPw(userPwDto.getUserid(), pw1);
 			//비밀번호 변경 메일 발송
-			sendEmail(userDto, "findpw");
+			sendEmail(userPwDto, "findpw");
 			
 			out.print("이메일을 임시 비밀번호를 발송하였습니다.");
 			out.close();

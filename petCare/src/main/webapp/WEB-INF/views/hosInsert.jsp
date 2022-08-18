@@ -47,6 +47,10 @@
 				<div class="text">사업자등록번호</div>
 				<input type="file" id="file" name="file" class="form-control upload-name">
 			</div>
+			
+			
+			
+			
 			<input id="join-btn" class="btn btn-warning" type="submit" value="가입">
 
 		</form>
