@@ -17,6 +17,7 @@ p {
 .not{
 	margin: auto;
 	text-align: center;
+	margin-top: 1%;
 }
 .vacc {
 	margin-bottom: 2%;
@@ -136,11 +137,12 @@ p {
 width: 400px !important;
 font-weight: blod;
 font-size: 30px;
+margin: auto !important;
 }
 #petins{
-	margin-bottom: 10px;
 	margin-right: 1%;
-	margin-top: 3px;
 	float: right;
 }
-
+#test{
+	height: 80px;
+}

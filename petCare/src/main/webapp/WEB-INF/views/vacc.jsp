@@ -31,7 +31,7 @@
 		$(get).next().removeClass('hide');
 		$(get).addClass('hide');
 	}
-	
+
 </script>
 </head>
 <body>
@@ -62,10 +62,10 @@
 		</div>
 		<div id="myPet">
 			<c:if test="${empty petDto}">
-				<span id="mptxt" class="not">펫 정보가 없습니다.</span>
-				<button id="petins" class="btn btn-warning" onclick="location.href='/user/userMypage'">펫등록하기</button>
+			<div id="test">
 				<p class="not">펫 정보가 없습니다.</p>
-				<a class="btn btn-warning" href="/user/userMypage" >펫 등록</a>
+				<button id="petins" class="btn btn-warning" onclick="location.href='/user/userMypage'">펫등록하기</button>
+				</div>
 			</c:if>
 			<c:if test="${not empty petDto}">
 				<c:forEach var="petDto" items="${petDto}">
@@ -138,7 +138,6 @@
 											<option value="종합7종">종합 7종백신</option>
 											<option value="코로나">코로나</option>
 											<option value="캔넬코프">캔넬코프</option>
-											<option value="광견병">광견병백신</option>
 										</select> 
 										<input class="form-control selectForm" type="date" name="vaccMonth" id="vaccdate">
 										<input class="btn btn-warning" type="submit"value="예방접종 기록">
@@ -154,6 +153,17 @@
 		</div>
 	</div>
 
+
+<script>
+var no = ${no};
+if(no == 6){
+	alert("날짜를 입력해주세요!");
+	$.ajax({
+		type:"get",
+		url:"/user/cleanNumb"
+	});
+}
+</script>
 <footer class="footer">
    <div class="footer-top">
       <div class="container">
