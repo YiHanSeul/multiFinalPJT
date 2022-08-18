@@ -14,15 +14,7 @@
 <script type="text/javascript" src="/resources/js/index.js"></script>
 <title>Insert title here</title>
 <script>
-/* var number = ${number};
-console.log(number);
-if (number == 5) {
-	alert("로그인 후 이용이 가능합니다.");
-	$.ajax({
-		type : "get",
-		url : "/board/cleanNum"
-	});
-} */
+var no = 0;
 </script>
 </head>
 <body>

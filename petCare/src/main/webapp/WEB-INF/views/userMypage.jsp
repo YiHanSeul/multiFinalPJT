@@ -39,7 +39,7 @@
 		<hr />
 		<c:if test="${not empty dto }">
 			<ul>
-				<li class="myInfo">아이디: ${dto.username}</li>
+				<li class="myInfo">이름: ${dto.username}</li>
 				<li class="myInfo">닉네임 : ${dto.usernick } 
 				
 				

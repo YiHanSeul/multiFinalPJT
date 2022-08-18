@@ -276,12 +276,17 @@ public class UserController {
 		String usernick = request.getParameter("usernick");
 		String useremail = request.getParameter("useremail");
 		String userphone = request.getParameter("userphone");
+		System.out.println(usernick);
+		System.out.println(useremail);
+		System.out.println(userphone);
+		
 		// 닉네임 확인하는 곳
 		if (usernick != null) {
 
 			int res = userService.updateUserNick(userid, usernick);
 			if (res > 0) {
 				UserDto dto = userService.UserChk(userid);
+				System.out.println(dto);
 				model.addAttribute("dto", dto);
 
 				int userkey = userService.UserChk(userid).getUserkey();
@@ -339,7 +344,11 @@ public class UserController {
 	}
 
 	@GetMapping("/userUpdate")
-	public String testNext() {
+	public String testNext(Model model, HttpSession session) {
+		String userid = (String)session.getAttribute("userid");
+		UserDto dto = userService.UserChk(userid);
+		model.addAttribute("dto", dto);
+		
 		
 		return "userUpdate";
 	}
@@ -399,6 +408,7 @@ public class UserController {
 	@ResponseBody
 	public void findPw(@ModelAttribute UserDto userDto, HttpServletResponse response) throws Exception {
 		userService.findPw(response, userDto);
+		System.out.println(userDto);
 	}
 
 }

@@ -31,7 +31,7 @@
 		$(get).next().removeClass('hide');
 		$(get).addClass('hide');
 	}
-	
+
 </script>
 </head>
 <body>
@@ -154,6 +154,17 @@
 		</div>
 	</div>
 
+
+<script>
+var no = ${no};
+if(no == 6){
+	alert("날짜를 입력해주세요!");
+	$.ajax({
+		type:"get",
+		url:"/user/cleanNumb"
+	});
+}
+</script>
 <footer class="footer">
    <div class="footer-top">
       <div class="container">
