@@ -62,10 +62,10 @@
 		</div>
 		<div id="myPet">
 			<c:if test="${empty petDto}">
-				<span id="mptxt" class="not">펫 정보가 없습니다.</span>
-				<button id="petins" class="btn btn-warning" onclick="location.href='/user/userMypage'">펫등록하기</button>
+			<div id="test">
 				<p class="not">펫 정보가 없습니다.</p>
-				<a class="btn btn-warning" href="/user/userMypage" >펫 등록</a>
+				<button id="petins" class="btn btn-warning" onclick="location.href='/user/userMypage'">펫등록하기</button>
+				</div>
 			</c:if>
 			<c:if test="${not empty petDto}">
 				<c:forEach var="petDto" items="${petDto}">
