@@ -14,7 +14,7 @@
 <script type="text/javascript" src="/resources/js/index.js"></script>
 <title>Insert title here</title>
 <script>
-var no = 0;
+var no = ${no};
 </script>
 </head>
 <body>

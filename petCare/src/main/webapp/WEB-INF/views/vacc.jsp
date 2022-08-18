@@ -155,6 +155,7 @@
 
 
 <script>
+
 var no = ${no};
 if(no == 6){
 	alert("날짜를 입력해주세요!");
