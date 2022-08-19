@@ -228,7 +228,7 @@ background-color: #FAFAD2;
       <table id="namelist" border="0"></table>
    </div>
    <div id="selectbar">
-      <button class="btn btn-warning" onclick="now();">현위치</button>&nbsp;
+      <!-- <button class="btn btn-warning" onclick="now();">현위치</button>&nbsp; -->
       <button class="btn btn-warning" onclick="openarea();">주소선택</button>&nbsp;
          <div id="area">
       <div>주소 찾기</div>

@@ -43,6 +43,21 @@ public class MapController {
 	   model.addAttribute("lsize", size);
 		return "hosSearchRes";
 	}
+   
+   @GetMapping("/search1")
+   public String search1(HttpServletRequest request, Model model, HttpSession session) {
+	   String HN= request.getParameter("HN");
+	   List<MapDto> list = mapservice.search(HN);
+	   session.setAttribute("keyword", HN);
+	  
+	   int size = list.size();
+	   model.addAttribute("list",list);
+	   model.addAttribute("num", 1);
+	   model.addAttribute("begin", 0);
+	   model.addAttribute("end", 9);
+	   model.addAttribute("lsize", size);
+		return "hosSearchRes2";
+	}
 	
   @GetMapping("/list")
 	public String BoardList1(HttpServletRequest request, int num, Model model, HttpSession session){

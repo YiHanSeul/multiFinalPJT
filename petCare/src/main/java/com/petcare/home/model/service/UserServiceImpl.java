@@ -126,9 +126,7 @@ public class UserServiceImpl implements UserService{
 				pw += (char)((Math.random()*26)+97);
 			}
 			String pw1 = bcryptPassEncoder.encode(pw);
-//			userDto.setUserpw(pw);
 			userPwDto.setUserpw(pw);
-			System.out.println(pw);
 			//비밀번호 변경
 			userMapper.updateUserPw(userPwDto.getUserid(), pw1);
 			//비밀번호 변경 메일 발송
@@ -156,6 +154,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int userKeyChk(String userId) {
 		return userMapper.userKeyChk(userId);
+	}
+	@Override
+	public String findmail(String useremail) {
+		return userMapper.findmail(useremail) ;
 	}
 
 }

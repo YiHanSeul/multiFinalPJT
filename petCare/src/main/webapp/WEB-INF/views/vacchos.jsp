@@ -12,7 +12,7 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
-   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a723ffff623b38bd669410d258fd2b51"></script>
+   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b26863706d226e3f518b005c22ee135d"></script>
 <script src="/resources/js/vacchos.js"></script>
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -220,7 +220,7 @@ background-color: #FAFAD2;
    <div class="search-top-container">
  		<h3 class="title" id="stt">예방 접종 병원 선택</h3>
    </div>
-<form action="/map/search" method="get">
+<form action="/map/search1" method="get">
     <div class="search-head"><div class="search-box-container"><div class="inner"><input type="text" name="HN"><button type="submit"></button></div><!----></div></div>
     </form>
 
@@ -228,7 +228,7 @@ background-color: #FAFAD2;
       <table id="namelist" border="0"></table>
    </div>
    <div id="selectbar">
-      <button class="btn btn-warning" onclick="now();">현위치</button>&nbsp;
+      <!-- <button class="btn btn-warning" onclick="now();">현위치</button>&nbsp;  -->
       <button class="btn btn-warning" onclick="openarea();">주소선택</button>&nbsp;
          <div id="area">
       <div>주소 찾기</div>
