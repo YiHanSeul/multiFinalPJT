@@ -165,6 +165,22 @@ public class VaccController {
 		model.addAttribute("hospitalkey", hospitalkey);
 		return "vacccalendar";
 	}
+	
+	@GetMapping("/vacccalendar1")
+	public String vacccalendar1(HttpServletRequest request, HttpSession session, Model model, ResDto resDto) {
+		String HospitalName = request.getParameter("HospitalName");
+		System.out.println(resDto);
+		session.setAttribute("HospitalName", HospitalName);
+		String userid = (String) session.getAttribute("userid");
+		String hospitalkey = (String) session.getAttribute("HospitalName");
+		model.addAttribute("userinfo", userService.UserSelect(userid));
+		model.addAttribute("hospitalinfo", hospitalService.HosSelect(hospitalkey));
+		model.addAttribute("vacc1", resDto.getVacc1());
+		model.addAttribute("vacc2", resDto.getVacc2());
+		model.addAttribute("vacc3", resDto.getVacc3());
+		model.addAttribute("hospitalkey", hospitalkey);
+		return "vacccalendar1";
+	}
 
 	@PostMapping("/resVacCheck")
 	@ResponseBody

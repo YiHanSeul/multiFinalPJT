@@ -220,7 +220,7 @@ background-color: #FAFAD2;
    <div class="search-top-container">
  		<h3 class="title" id="stt">예방 접종 병원 선택</h3>
    </div>
-<form action="/map/search" method="get">
+<form action="/map/search1" method="get">
     <div class="search-head"><div class="search-box-container"><div class="inner"><input type="text" name="HN"><button type="submit"></button></div><!----></div></div>
     </form>
 

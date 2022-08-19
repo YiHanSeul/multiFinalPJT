@@ -17,6 +17,6 @@ public interface MapMapper {
    @Select(" SELECT * FROM MAP WHERE ADDR LIKE CONCAT(#{addr}, '%') ")
    List<MapDto> selectreigon(String addr);
    
-   @Select(" SELECT HOSPITALNAME, ADDR FROM MAP WHERE HOSPITALNAME LIKE '%${HN}%' ")
+   @Select(" SELECT HOSPITALNAME, ADDR, VACC1, VACC2, VACC3 FROM MAP WHERE HOSPITALNAME LIKE '%${HN}%' ")
    List<MapDto> search(String HN);
 } 
