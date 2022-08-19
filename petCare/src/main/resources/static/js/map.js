@@ -418,7 +418,7 @@ function chageSelect() {
    };
    
    function locationLoadError(pos){
-       alert('위치 정보를 가져오는데 실패했습니다.');
+      // alert('위치 정보를 가져오는데 실패했습니다.');
    };
       
    //현재 위치로 변경
