@@ -33,8 +33,9 @@
 			<div id="radio-div">
 				<input type="radio" name="chk_info" value="1" checked>
 					<label class="radio-btn">일반 로그인</label> 
+					<label class="radio-btn" id="hos">
 				<input id="hos" type="radio" name="chk_info" value="2">
-					<label class="radio-btn">병원 로그인</label>
+					병원 로그인</label>
 			</div>
 			<div>
 				<input id="submit-btn" class="btn btn-warning" type="submit" value="로그인">
