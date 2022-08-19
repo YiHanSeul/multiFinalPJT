@@ -45,6 +45,9 @@ public interface UserMapper {
 	@Delete(" DELETE FROM USER WHERE USERID=#{userid} ")
 	int deleteUser(String userid);
 	
+	@Select(" SELECT USERID FROM USER WHERE USEREMAIL =#{useremail} ")
+	String findmail(String useremail);
+	
 	
 	
 }

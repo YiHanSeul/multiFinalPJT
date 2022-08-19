@@ -29,7 +29,7 @@
 			<li class="menu-list"><a href="#myBook">병원예약 현황</a></li>
 			<li class="menu-list"><a href="#myVaccBook">예방접종 예약현황</a></li>
 			<li class="menu-list"><a href="#myCommunity">동물병원 후기</a></li>
-			<li class="menu-list"><a href="/mail/send">비밀번호찾기</a></li> 
+			<!-- <li class="menu-list"><a href="/mail/send">비밀번호찾기</a></li>  -->
 			<li class="menu-list"><p onclick="userDelete()">회원탈퇴</p></li>
 		</ul>
 	</div>

@@ -23,8 +23,8 @@ public class MailController {
     }
  
     @PostMapping("/mail/send")
-    public String sendMail(MailDto mailDto, HttpSession session) {
-        emailService.sendSimpleMessage(mailDto, session);
+    public String sendMail(MailDto mailDto) {
+        emailService.sendSimpleMessage(mailDto);
         System.out.println("메일 전송 완료");
         return "login";
     }

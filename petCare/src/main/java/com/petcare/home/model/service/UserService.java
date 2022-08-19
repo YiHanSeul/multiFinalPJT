@@ -33,4 +33,6 @@ public interface UserService {
 	
 	//비밀번호찾기
 	public void findPw(HttpServletResponse response, UserDto userDto) throws Exception;
+	//이메일 찾기
+	public String findmail(String useremail);
 }

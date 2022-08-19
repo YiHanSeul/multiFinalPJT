@@ -27,20 +27,20 @@ public class EmailService {
     private UserMapper userMapper;
    
 	
-    public void sendSimpleMessage(MailDto mailDto, HttpSession session) {
-    	String userid = (String)session.getAttribute("userid");
+    public void sendSimpleMessage(MailDto mailDto) {
+    	
     	 String pw = "";
     		
     		
     		for(int i=0; i<12; i++) {
     			pw += (char)((Math.random()*26)+97);
     		}
-    		UserDto userDto = userService.UserChk(userid);
+    		String useremail = mailDto.getAddress();
+    		String userid=userService.findmail(useremail);
     		String pw1 = bcryptPassEncoder.encode(pw);
-    		userDto.setUserpw(pw);
     		
 //    		//비밀번호 변경
-    		userMapper.updateUserPw(userDto.getUserid(), pw1);
+    		userMapper.updateUserPw(userid, pw1);
     	
     	
     	

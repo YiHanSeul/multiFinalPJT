@@ -155,5 +155,9 @@ public class UserServiceImpl implements UserService{
 	public int userKeyChk(String userId) {
 		return userMapper.userKeyChk(userId);
 	}
+	@Override
+	public String findmail(String useremail) {
+		return userMapper.findmail(useremail) ;
+	}
 
 }
